@@ -1,18 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewLandingComponent } from './view-landing/view-landing.component';
 
+import { LandingRoutingModule } from './landing-routing.module';
+import { LandingComponent } from './view-landing/landing.component';
 
 
 @NgModule({
   declarations: [
-    ViewLandingComponent
+    LandingComponent
   ],
   imports: [
-    CommonModule
-  ],
-  exports: [
-    ViewLandingComponent
+    CommonModule,
+    LandingRoutingModule
+  ],exports:[
+    LandingComponent
   ]
 })
 export class LandingModule { }

@@ -1,18 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ViewRegisterComponent } from './view-register/view-register.component';
 
+import { RegisterRoutingModule } from './register-routing.module';
+import { RegisterComponent } from './view-register/register.component';
 
 
 @NgModule({
   declarations: [
-    ViewRegisterComponent
+    RegisterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RegisterRoutingModule
   ],
-  exports:[
-    ViewRegisterComponent
+  exports: [
+    RegisterComponent
   ]
 })
 export class RegisterModule { }
