@@ -68,7 +68,8 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Marketplace:build:production"
+              "browserTarget": "Marketplace:build:production",
+              "proxyConfig": "proxy.conf.json"
             },
             "development": {
               "browserTarget": "Marketplace:build:development"
