@@ -8,11 +8,14 @@ const port =(process.env.port || 3000);
 //express
 const app= express();
 
+//admitir los tipos de Datos
+app.use(express.json())
+
 //config
 app.set('port',port)
 
 //rutes
-//---agregr rutadas
+//---agregr rutas
 app.use('/api',require('./rutas'))
 
 //Iniciar Express
