@@ -20,30 +20,34 @@ CREATE TABLE USER(
 CREATE TABLE PRODUCT(
     id_product SERIAL PRIMARY KEY,
     id_user_fk BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a los usuarios",
+    FOREIGN KEY (id_user_fk) REFERENCES USER(id_user),
     var_name VARCHAR(150) NOT NULL COMMENT "Nombre del producto",
-    views BIGINT UNSIGNED NOT NULL COMMENT "Cantidad de vistas del producto",
+    int_views BIGINT UNSIGNED NOT NULL COMMENT "Cantidad de vistas del producto",
     text_description TEXT NOT NULL COMMENT "Descripción",
-    dou_price DOUBLE(10,2) NOT NULL COMMENT "Precio del articulo",
+    dou_price DOUBLE NOT NULL COMMENT "Precio del articulo",
     bit_availability BIT(1) DEFAULT 0 NOT NULL COMMENT "Identifica el estado del articulo: 0 No disponible | 1 Disponible",
-    publication_date DATE NOT NULL COMMENT "Fecha de publicacion del articulo",
-    expiration_date DATE NOT NULL COMMENT "Fecha de expiración del articulo"
+    publication_date timestamp NOT NULL COMMENT "Fecha de publicacion del articulo",
+    expiration_date timestamp NOT NULL COMMENT "Fecha de expiración del articulo"
     
 
 ) COMMENT "Anuncios";
 
-/*
-CREATE TABLE DEPARTMENT (
 
+CREATE TABLE DEPARTMENT (
+	id_department SERIAL PRIMARY KEY,
+    var_name VARCHAR(150) NOT NULL COMMENT "Nombre del departamento"
 
 ) COMMENT "Ubicación";
 
 CREATE TABLE COMMENTARY(
+	id_commentary SERIAL PRIMARY KEY,
+    text_contents TEXT NOT NULL COMMENT "Contenido",
+    tim_date timestamp NOT NULL COMMENT "Fecha de creación del comentario"
 
-
-) COMMENT "Comentarios";
-
+) COMMENT "Comentarios que deja el usuario a algun producto";
+/*
 CREATE TABLE SCORE(
-
+	
 
 ) COMMENT "Calificación";
 
