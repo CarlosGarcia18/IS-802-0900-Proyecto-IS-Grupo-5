@@ -2,10 +2,10 @@
 const mysql= require('mysql');
 //Crea todos los parametros que se requieren para la conexion
 const conexion=mysql.createConnection({
-    host:'',
+    host:'localhost',
     user:'',
     password:'',
-    port:3306,
+    port:8080,
     database:'PLAZITANET'
 });
 

@@ -9,6 +9,7 @@ const routerConstumer = require('./routes/routes')
 //Configuracion del puerto del servidor
 const port = (process.env.port || 3000)
 
+//express
 const app = express()
 
 //allow
@@ -16,6 +17,7 @@ app.use(express.json)
 
 //config
 app.set('port',port)
+
 
 //middlewares
 app.use(morgan('dev'))
