@@ -5,7 +5,7 @@ const conexion = mysql.createConnection({
     user:  '',
     password:'',
     port : 3306,
-    database:''
+    database:'PLAZITANET'
 });
 
 conexion.connect((err)=>{

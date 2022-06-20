@@ -7,7 +7,7 @@ const conexion= require('./Config/conexion')
 //Metodo Get
 router.get('/',(req,res) =>{
     //Es para hacer una consulta a la base de datos y ver todos los datos que tiene
-    let sql ='select * from //(Nombre de la Base de datos)'
+    let sql ='select * from USER'
     conexion.query(sql,(err,rows,fields) =>{
         if(err){
             throw err;
@@ -22,7 +22,7 @@ router.get('/:id',(req,res) =>{
     //Para recuperar el id
     const {id} = req.params
     //Se crea la consulta para llamar a un usuario especifico 
-    let sql ='select * from //(Nombre de la Base de datos) where id_Usuario=?'
+    let sql ='select * from USER where id_user=?'
     conexion.query(sql,(err,rows,fields) =>{
         if(err){
             throw err;
@@ -35,10 +35,12 @@ router.get('/:id',(req,res) =>{
 //--------Agregar Usuario------------------
 router.post('/',(req,res) =>{
     //Se crea una constante donde se recuperan los datos del usuario
-    const{nombre,correo,fecha_nacimiento} = req.body
+    const{var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
     
     //Se crea una variable donde se agregan los datos a insertar
-    let sql=` insert into (Nombre de la Tabla)(nombre,Correo,fecha_nacimiento) values('${nombre},${correo}')`
+    let sql=` insert into USER (var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) 
+    values('${var_email}','${var_name}','${var_lastname}','${tex_password}','${bit_rol}','${bit_status}',
+    '${var_phone}')`
     
     conexion.query(sql,(err,rows,fields)=>{
         if(err){
@@ -69,7 +71,7 @@ router.put('/id',(req,res) =>{
     const{id}=req.params
     const{nombre,correo,fecha_nacimiento} = req.body
 
-    let sql = `update (nombre tabla) set
+    let sql = `update (USER) set
                nombre ='${nombre}',
                correo ='${correo}',
                fecha_nacimiento= '${fecha_nacimiento}'
