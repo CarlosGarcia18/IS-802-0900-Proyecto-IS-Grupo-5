@@ -6,5 +6,6 @@ const customerA = require('../controllers/customerAdmin')
  
 routers.get('/userTest', customerU.test)
 routers.get('/adminTest', customerA.test)
+routers.get('/user', customerA.query)
 
 module.exports = routers

@@ -2,11 +2,11 @@
 const mysql= require('mysql');
 //Crea todos los parametros que se requieren para la conexion
 const conexion=mysql.createConnection({
-    host:'localhost',
-    user:'',
-    password:'',
-    port:8080,
-    database:'PLAZITANET'
+    host:process.env.host,
+    user:process.env.user,
+    password:process.env.password,
+    port:process.env.port,
+    database:process.env.database
 });
 
 conexion.connect((err)=>{
