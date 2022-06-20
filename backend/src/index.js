@@ -1,9 +1,12 @@
-//require('./config/connection')
+//importa la conexion
+require('./config/connection')
+
 
 const express = require('express')
 const morgan = require('morgan')
 const routerConstumer = require('./routes/routes')
- 
+
+//Configuracion del puerto del servidor
 const port = (process.env.port || 3000)
 
 const app = express()
