@@ -1,6 +1,6 @@
 if (process.env.NODE_ENV != 'production') {
     require('dotenv').config()
-}
+}//configuracion para la utilizacion de variables de entorno
 
 //Llama la dependencia de Mysql
 const mysql= require('mysql');

@@ -1,9 +1,5 @@
-//importa la conexion
-require('./config/connection')
-
-
 const express = require('express')
-const morgan = require('morgan')
+const morgan = require('morgan') //paquete para verificacion
 const routerConstumer = require('./routes/routes')
 
 //Configuracion del puerto del servidor
@@ -12,18 +8,18 @@ const port = (process.env.port || 3000)
 //express
 const app = express()
 
-//allow
-app.use(express.json)
+//Permitir que el servidor acepte json
+app.use(express.json())
 
-//config
+//configuracion del puerto
 app.set('port',port)
 
 
-//middlewares
+//Middlewares
 app.use(morgan('dev'))
-app.use('/api',routerConstumer)
+app.use('/api',routerConstumer)//ruta por defecto del servidor localhost:3000/api
 
-//express start
+//iniciar express
 app.listen(app.get('port'),(error)=>{
     if (error) {
         console.log('There was an error starting the server ' + error)
