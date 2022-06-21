@@ -17,5 +17,6 @@ conexion.connect((err)=>{
     }
 });
 
+
 //Exportamos la conexion
 module.exports=conexion;

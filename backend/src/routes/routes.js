@@ -11,16 +11,18 @@ routers.get('/userTest', customerU.test)
 routers.get('/adminTest', customerA.test)
 routers.get('/user', customerA.query)
 
+
+
 //--------Agregar Rutas------------
 //Get Equipos Para visualizar una tabla
 routers.get('/', (req,res) =>{
     let sql = 'select *from USER'
     conexion.query(sql,(err,rows,fields)=>{
-        if(err){
+        if(err)
             throw err
-        }else{
+        else
             res.json(rows)
-        }
+        
     })
 })
 //Get Equipo Para recuperar datos a un id Especifico
@@ -39,7 +41,7 @@ rutas.get('/:id',(req,res) =>{
 rutas.post('/',(req,res) =>{
     const{nombre,logo} =req.body
 
-    let sql=`insert into USER(nombre,logo) values('${var_email}','${var_name}',
+    let sql=`insert into USER(nombre,logo) values('${id_user}','${var_email}','${var_name}',
     '${var_lastname}','${tex_password}','${bit_rol}','${bit_status}','${var_phone}')`
     conexion.query(sql,(err,rows,fields)=>{
         if(err) throw err
