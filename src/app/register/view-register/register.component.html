@@ -1,94 +1,83 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Usuarios</title>
-    <link rel="stylesheet" href="register.component.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-</head>
-<body class="body" >
-    <header class="header">
-        <div class="container">
-            <div class="logo">                       
-                <img src="img/LOGO2.png" alt="logo_empresa">
-            </div>    
-            <nav class="menu">
-                <a href="/src/app/landing/view-landing/landing.component.html">Inicio</a>
-            </nav>
-        </div>  
-    </header>  
-    <div class="login-container">
-        <div class="div-img"><img class="image-container" src="img/registro.jpg" alt=""></div>
-        <div class="icon-container" style="align-items: center ;">
-            <i class="fa-solid fa-user" style="margin-top:140px; margin-bottom:30px; display:flex" ></i>
-            <i class="fa-solid fa-user" style=" margin-bottom:35px ;display: flex; "></i>
-            <i class="fa-solid fa-envelope" style=" margin-bottom:30px; display: flex;"></i>
-            <i class="fa-solid fa-unlock" style=" margin-bottom:30px; display: flex;"></i>
-            <i class="fa-solid fa-phone" style=" margin-bottom:35px ; display:flex"></i>
-            <i class="fa-solid fa-location-dot" style="margin-bottom:30px ; display: flex;"></i>   
+<header class="header">
+    <div class="container">
+        <div class="logo">
+            <img src="/Imagenes/LOGO2.png" alt="logo_empresa">
         </div>
-        <div class="login-info-container">
-            <h1 class="title">Crea una nueva cuenta</h1>
-            <form class="inputs-container" id="id-form"action="" method="POST">
-                <input class="input" type="text" placeholder="Escribe tu nombre" name="nombre" required>
-                <input class="input" type="text" placeholder="Escribe tu apellido" name="apellido" required>
-                <input class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" id="email" name="correo" required>
-                <input class="input" type="password" placeholder="Escribe tu contraseña" name="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{5,}" required>
-                <input class="input" type="tel" pattern ="[0-9]{8}" maxlength="8" placeholder="Telefono (Ej: 99991234)" required>
+        <nav class="menu">
+            <a href="" routerLinkActive="/landing">Inicio</a>
+        </nav>
+    </div>
+</header>
+<div class="login-container">
+    <div class="div-img"><img class="image-container" src="img/registro.jpg" alt=""></div>
+    <div class="icon-container" style="align-items: center ;">
+        <i class="fa-solid fa-user" style="margin-top:140px; margin-bottom:30px; display:flex"></i>
+        <i class="fa-solid fa-user" style=" margin-bottom:35px ;display: flex; "></i>
+        <i class="fa-solid fa-envelope" style=" margin-bottom:30px; display: flex;"></i>
+        <i class="fa-solid fa-unlock" style=" margin-bottom:30px; display: flex;"></i>
+        <i class="fa-solid fa-phone" style=" margin-bottom:35px ; display:flex"></i>
+        <i class="fa-solid fa-location-dot" style="margin-bottom:30px ; display: flex;"></i>
+    </div>
+    <div class="login-info-container">
+        <h1 class="title">Crea una nueva cuenta</h1>
+        <form class="inputs-container" id="id-form" action="" method="POST">
+            <input class="input" type="text" placeholder="Escribe tu nombre" name="nombre" required>
+            <input class="input" type="text" placeholder="Escribe tu apellido" name="apellido" required>
+            <input class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" id="email"
+                name="correo" required>
+            <input class="input" type="password" placeholder="Escribe tu contraseña" name="password"
+                pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{5,}" required>
+            <input class="input" type="tel" pattern="[0-9]{8}" maxlength="8" placeholder="Telefono (Ej: 99991234)"
+                required>
             <!--aqui iba el cierre de form-->
-            <table class="table"> 
+            <table class="table">
                 <thead class="tbl-head">
                     <tr>
                         <td class="tbl-col-nombre">Selecciona tu ubicacion</td>
-                        <td class="tbl-col-depto"> 
-                        <select class="selector" name="Departamento">
-                            <option>Atlantida</option>
-                            <option>Choluteca</option>
-                            <option>Colon</option>
-                            <option>Comayagua</option>
-                            <option>Copan</option>
-                            <option>Cortes</option>
-                            <option>El Paraiso</option>
-                            <option>Francisco Morazan</option>
-                            <option>Gracias a Dios</option>
-                            <option>Intibuca</option>
-                            <option>Islas de la Bahia</option>
-                            <option>La Paz</option>
-                            <option>Lempira</option> 
-                            <option>Ocotepeque</option>
-                            <option>Olancho</option>
-                            <option>Santa Barbara</option>
-                            <option>Valle</option>
-                            <option>Yoro</option>
-                        </select>
+                        <td class="tbl-col-depto">
+                            <select class="selector" name="Departamento">
+                                <option>Atlantida</option>
+                                <option>Choluteca</option>
+                                <option>Colon</option>
+                                <option>Comayagua</option>
+                                <option>Copan</option>
+                                <option>Cortes</option>
+                                <option>El Paraiso</option>
+                                <option>Francisco Morazan</option>
+                                <option>Gracias a Dios</option>
+                                <option>Intibuca</option>
+                                <option>Islas de la Bahia</option>
+                                <option>La Paz</option>
+                                <option>Lempira</option>
+                                <option>Ocotepeque</option>
+                                <option>Olancho</option>
+                                <option>Santa Barbara</option>
+                                <option>Valle</option>
+                                <option>Yoro</option>
+                            </select>
                         </td>
                     </tr>
-                </thead>    
+                </thead>
             </table>
-                <div class="foot-container">
-                    <input  type="checkbox" name="Terminos" class="input-chk" required><span class="span">Para crear tu cuenta acepta los <a href="#" class="link" target="_blank" >Terminos y Condiciones</a></span> 
-                </div>  
-                <button class="btn" >Registrarme</button>  
-            </form>
-        </div>
+            <div class="foot-container">
+                <input type="checkbox" name="Terminos" class="input-chk" required><span class="span">Para crear tu
+                    cuenta acepta los <a href="#" class="link" target="_blank">Terminos y Condiciones</a></span>
+            </div>
+            <button class="btn">Registrarme</button>
+        </form>
     </div>
-    <footer class="pie-pagina">
-        <div class="footer-container">
-            <h5 >PLAZITANET</h5>
-            <ul class="list">
-                <li>
-                    <a href="#">Sobre Nosotros</a>
-                </li>
-                <li>
-                    <a href="#">Terminos y Condiciones</a>
-                </li>
-            </ul> 
-            <p class="copyright" > PlazitaNet <i class="fa-regular fa-copyright"></i> 2022</p>  
-        </div>
-        </footer>        
-</body>
-</html>
+</div>
+<footer class="pie-pagina">
+    <div class="footer-container">
+        <h5>PLAZITANET</h5>
+        <ul class="list">
+            <li>
+                <a href="#">Sobre Nosotros</a>
+            </li>
+            <li>
+                <a href="#">Terminos y Condiciones</a>
+            </li>
+        </ul>
+        <p class="copyright"> PlazitaNet <i class="fa-regular fa-copyright"></i> 2022</p>
+    </div>
+</footer>
