@@ -24,7 +24,7 @@
             <input class="input" type="text" placeholder="Escribe tu nombre" name="nombre" required>
             <input class="input" type="text" placeholder="Escribe tu apellido" name="apellido" required>
             <input class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" id="email"
-                name="correo" required>
+                name="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required>
             <input class="input" type="password" placeholder="Escribe tu contraseña" name="password"
                 pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{5,}" required>
             <i id="ojo" class="fa-solid fa-eye"></i>

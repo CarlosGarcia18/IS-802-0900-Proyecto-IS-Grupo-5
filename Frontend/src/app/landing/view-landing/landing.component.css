@@ -15,6 +15,19 @@
     max-width: 1200px;
     margin: auto;
 }
+ul li a{
+    text-decoration: none;
+    color: inherit;
+    transition: all 50ms ease;
+}
+ul li a:hover{
+    color: #7DE2FC;
+}
+ul li{
+    display: inline-block;
+    padding: 0 15px;
+}
+
 .logo img{
     float: left;
     margin-top: 5px;
