@@ -1,3 +1,4 @@
+console.log("Ejecutando js")
 const nombre = document.getElementById("inombre")
 const apellido = document.getElementById("iapellido")
 
