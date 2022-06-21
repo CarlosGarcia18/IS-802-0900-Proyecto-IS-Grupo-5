@@ -23,60 +23,11 @@ CREATE TABLE DEPARTMENT (
 
 ) COMMENT "Ubicación";
 
-
-CREATE TABLE COMPLAINT(
-	id_COMPLAINT SERIAL PRIMARY KEY,
-    bit_status BIT(1) NOT NULL COMMENT "0 Ignorada | 1 Aprobada",
-    text_description TEXT NOT NULL COMMENT "Descripción",
-    tim_date timestamp NOT NULL COMMENT "Fecha de creación de la denuncia"
-
-) COMMENT "Denuncia";
-
-
 CREATE TABLE COMPLAINT_CATEGORY(
 	id_COMPLAINT_CATEGORY SERIAL PRIMARY KEY,
     var_name VARCHAR(50) NOT NULL COMMENT "Nombre de la categoria de denuncia"
 
 ) COMMENT "CATEGORÍA DE DENUNCIA";
-
-/*
-CREATE TABLE SUBSCRIPTION(
-
-
-) COMMENT "SUBSCRIPCIONES A LAS CATEGORIAS";
-*/
-
-/*
-CREATE TABLE WISH_LIST(
-
-
-) COMMENT "LISTA DE DESEOS O FAVORITOS";
-*/
-
-/*
-CREATE TABLE CHAT(
-
-
-) COMMENT "CHAT";
-*/
-
-CREATE TABLE MESSAGE(
-	id_message SERIAL PRIMARY KEY,
-    tim_date timestamp NOT NULL COMMENT "Esto almacena la fecha y la hora de publicacion del mensaje",
-    bit_status BIT(1) NOT NULL COMMENT "Estado del mensaje: 0 Sin leer | 1 Leido",
-    text_contents TEXT NOT NULL COMMENT "Contenido del mensaje"
-
-) COMMENT "MENSAJES";
-
-
-CREATE TABLE PHOTOGRAPHS(
-	id_photographs SERIAL PRIMARY KEY,
-    blob_file MEDIUMBLOB COMMENT "El archivo binario",
-    var_name VARCHAR(150) COMMENT "Nombre del archivo",
-    var_extension VARCHAR(10) COMMENT "Extensión del archivo"
-
-
-) COMMENT "FOTOGRAFÍAS";
 
 CREATE TABLE USER(
     id_user SERIAL PRIMARY KEY,
@@ -118,6 +69,18 @@ CREATE TABLE PRODUCT(
 
 ) COMMENT "Anuncios";
 
+CREATE TABLE PHOTOGRAPHS(
+	id_photographs SERIAL PRIMARY KEY,
+    blob_file MEDIUMBLOB COMMENT "El archivo binario",
+    var_name VARCHAR(150) COMMENT "Nombre del archivo",
+    var_extension VARCHAR(10) COMMENT "Extensión del archivo",
+    
+	fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto",
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
+
+
+) COMMENT "FOTOGRAFÍAS";
+
 CREATE TABLE COMMENTARY(
 	id_commentary SERIAL PRIMARY KEY,
     
@@ -145,9 +108,87 @@ CREATE TABLE QUALIFICATION(
 
 ) COMMENT "Calificación";
 
+CREATE TABLE COMPLAINT(
+	id_COMPLAINT SERIAL PRIMARY KEY,
+    fk_id_user BIGINT UNSIGNED NOT NULL COMMENT "Usuario que denuncia",
+    FOREIGN KEY (fk_id_user) REFERENCES USER(id_user),
+    
+    fk_id_user_complaining BIGINT UNSIGNED NOT NULL COMMENT "Usuario denunciado",
+    FOREIGN KEY (fk_id_user_complaining) REFERENCES USER(id_user),
+    
+	fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto del que se hizo la denuncia",
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product),
+    
+    fk_id_complaint_category BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a la categoria de la denuncia",
+    FOREIGN KEY (fk_id_complaint_category) REFERENCES COMPLAINT_CATEGORY(id_complaint_category),
+    
+    bit_status BIT(1) NOT NULL COMMENT "0 Ignorada | 1 Aprobada",
+    text_description TEXT NOT NULL COMMENT "Descripción",
+    tim_date timestamp NOT NULL COMMENT "Fecha de creación de la denuncia"
+
+) COMMENT "Denuncia";
+
+CREATE TABLE CHAT(
+	id_chat SERIAL PRIMARY KEY,
+    
+    fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto en el que se habre un chat",
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product),
+    
+    fk_id_user_buyer BIGINT UNSIGNED NOT NULL COMMENT "Usuario Comprador",
+    FOREIGN KEY (fk_id_user_buyer) REFERENCES USER(id_user),
+    
+    fk_id_user_seller BIGINT UNSIGNED NOT NULL COMMENT "Usuario Vendedor",
+    FOREIGN KEY (fk_id_user_seller) REFERENCES USER(id_user)
+    
+
+) COMMENT "CHAT";
+
+CREATE TABLE MESSAGE(
+	id_message SERIAL PRIMARY KEY,
+    tim_date timestamp NOT NULL COMMENT "Esto almacena la fecha y la hora de publicacion del mensaje",
+    bit_status BIT(1) NOT NULL COMMENT "Estado del mensaje: 0 Sin leer | 1 Leido",
+    text_contents TEXT NOT NULL COMMENT "Contenido del mensaje",
+    
+    fk_id_chat BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al chat que pertenece este mensaje",
+    FOREIGN KEY (fk_id_chat) REFERENCES CHAT(id_chat),
+    
+    fk_id_user BIGINT UNSIGNED NOT NULL COMMENT "Usuario que escribio el mensaje",
+    FOREIGN KEY (fk_id_user) REFERENCES USER(id_user)
+
+) COMMENT "MENSAJES";
+
+
+CREATE TABLE WISH_LIST(
+
+	fk_id_user BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al Usuario",
+	FOREIGN KEY (fk_id_user) REFERENCES USER(id_user),
+    
+    fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al Producto",
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
+
+) COMMENT "LISTA DE DESEOS O FAVORITOS";
+
+-- Crear una llave primaria compuesta con dos llaves foraneas de la tabla WISH_LIST
+ALTER TABLE WISH_LIST
+	ADD CONSTRAINT pk_wish_list PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product);
+
+CREATE TABLE SUBSCRIPTION(
+
+	fk_id_user BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al Usuario",
+	FOREIGN KEY (fk_id_user) REFERENCES USER(id_user),
+    
+    fk_id_product_category BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a las categorias",
+    FOREIGN KEY (fk_id_product_category) REFERENCES PRODUCT_CATEGORY(id_product_category)
+
+) COMMENT "SUBSCRIPCIONES A LAS CATEGORIAS";
+
+-- Crear una llave primaria compuesta con dos llaves foraneas de la tabla WISH_LIST
+ALTER TABLE SUBSCRIPTION
+	ADD CONSTRAINT pk_wish_list PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product_category);
+
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234
 INSERT INTO DEPARTMENT(var_name) VALUES('Francisco Morazán');
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(1, 'Padmin@admin.com', 'admin', 'plazitanet', '1234', 0, 1, '99000000');
+	VALUES(1, 'admin@admin.com', 'admin', 'plazitanet', '1234', 0, 1, '99000000');
 
 
