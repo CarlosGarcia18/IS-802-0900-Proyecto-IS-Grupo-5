@@ -9,6 +9,21 @@
     margin-bottom:30px ;
     display: flex;
 }
+#ojo{
+    opacity: 0.3;
+    cursor: pointer;
+    transform: translate(300px )
+}
+#ojo:hover{
+    opacity: 0.8;
+}
+.warning{
+    width: 200px;
+    text-align: center;
+    margin: auto;
+    color: brown;
+    padding-top: 20px;
+}
 .login-container {
     height: 35.75em;
     width: 50em;
