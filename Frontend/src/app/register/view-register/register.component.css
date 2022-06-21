@@ -1,22 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
-:root {
-    --login-bg: white;
-    --title-bg: #black;
-    --button-bg: #FAA11D;
-    --light-pink: #black;
-    --image-bg:  #252F37 ;
-}
 
-body {
-    height: 100vh;
-    font-family: 'Poppins', sans-serif;
-    background-color: #DBEDF5;
-}
 .copyright{
     letter-spacing: 0.25em;
     color: #5E6A72;
     
+}
+#icon{
+    margin-bottom:30px ;
+    display: flex;
 }
 .login-container {
     height: 35.75em;
@@ -217,6 +208,7 @@ footer{
     justify-content: space-around;
     
 }
+
 .span {
     color: var(--light-pink);
     font-weight: 400;
