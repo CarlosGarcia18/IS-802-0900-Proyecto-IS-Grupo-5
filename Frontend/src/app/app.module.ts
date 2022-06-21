@@ -1,4 +1,7 @@
 import { NgModule } from '@angular/core';
+
+import { CargarScriptsService} from "./cargar-scripts.service";
+
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
 import {FormsModule} from '@angular/forms'
@@ -19,7 +22,7 @@ import { RegisterModule } from './register/register.module';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CargarScriptsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
