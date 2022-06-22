@@ -1,4 +1,5 @@
-TRUNCATE TABLE DEPARTMENT;
+
+USE PLAZITANET;
 
 INSERT INTO DEPARTMENT(var_name) VALUES('Atlántida');
 INSERT INTO DEPARTMENT(var_name) VALUES('Colón');
@@ -20,7 +21,7 @@ INSERT INTO DEPARTMENT(var_name) VALUES('Valle');
 INSERT INTO DEPARTMENT(var_name) VALUES('Yoro');
 
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234
-/*
+
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES(8, 'admin@admin.com', 'admin', 'plazitanet', '1234', 0, 1, '99000000');
-*/
+
