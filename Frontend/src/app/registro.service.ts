@@ -13,8 +13,6 @@ export class RegistroService {
 
 }
 export interface Registro{
- 
-  id_user:number,
   fk_id_department:number,
   var_email:string,
   var_name:string,

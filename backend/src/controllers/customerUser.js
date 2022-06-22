@@ -20,8 +20,8 @@ controller.getUser = (req,res) =>{
 
 //funcion para incertar un usuario
 controller.postUser = (req,res) =>{
-    const {id_user,fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
-    let sql=`insert into USER values(${id_user},${fk_id_department},'${var_email}','${var_name}',
+    const {fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
+    let sql=`insert into USER(fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(${fk_id_department},'${var_email}','${var_name}',
     '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
     conection.query(sql,(err,rows,fields)=>{
         if(err) throw err;

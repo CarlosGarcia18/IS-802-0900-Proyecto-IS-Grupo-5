@@ -10,15 +10,14 @@ import { Router} from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   registro: Registro={
-    id_user:5,
   fk_id_department:1,
-  var_email:"holamundo@gmail.com",
-  var_name:"luisito",
-  var_lastname:"prueba",
-  tex_password:"12345",
+  var_email:"",
+  var_name:"",
+  var_lastname:"",
+  tex_password:"",
   bit_rol:1,
   bit_status:1,
-  var_phone:"72673654"
+  var_phone:""
   }
   constructor(private _CargaScripts:CargarScriptsService,
               private RegistroService:RegistroService, private router: Router) 
