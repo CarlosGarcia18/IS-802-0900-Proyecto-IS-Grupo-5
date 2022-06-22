@@ -186,9 +186,5 @@ CREATE TABLE SUBSCRIPTION(
 ALTER TABLE SUBSCRIPTION
 	ADD CONSTRAINT pk_wish_list PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product_category);
 
--- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234
-INSERT INTO DEPARTMENT(var_name) VALUES('Francisco Morazán');
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(1, 'admin@admin.com', 'admin', 'plazitanet', '1234', 0, 1, '99000000');
 
 
