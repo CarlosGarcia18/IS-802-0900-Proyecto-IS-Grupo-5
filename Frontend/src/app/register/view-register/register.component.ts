@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
     nombre: new FormControl('',[Validators.required]),
     apellido: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.email,Validators.required] ),
-    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')] ),
+    password: new FormControl('', [Validators.required]),//, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')] ),
     telefono: new FormControl('',[Validators.required, Validators.pattern('[0-9]{8}')]),
     ubicacion: new FormControl('', Validators.required),
     check:new FormControl(true, Validators.required)
