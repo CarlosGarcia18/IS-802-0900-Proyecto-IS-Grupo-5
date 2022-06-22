@@ -10,10 +10,10 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   loginForm=new FormGroup({
-    nombre: new FormControl('',[Validators.required]),
-    apellido: new FormControl('', [Validators.required]),
+    nombre: new FormControl('',[Validators.required, Validators.minLength(2) ]),
+    apellido: new FormControl('', [Validators.minLength(2),Validators.required]),
     email: new FormControl('', [Validators.email,Validators.required] ),
-    password: new FormControl('', [Validators.required]),//, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{6,}')] ),
+    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{5,}')]), //mayusculas, minusculas,num caracter, minimo 6
     telefono: new FormControl('',[Validators.required, Validators.pattern('[0-9]{8}')]),
     ubicacion: new FormControl('', Validators.required),
     check:new FormControl(true, Validators.required)
@@ -41,9 +41,6 @@ export class RegisterComponent implements OnInit {
     return this.loginForm.get('check') as FormControl
   }
 
-
-
-
   registro: Registro={
   fk_id_department:1,
   var_email:"",
@@ -55,8 +52,7 @@ export class RegisterComponent implements OnInit {
   var_phone:""
   }
   constructor(private _CargaScripts:CargarScriptsService,
-              private RegistroService:RegistroService, private router: Router) 
-              
+              private RegistroService:RegistroService, private router: Router)            
             { }
 
   ngOnInit(): void {
@@ -65,6 +61,7 @@ export class RegisterComponent implements OnInit {
   agregar(){
     this.RegistroService.addUsuario(this.registro).subscribe();
     //this.router.navigate(['/user'])
+    this.loginForm.reset();
   }
 
 
