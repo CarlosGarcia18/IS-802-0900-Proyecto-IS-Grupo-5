@@ -23,6 +23,6 @@ routers.delete('/user/:id',customerU.deleteUser)
 routers.put('/user/:id',customerU.updateUser)
 
 //trae todos los departamentos
-routers.post('/departament',customerO.getDepartament)
+routers.get('/departament',customerO.getDepartament)
 //exportacion de rutas
 module.exports = routers
