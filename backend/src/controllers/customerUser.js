@@ -23,12 +23,17 @@ controller.postUser = (req,res) =>{
     const {fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
     let sql=`insert into USER(fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(${fk_id_department},'${var_email}','${var_name}',
     '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
-    conection.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
-        else{
-            res.json({status: 'Usuario agregado'})
-        }
-    })
+    //try {
+        conection.query(sql,(err,rows,fields)=>{
+            if(err) res.send(err.sqlMessage);
+            else{
+                res.json({status: 'Usuario agregado'})
+            }
+        })
+    //} catch (error) {
+        
+    //}
+    
 }
 
 //Funcion para eliminar usuario dado un id
