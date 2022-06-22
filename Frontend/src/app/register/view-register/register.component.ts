@@ -10,8 +10,8 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
   loginForm=new FormGroup({
-    nombre: new FormControl('',[Validators.required]),
-    apellido: new FormControl('', [Validators.required]),
+    nombre: new FormControl('',[Validators.required, Validators.minLength(2) ]),
+    apellido: new FormControl('', [Validators.minLength(2),Validators.required]),
     email: new FormControl('', [Validators.email,Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{5,}')]), //mayusculas, minusculas,num caracter, minimo 6
     telefono: new FormControl('',[Validators.required, Validators.pattern('[0-9]{8}')]),

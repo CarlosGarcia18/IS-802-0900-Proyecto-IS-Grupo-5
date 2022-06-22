@@ -24,11 +24,15 @@
             <input [(ngModel)]="registro.var_name" class="input" type="text" placeholder="Escribe tu nombre" name="nombre" formControlName="nombre" required>
             <div class="errors-container" *ngIf="nombreControl.invalid && (nombreControl.touched || nombreControl.dirty)">
                 <p class="errors-msg" *ngIf="nombreControl.hasError('required')">El campo es obligatorio</p>
+                <p class="errors-msg" *ngIf="nombreControl.hasError('minlength')">Nombre muy corto</p>
+            
             </div>
             
             <input [(ngModel)]="registro.var_lastname" class="input" type="text" placeholder="Escribe tu apellido" name="apellido" formControlName="apellido" required>
             <div class="errors-container" *ngIf="apellidoControl.invalid && (apellidoControl.touched || apellidoControl.dirty)">
                 <p class="errors-msg" *ngIf="apellidoControl.hasError('required')">El campo es obligatorio</p>
+                <p class="errors-msg" *ngIf="apellidoControl.hasError('minlength')">Apellido muy corto</p>
+            
             </div>
 
             <input [(ngModel)]="registro.var_email" class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" formControlName="email"  id="email" name="correo"  required>
@@ -41,7 +45,7 @@
             
             <div class="errors-container" *ngIf="passControl.invalid && (passControl.touched || passControl.dirty)">
                 <p class="errors-msg" *ngIf="passControl.hasError('required')">El campo es obligatorio</p>
-                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')">La clave debe tener minimo 6 caracteres, mayusculas, minusculas, numeros y simbolos</p>
+                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')">La contraseña debe comenzar por una letra seguida de un numero luego un simbolo, e incluir mayusculas y minusculas</p>
             </div>
 
             <input [(ngModel)]="registro.var_phone" class="input" type="tel"  maxlength="8" name="tel" formControlName="telefono" placeholder="Telefono (Ej: 99991234)"
@@ -57,6 +61,7 @@
                         <td class="tbl-col-nombre">Selecciona tu ubicacion</td>
                         <td class="tbl-col-depto">
                             <select [(ngModel)]="registro.fk_id_department" class="selector" name="Departamento" formControlName="ubicacion">
+                                
                                 <option value="1">Atlantida</option>
                                 <option value="2">Choluteca</option>
                                 <option value="3">Colon</option>
