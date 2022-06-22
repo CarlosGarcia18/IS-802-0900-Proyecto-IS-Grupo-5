@@ -41,9 +41,6 @@ export class RegisterComponent implements OnInit {
     return this.loginForm.get('check') as FormControl
   }
 
-
-
-
   registro: Registro={
   fk_id_department:1,
   var_email:"",
@@ -55,8 +52,7 @@ export class RegisterComponent implements OnInit {
   var_phone:""
   }
   constructor(private _CargaScripts:CargarScriptsService,
-              private RegistroService:RegistroService, private router: Router) 
-              
+              private RegistroService:RegistroService, private router: Router)            
             { }
 
   ngOnInit(): void {
@@ -65,7 +61,7 @@ export class RegisterComponent implements OnInit {
   agregar(){
     this.RegistroService.addUsuario(this.registro).subscribe();
     //this.router.navigate(['/user'])
-    //this.loginForm.reset();
+    this.loginForm.reset();
   }
 
 
