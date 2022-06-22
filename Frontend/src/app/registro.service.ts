@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RegistroService {
-  url='http://localhost:3000/api'
+  url='http://localhost:4200/api/user'
   constructor(private http:HttpClient) { }
 
   addUsuario(registro:Registro){
@@ -14,10 +14,13 @@ export class RegistroService {
 }
 export interface Registro{
  
-  nombre?:string;
-  apellido?:string;
-  correo?:string;
-  contrasena?:string;
-  telefono?:string;
-  ubicacion?:string;
+  id_user:number,
+  fk_id_department:number,
+  var_email:string,
+  var_name:string,
+  var_lastname:string,
+  tex_password:string,
+  bit_rol:number,
+  bit_status:number,
+  var_phone:string
 }

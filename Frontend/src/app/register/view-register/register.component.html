@@ -21,14 +21,14 @@
     <div class="login-info-container">
         <h1 class="title">Crea una nueva cuenta</h1>
         <form class="inputs-container" id="id-form" action="" method="POST">
-            <input [(ngModel)]="registro.nombre" class="input" type="text" placeholder="Escribe tu nombre" name="nombre" required>
-            <input [(ngModel)]="registro.apellido" class="input" type="text" placeholder="Escribe tu apellido" name="apellido" required>
-            <input [(ngModel)]="registro.correo" class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" id="email"
+            <input [(ngModel)]="registro.var_name" class="input" type="text" placeholder="Escribe tu nombre" name="nombre" required>
+            <input [(ngModel)]="registro.var_lastname" class="input" type="text" placeholder="Escribe tu apellido" name="apellido" required>
+            <input [(ngModel)]="registro.var_email" class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" id="email"
                 name="correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"  required>
-            <input [(ngModel)]="registro.contrasena" class="input" type="password" placeholder="Escribe tu contraseña" name="password"
+            <input [(ngModel)]="registro.tex_password" class="input" type="password" placeholder="Escribe tu contraseña" name="password"
                 pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{5,}" required>
             <i id="ojo" class="fa-solid fa-eye"></i>
-            <input [(ngModel)]="registro.telefono" class="input" type="tel" pattern="[0-9]{8}" maxlength="8" name="tel" placeholder="Telefono (Ej: 99991234)"
+            <input [(ngModel)]="registro.var_phone" class="input" type="tel" pattern="[0-9]{8}" maxlength="8" name="tel" placeholder="Telefono (Ej: 99991234)"
                 required>
             <!--aqui iba el cierre de form-->
             <table class="table">
@@ -36,8 +36,8 @@
                     <tr>
                         <td class="tbl-col-nombre">Selecciona tu ubicacion</td>
                         <td class="tbl-col-depto">
-                            <select [(ngModel)]="registro.ubicacion" class="selector" name="Departamento">
-                                <option>Atlantida</option>
+                            <select [(ngModel)]="registro.fk_id_department" class="selector" name="Departamento">
+                                <option value="1">Atlantida</option>
                                 <option>Choluteca</option>
                                 <option>Colon</option>
                                 <option>Comayagua</option>
