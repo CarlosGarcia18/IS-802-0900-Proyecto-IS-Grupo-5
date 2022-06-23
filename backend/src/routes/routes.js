@@ -1,92 +1,28 @@
-const routers = require('express').Router()
-const conexion=require('../config/connection')
+const routers = require('express').Router()//Direccionamiento en express
 
 
-const customerU = require('../controllers/customerUser')
-const customerA = require('../controllers/customerAdmin')
+const customerU = require('../controllers/customerUser')//funciones de llamada por parte del usuario
+const customerA = require('../controllers/customerAdmin')//funciones de llamada por parte del administrador
+const customerO = require('../controllers/customerOptions')//funciones de llamada por parte del administrador
 
-//we assign the routers
- 
+
+//Direcciones de prueba
 routers.get('/userTest', customerU.test)
 routers.get('/adminTest', customerA.test)
-routers.get('/user', customerA.query)
 
+//Get User Para recuperar datos a un id Especifico /se debe especificar el id en la ruta/
+routers.get('/user/:id',customerU.getUser)
 
+//Agregar usuario (body -> json)
+routers.post('/user',customerU.postUser)
 
-//--------Agregar Rutas------------
-//Get Equipos Para visualizar una tabla
-routers.get('/', (req,res) =>{
-    let sql = 'select *from USER'
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err)
-            throw err
-        else
-            res.json(rows)
-        
-    })
-})
-//Get Equipo Para recuperar datos a un id Especifico
-rutas.get('/:id',(req,res) =>{
-    const {id} =req.params
-    let sql ='select  from USER where id_user=?'
-    conexion.query(sql,(err,rows,fields) =>{
-        if(err) throw err;
-        else{
-            res.json(rows)
-        }
-    })
-})
+//Eliminar usuario dado un id /se debe especificar el id en la ruta/
+routers.delete('/user/:id',customerU.deleteUser)
 
-//Agregar Equipos
-rutas.post('/',(req,res) =>{
-    const{nombre,logo} =req.body
+//Modificar usuario dado un id  (body -> json) /se debe especificar el id en la ruta/
+routers.put('/user/:id',customerU.updateUser)
 
-    let sql=`insert into USER(nombre,logo) values('${id_user}','${var_email}','${var_name}',
-    '${var_lastname}','${tex_password}','${bit_rol}','${bit_status}','${var_phone}')`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err
-        else{
-            res.json({status: 'Usuario agregado'})
-        }
-    })
-})
-
-//-----------------------------------------------
-//Eliminar
-rutas.delete('/:id',(req,res)=>{
-    const{id}=req.params
-
-    let sql =`delete from USER where id_user ='${id}'`
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err
-        else{
-            res.json({status: 'Usuario Eliminado'})
-        }
-    })
-
-})
-//--------------Modificar--------------------------
-rutas.put('/:id',(req,res) =>{
-    const{id}=req.params
-    const{nombre, logo}=req.body
-
-    let sql = `update USER set
-                var_email='${var_email}',
-                var_name='${var_name}',
-                var_lastname='${var_lastname}',
-                tex_password='${tex_password}',
-                bit_rol='${bit_rol}',
-                bit_status='${bit_status}',
-                var_phone'${var_phone}'`
-
-    conexion.query(sql,(err,rows,fields)=>{
-        if(err) throw err
-        else{
-            res.json({status: 'Usuario Modificado'})
-        }
-    })
-})
-//------------------------------------------------
-
-
+//trae todos los departamentos
+routers.get('/departament',customerO.getDepartament)
+//exportacion de rutas
 module.exports = routers

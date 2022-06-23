@@ -1,17 +1,9 @@
 const conection = require('../config/connection')
-const controller = {}
+const controller = {}//definicion de controller que guardara las rutas
 
+//funcion de prueba
 controller.test = (req,res) => {
     res.send('get routes admin')
-}
-controller.query=(req,res) =>{
-    let sql ='select *from tb_Equipo'
-    conexion.query(sql,(err,rows,fields) =>{
-        if(err) throw err;
-        else{
-            res.json(rows)
-        }
-    })
 }
 
 
