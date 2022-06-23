@@ -88,7 +88,7 @@
             <div class="foot-container">
 
                 <input type="checkbox" name="Terminos" class="input-chk" formControlName="check" required><span class="span">Para crear tu
-                        cuenta acepta los <a href="#" class="link"  target="_blank">Terminos y Condiciones</a></span>
+                        cuenta acepta los <a routerLink="/termsAndConditions" class="link"  target="_blank">Terminos y Condiciones</a></span>
                 <div class="errors-container" *ngIf="chkControl.invalid && (chkControl.touched || chkControl.dirty)">
                     <p class="errors-msg" *ngIf="chkControl.hasError('required')">Rellena este item</p>
                 </div>
@@ -110,7 +110,7 @@
                 <a href="#">Sobre Nosotros</a>
             </li>
             <li>
-                <a href="#">Términos y Condiciones</a>
+                <a  routerLink="/termsAndConditions">Términos y Condiciones</a>
             </li>
         </ul>
         <p class="copyright"> PlazitaNet <i class="fa-regular fa-copyright"></i> 2022</p>
