@@ -20,12 +20,8 @@ app.set('port',port)
 app.use(morgan('dev'))
 app.use('/api',routerConstumer)//ruta por defecto del servidor localhost:3000/api
 
-<<<<<<< HEAD
 
 //express start
-=======
-//iniciar express
->>>>>>> adb68675305993b7ae4479acb0d2d7135948f45c
 app.listen(app.get('port'),(error)=>{
     if (error) {
         console.log('There was an error starting the server ' + error)
