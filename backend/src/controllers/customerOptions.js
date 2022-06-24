@@ -9,7 +9,7 @@ controller.test = (req,res) => {
 controller.getDepartament = (req,res) =>{
     let sql =`select * from DEPARTMENT`
     conection.query(sql,(err,rows,fields) =>{
-        if(err) throw err;
+        if(err) res.send(err.sqlMessage);
         else{
             res.json(rows)
         }

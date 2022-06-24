@@ -11,7 +11,7 @@ controller.getUser = (req,res) =>{
     const {id} =req.params
     let sql =`select * from USER where id_user=${id}`
     conection.query(sql,(err,rows,fields) =>{
-        if(err) throw err;
+        if(err) res.send(err.sqlMessage);
         else{
             res.json(rows)
         }
@@ -42,7 +42,7 @@ controller.deleteUser = (req,res)=>{
 
     let sql =`delete from USER where id_user ='${id}'`
     conection.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
+        if(err) res.send(err.sqlMessage);
         else{
             res.json({status: 'Usuario Eliminado'})
         }
@@ -65,7 +65,7 @@ controller.updateUser = (req,res) =>{
     `var_phone='${var_phone}' where id_user = ${id}`
 
     conection.query(sql,(err,rows,fields)=>{
-        if(err) throw err;
+        if(err) res.send(err.sqlMessage);
         else{
             res.json({status: 'Usuario Modificado'})
         }

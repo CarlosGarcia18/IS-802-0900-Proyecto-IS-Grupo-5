@@ -9,6 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LandingModule } from './landing/landing.module';
 import { RegisterModule } from './register/register.module';
+import { TermsAndConditionsModule } from "./terms-and-conditions/terms-and-conditions.module";
+import { CredentialRecoveryModule } from './credential-recovery/credential-recovery.module';
+import { LoginModule } from './login/login.module';
+
+
 
 @NgModule({
   declarations: [
@@ -21,7 +26,9 @@ import { RegisterModule } from './register/register.module';
     RegisterModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CredentialRecoveryModule,
+    TermsAndConditionsModule
   ],
   providers: [CargarScriptsService],
   bootstrap: [AppComponent]

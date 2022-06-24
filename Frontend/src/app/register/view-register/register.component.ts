@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Registro, RegistroService } from 'src/app/registro.service';
-import { CargarScriptsService } from './../.././cargar-scripts.service';
+import { Registro, EquipoService } from 'src/app/SERVICES/equipo.service';
+//import { CargarScriptsService } from './../.././cargar-scripts.service';
 import { Router} from '@angular/router';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 @Component({
@@ -51,15 +51,15 @@ export class RegisterComponent implements OnInit {
   bit_status:1,
   var_phone:""
   }
-  constructor(private _CargaScripts:CargarScriptsService,
-              private RegistroService:RegistroService, private router: Router)            
+  constructor(//private _CargaScripts:CargarScriptsService,
+              private EquipoService:EquipoService, private router: Router)            
             { }
 
   ngOnInit(): void {
   }
 
   agregar(){
-    this.RegistroService.addUsuario(this.registro).subscribe();
+    this.EquipoService.addUsuario(this.registro).subscribe();
     //this.router.navigate(['/user'])
     this.loginForm.reset();
   }
