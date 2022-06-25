@@ -35,7 +35,7 @@
             
             </div>
 
-            <input [(ngModel)]="registro.var_email" class="input" type="email" placeholder="Escribe correo: alguien@correo.com" name="correo" formControlName="email"  id="email" name="correo"  required>
+            <input [(ngModel)]="registro.var_email" class="input" type="email" placeholder="Escribe tu correo: alguien@correo.com" name="correo" formControlName="email"  id="email" name="correo"  required>
                 <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
                     <p class="errors-msg" *ngIf="emailControl.hasError('required')">El campo es obligatorio</p>
                     <p class="errors-msg" *ngIf="emailControl.hasError('email')">El campo debe ser un email valido</p>
@@ -48,17 +48,17 @@
                  <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> La contraseña debe tener al menos 8 dígitos, comenzar por una letra seguida de un numero luego un símbolo, e incluir mayúsculas y minúsculas</p>
             </div>
 
-            <input [(ngModel)]="registro.var_phone" class="input" type="tel"  maxlength="8" name="tel" formControlName="telefono" placeholder="Telefono (Ej: 99991234)"
+            <input [(ngModel)]="registro.var_phone" class="input" type="tel"  maxlength="8" name="tel" formControlName="telefono" placeholder="Teléfono (Ej: 99991234)"
                 required>
                 <div class="errors-container" *ngIf="telControl.invalid && (telControl.touched || telControl.dirty)">
                     <p class="errors-msg" *ngIf="telControl.hasError('required')">El campo es obligatorio</p>
-                    <p class="errors-msg" *ngIf="telControl.hasError('pattern')">Ingresa 8 numeros</p>
+                    <p class="errors-msg" *ngIf="telControl.hasError('pattern')">Ingresa 8 números</p>
             </div> 
             
             <table class="table">
                 <thead class="tbl-head">
                     <tr>
-                        <td class="tbl-col-nombre">Selecciona tu ubicacion</td>
+                        <td class="tbl-col-nombre">Selecciona tu ubicación</td>
                         <td class="tbl-col-depto">
                             <select [(ngModel)]="registro.fk_id_department" class="selector" name="Departamento" formControlName="ubicacion">
                                 
@@ -88,7 +88,7 @@
             <div class="foot-container">
 
                 <input type="checkbox" name="Terminos" class="input-chk" formControlName="check" required><span class="span">Para crear tu
-                        cuenta acepta los <a routerLink="/termsAndConditions" class="link"  target="_blank">Terminos y Condiciones</a></span>
+                        cuenta acepta los <a routerLink="/termsAndConditions" class="link"  target="_blank">Términos y Condiciones</a></span>
                 <div class="errors-container" *ngIf="chkControl.invalid && (chkControl.touched || chkControl.dirty)">
                     <p class="errors-msg" *ngIf="chkControl.hasError('required')">Rellena este item</p>
                 </div>
