@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './view-register/register.component';
+//import { LayoutRegisterComponent } from './layout-register/layout-register.component';
 
 
 @NgModule({
   declarations: [
     RegisterComponent
+    //LayoutRegisterComponent
   ],
   imports: [
     CommonModule,
