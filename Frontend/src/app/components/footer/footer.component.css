@@ -25,3 +25,9 @@ ul li{
     display: inline-block;
     padding: 0 15px;
 }
+
+.copyright{
+    letter-spacing: 0.25em;
+    color: #5E6A72;
+    
+}
