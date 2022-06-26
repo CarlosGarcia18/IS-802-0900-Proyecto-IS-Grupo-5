@@ -15,6 +15,30 @@ const routes: Routes = [
         loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule)
       },
       {
+        path: "home/login",
+        loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+      },
+      {
+        path: "home/register",
+        loadChildren: () => import('./register/register.module').then(m => m.RegisterModule)
+      },
+      {
+        path: "home/termsAndConditions",
+        loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsModule)
+      },
+      {
+        path: "home/register/termsAndConditions",
+        loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsModule)
+      },
+      {
+        path: "home/login/credential",
+        loadChildren: () => import('./credential-recovery/credential-recovery.module').then(m => m.CredentialRecoveryModule)
+      },
+      {
+        path: "navigationProducts",
+        loadChildren: () => import('./navigation-products/navigation-products.module').then(m => m.NavigationProductsModule)
+      },
+      {
         path: "",
         redirectTo: "home",
         pathMatch: "full"
@@ -36,14 +60,7 @@ const routes: Routes = [
       }
     ]
   }
-];/*
-  { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
-  { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
-  { path: 'termsAndConditions', loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsModule) },
-  { path: 'credentialRecovery', loadChildren: () => import('./credential-recovery/credential-recovery.module').then(m => m.CredentialRecoveryModule) },
-  { path: 'navigationProducts', loadChildren: () => import('./navigation-products/navigation-products.module').then(m => m.NavigationProductsModule) },
-  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) }
-];*/
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

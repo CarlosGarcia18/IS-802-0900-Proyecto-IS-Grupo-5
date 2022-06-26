@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './view-register/register.component';
+import { ComponentsModule } from "../components/components.module";
 //import { LayoutRegisterComponent } from './layout-register/layout-register.component';
 
 
@@ -13,9 +14,11 @@ import { RegisterComponent } from './view-register/register.component';
   ],
   imports: [
     CommonModule,
+    ComponentsModule,
     RegisterRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    
   ],
   exports: [
     RegisterComponent

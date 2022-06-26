@@ -64,6 +64,6 @@ export class RegisterComponent implements OnInit {
     this.loginForm.reset();
   }
 
-
+  ruta:string = "home/register"
   
 }
