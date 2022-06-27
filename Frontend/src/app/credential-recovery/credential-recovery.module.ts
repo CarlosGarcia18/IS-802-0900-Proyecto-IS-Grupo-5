@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CredentialRecoveryRoutingModule } from './credential-recovery-routing.module';
 import { CredentialRecoveryComponent } from './view-recovery/credential-recovery.component';
 import { Module1Component } from './module1/module1.component';
@@ -17,7 +17,9 @@ import { Module3Component } from './module3/module3.component';
   ],
   imports: [
     CommonModule,
-    CredentialRecoveryRoutingModule
+    CredentialRecoveryRoutingModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   exports:[
     CredentialRecoveryComponent

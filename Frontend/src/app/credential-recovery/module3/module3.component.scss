@@ -1,10 +1,35 @@
-div{
+
+.ng-touched.ng-invalid:is(input,.selector, :checked),
+.ng-dirty.ng-invalid:is(input,.selector, :checked){
+    outline: 2px solid red;
+}
+
+.ng-dirty.ng-invalid:is(input,.selector, :checked){
+    outline: 2px solid red;
+}
+
+#hola{
+    width: -webkit-fill-available;
+    height: fit-content;
+    margin: auto;
+    position: absolute;
+    background-color: #ffffff00;
+    justify-content: center;
+    display: flex;
+    padding: 0px;
+    img{
+        width: 160px;
+        height: 160px;
+    }
+}
+#formDiv{
     width: 350px;
-    height: 395px;
+    height:-webkit-fill-available;
     background-color: white;
     margin-left: auto;
     margin-right: auto;
-    padding: 50px 110px 10px 110px;
+    margin-top: 110px;
+    padding: 80px 60px 0px 60px;
     h1{
         font-weight: 400;
         font-size: 25px;
@@ -18,9 +43,9 @@ div{
         margin-top: 0px;
     }
     form{
-        width: 90%;
-        margin-right: auto;
-        margin-left: auto;
+        width: -webkit-fill-available;
+        margin-right: 5%;
+        margin-left: 5%;
         
         input{
             width: 100%;
@@ -50,6 +75,13 @@ div{
             height: 30px;
             color: white;
             margin-top: 50px;
+            margin-bottom:30px;
+            cursor: pointer;
+        }
+        
+        p{
+            margin: 0px;
+            font-size: 10px;
         }
     }
     
