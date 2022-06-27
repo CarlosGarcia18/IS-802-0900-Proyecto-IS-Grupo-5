@@ -10,9 +10,9 @@ const routes: Routes = [
     path: '', 
     component: CredentialRecoveryComponent, 
     children:[
-      {path: '',component:Module1Component},
+      {path: 'module3',component:Module1Component},
       {path: 'module2',component:Module2Component},
-      {path: 'module3',component:Module3Component}
+      {path: '',component:Module3Component}
     ] 
   }
 ];
