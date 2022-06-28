@@ -9,11 +9,13 @@ import { FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&-/_|])([A-Za-z\d$@$!%*?&]|[^ ]){7,40}$/;
+  
   loginForm=new FormGroup({
     nombre: new FormControl('',[Validators.required, Validators.minLength(2) ]),
     apellido: new FormControl('', [Validators.minLength(2),Validators.required]),
     email: new FormControl('', [Validators.email,Validators.required] ),
-    password: new FormControl('', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-zd$@$!%*?&].{5,}')]), //mayusculas, minusculas,num caracter, minimo 6
+    password: new FormControl('', [Validators.required, Validators.pattern(this.regex)]), //mayusculas, minusculas,num caracter, minimo 6
     telefono: new FormControl('',[Validators.required, Validators.pattern('[0-9]{8}')]),
     ubicacion: new FormControl('', Validators.required),
     check:new FormControl(true, Validators.required)
