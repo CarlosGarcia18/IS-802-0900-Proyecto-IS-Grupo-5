@@ -18,7 +18,7 @@
             <p *ngIf="passValidateControl.hasError('required')">El campo es obligatorio</p>
         </div>
         <div *ngIf="match('password','confirmPassword')">
-            <p >La contraseñas no coinsiden</p>
+            <p >Las contraseñas no coinciden</p>
         </div>
         <button (click)="updatePassword()" type="submit" [disabled]="credential.invalid">Restablecer contraseña</button>
     </form>
