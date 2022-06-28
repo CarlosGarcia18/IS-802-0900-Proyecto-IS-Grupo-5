@@ -7,9 +7,9 @@ const port = (process.env.port || 3000)
 const cors = require("cors")
 //express
 const app = express()
-
 //Permitir que el servidor acepte json
 app.use(express.json())
+
 app.use(cors())
 
 //configuracion del puerto

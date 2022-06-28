@@ -25,6 +25,6 @@ routers.put('/passwordUpdate/:id', customerU.updatePass)
 //trae todos los departamentos
 routers.get('/departament',customerO.getDepartament)
 
-routers.post('/auth', customerU.auth)
+//routers.post('/auth', customerU.auth)
 //exportacion de rutas
 module.exports = routers
