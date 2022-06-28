@@ -1,9 +1,28 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD 
 const controller = {} //definicion de controller que guardara las rutas
-
+const bcryptjs=require('bcryptjs') //npm i bcryptjs
 //funcion de prueba
 controller.test = (req,res) => {
     res.send('get routes')
+}
+
+//autenticacion
+controller.auth=(req,res)=>{
+    const {var_email, tex_password}=req.body
+        
+        if (var_email&&tex_password){
+            let sql=`SELECT  FROM user WHERE var_email=${var_email}`
+            conection.query(sql,(err,rows,fields)=>{
+                if(rows.lenght==0|| !(bcryptjs.compare(tex_password, rows[0].tex_password))){
+                    res.send("Email o Clave incorrectos")
+                }else{
+                    res.send("Login correcto")
+                }
+            })
+        }else{
+            res.send('llena todos los campos')
+        }
+        
 }
 
 //funcion para obtener un usuario por el id
@@ -71,6 +90,22 @@ controller.updateUser = (req,res) =>{
         }
     })
 }
+//actualizar password
+
+controller.updatePass=(req,res)=>{
+    const{id}=req.params
+    const{tex_password}=req.body.password
+
+    let sql = `update USER set tex_password=${tex_password}
+    WHERE id_user = ${id}` ;
+    conection.query(sql,(err,rows,fields)=>{
+        if(err) res.send(err.sqlMessage);
+        else{
+            res.json({status: 'Contrasena Actualizada'})
+        }
+    })
+}
+    
 
 /*{
     "id_user":"3",
