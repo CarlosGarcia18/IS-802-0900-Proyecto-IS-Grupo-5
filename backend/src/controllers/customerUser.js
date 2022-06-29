@@ -50,6 +50,40 @@ controller.deleteUser = (req,res)=>{
 
 }
 
+//auth
+controller.auth=(req,res)=>{
+    const{var_email, tex_password}=req.body
+
+    if(var_email&&tex_password){
+        let sql=`SELECT from USER where var_email='${var_email}`
+        conection.query(sql,(err, rows, fields)=>{
+            //importar bcryptjs //npm i bcryptjs 
+            if(rows.length==0||!(bcryptjs.compare(tex_password, rows[0].tex_password))){//sino ecuentra el email o las claves no coinciden
+                res.send('email o password incorrectos')
+            }else{
+                res.send('Login EXITOSO')
+            }
+        })
+    }else{
+        res.send('ingresa los campos solicitados')
+    }
+}
+
+//actualizar pass
+
+/*controller.updatePass=(req, res)=>{
+    const{token}=req.params
+    const{pass, confirm_pass}=req.body
+
+    let sql=`update USER set tex_password=${pass} where var_email=${token} `
+    conection.query(sql,(err,rows,fields)=>{
+        if(err) res.send(err.sqlMessage);
+        else{
+            res.json({status: 'Contrasena Modificada'})
+        }
+    })
+}*/
+
 //funcion para actualizar un usuario dado un id
 controller.updateUser = (req,res) =>{
     const{id}=req.params

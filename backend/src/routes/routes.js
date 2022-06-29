@@ -21,6 +21,9 @@ routers.delete('/user/:id',customerU.deleteUser)
 
 //Modificar usuario dado un id  (body -> json) /se debe especificar el id en la ruta/
 routers.put('/user/:id',customerU.updateUser)
+//auth
+routers.post('/auth', customerU.auth)
+//routers.put('/passwordUpdate/:token', customerU.updatePass)
 
 //trae todos los departamentos
 routers.get('/departament',customerO.getDepartament)
