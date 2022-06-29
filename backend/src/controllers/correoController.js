@@ -12,13 +12,13 @@ const envioCorreo=(req,res)=>{
         port: 465,
         secure:true,
         auth:{
-            user:'plazitanet1@gmail.com',
-            pass:'fktlxsridrbusxrk'
+            user:'',
+            pass:''
         }
     });
 
     const opc={
-        from:'"Plazita Net" <plazitanet1@gmail.com>',
+        from:'"" <@gmail.com>',
         subject:"Recuperacion de cuenta",
         to: body.email,
         text: 'Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contrasena'
