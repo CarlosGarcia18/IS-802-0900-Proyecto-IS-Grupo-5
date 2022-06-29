@@ -87,7 +87,7 @@ controller.updatePasswordUser = (req,res) =>{
     `where var_email = '${var_email}'`
 
     conection.query(sql,(err,rows,fields)=>{
-        if(err) res.send(err.sqlMessage);
+        if(err) res.json({status: 'Hubo un error al actualizar la contraseña'});
         else{
             res.json({status: 'Usuario Modificado'})
         }
