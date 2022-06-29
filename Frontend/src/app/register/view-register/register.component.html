@@ -48,6 +48,16 @@
                  <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> La contraseña debe tener al menos 8 dígitos, comenzar por una letra seguida de un numero luego un símbolo, e incluir mayúsculas y minúsculas</p>
             </div>
 
+            <!--passwordw-->
+            <input [(ngModel)]="registro.tex_password" class="input" type="password" placeholder="Escribe tu contraseña" name="password2" formControlName="password2" required>
+            
+            <div class="errors-container" *ngIf="passControl.invalid && (passControl.touched || passControl.dirty)">
+                <p class="errors-msg" *ngIf="passControl.hasError('required')">El campo es obligatorio</p>
+                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> confirme contraseña</p>
+            </div>
+
+            <!--===============================================================-->
+
             <input [(ngModel)]="registro.var_phone" class="input" type="tel"  maxlength="8" name="tel" formControlName="telefono" placeholder="Teléfono (Ej: 99991234)"
                 required>
                 <div class="errors-container" *ngIf="telControl.invalid && (telControl.touched || telControl.dirty)">

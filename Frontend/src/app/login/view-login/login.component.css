@@ -1,17 +1,28 @@
 body {
     margin: 0;
     padding: 0;
-    background: rgb(51, 195, 228);
+    background: #DBEDF5;
     background-size: cover;
     font-family: sans-serif;
     height: 100vh;
+
+
+    font-family: 'Poppins', sans-serif;
   }
-  
+header{
+  margin: 0;
+  padding:0;
+  background: #7DE2FC;
+  background-size:auto;
+  font-family: sans-serif;
+  height: 28vh;
+}
+
   .login-box {
     width: 320px;
     height: 420px;
-    background: rgb(79, 66, 88);
-    color: #fff;
+    background: #fff;
+    color: rgb(5, 5, 5);
     top: 50%;
     left: 50%;
     position: absolute;
@@ -19,7 +30,39 @@ body {
     box-sizing: border-box;
     padding: 70px 30px;
   }
+  .container{
+    width: -50px;
+    height: 250px;
+    background: rgb(0, 172, 164);
+    color: rgb(56, 0, 0);
+    top: 50%;
+    left: 5%;
+    position:fixed;
+    transform: translate(45%, -50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+
+  }
+  /*
+  .container a{
+    text-decoration: none;
+    font-size: 45px;
+    line-height: 20px;
+    color: rgb(11, 76, 101);
+    
+  }*/
+  /*logoempresa*/
   
+  .logoEmpre{
+    width: 100px;
+    height: 50px;
+    border-radius: 0%;
+    position: absolute;
+    top: -250px;
+    left: calc(10% - 8px);
+
+  }
+  /*Avatar*/
   .login-box .avatar {
     width: 100px;
     height: 100px;
@@ -28,7 +71,7 @@ body {
     top: -50px;
     left: calc(50% - 50px);
   }
-  
+  /*Estilo del H1 */
   .login-box h1 {
     margin: 0;
     padding: 0 0 20px;
@@ -42,46 +85,114 @@ body {
     font-weight: bold;
     display: block;
   }
-  
+  /*Margen del boton*/
   .login-box input {
     width: 100%;
     margin-bottom: 20px;
   }
-  
-  .login-box input[type="text"], .login-box input[type="password"] {
+  /*Para el correo y la contraseña*/
+  .login-box input[type="email"], .login-box input[type="password"] {
     border: none;
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid rgb(5, 0, 0);
     background: transparent;
     outline: none;
     height: 40px;
-    color: #fff;
+    color: rgb(8, 0, 0);
     font-size: 16px;
   }
-  
+  /*Antes de iniciar sesion*/
   .login-box input[type="submit"] {
     border: none;
     outline: none;
     height: 40px;
     background: #b80f22;
-    color: #fff;
+    color: rgb(129, 92, 92);
     font-size: 18px;
     border-radius: 20px;
   }
-  
+  /*CUando se hace clip en iniciar sesion*/
   .login-box input[type="submit"]:hover {
     cursor: pointer;
     background: #ffc107;
     color: #000;
   }
-  
+  /*decoracion de los link a*/
   .login-box a {
     text-decoration: none;
     font-size: 12px;
     line-height: 20px;
-    color: darkgrey;
+    color: rgb(11, 76, 101);
   }
-  
+  /*Para dar clip*/
   .login-box a:hover {
-    color: #fff;
+    color: rgb(16, 15, 15);
   }
+
+  .login-info-container > p {
+    font-size: 1.25em;
+    margin-top: 1.5em;
+}
+
+.inputs-container {
+    height: 75%;
+    /*CAMBIO WIDTH  DE 85 A 100 PARA ICONOS*/
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.icon-container i{
+    color: #008cff;
+}
+
+.icon-container{
+    height: 100%;
+    /*CAMBIO WIDTH  DE 85 A 100 PARA ICONOS*/
+    width: 100%;
+    display: table-cell;
+    /*flex-direction: column;*/
+    /*justify-content: space-around;*/
+    align-items: center;
+    padding: 10px;
+    background-color: white;
+}
+
+.login-container {
+  height: 35.75em;
+  width: 50em;
+  margin: 6em auto;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.login-info-container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   
+  background-color: var(--login-bg);
+}
+
+
+.image-container {
+  opacity:75%;
+  width: 40;
+  height: 300px;
+  margin-top: 130px;
+  background-color: var(--image-bg);
+  box-sizing: border-box;
+}
+
+.pie-pagina{
+  text-align: center;
+  display: block;
+  background-color: #163d5e;
+  color: var(--login-bg);
+}
+
+
