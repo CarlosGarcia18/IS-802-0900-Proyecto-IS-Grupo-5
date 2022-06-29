@@ -1,16 +1,28 @@
 const express = require('express')
 const morgan = require('morgan') //paquete para verificacion
 const routerConstumer = require('./routes/routes')
-
+const bodyParser=require('body-parser')//config para correo
 //Configuracion del puerto del servidor
 const port = (process.env.port || 3000)
 const cors = require("cors")
+//const { urlencoded } = require('express')
 //express
 const app = express()
+
+
+//config para correos
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:false}))
+
+//////////////////////////////////////////////
 
 //Permitir que el servidor acepte json
 app.use(express.json())
 app.use(cors())
+
+//CORREO
+app.use(require('./routes/correoRoute'))
+
 
 //configuracion del puerto
 app.set('port',port)

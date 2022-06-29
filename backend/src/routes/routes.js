@@ -36,3 +36,4 @@ routers.get('/auth',customerU.auth)
 
 //exportacion de rutas
 module.exports = routers
+//module.exports=app

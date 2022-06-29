@@ -1,10 +1,13 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD 
 const controller = {} //definicion de controller que guardara las rutas
 
+
+
 //funcion de prueba
 controller.test = (req,res) => {
     res.send('get routes')
 }
+
 
 //funcion para obtener un usuario por el id
 controller.getUser = (req,res) =>{
@@ -149,6 +152,8 @@ controller.updateUser = (req,res) =>{
     "bit_status":1,
     "var_phone":"98765645"
 } */
+
+
 
 //exportacion de controler
 module.exports = controller
