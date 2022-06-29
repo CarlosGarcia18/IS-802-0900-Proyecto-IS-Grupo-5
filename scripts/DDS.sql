@@ -33,7 +33,7 @@ CREATE TABLE USER(
     id_user SERIAL PRIMARY KEY,
     fk_id_department BIGINT UNSIGNED NOT NULL COMMENT "Determina de que departamento es el usuario",
     FOREIGN KEY (fk_id_department) REFERENCES DEPARTMENT(id_department),
-    
+    var_code VARCHAR(7) NULL COMMENT "Codigo de recuperacion de credenciales",
     var_email VARCHAR(100) NOT NULL UNIQUE COMMENT "Correo electronico",
     var_name VARCHAR(50) NOT NULL COMMENT "Nombre del Usuario",
     var_lastname VARCHAR(50) NOT NULL COMMENT "Apellido",

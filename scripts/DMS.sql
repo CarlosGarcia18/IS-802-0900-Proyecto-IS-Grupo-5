@@ -1,6 +1,6 @@
 
 USE PLAZITANET;
-
+select * from user;
 INSERT INTO DEPARTMENT(var_name) VALUES('Atlántida');
 INSERT INTO DEPARTMENT(var_name) VALUES('Colón');
 INSERT INTO DEPARTMENT(var_name) VALUES('Comayagua');
@@ -23,5 +23,12 @@ INSERT INTO DEPARTMENT(var_name) VALUES('Yoro');
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234
 
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(8, 'admin@admin.com', 'admin', 'plazitanet', '1234', 0, 1, '99000000');
+	VALUES(8, 'admin@admin.com', 'admin', 'plazitanet', '1234567', 0, 1, '99000000');
+INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES(2, 'mariadb@gmail.com', 'Maria', 'Gonzales', 'Hola1234//', 1, 1, '89676545');
+INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES(1, 'joseK@gmail.com', 'Jose', 'Kalix', 'joseK-123', 1, 1, '56243142');
+INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES(15, 'kevin_manuel@hotmail.com', 'Kevin', 'Manuel', 'KevinManuel1/', 1, 1, '98786756');
+    
 
