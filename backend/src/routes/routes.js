@@ -27,5 +27,12 @@ routers.post('/auth', customerU.auth)
 
 //trae todos los departamentos
 routers.get('/departament',customerO.getDepartament)
+
+//Envia la actualizacion de la contraseña body => var_email, tex_password
+routers.put('/userPassword',customerU.updatePasswordUser)
+
+//Verificacion del login
+routers.get('/auth',customerU.auth)
+
 //exportacion de rutas
 module.exports = routers

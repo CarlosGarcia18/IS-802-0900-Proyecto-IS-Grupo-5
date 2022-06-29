@@ -53,36 +53,46 @@ controller.deleteUser = (req,res)=>{
 //auth
 controller.auth=(req,res)=>{
     const{var_email, tex_password}=req.body
-
+    console.log(var_email&&tex_password)
     if(var_email&&tex_password){
-        let sql=`SELECT from USER where var_email='${var_email}`
+        let sql=`SELECT * from USER where var_email='${var_email}'`
         conection.query(sql,(err, rows, fields)=>{
-            //importar bcryptjs //npm i bcryptjs 
-            if(rows.length==0||!(bcryptjs.compare(tex_password, rows[0].tex_password))){//sino ecuentra el email o las claves no coinciden
-                res.send('email o password incorrectos')
+            
+            if(!(tex_password == rows[0].tex_password)){//sino ecuentra el email o las claves no coinciden
+                res.json({status:'Correo o Contraseña incorrectos'})
             }else{
-                res.send('Login EXITOSO')
+                rows[0].status = '200'
+                //console.log(rows)
+                res.json(rows)
             }
         })
     }else{
-        res.send('ingresa los campos solicitados')
+        if (!var_email) {
+            res.json({status:'No especifico un correo'})
+        }
+        if (!tex_password) {
+            res.json({status:'No especifico una contraseña'})
+        }
+        
     }
 }
 
 //actualizar pass
 
-/*controller.updatePass=(req, res)=>{
-    const{token}=req.params
-    const{pass, confirm_pass}=req.body
+controller.updatePasswordUser = (req,res) =>{
+    const{var_email,tex_password}=req.body
 
-    let sql=`update USER set tex_password=${pass} where var_email=${token} `
+    let sql = `update USER set `+
+    `tex_password='${tex_password}' `+
+    `where var_email = '${var_email}'`
+
     conection.query(sql,(err,rows,fields)=>{
         if(err) res.send(err.sqlMessage);
         else{
-            res.json({status: 'Contrasena Modificada'})
+            res.json({status: 'Usuario Modificado'})
         }
     })
-}*/
+}
 
 //funcion para actualizar un usuario dado un id
 controller.updateUser = (req,res) =>{
