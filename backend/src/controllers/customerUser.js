@@ -55,23 +55,29 @@ controller.auth=(req,res)=>{
     const{var_email, tex_password}=req.body
     console.log(var_email&&tex_password)
     if(var_email&&tex_password){
-        let sql=`SELECT * from USER where var_email='${var_email}'`
+        let sql=`SELECT id_user,var_email,tex_password,id_user,bit_rol,bit_status from USER where var_email='${var_email}'`
         conection.query(sql,(err, rows, fields)=>{
-            
-            if(!(tex_password == rows[0].tex_password)){//sino ecuentra el email o las claves no coinciden
-                res.json({status:'Correo o Contraseña incorrectos'})
+            if(rows.length!=0){//sino ecuentra el email o las claves no coinciden
+                if (tex_password == rows[0].tex_password) {
+                    if (rows[0].bit_status[0] == 1) {
+                        rows[0].status = '200'//todo salio correctamente
+                        res.json(rows)
+                    }else{
+                        res.json({status:'1'})//es usuario eliminado o dado de baja
+                    }
+                } else {
+                    res.json({status:'0'})//el correo o contraseña son incorrectos
+                }
             }else{
-                rows[0].status = '200'
-                //console.log(rows)
-                res.json(rows)
+                res.json({status:'0'}) //el correo o contraseña son incorrectos
             }
         })
     }else{
         if (!var_email) {
-            res.json({status:'No especifico un correo'})
+            res.json({status:'3'})// no especifico el correo
         }
         if (!tex_password) {
-            res.json({status:'No especifico una contraseña'})
+            res.json({status:'4'})//no especifico la contraseña
         }
         
     }
@@ -82,14 +88,30 @@ controller.auth=(req,res)=>{
 controller.updatePasswordUser = (req,res) =>{
     const{var_email,tex_password}=req.body
 
+    let sql1 = `SELECT * from USER where var_email = '${var_email}'`
+    let sql2 = `update USER set var_code = null WHERE var_email = '${var_email}'`
     let sql = `update USER set `+
     `tex_password='${tex_password}' `+
     `where var_email = '${var_email}'`
-
-    conection.query(sql,(err,rows,fields)=>{
-        if(err) res.json({status: 'Hubo un error al actualizar la contraseña'});
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) res.json({status: '0'});//posible error en consulta
         else{
-            res.json({status: 'Usuario Modificado'})
+            if (rows[0].var_code != null) {
+                conection.query(sql2,(err2,rows,fields)=>{
+                    if(err2) res.json({status: '2'});//error al actualizar el codigo a null
+                    else{
+                        conection.query(sql,(err1,rows1,fields1)=>{
+                            if(err1) res.json({status: '3'});//error al no poder actualizar la contraseña
+                            else{
+                                res.json({status: '200'})//todo salio bien
+                            }
+                        })
+                    }
+                })
+                
+            }else{
+                res.json({status: '1'})//el codigo es null, no hubo peticion de codigo
+            }
         }
     })
 }

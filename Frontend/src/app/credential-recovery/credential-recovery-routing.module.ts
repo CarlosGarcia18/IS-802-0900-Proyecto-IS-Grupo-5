@@ -11,8 +11,8 @@ const routes: Routes = [
     component: CredentialRecoveryComponent, 
     children:[
       {path: '',component:Module1Component},
-      {path: 'module2',component:Module2Component},
-      {path: 'module3',component:Module3Component}
+      {path: 'module2/:email',component:Module2Component},
+      {path: 'module3/:email',component:Module3Component}
     ] 
   }
 ];
