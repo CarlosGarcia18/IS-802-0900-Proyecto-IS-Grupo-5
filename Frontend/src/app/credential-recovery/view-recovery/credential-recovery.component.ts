@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class CredentialRecoveryComponent implements OnInit {
 
   constructor() { }
-  
+  ruta = "home/login"
   ngOnInit(): void {
   }
 

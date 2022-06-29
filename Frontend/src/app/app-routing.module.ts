@@ -31,6 +31,10 @@ const routes: Routes = [
         loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsModule)
       },
       {
+        path: "home/login/termsAndConditions",
+        loadChildren: () => import('./terms-and-conditions/terms-and-conditions.module').then(m => m.TermsAndConditionsModule)
+      },
+      {
         path: "home/login/credential",
         loadChildren: () => import('./credential-recovery/credential-recovery.module').then(m => m.CredentialRecoveryModule)
       },

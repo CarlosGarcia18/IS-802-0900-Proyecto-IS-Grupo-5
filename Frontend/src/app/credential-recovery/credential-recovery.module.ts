@@ -6,6 +6,7 @@ import { CredentialRecoveryComponent } from './view-recovery/credential-recovery
 import { Module1Component } from './module1/module1.component';
 import { Module2Component } from './module2/module2.component';
 import { Module3Component } from './module3/module3.component';
+import { ComponentsModule } from "../components/components.module";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { Module3Component } from './module3/module3.component';
     CommonModule,
     CredentialRecoveryRoutingModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentsModule
   ],
   exports:[
     CredentialRecoveryComponent
