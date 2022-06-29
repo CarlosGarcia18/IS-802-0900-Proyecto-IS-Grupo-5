@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,Validators, FormGroup, FormControl } from "@angular/forms";
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-module3',
@@ -18,7 +19,7 @@ export class Module3Component implements OnInit {
     return this.credential.get('confirmPassword') as FormControl
   }
 
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder,private router: Router) { 
     this.credential = this.fb.group({
       password: new FormControl('',[Validators.required, Validators.minLength(7), Validators.pattern(this.regex)]),
       confirmPassword: new FormControl('', [Validators.minLength(7),Validators.required])
@@ -34,6 +35,7 @@ export class Module3Component implements OnInit {
 
   updatePassword(){
     console.log("Esta en funcionamiento")
+    this.router.navigate(['home/login'])
   }
 }
 
