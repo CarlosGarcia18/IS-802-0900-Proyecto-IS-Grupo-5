@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
     apellido: new FormControl('', [Validators.minLength(2),Validators.required]),
     email: new FormControl('', [Validators.email,Validators.required] ),
     password: new FormControl('', [Validators.required, Validators.pattern(this.regex)]), //mayusculas, minusculas,num caracter, minimo 6
+    confirmPassword: new FormControl('', [Validators.minLength(7),Validators.required]),
     telefono: new FormControl('',[Validators.required, Validators.pattern('[0-9]{8}')]),
     ubicacion: new FormControl('', Validators.required),
     check:new FormControl(true, Validators.required)
@@ -33,6 +34,10 @@ export class RegisterComponent implements OnInit {
   get passControl():FormControl{
     return this.loginForm.get('password') as FormControl
   }
+  get passValidateControl():FormControl{
+    return this.loginForm.get('confirmPassword') as FormControl
+  }
+  
   get telControl():FormControl{
     return this.loginForm.get('telefono') as FormControl
   }
@@ -53,12 +58,17 @@ export class RegisterComponent implements OnInit {
   bit_status:1,
   var_phone:""
   }
+  match(firstControlName:any, secondControlName:any){
+    return !(this.loginForm.get(firstControlName)?.value === this.loginForm.get(secondControlName)?.value); 
+  };
+
   constructor(//private _CargaScripts:CargarScriptsService,
               private EquipoService:EquipoService, private router: Router)            
             { }
 
   ngOnInit(): void {
   }
+
 
   agregar(){
     this.EquipoService.addUsuario(this.registro).subscribe();
