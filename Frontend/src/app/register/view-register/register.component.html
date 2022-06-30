@@ -45,7 +45,7 @@
             
             <div class="errors-container" *ngIf="passControl.invalid && (passControl.touched || passControl.dirty)">
                 <p class="errors-msg" *ngIf="passControl.hasError('required')">El campo es obligatorio</p>
-                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> Asegurate de usar letras, numeros y simbolos</p>
+                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> La contraseña debe tener al menos 8 dígitos, comenzar por una letra seguida de un numero luego un símbolo, e incluir mayúsculas y minúsculas</p>
             </div>
 
             <!--passwordw-->
@@ -53,7 +53,7 @@
             
             <div class="errors-container" *ngIf="passControl.invalid && (passControl.touched || passControl.dirty)">
                 <p class="errors-msg" *ngIf="passControl.hasError('required')">El campo es obligatorio</p>
-                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> Confirma contraseña</p>
+                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> confirme contraseña</p>
             </div>
 
             <!--===============================================================-->
