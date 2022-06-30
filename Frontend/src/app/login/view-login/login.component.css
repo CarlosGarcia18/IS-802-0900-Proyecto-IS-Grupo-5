@@ -1,3 +1,59 @@
+
+/*HEADER--------------------------------*/
+.header{
+    width: 100%;
+    
+    height: 75px;
+    background-image:linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%) ;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 4);
+}
+.container{
+    width: 90%;
+    
+    max-width: 1200px;
+    margin: auto;
+}
+.logo img{
+    float: left;
+    margin-top: 5px;
+    line-height: 50px;
+    height: 67px;
+    width: 180px;
+}
+.logo h1{
+    color: #252F37;
+    font-weight: 400;
+    font-size: 24px;
+    cursor: default;
+}
+.menu{
+    display: block;
+    float: right;
+    line-height: 75px;
+}
+.menu a{
+    color: #252F37;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px 50px;
+    line-height: normal;
+    font-size: 18px;
+    transition: all 500ms ease;
+    border-bottom: 1px solid transparent;
+    font-weight: 600;
+}
+
+.menu a:hover{
+    background-color: #5E6A72;
+    color: #FFF;
+    border-bottom: 4px solid #FFF;
+}
+
+
 body {
     margin: 0;
     padding: 0;
@@ -23,14 +79,14 @@ header{
     height: 420px;
     background: #fff;
     color: rgb(5, 5, 5);
-    top: 50%;
+    top: 60%;
     left: 50%;
     position: absolute;
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
   }
-  .container{
+  /*.container{
     width: -50px;
     height: 250px;
     background: rgb(0, 172, 164);
@@ -42,7 +98,7 @@ header{
     box-sizing: border-box;
     padding: 70px 30px;
 
-  }
+  }*/
   /*
   .container a{
     text-decoration: none;
