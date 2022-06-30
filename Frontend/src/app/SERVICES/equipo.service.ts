@@ -16,7 +16,11 @@ export class EquipoService {
 
   updatePassword(update:updatePassword){
       return this.http.put(this.url+"/userPassword", update)
-  }  
+  } 
+  
+  authLogin(auth:login){
+      return this.http.post(this.url+"/auth", auth)
+  }
 }
 
 export interface Registro{
@@ -38,5 +42,10 @@ export interface updatePassword{
 
 export interface status{
   status:number
+}
+
+export interface login{
+  var_email:string,
+  tex_password:string
 }
 

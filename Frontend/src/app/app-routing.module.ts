@@ -39,7 +39,7 @@ const routes: Routes = [
         loadChildren: () => import('./credential-recovery/credential-recovery.module').then(m => m.CredentialRecoveryModule)
       },
       {
-        path: "navigationProducts",
+        path: "navigationProducts/:id",
         loadChildren: () => import('./navigation-products/navigation-products.module').then(m => m.NavigationProductsModule)
       },
       {

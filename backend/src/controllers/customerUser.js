@@ -63,24 +63,23 @@ controller.auth=(req,res)=>{
             if(rows.length!=0){//sino ecuentra el email o las claves no coinciden
                 if (tex_password == rows[0].tex_password) {
                     if (rows[0].bit_status[0] == 1) {
-                        rows[0].status = '200'//todo salio correctamente
-                        res.json(rows)
+                        res.json({status:'200',id:rows[0].id_user})
                     }else{
-                        res.json({status:'1'})//es usuario eliminado o dado de baja
+                        res.json({status:'1',id:'-1'})//es usuario eliminado o dado de baja
                     }
                 } else {
-                    res.json({status:'0'})//el correo o contraseña son incorrectos
+                    res.json({status:'0',id:'-1'})//el correo o contraseña son incorrectos
                 }
             }else{
-                res.json({status:'0'}) //el correo o contraseña son incorrectos
+                res.json({status:'0',id:'-1'}) //el correo o contraseña son incorrectos
             }
         })
     }else{
         if (!var_email) {
-            res.json({status:'3'})// no especifico el correo
+            res.json({status:'3',id:'-1'})// no especifico el correo
         }
         if (!tex_password) {
-            res.json({status:'4'})//no especifico la contraseña
+            res.json({status:'4',id:'-1'})//no especifico la contraseña
         }
         
     }
