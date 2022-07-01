@@ -9,11 +9,10 @@ import { Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&-/_|])([A-Za-z\d$@$!%*?&]|[^ ]){7,40}$/;
-
+  
   loginForm=new FormGroup({
     email: new FormControl('', [Validators.email,Validators.required] ),
-    password: new FormControl('', [Validators.required, Validators.pattern(this.regex)])
+    password: new FormControl('', [Validators.required])
   });
 
   get emailControl():FormControl{
@@ -34,6 +33,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  incorrect:boolean = false
+  deleteUser:boolean = false
+  error:boolean = false
+
   autenticar(){
     this.EquipoService.authLogin(this.login).subscribe(
       res => {
@@ -41,14 +44,18 @@ export class LoginComponent implements OnInit {
         console.log(status.status)
         //console.log(hola)
         if (status.status == '200') {
-          this.EquipoService.setToken(status.id)
+          //this.EquipoService.setToken(status.id)
           localStorage.setItem('token',status.id)
           this.router.navigate([`navigationProducts`])
+        }else if(status.status == '1'){
+          this.deleteUser = true
+        }else if(status.status == '0'){
+          this.incorrect = true
         }else{
-          console.log(status.status)
+          this.error = true
         }
       },
-      err => console.log(err)
+      err => this.error = true
     );
   }
 
