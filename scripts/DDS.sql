@@ -41,7 +41,6 @@ CREATE TABLE USER(
     bit_rol BIT(1) DEFAULT 1 NOT NULL COMMENT "Un rol que identifica que tipo de usuario entra al sistema: 0 Administrador | 1 Usuario Normal",
     bit_status BIT(1) NOT NULL COMMENT "Identifica el estado de usuario: 0 Eliminado | 1 Activo",
     var_phone VARCHAR(10) COMMENT "Numero de telefono"
-
 ) COMMENT "Usuarios";
 
 CREATE TABLE PRODUCT(
