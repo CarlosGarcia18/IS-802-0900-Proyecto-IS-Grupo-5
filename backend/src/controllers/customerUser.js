@@ -20,7 +20,7 @@ function enviarCorreo(destinatario, codigo){
         from:'"Plazita Net" <no-reply@gmail.com>',
         subject:"Recuperacion de cuenta",
         to: `${destinatario}`,
-        text: `Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contrasena:   ${codigo}`
+        text: `Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contraseña:   ${codigo}`
     };
     config.sendMail(opc, function(error, result,){
         if (error) return res.json({ok:false,msg:error})
@@ -54,13 +54,15 @@ controller.getUser = (req,res) =>{
 //funcion para incertar un usuario
 controller.postUser = (req,res) =>{
     const {fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
+    
+    //verificar que el correo no ha sido registrado
     let sql=`insert into USER(fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(${fk_id_department},'${var_email}','${var_name}',
     '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
     //try {
         conection.query(sql,(err,rows,fields)=>{
             if(err) res.send(err.sqlMessage);
             else{
-                res.json({status: 'Usuario agregado'})
+                res.json({status: '200'})
             }
         })
     //} catch (error) {
@@ -154,14 +156,13 @@ controller.envioCodigoCorreo=(req,res)=>{
     const{var_email}=req.body
     
     let sql1=`SELECT * FROM user WHERE var_email='${var_email}'`
-    //let sql2=`SELECT bit_status from USER WHERE var_email='${var_email}'`
-    //let getToken=`SELECT var_code FROM user WHERE var_email='${var_email}'`
+    let sql2=`SELECT bit_status from USER WHERE var_email='${var_email}'`
+    let getToken=`SELECT var_code FROM user WHERE var_email='${var_email}'`
 
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
         else{
             if(rows.length!=0){//si encontro una fila con el email dado
-                let sql2=`SELECT bit_status from USER WHERE var_email='${var_email}'`
                 conection.query(sql2,(err, rows, fields)=>{ //consultamos si no ha sido dado de baja--bit status
                     if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
                     else{
@@ -170,12 +171,12 @@ controller.envioCodigoCorreo=(req,res)=>{
                             conection.query(generateToken,(err, rows, fields)=>{
                                 if(err) res.json({status:'0', error:err.sqlMessage}) //posible error en la consulta a bdd
                                 else{
-                                    let getToken=`SELECT var_code FROM user WHERE var_email='${var_email}'`
                                     conection.query(getToken,(err, rows, fields)=>{ //ahora tomamos el token de la bd
                                         if(err) res.json({status:'0', error:err.sqlMessage}) //posible error en la consulta a bdd
                                         else{
-                                            //enviar correo
-                                            enviarCorreo(var_email,getToken);
+                                            //enviamos correo con el codigo
+                                            enviarCorreo(var_email,rows[0].var_code);
+                                            res.json({status:'200', msg:"correo exitoso"})
                                         }
                                     })
                                 }
@@ -187,6 +188,7 @@ controller.envioCodigoCorreo=(req,res)=>{
         }
     })
 }
+//routers.post('/credential', customerU.envioCodigoCorreo )
 
 
 
@@ -214,7 +216,6 @@ controller.confirmaCodigo=(req,res)=>{
         }
     })
 }
-//routers.get('/credential/:email', customerU.confirmaCodigo)
 /////////////////////////////////////////////////////////////////
 
 
