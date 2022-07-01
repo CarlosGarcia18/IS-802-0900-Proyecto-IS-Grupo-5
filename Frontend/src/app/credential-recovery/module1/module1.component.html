@@ -10,7 +10,10 @@
     </div>
 </header>
 
+
+
 <div id="formDiv">
+    <form  [formGroup]="module1Form" class="inputs-container" id="id-form" action="" method="POST">
     <div>
         <div class="div-img" align="center">
             <img class="image-container" src="../../../assets/Imagenes/credential1.png" alt="">
@@ -18,16 +21,25 @@
 
         <h1>¿No puedes iniciar sesión?</h1>
         <h3>Para restablecer tu contraseña, introduce la dirección de correo electrónico que usaste al crear tu cuenta.</h3>
-            <input placeholder="micuenta@gmail.com" class="email">
+        <input [(ngModel)]="modulo1.var_email" class="email" type="email" placeholder="micuenta@gmail.com" name="correo" formControlName="email"  id="email" name="correo"  required>
+        <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
+            <p class="errors-msg" *ngIf="emailControl.hasError('required')">El campo es obligatorio</p>
+            <p class="errors-msg" *ngIf="emailControl.hasError('email')">El campo debe ser un email valido</p>
         </div>
+
+
+
+<!--
         <div>
             <input type="radio" id="radio1">
             <h3>No puedo inicar por otros motivos</h3>
 
+        </div>
+-->
     </div>
-    <button>Continuar</button>
+
+
+    <button routerLink="module2/:email" [disabled]="module1Form.invalid">Continuar</button>
+    </form>
 </div>
-
-
-<button routerLink="module2">ir al modulo 2</button>
 
