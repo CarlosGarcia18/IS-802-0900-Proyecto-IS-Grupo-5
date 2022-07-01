@@ -12,7 +12,7 @@ controller.test = (req,res) => {
 //funcion para obtener un usuario por el id
 controller.getUser = (req,res) =>{
     const {id} =req.params
-    let sql =`select * from USER where id_user=${id}`
+    let sql =`select var_phone,bit_status,var_lastname,var_name,var_email,fk_id_department from USER where id_user=${id}`
     conection.query(sql,(err,rows,fields) =>{
         if(err) res.send(err.sqlMessage);
         else{

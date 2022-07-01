@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipoService, login } from "../../SERVICES/equipo.service";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { Router, ActivatedRoute} from '@angular/router';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit {
         console.log(status.status)
         //console.log(hola)
         if (status.status == '200') {
-          this.router.navigate([`navigationProducts/${status.id}`])
+          this.EquipoService.setToken(status.id)
+          localStorage.setItem('token',status.id)
+          this.router.navigate([`navigationProducts`])
         }else{
           console.log(status.status)
         }
@@ -54,6 +56,6 @@ export class LoginComponent implements OnInit {
 
 interface BookInfo {
   status : string ;
-  id: number;
+  id: string;
 }
 
