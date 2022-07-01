@@ -1,6 +1,36 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD 
 const controller = {} //definicion de controller que guardara las rutas
 
+const nodemailer=require('nodemailer')
+
+
+function enviarCorreo(destinatario, codigo){
+    //enviar correo
+    //////////////////////////////////
+    let config= nodemailer.createTransport({
+        host:'smtp.gmail.com',
+        port: 465,
+        secure:true,
+        auth:{
+            user:'plazitanet1@gmail.com',
+            pass:'fktlxsridrbusxrk'
+        }
+    });
+    const opc={
+        from:'"Plazita Net" <no-reply@gmail.com>',
+        subject:"Recuperacion de cuenta",
+        to: `${destinatario}`,
+        text: `Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contrasena:   ${codigo}`
+    };
+    config.sendMail(opc, function(error, result,){
+        if (error) return res.json({ok:false,msg:error})
+        return res.json({
+            ok:true,
+            msg:result
+        })
+    })
+                                    /////////////////////////////////
+}
 
 
 //funcion de prueba
@@ -118,6 +148,78 @@ controller.updatePasswordUser = (req,res) =>{
         }
     })
 }
+
+//generar codigo aleatorio y enviar correo
+
+controller.envioCodigoCorreo=(req,res)=>{
+    const{var_email}=req.body
+    
+    let sql1=`SELECT * FROM user WHERE var_email='${var_email}'`
+    //let sql2=`SELECT bit_status from USER WHERE var_email='${var_email}'`
+    //let getToken=`SELECT var_code FROM user WHERE var_email='${var_email}'`
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
+        else{
+            if(rows.length!=0){//si encontro una fila con el email dado
+                let sql2=`SELECT bit_status from USER WHERE var_email='${var_email}'`
+                conection.query(sql2,(err, rows, fields)=>{ //consultamos si no ha sido dado de baja--bit status
+                    if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                    else{
+                        if(rows[0].bit_status[0]!=0){ //si no ha sido dado de baja
+                            let generateToken=`CALL createCode('${var_email}')` //GENERAMOS EL TOKEN al usuario
+                            conection.query(generateToken,(err, rows, fields)=>{
+                                if(err) res.json({status:'0', error:err.sqlMessage}) //posible error en la consulta a bdd
+                                else{
+                                    let getToken=`SELECT var_code FROM user WHERE var_email='${var_email}'`
+                                    conection.query(getToken,(err, rows, fields)=>{ //ahora tomamos el token de la bd
+                                        if(err) res.json({status:'0', error:err.sqlMessage}) //posible error en la consulta a bdd
+                                        else{
+                                            //enviar correo
+                                            enviarCorreo(var_email,getToken);
+                                        }
+                                    })
+                                }
+                            })
+                        }else{res.json({status:3, msg:'Usuario ha sido dado de baja'})}
+                    }
+                })
+            }else {res.json({status:2, msg:'Email no encontrado'})}
+        }
+    })
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+
+/////////////////confirmar codigo////////////////////////
+
+controller.confirmaCodigo=(req,res)=>{
+    const{var_code}=req.body;
+    //const{var_email}=req.params;
+
+    let consulta=`select * from USER where var_code='${var_code}'`
+
+    conection.query(consulta,(err,rows, fields)=>{
+        if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
+        else{
+            if(rows.length!=0){ //si encontro una fila
+                
+                        res.json({status:'200', msg:'encontrado!'})
+                    }else {
+                        
+                    res.json({status:'0', msg:"codigo invalido"})
+                }
+            
+        }
+    })
+}
+//routers.get('/credential/:email', customerU.confirmaCodigo)
+/////////////////////////////////////////////////////////////////
+
+
+
 
 //funcion para actualizar un usuario dado un id
 controller.updateUser = (req,res) =>{

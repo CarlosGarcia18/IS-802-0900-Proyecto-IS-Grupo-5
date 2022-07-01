@@ -21,7 +21,7 @@ app.use(express.json())
 app.use(cors())
 
 //CORREO
-app.use(require('./routes/correoRoute'))
+//app.use(require('./routes/correoRoute'))
 
 
 //configuracion del puerto

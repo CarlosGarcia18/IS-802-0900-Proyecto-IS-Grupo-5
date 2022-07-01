@@ -21,9 +21,9 @@ routers.delete('/user/:id',customerU.deleteUser)
 
 //Modificar usuario dado un id  (body -> json) /se debe especificar el id en la ruta/
 routers.put('/user/:id',customerU.updateUser)
+
 //auth
 routers.post('/auth', customerU.auth)
-//routers.put('/passwordUpdate/:token', customerU.updatePass)
 
 //trae todos los departamentos
 routers.get('/departament',customerO.getDepartament)
@@ -33,6 +33,13 @@ routers.put('/userPassword',customerU.updatePasswordUser)
 
 //Verificacion del login
 routers.get('/auth',customerU.auth)
+
+//enviar correo
+routers.post('/credential', customerU.envioCodigoCorreo )
+
+//verificar el codigo que se ha ingresado
+routers.post('/credential/confirm', customerU.confirmaCodigo)
+
 
 //exportacion de rutas
 module.exports = routers
