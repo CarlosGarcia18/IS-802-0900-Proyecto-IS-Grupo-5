@@ -1,5 +1,5 @@
 //config para correos
-const nodemailer =require('nodemailer');
+/*const nodemailer =require('nodemailer');
 //const{ response }=require('express');
 ///////////////////////////////////
 
@@ -35,3 +35,4 @@ const envioCorreo=(req,res)=>{
 
 module.exports={envioCorreo}
 /////////////////////////////////////////////////////////////
+*/

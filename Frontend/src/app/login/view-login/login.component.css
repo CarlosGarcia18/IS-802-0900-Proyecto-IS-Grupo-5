@@ -1,25 +1,19 @@
-body {
-    margin: 0;
-    padding: 0;
-    background: #DBEDF5;
-    background-size: cover;
-    font-family: sans-serif;
-    height: 100vh;
+.ng-touched.ng-invalid:is(input,.selector, :checked),
+.ng-dirty.ng-invalid:is(input,.selector, :checked){
+    outline: 2px solid red;
+}
 
+.ng-dirty.ng-invalid:is(input,.selector, :checked){
+    outline: 2px solid red;
+}
 
-    font-family: 'Poppins', sans-serif;
-  }
-header{
-  margin: 0;
-  padding:0;
-  background: #7DE2FC;
-  background-size:auto;
-  font-family: sans-serif;
-  height: 28vh;
+.errors-msg{
+  font-size: 15px;
+  margin: 0px;
 }
 
   .login-box {
-    width: 320px;
+    width: 390px;
     height: 420px;
     background: #fff;
     color: rgb(5, 5, 5);
@@ -29,6 +23,7 @@ header{
     transform: translate(-50%, -50%);
     box-sizing: border-box;
     padding: 70px 30px;
+    margin-top: 50px;
   }
  
   .header{
@@ -106,12 +101,14 @@ header{
   }
   /*Avatar*/
   .login-box .avatar {
-    width: 100px;
+    width: 115px;
     height: 100px;
     border-radius: 20%;
     position: absolute;
     top: -50px;
-    left: calc(50% - 50px);
+    margin-left: auto;
+    margin-right: auto;
+    left: calc(50% - 60px);
   }
   /*Estilo del H1 */
   .login-box h1 {

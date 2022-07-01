@@ -1,5 +1,5 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,15 @@ export class EquipoService {
 
   updatePassword(update:updatePassword){
       return this.http.put(this.url+"/userPassword", update)
-  }  
+  } 
+  
+  authLogin(auth:login){
+      return this.http.post(this.url+"/auth", auth)
+  }
+
+  getUser(id:string){
+    return this.http.get(this.url+"/user/"+id)
+  }
 }
 
 export interface Registro{
@@ -38,5 +46,10 @@ export interface updatePassword{
 
 export interface status{
   status:number
+}
+
+export interface login{
+  var_email:string,
+  tex_password:string
 }
 
