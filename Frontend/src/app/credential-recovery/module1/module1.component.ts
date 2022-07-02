@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
-import { Registro, EquipoService } from 'src/app/SERVICES/equipo.service';
+import { updatePassword } from 'src/app/SERVICES/equipo.service';
 
 @Component({
   selector: 'app-module1',
@@ -17,15 +17,15 @@ export class Module1Component implements OnInit {
     return this.module1Form.get('email') as FormControl
   }
 
-  modulo1: Registro={
-    fk_id_department:1,
+  modulo1: updatePassword={
     var_email:"",
-    var_name:"",
-    var_lastname:"",
     tex_password:"",
-    bit_rol:1,
-    bit_status:1,
-    var_phone:""
+    tex_pass_ver:"",
+
+  }
+
+  sendEmail(){
+    
   }
 
   constructor() { }
