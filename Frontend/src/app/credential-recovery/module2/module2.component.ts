@@ -11,11 +11,12 @@ import { codigo, EquipoService,status } from "../../SERVICES/equipo.service";
 export class Module2Component implements OnInit {
 
   
+
+  expresiones = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&-/_|])([A-Za-z\d$@$!%*?&]|[^ ]){7,40}$/;
+
+
   
-  module2Form = new FormGroup({
-    codigo: new FormControl('', [] )
-  })
-  
+  module2Form:FormGroup;
 
   get codigoVerificacion():FormControl{
     return this.module2Form.get('codigo') as FormControl
@@ -27,11 +28,18 @@ export class Module2Component implements OnInit {
     var_codigo:"",
     
   }
+/*Constructor del codigo  */
+  constructor(private rutaActiva: ActivatedRoute, private fb: FormBuilder,private router: Router,private EquipoService:EquipoService) {
+    this.module2Form =this.fb.group({
+      codigo: new FormControl('',[Validators.min(7),Validators.maxLength(12),Validators.pattern(this.expresiones)])
 
-  constructor() { }
+    })
+   }
 
   ngOnInit(): void {
   }
+
+  obtenerCOdigo(){}
  
 
 }
