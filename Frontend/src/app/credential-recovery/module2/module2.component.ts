@@ -37,9 +37,17 @@ export class Module2Component implements OnInit {
    }
 
   ngOnInit(): void {
+    this.veriCodigo.var_codigo=this.rutaActiva.snapshot.params['codigo']
+
   }
 
-  obtenerCOdigo(){}
+  veriCodigo:codigo={
+    var_codigo:""
+  }
+
+  obtenerCodigo(){
+  
+  }
  
 
 }

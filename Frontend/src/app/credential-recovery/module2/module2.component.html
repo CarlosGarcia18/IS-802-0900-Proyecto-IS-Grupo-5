@@ -24,8 +24,9 @@
         <input [(ngModel)]="modulo2.var_codigo" class="codigoVer" type="text" placeholder="2345awe" name="codigoVeri" formControlName="codigo"  id="codigo" name="codigo"  required>
        
     </div>
+    <!--[disabled]="productoForm.invalid" -->
 
-    <button routerLink="module3:password" type="submit" [disabled]="module2Form.invalid">Continuar</button>
+    <button type="submit" class="btn btn-success btn-lg float-end" routerLink="module3" (click)="obtenerCodigo()">Continuar</button>
 </form>
 </div>
 
