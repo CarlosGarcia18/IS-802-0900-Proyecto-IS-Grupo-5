@@ -22,8 +22,8 @@ function enviarCorreoGmail(destinatario, codigo,res){
     };
     
     config.sendMail(opc, function(error, result,){
-        if (error) {res.json({status:'10'})} //error el enviar email
-        else{res.json({status:'200'})}    //correcto
+        if (error) {return res.json({status:'10'})} //error el enviar email
+        else{return res.json({status:'200'})}    //correcto
     })                                   /////////////////////////////////
 }
 
