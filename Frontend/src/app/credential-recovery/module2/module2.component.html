@@ -14,37 +14,21 @@
 <head>
     <link rel="stylesheet" href="module2.component.css">
 </head>
-<body>
-    <main>
-        <form action="" class="formulario" id="formulario">
-           <table class="logo">
-            <!--<h1>Ingresa el codigo de confirmación</h1>-->
-            <div class="formulario__modulo2" id="grupo_verificacion">
-                <h1>Ingresa el codigo de confirmación</h1>
-                <h4>Hemos enviado un codigo a tu correo,</h4>
-                <h4>revisa tu bandeja de entrada e introducelo a continuacion:</h4>
-                <label for="CodigoVerificacion" class="formulario_codigo">Codigo de Verificacion</label>
-                <div class="formulario__modulo-input">
-                    <input type="text" class="formulario__input" name="codigo" id="codigo" placeholder="Codigo Verificacion">
-                    <i class="formulario__validacion-estado fa-solid fa-circle-xmark"></i>
-                </div>
-                <p class="formulario__input-error">Codigo de verificacion incorrecto</p>
+<div id="formDiv">
+    <form  [formGroup]="module2Form" class="inputs-container" id="id-form" action="" method="POST">
+    <div>
+        
 
-            </div>
-            
-            <div class="formulario__mensaje" id="formulario__mensaje">
-                
-            </div>
-            <div class="formulario__modulo2 formulario__modulo2-btn-enviar">
-                <button type="submit" class="formulario__btn" routerLink="../../module3/:email">Enviar </button>
-            </div>
-           
-           </table>
-        </form>
-    </main>
-    <!--Ocupa el link de fondasun-->
-    
+        <h1>Ingresa el codigo de confirmación</h1>
+        <h3>Hemos enviado un codigo a tu correo, revisa tu bandeja de entrada e introducelo a continuacion:.</h3>
+        <input [(ngModel)]="modulo2.var_codigo" class="codigoVer" type="text" placeholder="2345awe" name="codigoVeri" formControlName="codigo"  id="codigo" name="codigo"  required>
+       
+    </div>
+
+    <button routerLink="module3:password" [disabled]="module2Form.invalid">Continuar</button>
+</form>
+</div>
 
 
-</body>
 
+   

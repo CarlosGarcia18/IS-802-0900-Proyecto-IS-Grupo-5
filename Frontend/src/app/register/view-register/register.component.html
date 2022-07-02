@@ -18,6 +18,7 @@
         <i class="fa-solid fa-phone" id="icon"></i>
         <i class="fa-solid fa-location-dot" id="icon"></i>
     </div>
+    
     <div class="login-info-container">
         <h1 class="title">Crea una nueva cuenta</h1>
         <form  [formGroup]="loginForm" class="inputs-container" id="id-form" action="" method="POST">
@@ -47,13 +48,14 @@
                 <p class="errors-msg" *ngIf="passControl.hasError('required')">El campo es obligatorio</p>
                  <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> La contraseña debe tener al menos 8 dígitos, comenzar por una letra seguida de un numero luego un símbolo, e incluir mayúsculas y minúsculas</p>
             </div>
-
-            <!--passwordw-->
+            
+            <!--password2-->
             <input [(ngModel)]="registro.tex_password" class="input" type="password" placeholder="Escribe tu contraseña" name="password2" formControlName="password2" required>
             
-            <div class="errors-container" *ngIf="passControl.invalid && (passControl.touched || passControl.dirty)">
-                <p class="errors-msg" *ngIf="passControl.hasError('required')">El campo es obligatorio</p>
-                 <p class="errors-msg" *ngIf="passControl.hasError('pattern')" align="left"> confirme contraseña</p>
+          
+            <div class="errors-container" *ngIf="passValidateControl.invalid && (passValidateControl.touched || passValidateControl.dirty)">
+                <p class="errors-msg" *ngIf="passValidateControl.hasError('required')">El campo es obligatorio</p>
+                 <p class="errors-msg" *ngIf="passValidateControl.hasError('pattern')" align="left"> confirme contraseña</p>
             </div>
 
             <!--===============================================================-->

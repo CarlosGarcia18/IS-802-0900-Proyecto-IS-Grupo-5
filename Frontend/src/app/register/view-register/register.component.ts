@@ -37,6 +37,7 @@ export class RegisterComponent implements OnInit {
   get passValidateControl():FormControl{
     return this.loginForm.get('confirmPassword') as FormControl
   }
+
   
   get telControl():FormControl{
     return this.loginForm.get('telefono') as FormControl
@@ -54,6 +55,7 @@ export class RegisterComponent implements OnInit {
   var_name:"",
   var_lastname:"",
   tex_password:"",
+  /*tex_password:" ",*/
   bit_rol:1,
   bit_status:1,
   var_phone:""

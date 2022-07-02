@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Module2Component } from '../credential-recovery/module2/module2.component';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,11 @@ export class EquipoService {
 
   addUsuario(registro:Registro){
       return this.http.post(this.url+"/user", registro)
-  }  
+  } 
+  
+  addCodigo(codigo:codigo){
+    return this.http.post(this.url+"/codigo",this.addCodigo)
+  }
 
   updatePassword(update:updatePassword){
       return this.http.put(this.url+"/userPassword", update)
@@ -46,6 +51,9 @@ export interface updatePassword{
 
 export interface status{
   status:number
+}
+export interface codigo{
+  var_codigo:string,
 }
 
 export interface login{
