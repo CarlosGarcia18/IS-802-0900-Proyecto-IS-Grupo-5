@@ -15,6 +15,7 @@ export class Module2Component implements OnInit {
   module2Form = new FormGroup({
     codigo: new FormControl('', [] )
   })
+  
 
   get codigoVerificacion():FormControl{
     return this.module2Form.get('codigo') as FormControl
