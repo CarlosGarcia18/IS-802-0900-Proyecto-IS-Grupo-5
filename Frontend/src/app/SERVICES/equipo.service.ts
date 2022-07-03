@@ -31,6 +31,11 @@ export class EquipoService {
   getUser(id:string){
     return this.http.get(this.url+"/user/"+id)
   }
+
+  emailModule1(module1:emailCredential){
+    return this.http.post(this.url+"/credential", module1)
+  }
+
 }
 
 export interface Registro{
@@ -60,5 +65,10 @@ export interface codigo{
 export interface login{
   var_email:string,
   tex_password:string
+}
+
+export interface emailCredential{
+  var_email:string
+  bit_status:boolean
 }
 
