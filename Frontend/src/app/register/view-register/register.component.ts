@@ -89,27 +89,25 @@ export class RegisterComponent implements OnInit {
   error=false
   
   agregar(){
-    if (!this.match('password','confirmPassword')) {
-      this.EquipoService.addUsuario(this.registro).subscribe(
-        res => {
-          var status:BookInfo = <any>res
-          //console.log(hola)
-          if (status.status == '200') {
-            localStorage.setItem("token",status.id)
-            this.loginForm.reset();
-            this.router.navigate(['navigationProducts'])
-          }else if (status.status == '1'){
-            this.existEmail = true
-          }else{
-            this.error = true
-          }
-        },
-        err => console.log(err)
-      );
-      //this.router.navigate(['/user'])
-    }else{
-      console.log("No son iguales")
-    }
+    
+    this.EquipoService.addUsuario(this.registro).subscribe(
+      res => {
+        var status:BookInfo = <any>res
+        //console.log(hola)
+        if (status.status == '200') {
+          localStorage.setItem("token",status.id)
+          this.loginForm.reset();
+          this.router.navigate(['navigationProducts'])
+        }else if (status.status == '1'){
+          this.existEmail = true
+        }else{
+          this.error = true
+        }
+      },
+      err => console.log(err)
+    );
+    //this.router.navigate(['/user'])
+   
   }
 
   ruta:string = "home/register"

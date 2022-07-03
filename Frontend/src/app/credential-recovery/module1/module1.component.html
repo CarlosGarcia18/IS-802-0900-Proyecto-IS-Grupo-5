@@ -21,10 +21,13 @@
 
         <h1>¿No puedes iniciar sesión?</h1>
         <h3>Para restablecer tu contraseña, introduce la dirección de correo electrónico que usaste al crear tu cuenta.</h3>
-        <input [(ngModel)]="modulo1.var_email" class="email" type="email" placeholder="micuenta@gmail.com" name="correo" formControlName="email"  id="email" name="correo"  required>
+        <input [(ngModel)]="module1.var_email" class="email" type="email" placeholder="micuenta@gmail.com" name="correo" formControlName="email"  id="email" name="correo"  required>
         <div class="errors-container" *ngIf="emailControl.invalid && (emailControl.touched || emailControl.dirty)">
             <p class="errors-msg" *ngIf="emailControl.hasError('required')">El campo es obligatorio</p>
             <p class="errors-msg" *ngIf="emailControl.hasError('email')">El campo debe ser un email valido</p>
+        </div>
+        <div class="errors-container" *ngIf="deleteUser">
+            <p class="errors-msg" *ngIf="deleteUser">El usuario registrado por esta cuenta, ha sido dado de baja.</p>
         </div>
 
 
@@ -39,7 +42,8 @@
     </div>
 
 
-    <button routerLink="module2/:email" [disabled]="module1Form.invalid">Continuar</button>
+    <!--<button routerLink="module2/:email" [disabled]="module1Form.invalid">Continuar</button>-->
+    <button (click)="sendEmail()" [disabled]="module1Form.invalid">Continuar</button>
     </form>
 </div>
 
