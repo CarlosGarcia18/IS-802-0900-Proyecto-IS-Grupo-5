@@ -3,6 +3,34 @@ const controller = {} //definicion de controller que guardara las rutas
 
 const nodemailer=require('nodemailer')
 
+//////////////////////////outlook
+function enviarCorreoOut(destinatario, codigo,res){
+    let config= nodemailer.createTransport({
+        host: 'smtp-mail.outlook.com',
+        port: 587,
+        secureConnection:false,
+        tls: {
+            ciphers:'SSLv3'
+        },
+        auth:{
+            user:'plazitanet@outlook.com',
+            pass:'htspf445$'
+        }
+    });
+    const opc={
+        from:'"Plazita Net" <plazitanet@outlook.com>',
+        subject:"Recuperacion de cuenta",
+        to: `${destinatario}`,
+        text: `Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contraseña:   ${codigo}`
+    };
+    
+    config.sendMail(opc, function(error, result,){
+        if (error) {return res.json({status:'10'})} //error el enviar email
+        else{return res.json({status:'200'})}    //correcto
+    })                                   /////////////////////////////////
+}
+
+/////////////////////////////////////////////////////////////////
 
 function enviarCorreoGmail(destinatario, codigo,res){
     let config= nodemailer.createTransport({
@@ -191,7 +219,7 @@ controller.envioCodigoCorreo=(req,res)=>{
                                             
                                             if(n2!=-1){
                                                 console.log('outlook')
-                                               // enviarCorreoOut(var_email,rows[0].var_code.res);
+                                                enviarCorreoOut(var_email,rows[0].var_code,res);
                                             }else{
                                                 if(n3!=-1){
                                                     enviarCorreoGmail(var_email,rows[0].var_code,res);
