@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="module2.component.css">
 </head>
 <div id="formDiv">
-    <form  [formGroup]="module2Form" class="inputs-container" id="id-form" action="" method="POST">
+    <form  [formGroup]="module2Form" class="inputs-container" id="id-form" action="" method="POST" (ngSubmit)="obtenerCodigo()">
     <div>
         
 
@@ -26,7 +26,7 @@
     </div>
     <!--[disabled]="productoForm.invalid" -->
 
-    <button type="submit" class="btn btn-success btn-lg float-end" routerLink="module3" (click)="obtenerCodigo()">Continuar</button>
+    <button type="submit" class="btn btn-success btn-lg float-end">Continuar</button>
 </form>
 </div>
 
