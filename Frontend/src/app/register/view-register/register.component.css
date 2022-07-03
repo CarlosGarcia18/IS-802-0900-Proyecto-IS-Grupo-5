@@ -9,7 +9,7 @@
 }
 
 #icon{
-    margin-bottom:30px ;
+    margin-bottom:20px ;
     display: flex;
 }
 #ojo{
@@ -148,9 +148,8 @@ ul li{
 }
 .login-info-container button{
     border-radius: 20px;
-    margin: 30px;
-    
-    height: 50px;
+    margin: 15px 30px 10px;
+    height: 40px;
 }
 .ubicacion{
     height: 55%;
@@ -181,7 +180,7 @@ ul li{
     border-radius: 5px;
     width: 120px;
     margin-right: 32px;
-    height: 2.5rem;
+    height: 1.5rem;
     font-size: 1em;
     box-shadow: rgb(110 110 110 / 75%) 0px 1px 3.5px 0px;
 }
@@ -342,4 +341,32 @@ footer{
 .table-foot{
     display:block;
     margin: 0 auto;
+}
+
+.container-form{
+    display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: stretch;
+    width: 100%;
+}
+
+.container-icon{
+    padding-top: 5px;
+}
+
+.container-part-form{
+    width: 100%;
+}
+
+.input{
+    height: 28px;
+    margin-bottom: auto;
+}
+
+.errors-container{
+    font-size: 12px;
+    margin-bottom: 3px;
+    color: rgb(22, 22, 22);
 }

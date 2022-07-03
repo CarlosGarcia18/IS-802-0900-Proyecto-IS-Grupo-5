@@ -51,20 +51,29 @@ controller.getUser = (req,res) =>{
 //funcion para incertar un usuario
 controller.postUser = (req,res) =>{
     const {fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
-    
+    let sql1=`SELECT id_user from USER where var_email='${var_email}'`
     //verificar que el correo no ha sido registrado
     let sql=`insert into USER(fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(${fk_id_department},'${var_email}','${var_name}',
     '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
     //try {
-        conection.query(sql,(err,rows,fields)=>{
-            if(err) res.send(err.sqlMessage);
-            else{
-                res.json({status: '200'})
+        conection.query(sql1,(err,rows,fields)=>{
+            if(err) res.send({status: '0', id:""}); //error en consulta
+            else if(rows.length==0){
+                conection.query(sql,(err,rows,fields)=>{
+                    if(err) res.send({status: '2', id:""});//error al incertar
+                    else{
+                        conection.query(sql1,(err,rows,fields)=>{
+                            if(err) res.send({status: '3', id:""});//error al consultar id
+                            else{
+                                res.json({status: '200',id:rows[0].id_user})
+                            }
+                        })
+                    }
+                })
+            }else{
+                res.json({status: '1', id:""})//correo ya existente
             }
         })
-    //} catch (error) {
-        
-    //}
     
 }
 

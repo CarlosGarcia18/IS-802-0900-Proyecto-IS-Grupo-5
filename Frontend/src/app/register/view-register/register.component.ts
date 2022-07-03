@@ -60,6 +60,7 @@ export class RegisterComponent implements OnInit {
   bit_status:1,
   var_phone:""
   }
+
   match(firstControlName:any, secondControlName:any){
     return !(this.loginForm.get(firstControlName)?.value === this.loginForm.get(secondControlName)?.value); 
   };
@@ -71,13 +72,38 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
+  existEmail=false
+  error=false
+  
   agregar(){
-    this.EquipoService.addUsuario(this.registro).subscribe();
-    //this.router.navigate(['/user'])
-    this.loginForm.reset();
+    if (!this.match('password','confirmPassword')) {
+      this.EquipoService.addUsuario(this.registro).subscribe(
+        res => {
+          var status:BookInfo = <any>res
+          //console.log(hola)
+          if (status.status == '200') {
+            localStorage.setItem("token",status.id)
+            this.loginForm.reset();
+            this.router.navigate(['navigationProducts'])
+          }else if (status.status == '1'){
+            this.existEmail = true
+          }else{
+            this.error = true
+          }
+        },
+        err => console.log(err)
+      );
+      //this.router.navigate(['/user'])
+    }else{
+      console.log("No son iguales")
+    }
   }
 
   ruta:string = "home/register"
   
+}
+
+interface BookInfo {
+  status : string ;
+  id:string
 }
