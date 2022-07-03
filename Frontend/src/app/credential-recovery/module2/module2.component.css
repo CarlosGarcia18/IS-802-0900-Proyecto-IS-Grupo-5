@@ -1,4 +1,16 @@
+.ng-touched.ng-invalid:is(input,.selector, :checked),
+.ng-dirty.ng-invalid:is(input,.selector, :checked){
+    outline: 2px solid red;
+}
+
+.errors-msg{
+    font-size: 15px;
+    margin: 0px;
+  }
+
 /*HEADER--------------------------------*/
+
+
 .header{
     width: 100%;
 

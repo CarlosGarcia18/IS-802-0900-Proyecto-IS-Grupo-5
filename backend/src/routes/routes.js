@@ -38,7 +38,7 @@ routers.get('/auth',customerU.auth)
 routers.post('/credential', customerU.envioCodigoCorreo )
 
 //verificar el codigo que se ha ingresado
-routers.get('/credential/confirm', customerU.confirmaCodigo)
+routers.post('/credential/confirm', customerU.confirmaCodigo)
 
 
 //exportacion de rutas

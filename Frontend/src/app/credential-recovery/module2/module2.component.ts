@@ -12,7 +12,7 @@ export class Module2Component implements OnInit {
 
   
 
-  expresiones = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&-/_|])([A-Za-z\d$@$!%*?&]|[^ ]){7,40}$/;
+  expresiones = /^[0-9a-zA-Z]+$/;
 
 
   
@@ -24,33 +24,45 @@ export class Module2Component implements OnInit {
 
  
   modulo2: codigo={
-    
-    var_codigo:"",
+    var_email:"",
+    var_code:""
     
   }
 /*Constructor del codigo  */
   constructor(private rutaActiva: ActivatedRoute, private fb: FormBuilder,private router: Router,private EquipoService:EquipoService) {
     this.module2Form =this.fb.group({
-      codigo: new FormControl('',[Validators.min(7),Validators.maxLength(12),Validators.pattern(this.expresiones)])
+      codigo: new FormControl('',[Validators.minLength(7),Validators.pattern(this.expresiones)])
 
     })
    }
 
   ngOnInit(): void {
-    this.veriCodigo.var_codigo=this.rutaActiva.snapshot.params['codigo']
-
+    this.modulo2.var_email = this.rutaActiva.snapshot.params['email']
   }
 
-  veriCodigo:codigo={
-    var_codigo:""
-  }
+  validate=false
 
   obtenerCodigo(){
-  
+    console.log(this.modulo2.var_code)
+    this.EquipoService.addCodigo(this.modulo2).subscribe(
+      res => {
+        var status:BookInfo = <any>res
+        console.log(status.status)
+        if (status.status == '200') {
+          this.router.navigate(['home/login/credential/module3/'+this.modulo2.var_email])
+        }else{
+          this.validate=true
+        }
+      },
+      err => this.validate=true
+    )
   }
  
 
 }
 
+interface BookInfo {
+  status : string ;
+}
 
  

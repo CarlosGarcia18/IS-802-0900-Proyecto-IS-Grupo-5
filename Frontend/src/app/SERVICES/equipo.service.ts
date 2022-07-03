@@ -16,7 +16,7 @@ export class EquipoService {
   } 
   
   addCodigo(codigo:codigo)/*: observable<any> */{
-    return this.http.post(this.url+"/codigo",this.addCodigo)
+    return this.http.post(this.url+"/credential/confirm",codigo)
   }
 
   updatePassword(update:updatePassword){
@@ -59,7 +59,8 @@ export interface status{
   status:number
 }
 export interface codigo{
-  var_codigo:string,
+  var_code:string,
+  var_email:string
 }
 
 export interface login{
