@@ -91,7 +91,7 @@
     color: white;
     border: none;
     border-radius: 20px;
-    background-color: #FAA11D;
+    background-color: #faa01e;
     cursor: pointer;
     height: 34px;
     margin-left: 115px;
@@ -101,12 +101,12 @@
 
 .btn1:hover {
     cursor: pointer;
-    background: #b57215;
+    background: #875a19;
 
 }
 
 .btn1:active {
-    box-shadow: 0 3px 0 #FAA11D;
+    box-shadow: 0 0 10px #FAA11D;
     top: 3px;
 }
 
@@ -117,7 +117,7 @@
     color: white;
     border: none;
     border-radius: 20px;
-    background-color: #7CD3D3;
+    background-color: #7dd2d2;
     cursor: pointer;
     height: 34px;
     margin-top: 25px;
@@ -126,12 +126,12 @@
 
 .btn2:hover {
     cursor: pointer;
-    background: #549090;
+    background: rgb(84, 144, 144);
 
 }
 
 .btn2:active {
-    box-shadow: 0 3px 0 #7CD3D3;
+    box-shadow: 0 0 10px #7CD3D3;
     top: 3px;
 }
 

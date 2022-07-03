@@ -48,7 +48,6 @@
     background-color: var(--login-bg);
 }
 
-
 .image-container {
     opacity:75%;
     width: 410;
@@ -205,11 +204,23 @@ ul li{
     color: white;
     border: none;
     border-radius: 20px;
-    background-color: var(--button-bg);
+    background-color: #6151eb;
     cursor: pointer;
     height: 78px;
 
 }
+
+.btn:hover {
+    cursor: pointer;
+    background: var(--button-bg);
+
+}
+
+.btn:active {
+    box-shadow: 0 0 10px #FAA11D;
+    top: 3px;
+}
+
 
 .inputs-container p {
     margin: 0;
