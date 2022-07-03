@@ -7,6 +7,7 @@ import { codigo, EquipoService,status } from "../../SERVICES/equipo.service";
   selector: 'app-module2',
   templateUrl: './module2.component.html',
   styleUrls: ['./module2.component.css']
+  
 })
 export class Module2Component implements OnInit {
 
@@ -15,12 +16,14 @@ export class Module2Component implements OnInit {
   expresiones = /^[0-9a-zA-Z]+$/;
 
 
-  
+  /*Variable */
   module2Form:FormGroup;
 
+  /*El get */
   get codigoVerificacion():FormControl{
     return this.module2Form.get('codigo') as FormControl
   }
+  validate =false;
 
  
   modulo2: codigo={
@@ -39,8 +42,6 @@ export class Module2Component implements OnInit {
   ngOnInit(): void {
     this.modulo2.var_email = this.rutaActiva.snapshot.params['email']
   }
-
-  validate=false
 
   obtenerCodigo(){
     console.log(this.modulo2.var_code)

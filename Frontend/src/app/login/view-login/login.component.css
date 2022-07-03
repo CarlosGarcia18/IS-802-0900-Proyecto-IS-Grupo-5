@@ -157,7 +157,7 @@
   }
   /*Al presionar iniciar sesion*/
   .login-box input[type="submit"]:active {
-    box-shadow: 0 3px 0 #6151eb;
+    box-shadow: 0 0 10px #FAA11D;
     top: 3px;
   }
 
