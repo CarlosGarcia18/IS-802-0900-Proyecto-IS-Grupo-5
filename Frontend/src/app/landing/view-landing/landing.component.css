@@ -98,6 +98,18 @@
     margin-right: 50px;
 
 }
+
+.btn1:hover {
+    cursor: pointer;
+    background: #b57215;
+
+}
+
+.btn1:active {
+    box-shadow: 0 3px 0 #FAA11D;
+    top: 3px;
+}
+
 .btn2 {
     width: 233px;
     letter-spacing: 1px;
@@ -111,6 +123,19 @@
     margin-top: 25px;
 
 }
+
+.btn2:hover {
+    cursor: pointer;
+    background: #549090;
+
+}
+
+.btn2:active {
+    box-shadow: 0 3px 0 #7CD3D3;
+    top: 3px;
+}
+
+
 .header1{
     width: 100%;
     
