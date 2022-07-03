@@ -15,13 +15,14 @@ export class EquipoService {
       return this.http.post(this.url+"/user", registro)
   } 
   
-  addCodigo(codigo:codigo){
+  addCodigo(codigo:codigo)/*: observable<any> */{
     return this.http.post(this.url+"/codigo",this.addCodigo)
   }
 
   updatePassword(update:updatePassword){
       return this.http.put(this.url+"/userPassword", update)
   } 
+
   
   authLogin(auth:login){
       return this.http.post(this.url+"/auth", auth)
