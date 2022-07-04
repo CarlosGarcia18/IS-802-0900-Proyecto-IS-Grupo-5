@@ -38,6 +38,9 @@ export class LoginComponent implements OnInit {
   error:boolean = false
 
   autenticar(){
+    this.incorrect = false
+    this.deleteUser = false
+    this.error = false
     this.EquipoService.authLogin(this.login).subscribe(
       res => {
         var status:BookInfo = <any>res

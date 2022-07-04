@@ -13,10 +13,13 @@ export class NavigationProductsComponent implements OnInit {
     this.name = <any>null
   }
 
-  name:user[]
+  name:user[]//arreglo para traer el usuario
+
+  ruta:string = "home/termsAndConditions"//ruta para terminos y condicions
 
   ngOnInit(): void {
-    if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){
+    //si se quiere que una consulta se ejecute al iniciar la pagina, colocar el suscribe aqui
+    if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){//veriicamos que existe un token en localstorage
       this.EquipoSetvice.getUser(localStorage.getItem('token')!).subscribe(
         res=>{
           this.name = <any>res;
@@ -24,11 +27,9 @@ export class NavigationProductsComponent implements OnInit {
         err => console.log(err)
         );
     }else{
-      this.router.navigate([`home/login`])
+      this.router.navigate([`home/login`])//en caso de que no exista un token se de volvera al login
     }
-    
   }
-
 }
 
 interface user{
