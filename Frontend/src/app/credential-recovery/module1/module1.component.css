@@ -1,3 +1,9 @@
+.ng-touched.ng-invalid:is(input,.selector, :checked),
+.ng-dirty.ng-invalid:is(input,.selector, :checked){
+    outline: 2px solid red;
+}
+
+
 /*HEADER--------------------------------*/
 .header{
     width: 100%;
@@ -132,4 +138,9 @@ button:hover {
 button:active {
     box-shadow: 0 0 10px #FAA11D;
     top: 3px;
+}
+
+p{
+    margin: 0px;
+    font-size: 12px;
 }

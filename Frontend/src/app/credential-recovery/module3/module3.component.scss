@@ -68,7 +68,7 @@
             color: #51595F;
         }
         button{
-            background: rgba(250, 161, 29, 0.88);
+            background: #6151eb;
             box-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
             border-radius: 40px;
             border: none;
@@ -80,10 +80,21 @@
             margin-bottom:30px;
             cursor: pointer;
         }
+
+        button:hover {
+            cursor: pointer;
+            background: #ffc107;
+            color: #000;
+        } 
+
+        button:active {
+            box-shadow: 0 0 10px #FAA11D;
+            top: 3px;
+        }
         
         p{
             margin: 0px;
-            font-size: 10px;
+            font-size: 12px;
         }
     }
     

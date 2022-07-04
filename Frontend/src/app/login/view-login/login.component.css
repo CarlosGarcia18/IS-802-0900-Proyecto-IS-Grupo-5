@@ -145,15 +145,15 @@
     outline: none;
     height: 40px;
     background: #6151eb;
-    color: rgb(0, 0, 0);
+    color: white;
     font-size: 18px;
     border-radius: 20px;
   }
-  /*CUando se hace clip en iniciar sesion*/
+  /*Cuando se hace clip en iniciar sesion*/
   .login-box input[type="submit"]:hover {
     cursor: pointer;
     background: #ffc107;
-    color: #000;
+    color: white;
   }
   /*Al presionar iniciar sesion*/
   .login-box input[type="submit"]:active {
