@@ -21,7 +21,7 @@
             <p> Las contraseñas no coinciden </p>
         </div>
         <div *ngIf="validate">
-            <p> Hubo un errror al cambiar la contraseña, intentelo de nuevo</p>
+            <p> Hubo un error al cambiar la contraseña, inténtelo de nuevo</p>
         </div>
         <button (click)="updatePassword()" type="submit" [disabled]="credential.invalid">Restablecer contraseña</button>
     </form>
