@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './view-register/register.component';
 import { ComponentsModule } from "../components/components.module";
+import { HttpClientModule } from '@angular/common/http';
 //import { LayoutRegisterComponent } from './layout-register/layout-register.component';
 
 
@@ -18,6 +19,8 @@ import { ComponentsModule } from "../components/components.module";
     RegisterRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    //import http cliente
+    HttpClientModule
     
   ],
   exports: [

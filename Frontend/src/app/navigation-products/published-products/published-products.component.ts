@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { EquipoService } from 'src/app/SERVICES/equipo.service';
+
 
 @Component({
   selector: 'app-published-products',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublishedProductsComponent implements OnInit {
 
-  constructor() { }
+  photos =[];
+
+  constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
+    this.equipoService.getProducto()
+    .subscribe(
+      res =>{
+        //this.photos =res;
+      },
+      err =>console.log(err)
+    )
+
   }
 
 }
