@@ -20,7 +20,17 @@ INSERT INTO DEPARTMENT(var_name) VALUES('Santa Bárbara');
 INSERT INTO DEPARTMENT(var_name) VALUES('Valle');
 INSERT INTO DEPARTMENT(var_name) VALUES('Yoro');
 
--- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234
+INSERT INTO PRODUCT_STATUS(var_name) VALUES('Nuevo');
+INSERT INTO PRODUCT_STATUS(var_name) VALUES('Usado');
+    
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Computadoras');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Moda');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Juguetes');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Jardinería');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Industrial');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Joyería');
+
+-- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234567
 
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES(8, 'admin@admin.com', 'admin', 'plazitanet', '1234567', 0, 1, '99000000');
