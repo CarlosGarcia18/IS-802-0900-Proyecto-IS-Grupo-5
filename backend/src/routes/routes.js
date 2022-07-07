@@ -40,6 +40,9 @@ routers.post('/credential', customerU.envioCodigoCorreo )
 //verificar el codigo que se ha ingresado
 routers.post('/credential/confirm', customerU.confirmaCodigo)
 
+//trae los productos disponible segun los diferentes filtros
+routers.post('/productFiltering',customerO.productFiltering)
+
 
 //exportacion de rutas
 module.exports = routers
