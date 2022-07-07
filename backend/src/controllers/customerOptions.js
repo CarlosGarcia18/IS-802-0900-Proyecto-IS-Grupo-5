@@ -6,6 +6,7 @@ controller.test = (req,res) => {
     res.send('get routes')
 }
 
+
 controller.getDepartament = (req,res) =>{
     let sql =`select * from DEPARTMENT`
     conection.query(sql,(err,rows,fields) =>{
@@ -15,10 +16,27 @@ controller.getDepartament = (req,res) =>{
         }
     })
 }
+//funcion para insertar un producto /// Sin las imagenes
+controller.postProduct = (req,res) =>{
+    const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, int_views, text_description, dou_price, bit_availability, publication_date, expiration_date} = req.body
+    let sql=`insert into PRODUCT(fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name,
+        int_views, text_description, dou_price, bit_availability, publication_date, expiration_date) 
+        values(${fk_id_user},'${fk_id_department}', '${fk_id_product_category}', '${fk_id_product_status}', '${var_name}',
+        '${int_views}','${text_description}',${dou_price},${bit_availability},'${publication_date}','${expiration_date}')`
 
+    conection.query(sql,(err,rows,fields)=>{
+        if(err) res.send({status: '0', id:""}); //error en consulta
+        else{
+            res.json({status: '200',id:rows[0].id_product}) // Consulta correcta retorna el id del producto
+        }
+    })    
+        
+  
+      
+    
+}
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price}=req.body
-
     let sql1 = `SELECT id_product,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
         + ` from product where ` 
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `

@@ -16,6 +16,11 @@ export class EquipoService {
       return this.http.post(this.url+"/user", registro)
   } 
   
+  getDepartments(){
+    return this.http.get(this.url+"/departament")
+
+  }
+
   addCodigo(codigo:codigo)/*: observable<any> */{
     return this.http.post(this.url+"/credential/confirm",codigo)
   }
@@ -40,9 +45,10 @@ export class EquipoService {
     return this.http.post(this.url+"/credential", module1)
   }
 
-  newProducto0(new_product:newproducto){
-    return this.http.post(this.url+"new-producto",new_product)
+  newProduct(newProduct:newProduct){
+    return this.http.post(this.url+"/newProduct",newProduct)
   }
+
   //Metodo del formulario Nuevo producto
   newProducto(title:string,description:string,photo:File){
     //Se envia tipo formulario y se gurda en una constante
@@ -95,10 +101,11 @@ export interface emailCredential{
   bit_status:boolean
 }
 
-export interface newproducto {
+export interface newProduct {
     _id?: string;
     title: String;
     description: String;
     imagePath: string;
 }
+
 

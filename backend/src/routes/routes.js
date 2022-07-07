@@ -43,6 +43,9 @@ routers.post('/credential/confirm', customerU.confirmaCodigo)
 //trae los productos disponible segun los diferentes filtros
 routers.post('/productFiltering',customerO.productFiltering)
 
+//Agregar un producto
+routers.post('/newProduct',customerO.postProduct)
+
 
 //exportacion de rutas
 module.exports = routers

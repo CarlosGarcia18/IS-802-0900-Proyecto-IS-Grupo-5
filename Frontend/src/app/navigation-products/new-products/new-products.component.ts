@@ -1,6 +1,6 @@
 import { ReadVarExpr } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
-import { newproducto, EquipoService,status } from "../../SERVICES/equipo.service";
+import { newProduct, EquipoService,status } from "../../SERVICES/equipo.service";
 
 interface HtmlInputEvent extends Event {
   target: HTMLInputElement & EventTarget;
