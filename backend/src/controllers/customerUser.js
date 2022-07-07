@@ -76,7 +76,7 @@ controller.getUser = (req,res) =>{
     })
 }
 
-//funcion para incertar un usuario
+//funcion para insertar un usuario
 controller.postUser = (req,res) =>{
     const {fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone} = req.body
     let sql1=`SELECT id_user from USER where var_email='${var_email}'`
@@ -88,7 +88,7 @@ controller.postUser = (req,res) =>{
             if(err) res.send({status: '0', id:""}); //error en consulta
             else if(rows.length==0){
                 conection.query(sql,(err,rows,fields)=>{
-                    if(err) res.send({status: '2', id:""});//error al incertar
+                    if(err) res.send({status: '2', id:""});//error al insertar
                     else{
                         conection.query(sql1,(err,rows,fields)=>{
                             if(err) res.send({status: '3', id:""});//error al consultar id

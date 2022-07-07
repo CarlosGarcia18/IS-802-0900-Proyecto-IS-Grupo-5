@@ -40,6 +40,9 @@ routers.post('/credential', customerU.envioCodigoCorreo )
 //verificar el codigo que se ha ingresado
 routers.post('/credential/confirm', customerU.confirmaCodigo)
 
+//Agregar un producto
+routers.post('/newProduct',customerO.postProduct)
+
 
 //exportacion de rutas
 module.exports = routers
