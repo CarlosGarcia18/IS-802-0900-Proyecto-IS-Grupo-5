@@ -1,2 +1,92 @@
-<p>products works!</p>
+
+<div class="container1">
+    <h1>¡Bienvenido!</h1>
+</div>
+<div class="container3">
+    <h4 class="h4-class">Productos</h4>
+    <div class="select-container">
+            <form [formGroup]="filterForm" action="POST">
+            <H5>Filtrar por: </H5>
+            
+            
+            <select [(ngModel)]="filtro.fk_id_department" class="selector" name="Departamento" formControlName="ubicacion" >
+                <option value="0">Ubicacion</option>
+                <option value="1">Atlantida</option>
+                <option value="2">Choluteca</option>
+                <option value="3">Colon</option>
+                <option value="4">Comayagua</option>
+                <option value="5">Copan</option>
+                <option value="6">Cortes</option>
+                <option value="7">El Paraiso</option>
+                <option value="8">Francisco Morazán</option>
+                <option value="9">Gracias a Dios</option>
+                <option value="10">Intibuca</option>
+                <option value="11">Islas de la Bahia</option>
+                <option value="12">La Paz</option>
+                <option value="13">Lempira</option>
+                <option value="14">Ocotepeque</option>
+                <option value="15">Olancho</option>
+                <option value="16">Santa Barbara</option>
+                <option value="17">Valle</option>
+                <option value="18">Yoro</option>
+            </select>
+            
+        
+            <select [(ngModel)]="filtro.dou_price" class="selector" name="precio" formControlName="precio">
+                <option value="0">Precio</option>
+                <option value="1">Ascendente</option>
+                <option value="2">Descendente</option>
+            </select>
+            
+        
+            <select [(ngModel)]="filtro.fk_id_product_category" class="selector"  name="Categoria" formControlName="categoria">
+                <option value="0">Categoria</option>
+                <option value="1">Hogar</option>
+                <option value="2">Futuros Padres</option>
+                <option value="3">Mascotas</option>
+                <option value="4">Inmuebles</option>
+                <option value="5">Hogar</option>
+                <option value="6">Vehiculos</option>
+                <option value="7">Moda</option>
+                <option value="8">Electronica</option>
+                <option value="9">Servicios</option>
+                <option value="10">Negocios</option>
+                <option value="11">Hogar</option>
+                <option value="12">Empleo</option>
+            </select>
+            <button class="btn-suscribe" type="submit">Suscribirme</button>  
+            </form>
+    </div> 
+       
+</div>
+
+    
+
+<div  class="carousel-container" >
+    <div  class="gallery" >
+        
+        <div class="content" *ngFor="let item of items | slice:desde:hasta" >
+            <img src=''>
+            <table>
+                <tr>
+                    <td><h3>{{item.nombre}}</h3></td>
+                    <td class="icon-col"><i id="fav-icon" class="fa-solid fa-heart"></i></td>
+                </tr>
+            </table>    
+            <h6>{{item.precio}}</h6>
+            <button class="buy">Ver</button>
+        </div>
+
+    </div>
+    
+</div>
+<mat-paginator [length]="items.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>
+
+
+
 <!--Componente para mostrar los productos y los filtro de los mismos-->
+
