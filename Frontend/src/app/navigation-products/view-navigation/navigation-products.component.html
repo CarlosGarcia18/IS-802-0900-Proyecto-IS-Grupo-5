@@ -1,20 +1,6 @@
 <!--Agregar navbar-->
-<header class="header">
-    <div class="container">
-        <div class="logo">
-            <img src="../../../assets/Imagenes/LOGO2.png" alt="logo_empresa">
-        </div>
-    <nav class="menu">
-        <a >Subir Producto</a>
-        <a >Suscripciones</a>
-        <a routerLink='wishlist' routerLinkActive="active">Lista de Deseos</a>
-        <a routerLink='published' routerLinkActive="active">Publicados</a>
-        <a routerLink='../navigationProducts' routerLinkActive="active">Explorar</a>
-        <a routerLink='' routerLinkActive="active">Salir</a>
-        
-    </nav>
-    </div>
-</header>
+<p>{{name[0].var_name}}</p>
+<p>{{name[0].var_lastname}}</p>
 
 <!--Se intercambiara por los dierentes componentes-->
 <router-outlet></router-outlet>

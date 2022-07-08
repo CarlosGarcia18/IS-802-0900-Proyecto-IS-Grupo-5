@@ -1,3 +1,4 @@
+
 USE PLAZITANET;
 select * from user;
 INSERT INTO DEPARTMENT(var_name) VALUES('Atlántida');
@@ -19,7 +20,17 @@ INSERT INTO DEPARTMENT(var_name) VALUES('Santa Bárbara');
 INSERT INTO DEPARTMENT(var_name) VALUES('Valle');
 INSERT INTO DEPARTMENT(var_name) VALUES('Yoro');
 
--- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234
+INSERT INTO PRODUCT_STATUS(var_name) VALUES('Nuevo');
+INSERT INTO PRODUCT_STATUS(var_name) VALUES('Usado');
+    
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Computadoras');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Moda');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Juguetes');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Jardinería');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Industrial');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Joyería');
+
+-- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234567
 
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES(8, 'admin@admin.com', 'admin', 'plazitanet', '1234567', 0, 1, '99000000');
@@ -30,15 +41,10 @@ INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_passwo
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES(15, 'kevin_manuel@hotmail.com', 'Kevin', 'Manuel', 'KevinManuel1/', 1, 1, '98786756');
     
-INSERT INTO PRODUCT_STATUS(var_name) VALUES('Nuevo');
-INSERT INTO PRODUCT_STATUS(var_name) VALUES('Usado');
-
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Computadoras');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Moda');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Juguetes');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Jardinería');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Industrial');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Joyería');
+INSERT INTO PRODUCT_CATEGORY(id_product_category,var_name) values(1,"Tecnología");
+INSERT INTO PRODUCT_CATEGORY(id_product_category,var_name) values(2,"Hogar");
+INSERT INTO PRODUCT_STATUS(id_product_status,var_name) values(1,"Nuevo");
+INSERT INTO PRODUCT_STATUS(id_product_status,var_name) values(2,"Usado");
 
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
 	VALUES (1,1,1,1,1,"Disco duro externo portátil",1,"250 GB de almacenamiento y 5 meses de garantia",1024,1,"2022-07-02","2022-07-10");
@@ -48,3 +54,8 @@ INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_categor
 	VALUES (3,1,2,1,1,"Disco duro externo portátil",1,"1 TB de almacenamiento y 5 meses de garantia",4024,1,"2022-07-01","2022-07-11");
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
 	VALUES (4,3,1,1,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-07-12");
+
+#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\1'),"disco duro","jpg",1);
+#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\2'),"disco duro","jpg",2);
+#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\3'),"disco duro","jpg",3);
+#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\4'),"disco duro","jpg",4);
