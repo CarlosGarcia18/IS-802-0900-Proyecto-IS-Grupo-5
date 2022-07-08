@@ -123,6 +123,7 @@ controller.deleteUser = (req,res)=>{
 controller.auth=(req,res)=>{
     const{var_email, tex_password}=req.body
     console.log(var_email&&tex_password)
+    console.log(req.body)
     if(var_email&&tex_password){
         let sql=`SELECT id_user,var_email,tex_password,id_user,bit_rol,bit_status from USER where var_email='${var_email}'`
         conection.query(sql,(err, rows, fields)=>{

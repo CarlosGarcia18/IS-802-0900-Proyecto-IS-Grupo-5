@@ -45,6 +45,7 @@ export class EquipoService {
     return this.http.post(this.url+"/credential", module1)
   }
 
+
   newProduct(newProduct:newProduct){
     return this.http.post(this.url+"/newProduct",newProduct)
   }
@@ -62,6 +63,13 @@ export class EquipoService {
 
   }
 
+
+
+
+  //FILTROS PROD.
+  filter(filtro:filter){
+    return this.http.post(this.url+"/productFiltering", filtro)
+  }
 
 
 }
@@ -101,11 +109,26 @@ export interface emailCredential{
   bit_status:boolean
 }
 
+
 export interface newProduct {
-    _id?: string;
-    title: String;
-    description: String;
+    fk_id_user: number
+    fk_id_department: number
+    fk_id_product_category: number
+    fk_id_product_status: number
+    var_name: string
+    text_description: string
+    dou_price: number
+    bit_availability: boolean
+
     imagePath: string;
+}
+
+
+
+export interface filter{
+  fk_id_department: number,
+  dou_price:Number,
+  fk_id_product_category:number
 }
 
 
