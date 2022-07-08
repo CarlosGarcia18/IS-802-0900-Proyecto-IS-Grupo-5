@@ -102,9 +102,15 @@ export interface emailCredential{
 }
 
 export interface newProduct {
-    _id?: string;
-    title: String;
-    description: String;
+    fk_id_user: number
+    fk_id_department: number
+    fk_id_product_category: number
+    fk_id_product_status: number
+    var_name: string
+    text_description: string
+    dou_price: number
+    bit_availability: boolean
+
     imagePath: string;
 }
 
