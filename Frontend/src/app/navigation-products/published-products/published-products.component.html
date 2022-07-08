@@ -1,3 +1,4 @@
+
 <p>published-products works!</p>
 <!--Productos publicados por el usuario-->
 
@@ -11,3 +12,42 @@
 
     </div>
 </div>
+<div class="container1">
+    <h1>¡Bienvenido!</h1>
+</div>
+<div class="container3">
+    <h4 class="h4-class">Mis Productos Publicados</h4>
+    <div class="select-container">
+            
+            
+    </div> 
+        
+</div>
+
+<div  class="carousel-container" >
+    <div  class="gallery" >
+        
+        <div class="content" *ngFor="let item of items | slice:desde:hasta" >
+            <img src=''>
+            <table>
+                <tr>
+                    <td><h3>{{item.nombre}}</h3></td>
+                    <td class="icon-col"><i id="fav-icon" class="fa-solid fa-trash-can"></i></td>
+                </tr>
+            </table>    
+            <h6>{{item.precio}}</h6>
+            <button class="buy">Editar</button>
+        </div>
+
+    </div>
+    
+</div>
+<mat-paginator [length]="items.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>
+
+
+<!--Productos publicados por el usuario-->
+

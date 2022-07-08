@@ -40,8 +40,8 @@ controller.postProduct = (req,res) =>{
 }
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price}=req.body
-    let sql1 = `SELECT id_product,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
-        + ` from product where ` 
+    let sql1 = `SELECT DISTINCT(product.id_product),photographs.blob_file,photographs.var_extension,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
+        + ` from product, photographs where ` 
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `
