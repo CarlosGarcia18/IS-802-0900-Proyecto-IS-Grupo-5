@@ -68,7 +68,7 @@ export class EquipoService {
 
   //FILTROS PROD.
   filter(filtro:filter){
-    return this.http.post(this.url+"/navigationProducts", filtro)
+    return this.http.post(this.url+"/productFiltering", filtro)
   }
 
 
