@@ -18,11 +18,11 @@ controller.getDepartament = (req,res) =>{
 }
 //funcion para insertar un producto /// Sin las imagenes
 controller.postProduct = (req,res) =>{
-    const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, int_views, text_description, dou_price, bit_availability, publication_date, expiration_date} = req.body
+    const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, text_description, dou_price, bit_availability} = req.body
     let sql=`insert into PRODUCT(fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name,
         int_views, text_description, dou_price, bit_availability, publication_date, expiration_date) 
         values(${fk_id_user},${fk_id_department}, ${fk_id_product_category}, ${fk_id_product_status}, '${var_name}',
-        ${int_views},'${text_description}',${dou_price},${bit_availability},'${publication_date}','${expiration_date}')`
+        0,'${text_description}',${dou_price},${bit_availability},CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
     
         console.log(sql)
     conection.query(sql,(err,rows,fields)=>{
