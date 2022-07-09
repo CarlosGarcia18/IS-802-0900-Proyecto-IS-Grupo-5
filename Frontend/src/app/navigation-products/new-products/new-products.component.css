@@ -33,17 +33,3 @@ body{
     justify-content: center;
 }
 
-
-/*
-.container{
-    border: 5px dashed #ddd;
-    height: 250;
-    width: 250;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-}
-

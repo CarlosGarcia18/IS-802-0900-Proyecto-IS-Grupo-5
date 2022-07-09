@@ -9,19 +9,19 @@ import { EquipoService } from 'src/app/SERVICES/equipo.service';
 })
 export class PublishedProductsComponent implements OnInit {
 
-  photos =[];
+  producto =[];
 
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
-    this.equipoService.getProducto()
+    this.equipoService.getProductos()
     .subscribe(
-      res =>{
-        //this.photos =res;
+      //En caso de una respuesta y error
+      res => {
+        this.producto
       },
-      err =>console.log(err)
+      err => console.log(err)
     )
-
   }
 
 }

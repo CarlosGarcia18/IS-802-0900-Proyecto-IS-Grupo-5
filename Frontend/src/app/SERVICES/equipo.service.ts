@@ -21,6 +21,10 @@ export class EquipoService {
 
   }
 
+  getProductos(){
+    return this.http.get<newProducto[]>(this.url)
+  }
+
   addCodigo(codigo:codigo)/*: observable<any> */{
     return this.http.post(this.url+"/credential/confirm",codigo)
   }
@@ -37,17 +41,16 @@ export class EquipoService {
   getUser(id:string){
     return this.http.get(this.url+"/user/"+id)
   }
-  getProducto(){
-    return this.http.get(this.url)
-  }
-
+ 
   emailModule1(module1:emailCredential){
     return this.http.post(this.url+"/credential", module1)
   }
 
-  newProduct(newProduct:newProduct){
+  newProduct(newProduct:newProducto){
     return this.http.post(this.url+"/newProduct",newProduct)
   }
+
+  
 
   //Metodo del formulario Nuevo producto
   newProducto(title:string,description:string,photo:File){
@@ -101,7 +104,7 @@ export interface emailCredential{
   bit_status:boolean
 }
 
-export interface newProduct {
+export interface newProducto {
     fk_id_user: number
     fk_id_department: number
     fk_id_product_category: number
