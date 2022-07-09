@@ -46,6 +46,9 @@ routers.post('/productFiltering',customerO.productFiltering)
 //Agregar un producto
 routers.post('/newProduct',customerO.postProduct)
 
+//Eliminar un producto dado un id // Elimina todas las imagenes del producto
+routers.delete('/product/delete',customerO.deleteProduct)
+
 
 //exportacion de rutas
 module.exports = routers
