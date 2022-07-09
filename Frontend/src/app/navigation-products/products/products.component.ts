@@ -12,25 +12,25 @@ export class ProductsComponent implements OnInit {
 
 
 
-  items :any[]=[];
+  //items :any[]=[];
   
   constructor(private EquipoService:EquipoService, private router: Router) { }
 
 
   ngOnInit(): void {
     this.EquipoService.filter(this.filtro).subscribe(res=>{
-      this.items=<any>res
-      console.log(res)
+     // this.items=<any>res
+     console.log(res)
     })
   }
 
 
   filtrar(){
     this.EquipoService.filter(this.filtro).subscribe(res=>{
-      this.items=<any>res
-      console.log(res)
+     // this.items=<any>res
+     console.log(res)
 
-    });
+   });
 
   }
   filterForm=new FormGroup({
@@ -58,7 +58,15 @@ export class ProductsComponent implements OnInit {
     }
 
     
-  
+    items :any[]=[{nombre: 'Producto 1',  precio: 'L.70'},
+    {nombre: 'Producto 2', precio: 'L.90'},
+    {nombre: 'Producto 3', precio: 'L.80'},
+    {nombre: 'Producto 4', precio: 'L.220'},
+    {nombre: 'Producto 5', precio: 'L.9230'},
+    {nombre: 'Producto 6', precio: 'L.900'},
+    {nombre: 'Producto 7', precio: 'L.19.00'},
+    {nombre: 'Producto 8', precio: 'L.980'}];
+
     
   ///PAGINACION///
   pageSize=6;

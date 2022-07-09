@@ -5,12 +5,14 @@
             <img src="../../../assets/Imagenes/LOGO2.png" alt="logo_empresa">
         </div>
     <nav class="menu">
-        <a >Subir Producto</a>
-        <a >Suscripciones</a>
-        <a routerLink='wishlist' routerLinkActive="active">Lista de Deseos</a>
-        <a routerLink='published' routerLinkActive="active">Publicados</a>
-        <a routerLink='../navigationProducts' routerLinkActive="active">Explorar</a>
-        <a routerLink='' routerLinkActive="active">Salir</a>
+        <div>
+        <a *ngIf="toDisplay">Subir Producto </a>
+        <a *ngIf="toDisplay">Suscripciones</a>
+        <a routerLink='wishlist' routerLinkActive="active" *ngIf="toDisplay">Lista de Deseos</a>
+        <a routerLink='published' routerLinkActive="active" *ngIf="toDisplay">Publicados</a>
+        <a routerLink='../navigationProducts' routerLinkActive="active" *ngIf="toDisplay">Explorar</a>
+            </div>
+        <a routerLink='' routerLinkActive="active" (click)="eliminaToken()">Salir</a>
         
     </nav>
     </div>

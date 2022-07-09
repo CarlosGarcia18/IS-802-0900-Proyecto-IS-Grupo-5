@@ -12,4 +12,10 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  checkToken(){
+
+   // if (localStorage.getItem('token')==null || localStorage.getItem('token') == ""){
+      
+   // }
+  }
 }
