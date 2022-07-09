@@ -24,7 +24,7 @@ controller.postProduct = (req,res) =>{
     let sql=`insert into PRODUCT(fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name,
         int_views, text_description, dou_price, bit_availability, publication_date, expiration_date) 
         values(${fk_id_user},${fk_id_department}, ${fk_id_product_category}, ${fk_id_product_status}, '${var_name}',
-        0,'${text_description}',${dou_price},${bit_availability},CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
+        0,'${text_description}',${dou_price},${bit_availability},CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, INTERVAL 60 DAY))`
     
         console.log(sql)
     conection.query(sql,(err,rows,fields)=>{
@@ -37,10 +37,36 @@ controller.postProduct = (req,res) =>{
     })   
 }
 
+//Funcion para eliminar producto dado un id
+controller.deleteProduct = (req,res)=>{
+    const {id} = req.params
+
+    //Elimina todas las imagenes que contiene el producto
+    let sql1 =`delete from PHOTOGRAPHS where fk_id_product ='${id}'`
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) res.send(err.sqlMessage);
+        else{
+
+            //Elimina el producto
+            let sql2 =`delete from PRODUCT where id_product ='${id}'`
+            conection.query(sql2,(err,rows,fields)=>{
+                if(err) res.send(err.sqlMessage);
+                else{
+                    res.json({status: 'Producto Eliminado'})
+                }
+            })
+    
+        }
+    })
+
+
+}
+
+
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price}=req.body
-    let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
-        + ` from product, photographs where ` 
+    let sql1 = `SELECT id_product,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
+        + ` from product where ` 
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { newProduct, EquipoService,status } from "../../SERVICES/equipo.service";
 
 interface HtmlInputEvent extends Event {
-  target: HTMLInputElement & EventTarget;
+  target: HTMLInputElement & EventTarget | null;
 }
 
 @Component({
@@ -13,23 +13,23 @@ interface HtmlInputEvent extends Event {
 })
 export class NewProductsComponent implements OnInit {
   
-/*
-  photoSelected: string | ArrayBuffer;
+
+  photoSelected:any=ArrayBuffer;
   
-  file: File;
-*/
+  file:any= File;
+
   constructor(private EquipoService:EquipoService) { }
 
   ngOnInit(): void {
   }
 
   onPhotoSelected(event: HtmlInputEvent): void{
-    if(event.target.files && event.target.files[0]){
-     // this.file= <File>event.target.files[0];
+    if(event.target?.files&& event.target.files[0]){
+      this.file= <File>event.target.files[0];
       //imagen previa
       const reader = new FileReader();
-     // reader.onload = e => this.photoSelected = reader.result;
-     // reader.readAsDataURL(this.file)
+      reader.onload = e => this.photoSelected = reader.result;
+      reader.readAsDataURL(this.file)
 
 
 
@@ -38,14 +38,14 @@ export class NewProductsComponent implements OnInit {
   }
 
   //para subir la foto
-  /*
-  uploadPhoto(title:HtmlInputEvent,decripcion:HTMLTextAreaElement) boolean{
-    this.EquipoService.newProducto(title.value,description.value,this.file)
+  
+  uploadPhoto(titulo:HTMLTextAreaElement,decripcion:HTMLTextAreaElement): boolean{
+    this.EquipoService.newProducto(titulo.value,decripcion.value,this.file)
      .subscribe(res => console.log(res),err => console.log(err))
 
     return false
 
-  };*/
+  };
  
 }
 

@@ -27,7 +27,7 @@
             <p class="errors-msg" *ngIf="emailControl.hasError('email')">El campo debe ser un email valido</p>
         </div>
         <div class="errors-container" *ngIf="error || incorrect || deleteUser">
-            <p class="errors-msg" *ngIf="error">Ocurrió un error al Iniciar sesión</p>
+            <p class="errors-msg" *ngIf="error">Ocurrió un error</p>
             <p class="errors-msg" *ngIf="incorrect">No se encuentra este correo en el sistema</p>
             <p class="errors-msg" *ngIf="deleteUser">El usuario registrado por esta cuenta, ha sido dado de baja.</p>
         </div>
