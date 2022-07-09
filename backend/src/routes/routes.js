@@ -43,6 +43,8 @@ routers.post('/credential/confirm', customerU.confirmaCodigo)
 //trae los productos disponible segun los diferentes filtros
 routers.post('/productFiltering',customerO.productFiltering)
 
+routers.get('/productUser/:id',customerU.productUser)
+
 //Agregar un producto
 routers.post('/newProduct',customerO.postProduct)
 

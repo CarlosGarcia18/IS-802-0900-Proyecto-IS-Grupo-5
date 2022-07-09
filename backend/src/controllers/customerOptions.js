@@ -35,11 +35,8 @@ controller.postProduct = (req,res) =>{
             res.json({status: '200'}) // Consulta correcta retorna el id del producto
         }
     })    
-        
-  
-      
-    
 }
+
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price}=req.body
     let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
