@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { CargarScriptsService} from "./cargar-scripts.service";
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -30,7 +30,8 @@ import { NavigationLayoutComponent } from './layouts/navigation-layout/navigatio
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CredentialRecoveryModule
+    CredentialRecoveryModule,
+    MatPaginatorModule
     //TermsAndConditionsModule
   ],
   providers: [CargarScriptsService],

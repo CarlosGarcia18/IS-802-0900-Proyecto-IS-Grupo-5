@@ -1,2 +1,100 @@
-<p>products works!</p>
+
+
 <!--Componente para mostrar los productos y los filtro de los mismos-->
+
+<div class="container1">
+    <h1>¡Bienvenido!</h1>
+</div>
+<div class="container3">
+    <h4 class="h4-class">Productos</h4>
+    <div class="select-container">
+            <form [formGroup]="filterForm" action="POST">
+            <H5>Filtrar por: </H5>
+            
+            
+            <select [(ngModel)]="filtro.fk_id_department" class="selector"  (change)="filtrar()" name="Departamento" formControlName="ubicacion" >
+                <option value="0">Ubicación</option>
+                
+                <option value="1">Atlántida</option>
+                <option value="2">Choluteca</option>
+                <option value="3">Colón</option>
+                <option value="4">Comayagua</option>
+                <option value="5">Copán</option>
+                <option value="6">Cortés</option>
+                <option value="7">El Paraíso</option>
+                <option value="8">Francisco Morazán</option>
+                <option value="9">Gracias a Dios</option>
+                <option value="10">Intibucá</option>
+                <option value="11">Islas de la Bahía</option>
+                <option value="12">La Paz</option>
+                <option value="13">Lempira</option>
+                <option value="14">Ocotepeque</option>
+                <option value="15">Olancho</option>
+                <option value="16">Santa Bárbara</option>
+                <option value="17">Valle</option>
+                <option value="18">Yoro</option>
+            </select>
+            
+        
+            <select [(ngModel)]="filtro.dou_price" class="selector"  (change)="filtrar()" name="precio" formControlName="precio">
+                <option value="0">Precio menor a:</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+                <option value="1000">1000</option>
+                <option value="2000">2000</option>
+                <option value="5000">5000</option>
+
+            </select>
+            
+        
+            <select [(ngModel)]="filtro.fk_id_product_category" class="selector" (change)="filtrar()" name="Categoria" formControlName="categoria">
+                <option value="0">Categoría</option>
+                <option value="1">Hogar</option>
+                <option value="2">Futuros Padres</option>
+                <option value="3">Mascotas</option>
+                <option value="4">Inmuebles</option>
+                <option value="5">Hogar</option>
+                <option value="6">Vehiculos</option>
+                <option value="7">Moda</option>
+                <option value="8">Electrónica</option>
+                <option value="9">Servicios</option>
+                <option value="10">Negocios</option>
+                <option value="11">Hogar</option>
+                <option value="12">Empleo</option>
+            </select>
+            <button class="btn-suscribe" type="submit">Suscribirme</button>  
+            </form>
+    </div> 
+       
+</div>
+
+    
+
+<div  class="carousel-container" >
+    <div  class="gallery" >
+        
+        <div class="content" *ngFor="let item of items | slice:desde:hasta" >
+            <img src=''>
+            <table>
+                <tr>
+                    <td><h3>{{item.var_name}}</h3></td>
+                    <td class="icon-col"><i id="fav-icon" class="fa-solid fa-heart"></i></td>
+                </tr>
+            </table>    
+            <h6>L. {{item.dou_price}}</h6>
+            <button class="buy">Ver</button>
+        </div>
+
+    </div>
+    
+</div>
+<mat-paginator [length]="items.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>
+
+
+
+<!--Componente para mostrar los productos y los filtro de los mismos-->
+

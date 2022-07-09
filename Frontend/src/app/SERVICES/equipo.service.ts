@@ -49,6 +49,10 @@ export class EquipoService {
     return this.http.post(this.url+"/newProduct",newProduct)
   }
 
+  filter(filtro:filter){
+    return this.http.post(this.url+"/navigationProducts", filtro)
+  }
+
   //Metodo del formulario Nuevo producto
   newProducto(title:string,description:string,photo:File){
     //Se envia tipo formulario y se gurda en una constante
@@ -112,6 +116,12 @@ export interface newProduct {
     bit_availability: boolean
 
     imagePath: string;
+}
+
+export interface filter{
+  fk_id_department: number,
+  dou_price:number,
+  fk_id_product_category:number
 }
 
 
