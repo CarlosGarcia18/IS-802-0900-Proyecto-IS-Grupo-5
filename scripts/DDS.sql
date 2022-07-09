@@ -72,7 +72,7 @@ CREATE TABLE PHOTOGRAPHS(
 	id_photographs SERIAL PRIMARY KEY,
     blob_file MEDIUMBLOB COMMENT "El archivo binario",
     var_extension VARCHAR(30) COMMENT "Extensión del archivo",
-    
+    var_name VARCHAR(100) COMMENT "Nombre de la imagen",
 	fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto",
     FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
 
