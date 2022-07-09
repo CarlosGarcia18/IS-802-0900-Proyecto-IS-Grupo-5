@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipoService } from "../../SERVICES/equipo.service";
 import { Router} from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {MatPaginatorModule} from "@angular/material/paginator"
+
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @Component({
   selector: 'app-navigation-products',

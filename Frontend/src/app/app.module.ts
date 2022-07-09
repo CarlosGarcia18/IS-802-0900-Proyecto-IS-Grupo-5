@@ -12,6 +12,7 @@ import { CredentialRecoveryModule } from './credential-recovery/credential-recov
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 //import { RecoveryLayoutComponent } from './layouts/recovery-layout/recovery-layout.component';
 import { NavigationLayoutComponent } from './layouts/navigation-layout/navigation-layout.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -31,7 +32,8 @@ import { NavigationLayoutComponent } from './layouts/navigation-layout/navigatio
     FormsModule,
     ReactiveFormsModule,
     CredentialRecoveryModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserAnimationsModule
     //TermsAndConditionsModule
   ],
   providers: [CargarScriptsService],
