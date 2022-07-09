@@ -1,5 +1,7 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD 
 const controller = {} //definicion de controller que guardara las rutas
+const fs= require('fs')
+const path = require('path')
 
 //funcion de prueba
 controller.test = (req,res) => {
@@ -32,8 +34,7 @@ controller.postProduct = (req,res) =>{
         else{
             res.json({status: '200'}) // Consulta correcta retorna el id del producto
         }
-    })    
-    
+    })   
 }
 
 //Funcion para eliminar producto dado un id
@@ -68,11 +69,20 @@ controller.productFiltering = (req,res) =>{
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `
-    sql1 += `bit_availability = 1 ORDER BY publication_date DESC`
+    sql1 += `photographs.fk_id_product=product.id_product AND bit_availability = 1 ORDER BY publication_date DESC`
 
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json(err);//posible error en consulta
         else{
+            const imgdirDelete = fs.readdirSync(path.join(__dirname,'../dbimagesProducts/'))//trae las imagenes guardadas en el servidor
+            imgdirDelete.map(img=>{
+                fs.unlinkSync(path.join(__dirname,'../dbimagesProducts/'+img))//las elimina, si es que hay imagenes
+            })
+            rows.map(images=>{
+                fs.writeFileSync(path.join(__dirname,'../dbimagesProducts/'+images.id_product+"-"+"image.jpeg"),images.blob_file)//trae las imagenes de la base de datos
+                images.blob_file = images.id_product+"-"+"image.jpeg"
+            })
+            //const imgdir = fs.readdirSync(path.join(__dirname,'../dbimagesProducts/'))//crea un arreglo con el  nombre de las mismas
             res.json(rows)//todo salio bien
             }
         }
