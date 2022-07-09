@@ -25,13 +25,14 @@ export class NewProductsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.producto.fk_id_user=localStorage.getItem('token')
   }
 
   capturarFile(event:any): any{
     //1 Captura el archivo
     const archivoCapturado =event.target.files[0]
     //imagen Codificada COn el base 64
-    this.extraerBase64(archivoCapturado).then((imagen: any) =>{
+    this.archivos(archivoCapturado).then((imagen: any) =>{
       this.previsualizacion= imagen.base;
       console.log(imagen);
     })
@@ -43,7 +44,8 @@ export class NewProductsComponent implements OnInit {
 
 
   //Extraer el base 64
-  extraerBase64 =async ($event:any) => new Promise/*<void>*/((resolve,reject) =>{ 
+  /*
+  extraerBase64 =async ($event:any) => new Promise<void>((resolve,reject) =>{ 
     try{
       const unsafeImg = window.URL.createObjectURL($event);
       const image= this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
@@ -64,39 +66,37 @@ export class NewProductsComponent implements OnInit {
       return null;
     }
   });
+  */
 
 
-/*
-  producto:newProduct={
-    user:'',
-    department:'',
-    product_category:'',
-    product_status:'',
+
+  producto:newProducto={
+    fk_id_user: '',
+    fk_id_department: '',
+    fk_id_product_category:'',
+    fk_id_product_status: '',
     var_name: '',
     text_description: '',
-    price:'',
-    availability:'',
-
-    imagePath: ''
-
-  }*/
+    dou_price: ''
+  }
 
   /* Para subir Archivo*/
   subirArchivo():any{
     try{
       
       const formularioDeDatos= new FormData();
+
       this.archivos.forEach((archivo:any) => {
         formularioDeDatos.append('files',archivo)
         console.log(archivo);
       })
       //Para agregar mas datos en la funcion
       //formularioDeDatos.append('titulo','mi titulo')
-/*
-      this.equipoService.newProducto(formularioDeDatos)
+
+      this.equipoService.newProducto(this.producto)
       .subscribe(res=>{
         console.log('respuesta del servidor',res);
-      })*/
+      })
     }catch(e){
       console.log('Error',e);
     }

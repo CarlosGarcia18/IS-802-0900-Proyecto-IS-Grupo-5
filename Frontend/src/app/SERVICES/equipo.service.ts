@@ -46,26 +46,9 @@ export class EquipoService {
     return this.http.post(this.url+"/credential", module1)
   }
 
-  newProduct(newProduct:newProducto){
+  newProducto(newProduct:newProducto){
     return this.http.post(this.url+"/newProduct",newProduct)
   }
-
-  
-
-  //Metodo del formulario Nuevo producto
-  newProducto(title:string,description:string,photo:File){
-    //Se envia tipo formulario y se gurda en una constante
-    const fd = new FormData();
-    fd.append('title',title);
-    fd.append('description',description);
-    fd.append('image',photo);
-    //Manda los datos al servidor
-    return this.http.post(this.url,fd)
-    
-
-  }
-
-
 
 }
 
@@ -105,16 +88,15 @@ export interface emailCredential{
 }
 
 export interface newProducto {
-    fk_id_user: number
-    fk_id_department: number
-    fk_id_product_category: number
-    fk_id_product_status: number
+    fk_id_user: string | null
+    fk_id_department: string
+    fk_id_product_category: string
+    fk_id_product_status: string
     var_name: string
     text_description: string
-    dou_price: number
-    bit_availability: boolean
+    dou_price: string
+    
 
-    imagePath: string;
 }
 
 
