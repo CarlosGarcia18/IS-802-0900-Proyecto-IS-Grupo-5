@@ -41,13 +41,12 @@ controller.deleteProduct = (req,res)=>{
     const {id} = req.params
 
     //Elimina todas las imagenes que contiene el producto
-    let sql1 =`delete from PHOTOGRAPHS where fk_id_product ='${id}'`
+    let sql1 =`delete from PHOTOGRAPHS where fk_id_product =${id}`
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.send(err.sqlMessage);
         else{
-
             //Elimina el producto
-            let sql2 =`delete from PRODUCT where id_product ='${id}'`
+            let sql2 =`delete from PRODUCT where id_product =${id}`
             conection.query(sql2,(err,rows,fields)=>{
                 if(err) res.send(err.sqlMessage);
                 else{
