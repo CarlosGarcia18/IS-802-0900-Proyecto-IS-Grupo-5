@@ -44,8 +44,8 @@ export class NewProductsComponent implements OnInit {
 
 
   //Extraer el base 64
-  /*
-  extraerBase64 =async ($event:any) => new Promise<void>((resolve,reject) =>{ 
+  
+  extraerBase64 =async ($event:any) => new Promise((resolve,reject) =>{ 
     try{
       const unsafeImg = window.URL.createObjectURL($event);
       const image= this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
@@ -61,12 +61,12 @@ export class NewProductsComponent implements OnInit {
         resolve({
           base:null
         });
-      };
+      }; return null;
     }catch(e){
       return null;
     }
   });
-  */
+  
 
 
 
