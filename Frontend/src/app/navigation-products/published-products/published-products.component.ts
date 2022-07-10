@@ -37,4 +37,36 @@ export class PublishedProductsComponent implements OnInit {
   }
 
 
+
+  eliminarProducto(id: any){
+    if(confirm('Desea eliminar')){
+      this.equipoService.eliminarProducto(id).subscribe((data) =>{
+        this.getProducList();
+      }, error => {
+        console.log(error);
+      })
+    }
+
+
+
+    /*
+    this.equipoService.eliminarProducto(id).subscribe((data) =>{
+      this.toastr.error('El producto fue eliminado con exito' ,'Producto Eliminado');
+      this.getProducList();
+    },error =>{
+      console.log(error);
+    
+    })
+    */
+  }
+  /*eliminarProducto(id: any) {
+    this._productoService.eliminarProducto(id).subscribe(data => {
+      this.toastr.error('El producto fue eliminado con exito' ,'Producto Eliminado');
+      this.obtenerProductos();
+    }, error => {
+      console.log(error);
+    })
+  } */
+
+
 }
