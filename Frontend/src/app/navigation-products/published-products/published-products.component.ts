@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService } from 'src/app/SERVICES/equipo.service';
+import { EquipoService, newProducto } from 'src/app/SERVICES/equipo.service';
 import { NewProductsComponent } from '../new-products/new-products.component';
 import { ProductsComponent } from '../products/products.component';
 
@@ -10,19 +10,24 @@ import { ProductsComponent } from '../products/products.component';
   styleUrls: ['./published-products.component.css']
 })
 export class PublishedProductsComponent implements OnInit {
+  //newProducto[] se importa la clase
+  productoList:newProducto[]=[];
 
-  productoList:NewProductsComponent[] /* o el tipo que sera */ =[];
-
-  constructor(private equipoService:EquipoService, newProductsComponent:NewProductsComponent) { }
+  constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
     this.getProducList
   }
 
   getProducList(){
-    this.equipoService.getProductos().subscribe({
-      next: (data/*:NewProductsComponent[]*/) =>{
-       // this.productoList=data;
+    this.equipoService.getProductos().subscribe({ /*Otra forma de hacerlo  data=>{
+      console.log(data)
+      this.productoList=data;
+    }
+      
+       */
+      next: (data:newProducto[]) =>{
+       this.productoList=data;
       },
       /*EN caso de algun error */
       error:(err:any)=>{
