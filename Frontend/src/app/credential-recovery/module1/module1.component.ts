@@ -39,6 +39,7 @@ export class Module1Component implements OnInit {
       let result = this.EquipoService.emailModule1(this.module1).subscribe(
         res => {
           var status:BookInfo = <any>res
+
           if(status.status == "200"){ // Correo correcto
 
             this.router.navigate(['module2/' + this.module1.var_email]);

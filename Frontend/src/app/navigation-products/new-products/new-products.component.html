@@ -4,61 +4,38 @@
     <link rel="stylesheet" href="new-products.component.css">
 </head>
 
-<div class="container">
-    <div class="card">
-        <div class="card-header">
-            Ingresa el producto
-        </div>
-        <div class="card-body">
-            <form  (submit)="uploadPhoto(titulo,descripcion)" > <!--(submit)="uploadPhoto(title,descripcion)"-->
-                <input type="file" name="" id="" class="d-none"  #photoInput ><!--(change)="onPhotoSelected($event)"--> 
-                <img class="img-fluid" alt="no-image" [src]="photoSelected || 'assets/no-image-produ.png'" (click)="photoInput.click()"> <!-- [src]="photoSelected || 'assets/no-image-produ.png'"-->
 
 
+<form>
+    <div>
+        <input (change)="capturarFile($event)" type="file">
+    </div>
+    <!--Previsualizacion-->
+    <div *ngIf="previsualizacion">
+        <img [src]="previsualizacion" alt="">
+    </div> 
 
-
-
-                <div class="form-group">
-                    <h4 class="" >Titulo</h4>
-                    <textarea type="text" class="form-control" placeholder="Titulo" required #titulo></textarea>
-                </div>
-<!--
-                <div class="form-group">
-                    <h4 class="" >Precio</h4>
-                    <input type="text" class="form-control" placeholder="Precio" required #precio>
-                </div>
-
-                <div class="form-group">
-                    <h4 class="" >Categoria</h4>
-                    <input type="text" class="form-control" placeholder="Categoria" required #categoria>
-                </div>
--->
-                <div class="form-group">
-                    <textarea rows="2" class="form-control" placeholder="Descripcion del producto" required #descripcion></textarea>
-                </div>
-<!--
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Estado" required #estado>
-                </div>
-
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Ubicacion" required #ubicacion>
-                </div>
-
-            -->               
-                
-
-                <button class="btn btn-primary btn-block">Guardar</button>
-            </form>
-        </div>
+    <!--Boton para subir el archivo-->
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="titulo" #titulo required>
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="estado" #estado required>
     </div>
 
-</div>
-
-
-<!--
-    <div class="container">
-        <img *ngFor='let url of urls' [src]="url">
-        <input type="file" (change)="onselect($event)" multiple>
+    <div class="form-group">
+        <textarea rows="2" class="form-control" placeholder="descripcion" required #descripcion></textarea>
     </div>
--->
+
+
+    <div>
+        <button type="button" (click)="subirArchivo"></button>
+    </div>
+
+    <div>
+        <input type="text" placeholder="titulo" name="titulo ">
+    </div>
+</form>
+
+
+

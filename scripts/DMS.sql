@@ -22,17 +22,13 @@ INSERT INTO DEPARTMENT(var_name) VALUES('Yoro');
 
 INSERT INTO PRODUCT_STATUS(var_name) VALUES('Nuevo');
 INSERT INTO PRODUCT_STATUS(var_name) VALUES('Usado');
-
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Hogar');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Futuros Padres');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Mascotas');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Inmuebles');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Vehiculos');
+    
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Computadoras');
 INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Moda');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Electronica');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Servicios');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Negocios');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Empleo');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Juguetes');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Jardinería');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Industrial');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Joyería');
 
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234567
 
@@ -44,6 +40,11 @@ INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_passwo
 	VALUES(1, 'joseK@gmail.com', 'Jose', 'Kalix', 'joseK-123', 1, 1, '56243142');
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES(15, 'kevin_manuel@hotmail.com', 'Kevin', 'Manuel', 'KevinManuel1/', 1, 1, '98786756');
+    
+INSERT INTO PRODUCT_CATEGORY(id_product_category,var_name) values(1,"Tecnología");
+INSERT INTO PRODUCT_CATEGORY(id_product_category,var_name) values(2,"Hogar");
+INSERT INTO PRODUCT_STATUS(id_product_status,var_name) values(1,"Nuevo");
+INSERT INTO PRODUCT_STATUS(id_product_status,var_name) values(2,"Usado");
 
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
 	VALUES (1,1,1,1,1,"Disco duro externo portátil",1,"250 GB de almacenamiento y 5 meses de garantia",1024,1,"2022-07-02","2022-07-10");
