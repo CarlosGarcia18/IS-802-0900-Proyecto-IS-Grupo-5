@@ -1,9 +1,22 @@
 const routers = require('express').Router()//Direccionamiento en express
 
-
 const customerU = require('../controllers/customerUser')//funciones de llamada por parte del usuario
 const customerA = require('../controllers/customerAdmin')//funciones de llamada por parte del administrador
 const customerO = require('../controllers/customerOptions')//funciones de llamada por parte del administrador
+
+const path = require('path')
+const multer = require('multer')
+
+const diskstorage = multer.diskStorage({
+    destination: path.join(__dirname, '../images'),
+    filename: (req, file, cb) => {
+        cb(null, Date.now() + '-plazitanet-' + file.originalname)
+    }
+})
+
+const fileUpload = multer({
+    storage: diskstorage
+}).single('image')
 
 
 //Direcciones de prueba
@@ -46,6 +59,9 @@ routers.post('/productFiltering',customerO.productFiltering)
 
 //Agregar un producto
 routers.post('/newProduct',customerO.postProduct)
+
+//Subir imagenes
+routers.post('/product/postImage', fileUpload, customerO.postImage)
 
 //Eliminar un producto dado un id // Elimina todas las imagenes del producto
 routers.delete('/product/delete/:id',customerO.deleteProduct)
