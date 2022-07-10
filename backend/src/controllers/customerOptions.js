@@ -17,10 +17,8 @@ const fileUpload = multer({
 }).single('image')
 
 controller.postImage = (req,res) =>{
-    req.getConnection((err, conn) => {
-        if(err) return res.status(500).send('server error')
-
-        const type = req.file.mimetype
+      
+        
         const name = req.file.originalname
         const extension = req.file.type
         const data = fs.readFileSync(path.join(__dirname, '../images/' + req.file.filename))
@@ -33,7 +31,7 @@ controller.postImage = (req,res) =>{
 
             res.send('200')
         })
-    })
+    
 
 
 }
@@ -80,7 +78,7 @@ controller.postProduct = (req,res) =>{
 
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price}=req.body
-    let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
+    let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
         + ` from product, photographs where `
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
