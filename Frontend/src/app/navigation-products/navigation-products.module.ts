@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { NavigationProductsRoutingModule } from './navigation-products-routing.module';
 import { NavigationProductsComponent } from './view-navigation/navigation-products.component';
 import { NewProductsComponent } from './new-products/new-products.component';
@@ -24,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatPaginatorModule
   ],
   exports:[
     NavigationProductsComponent

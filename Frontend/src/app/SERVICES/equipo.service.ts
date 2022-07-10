@@ -58,6 +58,16 @@ export class EquipoService {
     return this.http.post(this.url +"/product/postImage",file);
   }
 
+  filtrar(filtro:filter){
+    
+    return this.http.post(this.url+"/productFiltering", filtro)
+  }
+}
+
+export interface filter{
+  fk_id_department: number,
+  dou_price:number,
+  fk_id_product_category:number
 }
 
 export interface Registro{
