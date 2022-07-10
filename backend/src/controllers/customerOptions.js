@@ -3,25 +3,12 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs= require('fs')
 const path = require('path')
 
-const multer = require('multer')
-
-const diskstorage = multer.diskStorage({
-    destination: path.join(__dirname, './images'),
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + '-plazitanet-' + file.originalname)
-    }
-})
-
-const fileUpload = multer({
-    storage: diskstorage
-}).single('image')
-
 controller.postImage = (req,res) =>{
       
         
         const name = req.file.originalname
         const extension = req.file.type
-        const data = fs.readFileSync(path.join(__dirname, '../images/' + req.file.filename))
+        const data = fs.readFileSync(path.join(__dirname, '../../../images/' + req.file.filename))
 
         let sql= `INSERT INTO photographs(blob_file, var_name, var_extension, fk_id_product)
             VALUES(${data},${name},${extension},1)`
