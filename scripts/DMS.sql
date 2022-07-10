@@ -51,8 +51,8 @@ INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_categor
 	VALUES (2,1,1,1,1,"Disco duro externo portátil",1,"480 GB de almacenamiento y 5 meses de garantia",2024,1,"2022-07-06","2022-07-09");
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
 	VALUES (3,1,2,1,1,"Disco duro externo portátil",1,"1 TB de almacenamiento y 5 meses de garantia",4024,1,"2022-07-01","2022-07-11");
-INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (4,3,1,1,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-07-12");
+INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
+	VALUES (3,1,1,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-07-12");
 
 #INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\1'),"disco duro","jpg",1);
 #INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\2'),"disco duro","jpg",2);
