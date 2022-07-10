@@ -114,7 +114,7 @@ get ubicacionControl():FormControl{
     fk_id_department: '',
     fk_id_product_category:'',
     fk_id_product_status: '',
-    var_name: 'sddd',
+    var_name: '',
     text_description: '',
     dou_price: ''
   }

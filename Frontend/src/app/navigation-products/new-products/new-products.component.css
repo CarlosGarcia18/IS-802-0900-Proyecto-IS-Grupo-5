@@ -1,29 +1,66 @@
+/*
+label{
+    margin: 0;
+    padding: 0;
+    width: 100px;
+    height: 100%;
+    position: relative;
+}
+
+
+.inputs-container{
+    border: 1px solid #E1E1E1;
+    border-radius: 5px;
+    padding: 17px;
+    width: 300px;
+    background: #fff;
+    /*
+    position: absolute;
+    top: 20%;
+    left: -90%;
+    transform: translate(-50%,50%);
+}
+
+
+/*
 /*img {
     display: block;
     margin: 10px;
     height: 230px;
     width: 250;
   }*/
-
-*{
-    margin: 0;
+/*
+  *{
+    margin: 5px;
     padding: 0;
     box-sizing: border-box;
     font-family: "Helvetica Neue",Arial, Helvetica, sans-serif;
+    background-color: rgb(56, 3, 3);
 }
 body{
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    min-height: 10vh;
+    background: rgb(255, 6, 6);
+}
+.inputs-container{
+    width: 90%;
+    height: 340px;
+
+    max-width: 250px;
+    margin: auto;
     background: #fff;
 }
-.container{
+.inter{
     width: 90%;
+    height: 340px;
 
-    max-width: 1200px;
+    max-width: 250px;
     margin: auto;
+
 }
+
 
 .tbl-col-nombre{
     align-items: center;
@@ -39,16 +76,7 @@ body{
     justify-content: center;
 }
 
-.form{
-    /*height: 1vh;*/
-    margin: 5%;
-    /*display: flex;*/
 
-    display: flex;
-    flex-direction: column;
-    /*justify-content: center;*/
-    /*align-items: center;*/
-}
 
 .table{
     margin: 5%;
@@ -60,9 +88,27 @@ body{
 .input-file{
     background-color: transparent;
     position: relative;
-    height: 200px;
+    height: 50px;
+    width: 10;
     border: solid 1px rgb(228, 228, 132228);
     margin-top: 1rem;
     cursor: pointer;
 }
+*/
 
+form{
+    background-color: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 0 auto;
+    width: 350px;
+    
+
+}
+.form{
+    
+    align-content: center;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+}

@@ -1,11 +1,10 @@
 
-
 <head>
     <link rel="stylesheet" href="new-products.component.css">
 </head>
 
-
-
+<label>
+<div class="inter">
 <form class="inputs-container" [formGroup]="productoForm">
     <div class="form">
         <input class="input-file" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" >
@@ -17,21 +16,21 @@
 
     <!--Boton para subir el archivo-->
     <div class="form">
-        <h4>Titulo</h4>
-        <input type="text" class="form-control" [(ngModel)]="producto.var_name" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
+        <td>Titulo</td>
+        <input type="text" class="inputs-containe" [(ngModel)]="producto.var_name" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
         formControlName="titulo">
 
     </div>
 
     <div class="form">
         <td>Precio</td>
-        <input type="text" class="form-control" [(ngModel)]="producto.dou_price" placeholder="precio" #precio required formControlName="precio">
+        <input type="text" class="inputs-containe" [(ngModel)]="producto.dou_price" placeholder="precio" #precio required formControlName="precio">
     </div>
 
 
     <div class="form">
         <td class="nom">Categoria de Producto</td>
-        <select [(ngModel)]="producto.fk_id_product_category" class="form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required formControlName="categoria">
+        <select [(ngModel)]="producto.fk_id_product_category" class="inputs-containe form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required formControlName="categoria">
 
             <option value=" "  selected disabled hidden>Categoría</option>
             <option value="1">Electrónica</option>
@@ -52,7 +51,7 @@
 
 
     <div  class="form">
-        <label for="Estado">Estado del producto</label>
+        <label for="Estado" class="inputs-containe">Estado del producto</label>
         <select [(ngModel)]="producto.fk_id_product_status" name="estado" id=""  formControlName="estado">
             <option value=" "  selected disabled hidden>Estado</option>
             <option value="1">Nuevo</option>
@@ -62,7 +61,8 @@
     </div>
 
     <div class="form">
-        <textarea [(ngModel)]="producto.text_description" rows="2" class="form-control" placeholder="descripcion" required  formControlName="decripcion"></textarea>
+        <label for="">Descripcion del Producto</label>
+        <textarea [(ngModel)]="producto.text_description" rows="2" class="inputs-containe" placeholder="descripcion" required  formControlName="decripcion"></textarea>
     </div>
 
     <div class="form">
@@ -72,7 +72,7 @@
                     <td class="tbl-col-nombre">Selecciona tu ubicación</td>
                     <td class="tbl-col-depto">
                         <select [(ngModel)]="producto.fk_id_department"
-                         name="Departamento" formControlName="ubicacion">
+                         name="Departamento" formControlName="ubicacion" class="inputs-containe">
                             <option value=" "  selected disabled hidden>Ubicacion</option>
                             <option value="1">Atlantida</option>
                             <option value="2">Choluteca</option>
@@ -98,13 +98,14 @@
             </thead>
         </table>
     </div>
-
-    <!--Boton para subir el archivo-->
-    <div>
-        <button type="submit" (click)="subirArchivo()">Guardar</button>
+     <!--Boton para subir el archivo-->
+     <div>
+        <button class="buton" type="submit" (click)="subirArchivo()">Guardar</button>
     </div>
 
-</form>
 
+</form>
+</div>
+</label>
 
 
