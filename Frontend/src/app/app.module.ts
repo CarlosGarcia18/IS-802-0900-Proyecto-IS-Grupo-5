@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { CargarScriptsService} from "./cargar-scripts.service";
-
+import {MatPaginatorModule} from '@angular/material/paginator';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
@@ -12,7 +12,7 @@ import { CredentialRecoveryModule } from './credential-recovery/credential-recov
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 //import { RecoveryLayoutComponent } from './layouts/recovery-layout/recovery-layout.component';
 import { NavigationLayoutComponent } from './layouts/navigation-layout/navigation-layout.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -30,7 +30,9 @@ import { NavigationLayoutComponent } from './layouts/navigation-layout/navigatio
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CredentialRecoveryModule
+    CredentialRecoveryModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule
     //TermsAndConditionsModule
   ],
   providers: [CargarScriptsService],
