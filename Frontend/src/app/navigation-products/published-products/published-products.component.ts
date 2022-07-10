@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipoService } from 'src/app/SERVICES/equipo.service';
+import { NewProductsComponent } from '../new-products/new-products.component';
+import { ProductsComponent } from '../products/products.component';
 
 
 @Component({
@@ -9,19 +11,25 @@ import { EquipoService } from 'src/app/SERVICES/equipo.service';
 })
 export class PublishedProductsComponent implements OnInit {
 
-  producto =[];
+  productoList:NewProductsComponent[] /* o el tipo que sera */ =[];
 
-  constructor(private equipoService:EquipoService) { }
+  constructor(private equipoService:EquipoService, newProductsComponent:NewProductsComponent) { }
 
   ngOnInit(): void {
-    this.equipoService.getProductos()
-    .subscribe(
-      //En caso de una respuesta y error
-      res => {
-        this.producto
-      },
-      err => console.log(err)
-    )
+    this.getProducList
   }
+
+  getProducList(){
+    this.equipoService.getProductos().subscribe({
+      next: (data/*:NewProductsComponent[]*/) =>{
+       // this.productoList=data;
+      },
+      /*EN caso de algun error */
+      error:(err:any)=>{
+        console.log('Error mostrado')
+      }
+    })
+  }
+
 
 }

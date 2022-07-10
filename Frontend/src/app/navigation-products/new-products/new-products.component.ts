@@ -91,7 +91,18 @@ export class NewProductsComponent implements OnInit {
         console.log(archivo);
       })
       //Para agregar mas datos en la funcion
-      //formularioDeDatos.append('titulo','mi titulo')
+      formularioDeDatos.append('titulo',this.archivos)
+      formularioDeDatos.append('precio',this.archivos)
+      formularioDeDatos.append('categoria',this.archivos)
+      formularioDeDatos.append('descripcion',this.archivos)
+      formularioDeDatos.append('estado',this.archivos)
+      formularioDeDatos.append('ubicacion',this.archivos)
+      fk_id_department: new FormControl('',[Validators.required])
+      
+
+      
+      
+      
 
       this.equipoService.newProducto(this.producto)
       .subscribe(res=>{

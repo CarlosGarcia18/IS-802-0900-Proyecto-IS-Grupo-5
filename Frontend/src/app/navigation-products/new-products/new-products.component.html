@@ -6,35 +6,106 @@
 
 
 
-<form>
-    <div>
-        <input (change)="capturarFile($event)" type="file">
-    </div>
+<form class="inputs-container">
+    <div class="form">
+        <input class="input-file" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona">
+    </div >
     <!--Previsualizacion-->
     <div *ngIf="previsualizacion">
         <img [src]="previsualizacion" alt="">
     </div> 
 
     <!--Boton para subir el archivo-->
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="titulo" #titulo required>
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" placeholder="estado" #estado required>
+    <div class="form">
+        <h4>Titulo</h4>
+        <input type="text" class="form-control" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
+         aria-label="Titulo">
+
     </div>
 
-    <div class="form-group">
+    <div class="form">
+        <h4>Precio</h4>
+        <td>Precio</td>
+        <input type="text" class="form-control" placeholder="precio" #precio required>
+    </div>
+
+
+    <div class="form">
+        <td class="nom">Categoria de Producto</td>
+        <select class="form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required>
+
+            <option value=" "  selected disabled hidden>Categoría</option>
+            <option value="electrónica">Electrónica</option>
+            <option value="futuros padres">Futuros padres</option>
+            <option value="hogar">Hogar</option>
+            <option value="inmuebles">Inmuebles</option>
+            <option value="juguetes">Juguetes</option>
+            <option value="libros">Libros</option>
+            <option value="mascotas">Mascotas</option>
+            <option value="moda">Moda</option>
+            <option value="vehículos">Vehículos</option>
+            <option value="video juegos">Videojuegos</option>
+            
+        </select>
+    </div>
+
+
+
+
+    <div  class="form">
+        <label for="Estado">Estado del producto</label>
+        <select name="estado" id="">
+            <option value=" "  selected disabled hidden>Estado</option>
+            <option value="nuevo">Nuevo</option>
+            <option value="Semi-nuevo">Semi-Nuevo</option>
+            <option value="usado">Usado</option>
+
+        </select>
+    </div>
+
+    <div class="form">
         <textarea rows="2" class="form-control" placeholder="descripcion" required #descripcion></textarea>
     </div>
 
-
-    <div>
-        <button type="button" (click)="subirArchivo"></button>
+    <div class="form">
+        <table class="table">
+            <thead class="table">
+                <tr>
+                    <td class="tbl-col-nombre">Selecciona tu ubicación</td>
+                    <td class="tbl-col-depto">
+                        <select y
+                         name="Departamento" formControlName="ubicacion">
+                            <option value=" "  selected disabled hidden>Ubicacion</option>
+                            <option value="1">Atlantida</option>
+                            <option value="2">Choluteca</option>
+                            <option value="3">Colon</option>
+                            <option value="4">Comayagua</option>
+                            <option value="5">Copan</option>
+                            <option value="6">Cortes</option>
+                            <option value="7">El Paraiso</option>
+                            <option value="8">Francisco Morazán</option>
+                            <option value="9">Gracias a Dios</option>
+                            <option value="10">Intibuca</option>
+                            <option value="11">Islas de la Bahia</option>
+                            <option value="12">La Paz</option>
+                            <option value="13">Lempira</option>
+                            <option value="14">Ocotepeque</option>
+                            <option value="15">Olancho</option>
+                            <option value="16">Santa Barbara</option>
+                            <option value="17">Valle</option>
+                            <option value="18">Yoro</option>
+                        </select>
+                    </td>
+                </tr>
+            </thead>
+        </table>
     </div>
 
+    <!--Boton para subir el archivo-->
     <div>
-        <input type="text" placeholder="titulo" name="titulo ">
+        <button type="button" (click)="subirArchivo">Guardar</button>
     </div>
+
 </form>
 
 

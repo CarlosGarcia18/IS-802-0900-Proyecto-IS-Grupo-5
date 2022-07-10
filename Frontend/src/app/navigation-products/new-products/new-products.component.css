@@ -16,13 +16,19 @@ body{
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    background: rgba(171, 40, 40, 0.4);
+    background: #fff;
+}
+.container{
+    width: 90%;
+
+    max-width: 1200px;
+    margin: auto;
 }
 
-.container{
-    background: #fff;
-    height: 300;
-    width: 500;
+.tbl-col-nombre{
+    align-items: center;
+    margin: auto;
+    justify-items: center;
 }
 
 .card-body{
@@ -31,5 +37,32 @@ body{
     display: flex;
     flex-direction:column;
     justify-content: center;
+}
+
+.form{
+    /*height: 1vh;*/
+    margin: 5%;
+    /*display: flex;*/
+
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+
+.table{
+    margin: 5%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-file{
+    background-color: transparent;
+    position: relative;
+    height: 200px;
+    border: solid 1px rgb(228, 228, 132228);
+    margin-top: 1rem;
+    cursor: pointer;
 }
 
