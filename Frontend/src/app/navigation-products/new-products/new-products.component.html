@@ -6,9 +6,9 @@
 
 
 
-<form class="inputs-container">
+<form class="inputs-container" [formGroup]="productoForm">
     <div class="form">
-        <input class="input-file" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona">
+        <input class="input-file" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" >
     </div >
     <!--Previsualizacion-->
     <div *ngIf="previsualizacion">
@@ -18,33 +18,32 @@
     <!--Boton para subir el archivo-->
     <div class="form">
         <h4>Titulo</h4>
-        <input type="text" class="form-control" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
-         aria-label="Titulo">
+        <input type="text" class="form-control" [(ngModel)]="producto.var_name" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
+        formControlName="titulo">
 
     </div>
 
     <div class="form">
-        <h4>Precio</h4>
         <td>Precio</td>
-        <input type="text" class="form-control" placeholder="precio" #precio required>
+        <input type="text" class="form-control" [(ngModel)]="producto.dou_price" placeholder="precio" #precio required formControlName="precio">
     </div>
 
 
     <div class="form">
         <td class="nom">Categoria de Producto</td>
-        <select class="form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required>
+        <select [(ngModel)]="producto.fk_id_product_category" class="form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required formControlName="categoria">
 
             <option value=" "  selected disabled hidden>Categoría</option>
-            <option value="electrónica">Electrónica</option>
-            <option value="futuros padres">Futuros padres</option>
-            <option value="hogar">Hogar</option>
-            <option value="inmuebles">Inmuebles</option>
-            <option value="juguetes">Juguetes</option>
-            <option value="libros">Libros</option>
-            <option value="mascotas">Mascotas</option>
-            <option value="moda">Moda</option>
-            <option value="vehículos">Vehículos</option>
-            <option value="video juegos">Videojuegos</option>
+            <option value="1">Electrónica</option>
+            <option value="2">Futuros padres</option>
+            <option value="4">Hogar</option>
+            <option value="5">Inmuebles</option>
+            <option value="3">Juguetes</option>
+            <option value="6">Libros</option>
+            <option value="7">Mascotas</option>
+            <option value="8">Moda</option>
+            <option value="9">Vehículos</option>
+            <option value="10">Videojuegos</option>
             
         </select>
     </div>
@@ -54,26 +53,25 @@
 
     <div  class="form">
         <label for="Estado">Estado del producto</label>
-        <select name="estado" id="">
+        <select [(ngModel)]="producto.fk_id_product_status" name="estado" id=""  formControlName="estado">
             <option value=" "  selected disabled hidden>Estado</option>
-            <option value="nuevo">Nuevo</option>
-            <option value="Semi-nuevo">Semi-Nuevo</option>
-            <option value="usado">Usado</option>
+            <option value="1">Nuevo</option>
+            <option value="2">Usado</option>
 
         </select>
     </div>
 
     <div class="form">
-        <textarea rows="2" class="form-control" placeholder="descripcion" required #descripcion></textarea>
+        <textarea [(ngModel)]="producto.text_description" rows="2" class="form-control" placeholder="descripcion" required  formControlName="decripcion"></textarea>
     </div>
 
     <div class="form">
         <table class="table">
-            <thead class="table">
+            <thead class="table" >
                 <tr>
                     <td class="tbl-col-nombre">Selecciona tu ubicación</td>
                     <td class="tbl-col-depto">
-                        <select y
+                        <select [(ngModel)]="producto.fk_id_department"
                          name="Departamento" formControlName="ubicacion">
                             <option value=" "  selected disabled hidden>Ubicacion</option>
                             <option value="1">Atlantida</option>
@@ -103,7 +101,7 @@
 
     <!--Boton para subir el archivo-->
     <div>
-        <button type="button" (click)="subirArchivo">Guardar</button>
+        <button type="submit" (click)="subirArchivo()">Guardar</button>
     </div>
 
 </form>

@@ -8,6 +8,7 @@ import { PublishedProductsComponent } from './published-products/published-produ
 import { WishListComponent } from './wish-list/wish-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ComponentsModule } from "../components/components.module";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,9 @@ import { ComponentsModule } from "../components/components.module";
   imports: [
     CommonModule,
     NavigationProductsRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     NavigationProductsComponent
