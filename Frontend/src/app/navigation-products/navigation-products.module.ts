@@ -10,9 +10,6 @@ import { ProductsComponent } from './products/products.component';
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import {MatPaginatorModule} from "@angular/material/paginator"
-
-import {NgxPaginationModule} from 'ngx-pagination';
 @NgModule({
   declarations: [
     NavigationProductsComponent,
@@ -27,8 +24,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
-    
-    MatPaginatorModule
   ],
   exports:[
     NavigationProductsComponent
