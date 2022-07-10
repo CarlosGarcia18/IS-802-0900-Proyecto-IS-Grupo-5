@@ -56,11 +56,13 @@ controller.getDepartament = (req,res) =>{
 
 //funcion para insertar un producto /// Sin las imagenes
 controller.postProduct = (req,res) =>{
-    const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, text_description, dou_price, bit_availability} = req.body
+    const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, text_description, dou_price} = req.body
     let sql=`insert into PRODUCT(fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name,
         int_views, text_description, dou_price, bit_availability, publication_date, expiration_date) 
         values(${fk_id_user},${fk_id_department}, ${fk_id_product_category}, ${fk_id_product_status}, '${var_name}',
-        0,'${text_description}',${dou_price},${bit_availability},CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
+        0,'${text_description}',${dou_price},1,CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)`
+
+    let sql1=`select last_insert_id() AS id`
     
         console.log(sql)
     conection.query(sql,(err,rows,fields)=>{
@@ -68,7 +70,10 @@ controller.postProduct = (req,res) =>{
             console.log(err)
         } //error en consulta
         else{
-            res.json({status: '200'}) // Consulta correcta retorna el id del producto
+            conection.query(sql1,(err,rows,fields)=>{
+                console.log(rows[0])
+                res.json({status: '200', id:rows[0].id}) // Consulta correcta retorna el id del producto
+            })
         }
     })    
 }
@@ -106,4 +111,30 @@ controller.productFiltering = (req,res) =>{
     "dou_price":""
 }
 */
+
+//Funcion para eliminar producto dado un id
+controller.deleteProduct = (req,res)=>{
+    const {id} = req.params
+
+    //Elimina todas las imagenes que contiene el producto
+    let sql1 =`delete from PHOTOGRAPHS where fk_id_product =${id}`
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) res.send(err.sqlMessage);
+        else{
+
+            //Elimina el producto
+            let sql2 =`delete from PRODUCT where id_product =${id}`
+            conection.query(sql2,(err,rows,fields)=>{
+                if(err) res.send(err.sqlMessage);
+                else{
+                    res.json({status: 'Producto Eliminado'})
+                }
+            })
+    
+        }
+    })
+
+
+}
+
 module.exports = controller

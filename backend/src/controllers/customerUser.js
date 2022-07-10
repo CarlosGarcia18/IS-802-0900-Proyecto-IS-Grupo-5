@@ -110,7 +110,7 @@ controller.postUser = (req,res) =>{
 controller.deleteUser = (req,res)=>{
     const {id} = req.params
 
-    let sql =`delete from USER where id_user ='${id}'`
+    let sql =`delete from USER where id_user =${id}`
     conection.query(sql,(err,rows,fields)=>{
         if(err) res.send(err.sqlMessage);
         else{
