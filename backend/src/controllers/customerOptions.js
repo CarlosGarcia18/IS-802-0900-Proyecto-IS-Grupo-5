@@ -99,10 +99,9 @@ controller.postImage = (req,res) =>{
     const{id} = req.params
     const name = req.file.filename
     const extension = req.file.mimetype
-    const route = "localhost:3000/"+req.file.filename
 
-    let sql= `INSERT INTO photographs(route, var_name, var_extension, fk_id_product)
-        VALUES('${route}','${name}','${extension}',${id})`
+    let sql= `INSERT INTO photographs(var_name, var_extension, fk_id_product)
+        VALUES('${name}','${extension}',${id})`
 
     conection.query(sql, (err, rows) => {
         if(err) return res.json(err);

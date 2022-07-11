@@ -11,9 +11,9 @@ const diskstorage = multer.diskStorage({
     destination: path.join(__dirname, '../dbimagesProducts/'),
     filename: (req, file, cb) => {
         const{id} = req.params
-        let index = file.originalname.indexOf(".");
+        let ext = file.originalname.split(".")
         ///Id del producto_Plazitanet_fecha_extension
-        cb(null,id + '_plazitanet_' + Date.now() + file.originalname.substr(index))
+        cb(null,id + '_plazitanet_' + Date.now() + ext[ext.length-1])
     }
 })
 
