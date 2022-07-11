@@ -111,14 +111,13 @@ controller.deleteProduct = (req,res)=>{
 
 controller.postImage = (req,res) =>{
 
-    console.log("AQUIIIIIIII")
-    console.log(res.body)
+    const{id} = req.params
     const name = req.file.filename
     const extension = req.file.mimetype
     const route = "localhost:3000/"+req.file.filename
 
     let sql= `INSERT INTO photographs(route, var_name, var_extension, fk_id_product)
-        VALUES('${route}','${name}','${extension}',1)`
+        VALUES('${route}','${name}','${extension}',${id})`
 
     conection.query(sql, (err, rows) => {
         if(err) return res.json(err);
