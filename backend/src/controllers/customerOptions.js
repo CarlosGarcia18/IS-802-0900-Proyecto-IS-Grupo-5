@@ -3,26 +3,6 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs= require('fs')
 const path = require('path')
 
-controller.postImage = (req,res) =>{
-      
-        
-        const name = req.file.originalname
-        const extension = req.file.type
-        const data = fs.readFileSync(path.join(__dirname, '../../../images/' + req.file.filename))
-
-        let sql= `INSERT INTO photographs(blob_file, var_name, var_extension, fk_id_product)
-            VALUES(${data},${name},${extension},1)`
-
-        conection.query(sql, (err, rows) => {
-            if(err) return res.status(500).send('server error')
-
-            res.send('200')
-        })
-    
-
-
-}
-
 //funcion de prueba
 controller.test = (req,res) => {
     res.send('get routes')
@@ -119,7 +99,7 @@ controller.deleteProduct = (req,res)=>{
             conection.query(sql2,(err,rows,fields)=>{
                 if(err) res.send(err.sqlMessage);
                 else{
-                    res.json({status: 'Producto Eliminado'})
+                    res.json({status:'200', reply:'Producto Eliminado'})
                 }
             })
     
@@ -127,6 +107,27 @@ controller.deleteProduct = (req,res)=>{
     })
 
 
+}
+
+controller.postImage = (req,res) =>{
+
+    console.log("AQUIIIIIIII")
+    console.log(res.body)
+    const name = req.file.filename
+    const extension = req.file.mimetype
+    const route = "localhost:3000/"+req.file.filename
+
+    let sql= `INSERT INTO photographs(route, var_name, var_extension, fk_id_product)
+        VALUES('${route}','${name}','${extension}',1)`
+
+    conection.query(sql, (err, rows) => {
+        if(err) return res.json(err);
+        else{
+            res.send({status:'200', reply:'Imagen agregada al producto'})
+        }
+        
+    })
+    
 }
 
 module.exports = controller

@@ -125,7 +125,11 @@ export interface newProducto {
     text_description: string
     dou_price: string
     
+}
 
+export interface uploadPhoto{
+  file:FormData | null,
+  fk_id_product: string
 }
 
 

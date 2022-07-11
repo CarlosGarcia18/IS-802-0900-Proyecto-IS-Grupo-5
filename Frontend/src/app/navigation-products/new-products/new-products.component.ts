@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, Title } from '@angular/platform-browser';
-import { newProducto, EquipoService,status } from "../../SERVICES/equipo.service";
+import { newProducto, EquipoService, uploadPhoto } from "../../SERVICES/equipo.service";
 
 
 
@@ -20,6 +20,7 @@ interface HtmlInputEvent extends Event {
 export class NewProductsComponent implements OnInit {
   public previsualizacion:any;
   public archivos: any=[] //Sera de tipo array
+  public image: any //Enviar una imagen a la vez al servidor
 
   constructor(private equipoService:EquipoService, private sanitizer: DomSanitizer) {
    }
@@ -62,17 +63,14 @@ get ubicacionControl():FormControl{
   return this.productoForm.get('ubicacion') as FormControl
 }
 
-
-
-
-
-
   capturarFile(event:any): any{
     Array.from(event.target.files).forEach((element:any) => {
-      this.loadFile(element);
+      //this.loadFile(element);
+      this.archivos.push(element)
       
     });
   }
+
   loadFile(file:File){
     const reader=new FileReader();
     reader.onload=()=>{
@@ -80,7 +78,7 @@ get ubicacionControl():FormControl{
 
     this.previsualizacion=reader.result
 
-    this.archivos.push(reader.result)
+    //this.archivos.push(reader.result)
 
     };
     reader.readAsDataURL(file);
@@ -90,7 +88,7 @@ get ubicacionControl():FormControl{
 
 
   //Extraer el base 64
-  
+  /*
   extraerBase64 =async ($event:any) => new Promise((resolve,reject) =>{ 
     try{
       const unsafeImg = window.URL.createObjectURL($event);
@@ -112,6 +110,7 @@ get ubicacionControl():FormControl{
       return null;
     }
   });
+  */
   
 
 
@@ -136,25 +135,27 @@ get ubicacionControl():FormControl{
 
   /* Para subir Archivo*/
   subirArchivo():any{
-    try{
-      
-      const formularioDeDatos= new FormData();
 
-      this.archivos.forEach((archivo:any) => {
-        formularioDeDatos.append('image',archivo)
-        console.log(formularioDeDatos);
-      })
-      //Para agregar mas datos en la funcion
+    
+    this.equipoService.newProducto(this.producto)
+    .subscribe(res=>{
+      console.log('respuesta del servidor',res);
 
-     
-      this.equipoService.newProducto(this.producto)
-      .subscribe(res=>{
-        console.log('respuesta del servidor',res);
-      })
+    })
+    
+    this.archivos.forEach((archivo:any) => {
+      const formularioDeDatos = new FormData();
+      formularioDeDatos.append('image',archivo)
+
       this.equipoService.productoFoto(formularioDeDatos)
-      .subscribe(res=>{
-        console.log('Respuesta ',res)
+        .subscribe(res=>{
+          console.log('Respuesta ',res)
       })
+      
+
+    })
+
+    try{
     }catch(e){
       console.log('Error',e);
     }
