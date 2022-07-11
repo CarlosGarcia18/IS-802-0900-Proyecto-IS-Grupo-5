@@ -45,7 +45,7 @@ controller.postProduct = (req,res) =>{
     let sql=`insert into PRODUCT(fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name,
         int_views, text_description, dou_price, bit_availability, publication_date, expiration_date) 
         values(${fk_id_user},${fk_id_department}, ${fk_id_product_category}, ${fk_id_product_status}, '${var_name}',
-        0,'${text_description}',${dou_price},1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day)`
+        0,'${text_description}',${dou_price},1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day))`
 
     let sql1=`select last_insert_id() AS id`
     
