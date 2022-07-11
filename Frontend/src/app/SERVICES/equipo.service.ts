@@ -72,7 +72,7 @@ export interface filter{
 
 export interface traerProducto{
   id_photographs : number,
-  blob_file: string,
+  var_name_photo: string,
   fk_id_user: number,
   fk_id_department: number,
   var_name: string,
