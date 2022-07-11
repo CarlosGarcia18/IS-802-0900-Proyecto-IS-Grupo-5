@@ -136,28 +136,39 @@ get ubicacionControl():FormControl{
   /* Para subir Archivo*/
   subirArchivo():any{
 
-    
+    //Sube el producto
     this.equipoService.newProducto(this.producto)
     .subscribe(res=>{
+      
+      var info:BookInfo = <any>res
+
+      //Recorre el arreglo de archivos
+      this.archivos.forEach((archivo:any) => {
+        const formularioDeDatos = new FormData();
+        formularioDeDatos.append('image',archivo)
+        console.log(archivo)
+        
+        //Sube archivo uno por uno
+        this.equipoService.productoFoto(formularioDeDatos, info.id)
+          .subscribe(res=>{
+            console.log('Respuesta ',res)
+        })
+        
+      })
+
       console.log('respuesta del servidor',res);
 
     })
-    
-    this.archivos.forEach((archivo:any) => {
-      const formularioDeDatos = new FormData();
-      formularioDeDatos.append('image',archivo)
-
-      this.equipoService.productoFoto(formularioDeDatos)
-        .subscribe(res=>{
-          console.log('Respuesta ',res)
-      })
-      
-
-    })
+     
 
     try{
     }catch(e){
       console.log('Error',e);
     }
   }
+}
+
+interface BookInfo {
+  status : string ;
+  id: string;
 }
