@@ -13,7 +13,10 @@ export class ProductsComponent implements OnInit {
   constructor(private EquipoService:EquipoService, private router: Router) { }
 
   ngOnInit(): void {
-    
+      this.EquipoService.filtrar(this.filtro).subscribe(res=>{
+       this.items=<any>res
+       console.log(res)
+      })
   }
   filterForm=new FormGroup({
     ubicacion: new FormControl(''),

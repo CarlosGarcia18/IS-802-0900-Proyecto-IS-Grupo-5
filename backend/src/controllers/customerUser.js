@@ -290,8 +290,8 @@ controller.updateUser = (req,res) =>{
 controller.productUser = (req,res) =>{
     const{id}=req.params
     let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
-        + ` from product, photographs where `
-    sql1 += `photographs.fk_id_product=product.id_product AND product.fk_id_user=${id} ORDER BY publication_date DESC`
+        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product where `
+    sql1 += `product.fk_id_user=${id} ORDER BY publication_date DESC`
 
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json(err);//posible error en consulta
@@ -301,8 +301,13 @@ controller.productUser = (req,res) =>{
                 fs.unlinkSync(path.join(__dirname,'../dbimagesProducts/'+img))//las elimina, si es que hay imagenes
             })
             rows.map(images=>{
-                fs.writeFileSync(path.join(__dirname,'../dbimagesProducts/'+images.id_product+"-"+"image.jpeg"),images.blob_file)//trae las imagenes de la base de datos
-                images.blob_file = images.id_product+"-"+"image.jpeg"
+                try {
+                    fs.writeFileSync(path.join(__dirname,'../dbimagesProducts/'+images.id_product+"-"+"image.jpeg"),images.blob_file)//trae las imagenes de la base de datos
+                    images.blob_file = "localhost:3000/" + images.id_product+"-"+"image.jpeg"
+                } catch (error) {
+                    console.log(error)
+                }
+                
             })
             //const imgdir = fs.readdirSync(path.join(__dirname,'../dbimagesProducts/'))//crea un arreglo con el  nombre de las mismas
             res.json(rows)//todo salio bien
