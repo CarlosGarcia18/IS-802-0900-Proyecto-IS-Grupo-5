@@ -68,18 +68,25 @@ get ubicacionControl():FormControl{
 
 
   capturarFile(event:any): any{
-    //1 Captura el archivo
-    const archivoCapturado =event.target.files[0]
-    //imagen Codificada COn el base 64
-    this.archivos(archivoCapturado).then((imagen: any) =>{
-      this.previsualizacion= imagen.base;
-      console.log(imagen);
-    })
-    //2 Inserta el archivo Capturado en la variable de archivos
-    this.archivos.push(archivoCapturado)
-    console.log(event.target.files);
-    //Previsualizacion
+    Array.from(event.target.files).forEach((element:any) => {
+      this.loadFile(element);
+      
+    });
   }
+  loadFile(file:File){
+    const reader=new FileReader();
+    reader.onload=()=>{
+      console.log(reader.result)
+
+    this.previsualizacion=reader.result
+
+    this.archivos.push(reader.result)
+
+    };
+    reader.readAsDataURL(file);
+
+  }
+
 
 
   //Extraer el base 64
@@ -119,6 +126,14 @@ get ubicacionControl():FormControl{
     dou_price: ''
   }
 
+  /*agregarFavorito(){
+    //console.log(this.dataEntrante);
+    /*la vraible de servicio con atributo de servicio emite un atributo =emit */
+    /*this.servicefavorito.disparadordeFavoritos.emit({
+      data:this.dataEntrante
+    })
+  } */
+
   /* Para subir Archivo*/
   subirArchivo():any{
     try{
@@ -126,8 +141,8 @@ get ubicacionControl():FormControl{
       const formularioDeDatos= new FormData();
 
       this.archivos.forEach((archivo:any) => {
-        formularioDeDatos.append('file',archivo)
-        console.log(archivo);
+        formularioDeDatos.append('image',archivo)
+        console.log(formularioDeDatos);
       })
       //Para agregar mas datos en la funcion
 
@@ -145,6 +160,3 @@ get ubicacionControl():FormControl{
     }
   }
 }
-
-
- 

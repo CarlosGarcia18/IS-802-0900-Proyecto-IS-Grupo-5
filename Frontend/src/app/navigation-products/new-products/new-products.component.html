@@ -1,18 +1,26 @@
-
 <head>
     <link rel="stylesheet" href="new-products.component.css">
 </head>
 
 <label>
+
+<div class="prou">
+<h4>.</h4>
+
+  
 <div class="inter">
 <form class="inputs-container" [formGroup]="productoForm">
     <div class="form">
-        <input class="input-file" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" >
+        <input class="input-file2" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" multiple>
     </div >
     <!--Previsualizacion-->
-    <div *ngIf="previsualizacion">
+    <!-- <div *ngIf="previsualizacion">
         <img [src]="previsualizacion" alt="">
-    </div> 
+    </div>  -->
+
+    <div *ngFor="let item of archivos" >
+        <img [src]="item" width="300" alt="">
+    </div>
 
     <!--Boton para subir el archivo-->
     <div class="form">
@@ -106,6 +114,6 @@
 
 </form>
 </div>
-</label>
-
+</div>  
+</label>  
 

@@ -5,20 +5,22 @@ label{
     width: 100px;
     height: 100%;
     position: relative;
-}
+}*/
 
 
 .inputs-container{
     border: 1px solid #E1E1E1;
     border-radius: 5px;
     padding: 17px;
-    width: 300px;
+    
     background: #fff;
-    /*
-    position: absolute;
-    top: 20%;
-    left: -90%;
-    transform: translate(-50%,50%);
+    
+    
+    
+}
+
+.prou{
+    height: 15cm;
 }
 
 
@@ -95,6 +97,9 @@ body{
     cursor: pointer;
 }
 */
+/*.inter{
+    height:-35pc;
+}*/
 
 form{
     background-color: #fff;
@@ -112,3 +117,11 @@ form{
     flex-direction:column;
     justify-content: center;
 }
+
+.input-file2{
+    align-content: space-around;
+    image-rendering: auto;
+    
+}
+
+
