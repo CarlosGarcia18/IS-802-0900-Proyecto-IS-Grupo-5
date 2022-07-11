@@ -70,6 +70,17 @@ export interface filter{
   fk_id_product_category:number
 }
 
+export interface traerProducto{
+  id_photographs : number,
+  blob_file: string,
+  fk_id_user: number,
+  fk_id_department: number,
+  var_name: string,
+  text_description: string,
+  dou_price: number,
+  publication_date: string
+}
+
 export interface Registro{
   fk_id_department:number,
   var_email:string,

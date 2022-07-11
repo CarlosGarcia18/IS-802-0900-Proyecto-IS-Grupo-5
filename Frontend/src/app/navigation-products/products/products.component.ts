@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, filter } from '../../SERVICES/equipo.service';
+import { EquipoService, filter, traerProducto } from '../../SERVICES/equipo.service';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
+
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -13,10 +15,7 @@ export class ProductsComponent implements OnInit {
   constructor(private EquipoService:EquipoService, private router: Router) { }
 
   ngOnInit(): void {
-      this.EquipoService.filtrar(this.filtro).subscribe(res=>{
-       this.items=<any>res
-       console.log(res)
-      })
+      this.filtrar()
   }
   filterForm=new FormGroup({
     ubicacion: new FormControl(''),
@@ -34,18 +33,25 @@ export class ProductsComponent implements OnInit {
     return this.filterForm.get('categoria') as FormControl
   }
 
+  lista:traerProducto[]=[]
 
   filtro: filter={
     fk_id_department:0,
     dou_price:0,
     fk_id_product_category:0
     }
- // filtrar(){
-     //this.EquipoService.filtrar(this.filtro).subscribe(res=>{
-      //this.items=<any>res
-     // console.log(res)
-   // })
-  //}
+    
+    
+    filtrar(){
+     this.EquipoService.filtrar(this.filtro).subscribe(res=>{
+
+        this.lista=<any>res
+        
+        console.log(this.lista)
+    }, error =>{
+      console.log(error)
+    })
+    }
 
   
 

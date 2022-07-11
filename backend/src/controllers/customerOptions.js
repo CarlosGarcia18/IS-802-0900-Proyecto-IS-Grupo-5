@@ -72,6 +72,7 @@ controller.productFiltering = (req,res) =>{
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `
     sql1 += `bit_availability = 1 ORDER BY publication_date DESC`
 
+    
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json(err);//posible error en consulta
         else{

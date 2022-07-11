@@ -1,29 +1,36 @@
-
-<div class="row">
-  <div class="col s6">
-    <div class="card" *ngFor="lef producto of productoList">
-      <div class="card-image">
-        
-        <img class="cardImage" src="">
-        <span class="card-title">{{productoList[0]}}</span>
-      </div>
-    
-      <div class="card-content">
-        <ul>
-          <li><label class="precio"></label></li>
-          <li><label>{{productoList[0].dou_price}}</label></li>
-          <li><label></label></li>
-          <li><label></label></li>
-          <li><label></label></li>
-          <li>
-            <tr>
-              <i class="fas fa-edit text-primary"></i>
-              <i class="fas fa-trash text-danger"></i>
-            </tr>
-          </li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
+<div class="container1">
+  <h1>¡Bienvenido!</h1>
 </div>
+<div class="container3">
+  <h4 class="h4-class">Mis Productos Publicados</h4>
+  <div class="select-container">
+          
+          
+  </div> 
+      
+</div>
+
+<div  class="carousel-container" >
+  <div  class="gallery" >
+      
+      <div class="content" *ngFor="let item of items | slice:desde:hasta" >
+          <img src=''>
+          <table>
+              <tr>
+                  <td><h3>{{item.nombre}}</h3></td>
+                  <td class="icon-col"><i id="fav-icon" class="fa-solid fa-trash-can"></i></td>
+              </tr>
+          </table>    
+          <h6>{{item.precio}}</h6>
+          <p class="h5-descrip">{{item.descr}}</p>
+          <button class="buy">Editar</button>
+      </div>
+
+  </div>
+  
+</div>
+<mat-paginator [length]="items.length"
+            [pageSize]="pageSize"
+            (page)="cambiarPagina($event)"
+            >
+</mat-paginator>

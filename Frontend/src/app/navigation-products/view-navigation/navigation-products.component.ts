@@ -14,7 +14,7 @@ export class NavigationProductsComponent implements OnInit {
   }
 
   name:user[]//arreglo para traer el usuario
-
+  toDisplay=true
   ruta:string = "home/termsAndConditions"//ruta para terminos y condicions
 
   ngOnInit(): void {
@@ -27,7 +27,15 @@ export class NavigationProductsComponent implements OnInit {
         err => console.log(err)
         );
     }else{
-      this.router.navigate([`home/login`])//en caso de que no exista un token se de volvera al login
+      this.toDisplay=false
+      this.router.navigate([`/navigationProducts`])//en caso de que no exista un token se de volvera al login
+    }
+  }
+
+
+  eliminaToken(){
+    if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){
+      localStorage.removeItem('token')
     }
   }
 }

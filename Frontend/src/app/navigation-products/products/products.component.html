@@ -13,7 +13,7 @@
             
             <!--(change)="filtrar()"-->
             
-            <select [(ngModel)]="filtro.fk_id_department"  class="selector"  name="Departamento" formControlName="ubicacion" >
+            <select [(ngModel)]="filtro.fk_id_department"  class="selector" (change)="filtrar()" name="Departamento" formControlName="ubicacion" >
                 <option value="0">Ubicación</option>
                 
                 <option value="1">Atlántida</option>
@@ -37,7 +37,7 @@
             </select>
             
         
-            <select [(ngModel)]="filtro.dou_price" class="selector"   name="precio" formControlName="precio">
+            <select [(ngModel)]="filtro.dou_price" class="selector" (change)="filtrar()"  name="precio" formControlName="precio">
                 <option value="0">Precio menor a:</option>
                 <option value="100">100</option>
                 <option value="500">500</option>
@@ -48,7 +48,7 @@
             </select>
             
         
-            <select [(ngModel)]="filtro.fk_id_product_category"  class="selector"  name="Categoria" formControlName="categoria">
+            <select [(ngModel)]="filtro.fk_id_product_category"  class="selector" (change)="filtrar()"  name="Categoria" formControlName="categoria">
                 <option value="0">Categoría</option>
                 <option value="1">Hogar</option>
                 <option value="2">Futuros Padres</option>
@@ -74,15 +74,15 @@
 <div  class="carousel-container" >
     <div  class="gallery" >
         
-        <div class="content" *ngFor="let item of items | slice:desde:hasta" >
+        <div class="content" *ngFor="let item of lista | slice:desde:hasta" >
             <img src=''>
             <table>
                 <tr>
-                    <td><h3>{{item.nombre}}</h3></td>
+                    <td><h3>{{item.var_name}}</h3></td>
                     <td class="icon-col"><i id="fav-icon" class="fa-solid fa-heart"></i></td>
                 </tr>
             </table>    
-            <h6>{{item.precio}}</h6>
+            <h6>L.{{item.dou_price}}</h6>
             <button class="buy">Ver</button>
         </div>
 
@@ -90,7 +90,7 @@
     
 </div>
 
-<mat-paginator [length]="items.length"
+<mat-paginator [length]="lista.length"
               [pageSize]="pageSize"
               (page)="cambiarPagina($event)"
               >
