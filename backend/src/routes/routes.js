@@ -13,7 +13,7 @@ const diskstorage = multer.diskStorage({
         const{id} = req.params
         let ext = file.originalname.split(".")
         ///Id del producto_Plazitanet_fecha_extension
-        cb(null,id + '_plazitanet_' + Date.now() + ext[ext.length-1])
+        cb(null,id + '_plazitanet_' + Date.now() + '.' + ext[ext.length-1])
     }
 })
 
