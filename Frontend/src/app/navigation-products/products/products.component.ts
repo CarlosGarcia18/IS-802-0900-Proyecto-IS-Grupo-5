@@ -44,9 +44,8 @@ export class ProductsComponent implements OnInit {
     
     filtrar(){
      this.EquipoService.filtrar(this.filtro).subscribe(res=>{
-
         this.lista=<any>res
-        
+        this.router.navigate([`/navigationProducts`])
         console.log(this.lista)
     }, error =>{
       console.log(error)
