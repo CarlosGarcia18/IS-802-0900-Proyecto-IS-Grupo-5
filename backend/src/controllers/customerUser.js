@@ -289,7 +289,7 @@ controller.updateUser = (req,res) =>{
 
 controller.productUser = (req,res) =>{
     const{id}=req.params
-    let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,var_name,text_description,dou_price,publication_date`
+    let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
         + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product where `
     sql1 += `product.fk_id_user=${id} ORDER BY publication_date DESC`
 
