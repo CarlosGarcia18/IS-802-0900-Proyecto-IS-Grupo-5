@@ -4,24 +4,28 @@
 
 <label>
 
-<div class="prou">
-<h4>.</h4>
+
+
 
   
 <div class="inter">
-<form class="inputs-container" [formGroup]="productoForm">
-    <div class="form">
-        <input class="input-file2" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" multiple>
-    </div >
-    <!--Previsualizacion-->
-    <!-- <div *ngIf="previsualizacion">
-        <img [src]="previsualizacion" alt="">
-    </div>  -->
+<form class="div_padre" [formGroup]="productoForm">
 
-    <div *ngFor="let item of archivos" >
-        <img [src]="item" width="300" alt="">
+    <div class="div_padre" >
+        <div class="div_hijo" >
+            <input class="div_hijo" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" multiple>
+        </div >
+        <!--Previsualizacion-->
+        <!-- <div *ngIf="previsualizacion">
+            <img [src]="previsualizacion" alt="">
+        </div>  -->
+    
+        <div *ngFor="let item of archivos" class="contenedor-imagenes">
+            <img [src]="item"  alt="" width="30" class="imag" >
+        </div>
+    
     </div>
-
+   
     <!--Boton para subir el archivo-->
     <div class="form">
         <td>Titulo</td>
@@ -41,16 +45,19 @@
         <select [(ngModel)]="producto.fk_id_product_category" class="inputs-containe form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required formControlName="categoria">
 
             <option value=" "  selected disabled hidden>Categoría</option>
-            <option value="1">Electrónica</option>
-            <option value="2">Futuros padres</option>
-            <option value="4">Hogar</option>
-            <option value="5">Inmuebles</option>
-            <option value="3">Juguetes</option>
-            <option value="6">Libros</option>
-            <option value="7">Mascotas</option>
-            <option value="8">Moda</option>
-            <option value="9">Vehículos</option>
-            <option value="10">Videojuegos</option>
+            <option value="0">Categoría</option>
+                <option value="1">Hogar</option>
+                <option value="2">Futuros Padres</option>
+                <option value="3">Mascotas</option>
+                <option value="4">Inmuebles</option>
+                <option value="5">Hogar</option>
+                <option value="6">Vehiculos</option>
+                <option value="7">Moda</option>
+                <option value="8">Electrónica</option>
+                <option value="9">Servicios</option>
+                <option value="10">Negocios</option>
+                <option value="11">Hogar</option>
+                <option value="12">Empleo</option>
             
         </select>
     </div>
@@ -113,7 +120,6 @@
 
 
 </form>
-</div>
 </div>  
 </label>  
 
