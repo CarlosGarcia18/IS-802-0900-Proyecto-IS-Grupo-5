@@ -2,7 +2,6 @@ const express = require('express')
 const morgan = require('morgan') //paquete para verificacion
 const routerConstumer = require('./routes/routes')
 const bodyParser=require('body-parser')//config para correo
-const pat = require('path')
 //Configuracion del puerto del servidor
 const port = (process.env.port || 3000)
 const cors = require("cors")
@@ -32,7 +31,6 @@ app.set('port',port)
 //Middlewares
 app.use(morgan('dev'))
 app.use('/api',routerConstumer)//ruta por defecto del servidor localhost:3000/api
-app.use(express.static(pat.join(__dirname,'dbimagesProducts')))
 
 
 //express start

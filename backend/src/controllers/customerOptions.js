@@ -3,6 +3,26 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs= require('fs')
 const path = require('path')
 
+controller.postImage = (req,res) =>{
+      
+        
+        const name = req.file.originalname
+        const extension = req.file.type
+        const data = fs.readFileSync(path.join(__dirname, '../../../images/' + req.file.filename))
+
+        let sql= `INSERT INTO photographs(blob_file, var_name, var_extension, fk_id_product)
+            VALUES(${data},${name},${extension},1)`
+
+        conection.query(sql, (err, rows) => {
+            if(err) return res.status(500).send('server error')
+
+            res.send('200')
+        })
+    
+
+
+}
+
 //funcion de prueba
 controller.test = (req,res) => {
     res.send('get routes')
@@ -45,19 +65,34 @@ controller.postProduct = (req,res) =>{
 
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price}=req.body
-    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
+    let sql1 = `SELECT DISTINCT(product.id_product),photographs.id_photographs,photographs.blob_file,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
         + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product where `
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `
-    sql1 += `bit_availability = 1 group by product.id_product ORDER BY publication_date DESC`
+    sql1 += `bit_availability = 1 ORDER BY publication_date DESC`
 
     
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json(err);//posible error en consulta
         else{
+            const imgdirDelete = fs.readdirSync(path.join(__dirname,'../dbimagesProducts/'))//trae las imagenes guardadas en el servidor
+            imgdirDelete.map(img=>{
+                fs.unlinkSync(path.join(__dirname,'../dbimagesProducts/'+img))//las elimina, si es que hay imagenes
+            })
+            rows.map(images=>{
+                try {
+                    fs.writeFileSync(path.join(__dirname,'../dbimagesProducts/'+images.id_product+"-"+"image.jpeg"),images.blob_file)//trae las imagenes de la base de datos
+                    images.blob_file = "localhost:3000/" +images.id_product+"-"+"image.jpeg"
+                } catch (error) {
+                    console.log(error)
+                }
+                
+                
+            })
+            //const imgdir = fs.readdirSync(path.join(__dirname,'../dbimagesProducts/'))//crea un arreglo con el  nombre de las mismas
             res.json(rows)//todo salio bien
-        }
+            }
         })
 }
 
@@ -84,7 +119,7 @@ controller.deleteProduct = (req,res)=>{
             conection.query(sql2,(err,rows,fields)=>{
                 if(err) res.send(err.sqlMessage);
                 else{
-                    res.json({status:'200', reply:'Producto Eliminado'})
+                    res.json({status: 'Producto Eliminado'})
                 }
             })
     
@@ -92,25 +127,6 @@ controller.deleteProduct = (req,res)=>{
     })
 
 
-}
-
-controller.postImage = (req,res) =>{
-
-    const{id} = req.params
-    const name = req.file.filename
-    const extension = req.file.mimetype
-
-    let sql= `INSERT INTO photographs(var_name, var_extension, fk_id_product)
-        VALUES('${name}','${extension}',${id})`
-
-    conection.query(sql, (err, rows) => {
-        if(err) return res.json(err);
-        else{
-            res.send({status:'200', reply:'Imagen agregada al producto'})
-        }
-        
-    })
-    
 }
 
 module.exports = controller

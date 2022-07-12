@@ -70,6 +70,7 @@ CREATE TABLE PRODUCT(
 
 CREATE TABLE PHOTOGRAPHS(
 	id_photographs SERIAL PRIMARY KEY,
+    blob_file MEDIUMBLOB COMMENT "El archivo binario",
     var_name VARCHAR(150) COMMENT "Nombre del archivo",
     var_extension VARCHAR(10) COMMENT "Extensión del archivo",
     
