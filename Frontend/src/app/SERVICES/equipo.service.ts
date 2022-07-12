@@ -54,8 +54,8 @@ export class EquipoService {
   eliminarProducto(id:string):Observable<any>{
     return this.http.delete(this.url +id);
   }
-  productoFoto(file:FormData){
-    return this.http.post(this.url +"/product/postImage",file);
+  productoFoto(file:FormData, id:string){
+    return this.http.post(this.url +"/product/postImage/"+id,file);
   }
 
   filtrar(filtro:filter){
@@ -72,7 +72,7 @@ export interface filter{
 
 export interface traerProducto{
   id_photographs : number,
-  blob_file: string,
+  var_name_photo: string,
   fk_id_user: number,
   fk_id_department: number,
   var_name: string,
@@ -125,7 +125,11 @@ export interface newProducto {
     text_description: string
     dou_price: string
     
+}
 
+export interface uploadPhoto{
+  file:FormData | null,
+  fk_id_product: string
 }
 
 

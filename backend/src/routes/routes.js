@@ -8,9 +8,12 @@ const path = require('path')
 const multer = require('multer')
 
 const diskstorage = multer.diskStorage({
-    destination: path.join(__dirname, '../../../images'),
+    destination: path.join(__dirname, '../dbimagesProducts/'),
     filename: (req, file, cb) => {
-        cb(null, Date.now() + '-plazitanet-' + file.originalname)
+        const{id} = req.params
+        let ext = file.originalname.split(".")
+        ///Id del producto_Plazitanet_fecha_extension
+        cb(null,id + '_plazitanet_' + Date.now() + '.' + ext[ext.length-1])
     }
 })
 
@@ -62,7 +65,7 @@ routers.get('/productUser/:id',customerU.productUser)
 routers.post('/newProduct',customerO.postProduct)
 
 //Subir imagenes
-routers.post('/product/postImage', fileUpload, customerO.postImage)
+routers.post('/product/postImage/:id', fileUpload, customerO.postImage)
 
 //Eliminar un producto dado un id // Elimina todas las imagenes del producto
 routers.delete('/product/delete/:id',customerO.deleteProduct)
