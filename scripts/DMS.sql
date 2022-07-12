@@ -23,16 +23,16 @@ INSERT INTO DEPARTMENT(var_name) VALUES('Yoro');
 INSERT INTO PRODUCT_STATUS(var_name) VALUES('Nuevo');
 INSERT INTO PRODUCT_STATUS(var_name) VALUES('Usado');
     
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Hogar');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Electrónica');
 INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Futuros Padres');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Mascotas');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Hogar');
 INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Inmuebles');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Vehiculos');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Juguetes');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Libros');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Mascotas');
 INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Moda');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Electronica');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Servicios');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Negocios');
-INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Empleo');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Vehículos');
+INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Videojuegos');
 
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234567
 
@@ -46,15 +46,16 @@ INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_passwo
 	VALUES(15, 'kevin_manuel@hotmail.com', 'Kevin', 'Manuel', 'KevinManuel1/', 1, 1, '98786756');
 
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (1,1,1,1,1,"Disco duro externo portátil",1,"250 GB de almacenamiento y 5 meses de garantia",1024,1,"2022-07-02","2022-07-10");
+	VALUES (1,1,1,1,1,"Disco duro externo portátil",1,"250 GB de almacenamiento y 5 meses de garantia",1024,1,"2022-07-02","2022-07-12");
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (2,1,1,1,1,"Disco duro externo portátil",1,"480 GB de almacenamiento y 5 meses de garantia",2024,1,"2022-07-06","2022-07-09");
+	VALUES (2,1,1,1,1,"Disco duro externo portátil",1,"480 GB de almacenamiento y 5 meses de garantia",2024,1,"2022-07-06","2022-07-15");
 INSERT INTO PRODUCT(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (3,1,2,1,1,"Disco duro externo portátil",1,"1 TB de almacenamiento y 5 meses de garantia",4024,1,"2022-07-01","2022-07-11");
+	VALUES (3,1,2,1,1,"Disco duro externo portátil",1,"1 TB de almacenamiento y 5 meses de garantia",4024,1,"2022-07-01","2022-07-14");
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (3,1,1,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-07-12");
+	VALUES (3,1,1,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-07-16");
 
-#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\1'),"disco duro","jpg",1);
-#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\2'),"disco duro","jpg",2);
-#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\3'),"disco duro","jpg",3);
-#INSERT INTO PHOTOGRAPHS(blob_file,var_name,var_extension,fk_id_product) VALUES(LOAD_FILE('C:\Users\Luis\Desktop\4'),"disco duro","jpg",4);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("iJhsg37391jksnjiBnGG.jpg","jpg",1);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("ISJS9sjsiIjn9hJKJ98dG.jpg","jpg",2);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("Jhus73J78UUUJmk8Jk.jpg","jpg",3);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("jioIHU83Hi8Uj7hsiIOI.jpg","jpg",4);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("JS8Gsg3782y72hJnOG.jpg","jpg",4);
