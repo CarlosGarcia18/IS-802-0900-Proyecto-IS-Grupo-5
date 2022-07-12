@@ -14,12 +14,12 @@ function enviarCorreoOut(destinatario, codigo,res){
             ciphers:'SSLv3'
         },
         auth:{
-            user:'plazitanet@outlook.com',
-            pass:'htspf445$'
+            user:'',
+            pass:''
         }
     });
     const opc={
-        from:'"Plazita Net" <plazitanet@outlook.com>',
+        from:'"Plazita Net" <>',
         subject:"Recuperacion de cuenta",
         to: `${destinatario}`,
         text: `Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contraseña:   ${codigo}`
@@ -39,12 +39,12 @@ function enviarCorreoGmail(destinatario, codigo,res){
         port: 465,
         secure:true,
         auth:{
-            user:'plazitanet1@gmail.com',
-            pass:'fktlxsridrbusxrk'
+            user:'',
+            pass:''
         }
     });
     const opc={
-        from:'"Plazita Net" <plazitanet1@gmail.com>',
+        from:'"Plazita Net" <>',
         subject:"Recuperacion de cuenta",
         to: `${destinatario}`,
         text: `Hola, a continuacion te proporcionamos el codigo de verificacion para el cambio de contraseña:   ${codigo}`

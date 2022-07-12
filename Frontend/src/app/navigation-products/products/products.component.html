@@ -14,7 +14,7 @@
             <!--(change)="filtrar()"-->
             
             <select [(ngModel)]="filtro.fk_id_department"  class="selector" (change)="filtrar()" name="Departamento" formControlName="ubicacion" >
-                <option value="0">Ubicación</option>
+                <option value="">Ubicación</option>
                 
                 <option value="1">Atlántida</option>
                 <option value="2">Choluteca</option>
@@ -38,7 +38,7 @@
             
         
             <select [(ngModel)]="filtro.dou_price" class="selector" (change)="filtrar()"  name="precio" formControlName="precio">
-                <option value="0">Precio menor a:</option>
+                <option value="">Precio menor a:</option>
                 <option value="100">100</option>
                 <option value="500">500</option>
                 <option value="1000">1000</option>
@@ -49,7 +49,7 @@
             
         
             <select [(ngModel)]="filtro.fk_id_product_category"  class="selector" (change)="filtrar()"  name="Categoria" formControlName="categoria">
-                <option value="0">Categoría</option>
+                <option value="">Categoría</option>
                 <option value="1">Hogar</option>
                 <option value="2">Futuros Padres</option>
                 <option value="3">Mascotas</option>
