@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, filter, traerProducto } from '../../SERVICES/equipo.service';
+import { EquipoService, filter, traerProducto, wishList} from '../../SERVICES/equipo.service';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
@@ -12,9 +12,22 @@ import { Router} from '@angular/router';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private EquipoService:EquipoService, private router: Router) { }
+  constructor(private equipoService:EquipoService, private router: Router) {
+  }
 
   ngOnInit(): void {
+
+      // Traer los departamentos
+      this.equipoService.getDepartments().subscribe(res=>{
+        this.departments = <any>res
+      }, error =>{
+        console.log(error) 
+      })
+
+      // Suscripción
+      this.listaDeseos.fk_id_user = localStorage.getItem('token');
+
+      // Filtro
       this.filtrar()
   }
   filterForm=new FormGroup({
@@ -36,21 +49,39 @@ export class ProductsComponent implements OnInit {
   lista:traerProducto[]=[]
 
   filtro: filter={
-    fk_id_department:0,
-    dou_price:0,
-    fk_id_product_category:0
+    fk_id_department:"",
+    dou_price:"",
+    fk_id_product_category:""
     }
+
+  listaDeseos: wishList = {
+    fk_id_user: "",
+    fk_id_product_category: ""
+  }
     
     
     filtrar(){
-     this.EquipoService.filtrar(this.filtro).subscribe(res=>{
+
+    this.listaDeseos.fk_id_product_category = this.filtro.fk_id_product_category;
+    //Aparecer y desaparecer el boton de suscribirse
+    if((this.filtro.fk_id_product_category) != ""){
+      this.enableSubscription = true
+    }else{
+      this.enableSubscription = false
+    }
+    this.subscribed = false
+    
+
+
+    //Ejecutar funcion 
+     this.equipoService.filtrar(this.filtro).subscribe(res=>{
         this.lista=<any>res
         this.router.navigate([`/navigationProducts`])
         console.log(this.lista)
     }, error =>{
       console.log(error)
     })
-    }
+  }
 
   
 
@@ -69,10 +100,37 @@ export class ProductsComponent implements OnInit {
   desde:number= 0;
   hasta:number=6;
 
+  enableSubscription:boolean = false
+  subscribed:boolean = false
+
+  departments:any[] = []
+
+  suscribirse(){
+
+    if(this.subscribed === false){ /// Si no esta suscrito
+      this.equipoService.addWishList(this.listaDeseos).subscribe(res=>{
+        console.log(this.listaDeseos)
+        var info:BookInfo = <any>res
+        console.log(info.msg)
+
+        this.subscribed = true
+      }, error =>{
+        console.log(error)
+      })
+
+    }else{
+    }
+    
+  }
 
   cambiarPagina(e:PageEvent){
     console.log(e)
     this.desde=e.pageIndex*e.pageSize;
     this.hasta=this.desde+e.pageSize;
   }
+}
+
+interface BookInfo {
+  status : string ;
+  msg: string;
 }

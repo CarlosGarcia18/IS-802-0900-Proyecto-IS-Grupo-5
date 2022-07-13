@@ -303,12 +303,13 @@ controller.productUser = (req,res) =>{
 /////////////////SUSCRIBIR USUARIO A CATEGORIA/////////////////////////
 
 controller.subscribeUser=(req, res)=>{
-    const{id_user,id_product_category}=req.body;
+    console.log(req.body)
+    const {fk_id_user,fk_id_product_category} = req.body;
 
-    let sql1=`SELECT * FROM user WHERE id_user = ${id_user}`
-    let sql2=`SELECT * FROM product_category WHERE id_product_category=${id_product_category}`
-    let sql3=`SELECT * FROM subscription WHERE fk_id_user=${id_user} AND fk_id_product_category=${id_product_category}`
-    let sql4=`INSERT INTO subscription (fk_id_user, fk_id_product_category) VALUES (${id_user}, ${id_product_category})`
+    let sql1=`SELECT * FROM user WHERE id_user = ${fk_id_user}`
+    let sql2=`SELECT * FROM product_category WHERE id_product_category=${fk_id_product_category}`
+    let sql3=`SELECT * FROM subscription WHERE fk_id_user=${fk_id_user} AND fk_id_product_category=${fk_id_product_category}`
+    let sql4=`INSERT INTO subscription (fk_id_user, fk_id_product_category) VALUES (${fk_id_user}, ${fk_id_product_category})`
 
     conection.query(sql1,(err,rows,fields)=>{ //consulta 1
         if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta

@@ -1,6 +1,4 @@
-<p>products works!</p>
 <!--Componente para mostrar los productos y los filtro de los mismos-->
-
 
 <div class="container1">
     <h1>¡Bienvenido!</h1>
@@ -13,27 +11,16 @@
             
             <!--(change)="filtrar()"-->
             
-            <select [(ngModel)]="filtro.fk_id_department"  class="selector" (change)="filtrar()" name="Departamento" formControlName="ubicacion" >
+            <select [(ngModel)]="filtro.fk_id_department"  class="selector" (change)="filtrar()"
+                name="Departamento" formControlName="ubicacion" >
+
                 <option value="">Ubicación</option>
+
+                <!-- Traer departamentos de la base de datos-->
+                <option *ngFor="let department of departments" [value]="department.id_department">
+                    {{department.var_name}}
+                </option>
                 
-                <option value="1">Atlántida</option>
-                <option value="2">Choluteca</option>
-                <option value="3">Colón</option>
-                <option value="4">Comayagua</option>
-                <option value="5">Copán</option>
-                <option value="6">Cortés</option>
-                <option value="7">El Paraíso</option>
-                <option value="8">Francisco Morazán</option>
-                <option value="9">Gracias a Dios</option>
-                <option value="10">Intibucá</option>
-                <option value="11">Islas de la Bahía</option>
-                <option value="12">La Paz</option>
-                <option value="13">Lempira</option>
-                <option value="14">Ocotepeque</option>
-                <option value="15">Olancho</option>
-                <option value="16">Santa Bárbara</option>
-                <option value="17">Valle</option>
-                <option value="18">Yoro</option>
             </select>
             
         
@@ -53,17 +40,19 @@
                 <option value="1">Hogar</option>
                 <option value="2">Futuros Padres</option>
                 <option value="3">Mascotas</option>
-                <option value="4">Inmuebles</option>
-               
+                <option value="4">Inmuebles</option>   
                 <option value="5">Vehiculos</option>
                 <option value="6">Moda</option>
                 <option value="7">Electronica</option>
                 <option value="8">Servicios</option>
                 <option value="9">Negocios</option>
-                
                 <option value="10">Empleo</option>
             </select>
-            <button class="btn-suscribe" type="submit">Suscribirme</button>  
+            
+            <div class="btn-suscribe-container" *ngIf="enableSubscription">
+                <button class="btn-suscribe" type="submit" (click)="suscribirse()" *ngIf="!subscribed">SUSCRIBIRME</button> 
+                <button class="btn-subscribed" type="submit" (click)="suscribirse()" *ngIf="subscribed">SUSCRITO</button> 
+            </div>   
             </form>
     </div> 
        

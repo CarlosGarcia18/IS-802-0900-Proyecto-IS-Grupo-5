@@ -72,8 +72,10 @@ routers.delete('/product/delete/:id',customerO.deleteProduct)
 
 //suscribir usuario
 routers.post('/subscribeCategory',customerU.subscribeUser)
+
 //desuscribir usuario
 routers.post('/unsubscribeCategory',customerU.Unsubscribe)
+
 //exportacion de rutas
 module.exports = routers
 //module.exports=app
