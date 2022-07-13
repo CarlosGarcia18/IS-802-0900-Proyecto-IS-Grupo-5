@@ -28,10 +28,10 @@ function enviarCorreoOut(destinatario, codigo,res){
     config.sendMail(opc, function(error, result,){
         if (error) {return res.json({status:'10'})} //error el enviar email
         else{return res.json({status:'200'})}    //correcto
-    })                                   /////////////////////////////////
+    })                                  
 }
 
-/////////////////////////////////////////////////////////////////
+/////////////////////// gmail - hotmail //////////////////////////////////////////
 
 function enviarCorreoGmail(destinatario, codigo,res){
     let config= nodemailer.createTransport({
@@ -299,6 +299,83 @@ controller.productUser = (req,res) =>{
             res.json(rows)//todo salio bien
             }
         })
+}
+/////////////////SUSCRIBIR USUARIO A CATEGORIA/////////////////////////
+
+controller.subscribeUser=(req, res)=>{
+    const{id_user,id_product_category}=req.body;
+
+    let sql1=`SELECT * FROM user WHERE id_user = ${id_user}`
+    let sql2=`SELECT * FROM product_category WHERE id_product_category=${id_product_category}`
+    let sql3=`SELECT * FROM subscription WHERE fk_id_user=${id_user} AND fk_id_product_category=${id_product_category}`
+    let sql4=`INSERT INTO subscription (fk_id_user, fk_id_product_category) VALUES (${id_user}, ${id_product_category})`
+
+    conection.query(sql1,(err,rows,fields)=>{ //consulta 1
+        if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
+        else{
+            if(rows.length!=0){//si encontro una fila con el id user dado
+                
+                conection.query(sql2,(err,rows,fields)=>{//consulta 2
+                    if(err) res.json({status: '0', error:err.sqlMessage})
+                    else{
+                        if(rows.length!=0){//categoria existe en tabla
+                            
+                            conection.query(sql3,(err, rows, fields)=>{ //consulta 3
+                                if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                else{
+                                    if(rows.length==0){//no existe una suscripcion previa
+                                        conection.query(sql4,(err,rows,fields)=>{ 
+                                            if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                            else{res.json({status:'200', msg:"Suscripcion exitosa"})}
+                                        })
+                                    }else{res.json({status:'203', msg:"Ya existe una suscripcion"})}   
+                                }
+                            })
+                        }else{res.json({status:'202', msg:"No existe la categoria o es incorrecta"})}
+                    }
+                })
+                
+            }else{res.json({status:'201', msg:"Usuario no existe o es incorrecto"})}
+        }
+    })
+}
+////////////////////////////DAR DE BAJA SUSCRIPCION//////////////////////////////////////////
+controller.Unsubscribe=(req,res)=>{
+    const{id_user,id_product_category}=req.body;
+
+    let sql1=`SELECT * from USER WHERE id_user = ${id_user}`
+    let sql2=`SELECT * FROM product_category WHERE id_product_category=${id_product_category}`
+    let sql3=`SELECT * FROM subscription WHERE fk_id_user=${id_user} AND fk_id_product_category=${id_product_category}`
+    let sql4=`DELETE FROM subscription WHERE fk_id_user= ${id_user} and fk_id_product_category= ${id_product_category}`
+
+    conection.query(sql1,(err,rows,fields)=>{ //consulta 1
+        if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
+        else{
+            if(rows.length!=0){//si encontro una fila con el id user dado
+                
+                conection.query(sql2,(err,rows,fields)=>{//consulta 2
+                    if(err) res.json({status: '0', error:err.sqlMessage})
+                    else{
+                        if(rows.length!=0){//categoria existe en tabla
+                            
+                            conection.query(sql3,(err, rows, fields)=>{ //consulta 3
+                                if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                else{
+                                    if(rows.length!=0){//existe ;a suscripcion
+                                        conection.query(sql4,(err,rows,fields)=>{ 
+                                            if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                            else{res.json({status:'200', msg:"Baja exitosa"})}
+                                        })
+                                    }else{res.json({status:'203', msg:"No existe una suscripcion"})}   
+                                }
+                            })
+                        }else{res.json({status:'202', msg:"No existe la categoria o es incorrecta"})}
+                    }
+                })
+                
+            }else{res.json({status:'201', msg:"Usuario no existe o es incorrecto"})}
+        }
+    })
 }
 
 /*{
