@@ -3,6 +3,7 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs= require('fs')
 const path = require('path')
 const nodemailer=require('nodemailer')
+const { parseConnectionUrl } = require('nodemailer/lib/shared')
 
 //////////////////////////outlook
 function enviarCorreoOut(destinatario, codigo,res){
@@ -340,11 +341,12 @@ controller.subscribeUser=(req, res)=>{
         }
     })
 }
-////////////////////////////DAR DE BAJA SUSCRIPCION//////////////////////////////////////////
+//////////////////////////// DAR DE BAJA SUSCRIPCION //////////////////////////////////////////
+
 controller.Unsubscribe=(req,res)=>{
     const{id_user,id_product_category}=req.body;
 
-    let sql1=`SELECT * from USER WHERE id_user = ${id_user}`
+    let sql1=`SELECT * FROM USER WHERE id_user = ${id_user}`
     let sql2=`SELECT * FROM product_category WHERE id_product_category=${id_product_category}`
     let sql3=`SELECT * FROM subscription WHERE fk_id_user=${id_user} AND fk_id_product_category=${id_product_category}`
     let sql4=`DELETE FROM subscription WHERE fk_id_user= ${id_user} and fk_id_product_category= ${id_product_category}`
@@ -379,6 +381,143 @@ controller.Unsubscribe=(req,res)=>{
     })
 }
 
+///////////////////// LISTAR SUSCRIPCIONES ///////////////////////////
+controller.getSubscriptions=(req,res)=>{
+    const{id_user}=req.body
+
+    sql1= `SELECT * FROM user WHERE id_user=${id_user}`
+    sql2=`SELECT product_category.var_name, product_category.id_product_category FROM product_category
+        INNER JOIN subscription ON product_category.id_product_category=subscription.fk_id_product_category
+        WHERE subscription.fk_id_user=${id_user}`
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) res.json({status: '0', error:err.sqlMessage})
+        else{
+            if(rows.length!=0){ //encontro al usuario
+                conection.query(sql2,(err,rows,fields)=>{
+                    if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                    else{
+                        if(rows.length!=0){
+                            res.json({status:'200', msg:rows})
+                        }
+                        else{res.json({status:'202', msg:"No existen suscripciones"})}
+                    }
+                })
+            }else{res.json({status:'201', msg:"Usuario no existe o es incorrecto"})}
+        }
+    })
+            
+}
+
+//////////////////////LISTAR PRODUCTOS FAVORITOS/////////////////////////////////
+controller.getWishlist=(req,res)=>{
+    const{id_user}=req.body
+
+    sql1= `SELECT * FROM user WHERE id_user=${id_user}`
+    
+    sql3=`SELECT product.var_name, product.text_description, product.dou_price FROM product
+        INNER JOIN wish_list ON product.id_product= wish_list.fk_id_product
+        WHERE wish_list.fk_id_user=${id_user}`
+
+        conection.query(sql1,(err,rows,fields)=>{
+            if(err) res.json({status: '0', error:err.sqlMessage})
+            else{
+                if(rows.length!=0){ //encontro al usuario
+                    conection.query(sql3,(err,rows,fields)=>{
+                        if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                        else{
+                            if(rows.length!=0){
+                                res.json({status:'200', msg:rows})
+                            }
+                            else{res.json({status:'202', msg:"No hay productos en la lista de deseos"})}
+                        }
+                    })
+                }else{res.json({status:'201', msg:"Usuario no existe o es incorrecto"})}
+            }
+        })     
+}
+
+
+//////////////////////////// DAR DE BAJA FAVORITO //////////////////////////////////////////
+
+controller.deleteFavorite=(req,res)=>{
+    const{id_user,id_product}=req.body;
+
+    let sql1=`SELECT * FROM USER WHERE id_user = ${id_user}`
+    let sql2=`SELECT * FROM product WHERE id_product=${id_product}`
+    let sql3=`SELECT * FROM wish_list WHERE fk_id_user=${id_user} AND fk_id_product=${id_product}`
+    
+    let sql4=`DELETE FROM wish_list WHERE fk_id_user= ${id_user} AND fk_id_product= ${id_product_category}`
+
+    conection.query(sql1,(err,rows,fields)=>{ //consulta 1
+        if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
+        else{
+            if(rows.length!=0){//si encontro una fila con el id user dado
+                
+                conection.query(sql2,(err,rows,fields)=>{//consulta 2
+                    if(err) res.json({status: '0', error:err.sqlMessage})
+                    else{
+                        if(rows.length!=0){//producto existe en tabla
+                            
+                            conection.query(sql3,(err, rows, fields)=>{ //consulta 3
+                                if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                else{
+                                    if(rows.length!=0){//producto existe en la tabla favoritos
+                                        conection.query(sql4,(err,rows,fields)=>{ 
+                                            if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                            else{res.json({status:'200', msg:"Baja exitosa"})}
+                                        })
+                                    }else{res.json({status:'203', msg:"No existe el producto en lista fav"})}   
+                                }
+                            })
+                        }else{res.json({status:'202', msg:"No existe la el producto o es incorrecto"})}
+                    }
+                })
+                
+            }else{res.json({status:'201', msg:"Usuario no existe o es incorrecto"})}
+        }
+    })
+}
+
+/////////////////AGREGAR PRODUCTO A FAVORITOS/////////////////////////
+
+controller.addFavorite=(req, res)=>{
+    const{id_user,id_product}=req.body;
+
+    let sql1=`SELECT * FROM user WHERE id_user = ${id_user}`
+    let sql2=`SELECT * FROM product WHERE id_product=${id_product}`
+    let sql3=`SELECT * FROM wish_list WHERE fk_id_user=${id_user} AND fk_id_product=${id_product}`
+    let sql4=`INSERT INTO wish_list (fk_id_user, fk_id_product) VALUES (${id_user}, ${id_product})`
+
+    conection.query(sql1,(err,rows,fields)=>{ //consulta 1
+        if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
+        else{
+            if(rows.length!=0){//si encontro una fila con el id user dado
+                
+                conection.query(sql2,(err,rows,fields)=>{//consulta 2
+                    if(err) res.json({status: '0', error:err.sqlMessage})
+                    else{
+                        if(rows.length!=0){//producto existe en tabla
+                            
+                            conection.query(sql3,(err, rows, fields)=>{ //consulta 3
+                                if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                else{
+                                    if(rows.length==0){//no existe una suscripcion previa
+                                        conection.query(sql4,(err,rows,fields)=>{ 
+                                            if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
+                                            else{res.json({status:'200', msg:"Se ha anadido a favoritos"})}
+                                        })
+                                    }else{res.json({status:'203', msg:"Ya ha sido agregado"})}   
+                                }
+                            })
+                        }else{res.json({status:'202', msg:"No existe el producto"})}
+                    }
+                })
+                
+            }else{res.json({status:'201', msg:"Usuario no existe o es incorrecto"})}
+        }
+    })
+}
 /*{
     "id_user":"3",
     "fk_id_department":1,
