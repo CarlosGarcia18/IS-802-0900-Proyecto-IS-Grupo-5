@@ -20,8 +20,13 @@
  }
 
 /*BTN SUSCRIBIRSE*/
-.btn-suscribe{
+.btn-suscribe-container{
     width: 20%;
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.btn-suscribe{
     letter-spacing: 1px;
     font-size: 14px;
     color: white;
@@ -30,8 +35,17 @@
     background-color: #FAA11D;
     cursor: pointer;
     height: 32px;
-    margin-top: 15px;
-    margin-left: 10px;
+}
+
+.btn-subscribed{
+    letter-spacing: 1px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    background-color: #222f3e;
+    cursor: pointer;
+    height: 32px;
 }
 
 

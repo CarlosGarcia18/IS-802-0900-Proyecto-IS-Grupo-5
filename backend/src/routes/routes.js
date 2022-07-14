@@ -70,6 +70,11 @@ routers.post('/product/postImage/:id', fileUpload, customerO.postImage)
 //Eliminar un producto dado un id // Elimina todas las imagenes del producto
 routers.delete('/product/delete/:id',customerO.deleteProduct)
 
+//suscribir usuario
+routers.post('/subscribeCategory',customerU.subscribeUser)
+
+//desuscribir usuario
+routers.post('/unsubscribeCategory',customerU.Unsubscribe)
 
 //exportacion de rutas
 module.exports = routers

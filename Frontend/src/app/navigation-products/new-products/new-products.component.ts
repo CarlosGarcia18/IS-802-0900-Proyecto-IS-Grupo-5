@@ -65,7 +65,7 @@ get ubicacionControl():FormControl{
 
   capturarFile(event:any): any{
     Array.from(event.target.files).forEach((element:any) => {
-      //this.loadFile(element);
+      this.loadFile(element);
       this.archivos.push(element)
       
     });
