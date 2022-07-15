@@ -26,6 +26,10 @@ export class EquipoService {
     return this.http.get<newProducto[]>(this.url)
   }
 
+  traeProd(id: string|null){
+    return this.http.get(this.url+"/productUser/"+id)
+  }
+
   addCodigo(codigo:codigo)/*: observable<any> */{
     return this.http.post(this.url+"/credential/confirm",codigo)
   }
@@ -141,4 +145,7 @@ export interface wishList{
   fk_id_product_category: string
 }
 
+export interface user{
+  fk_id_user: string|null 
+}
 

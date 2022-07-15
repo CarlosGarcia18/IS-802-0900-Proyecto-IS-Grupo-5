@@ -13,23 +13,23 @@
 <div  class="carousel-container" >
   <div  class="gallery" >
       
-      <div class="content" *ngFor="let item of items | slice:desde:hasta" >
-          <img src=''>
+      <div class="content" *ngFor="let item of productoList | slice:desde:hasta" >
+          <img [src]="'http://localhost:3000/' + item.var_name_photo">
           <table>
               <tr>
-                  <td><h3>{{item.nombre}}</h3></td>
+                  <td><h3>{{item.var_name}}</h3></td>
                   <td class="icon-col"><i id="fav-icon" class="fa-solid fa-trash-can"></i></td>
               </tr>
           </table>    
-          <h6>{{item.precio}}</h6>
-          <p class="h5-descrip">{{item.descr}}</p>
+          <h6>{{item.dou_price}}</h6>
+          <p class="h5-descrip">{{item.text_description}}</p>
           <button class="buy">Editar</button>
       </div>
 
   </div>
   
 </div>
-<mat-paginator [length]="items.length"
+<mat-paginator [length]="productoList.length"
             [pageSize]="pageSize"
             (page)="cambiarPagina($event)"
             >
