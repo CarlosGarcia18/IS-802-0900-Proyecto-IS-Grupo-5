@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, filter, traerProducto, subscribe, subscription,} from '../../SERVICES/equipo.service';
+import { EquipoService, filter, traerProducto, subscribe, requestSubscriptions, subscription} from '../../SERVICES/equipo.service';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
@@ -20,6 +20,13 @@ export class ProductsComponent implements OnInit {
       // Traer los departamentos
       this.equipoService.getDepartments().subscribe(res=>{
         this.departments = <any>res
+      }, error =>{
+        console.log(error) 
+      })
+
+      // Traer todas las categorias
+      this.equipoService.getProductCategories().subscribe(res=>{
+        this.categories = <any>res
       }, error =>{
         console.log(error) 
       })
@@ -60,13 +67,19 @@ export class ProductsComponent implements OnInit {
     fk_id_user: "",
     fk_id_product_category: ""
   }
+
+  eliminarSuscripcion: subscribe = {
+    fk_id_user: "",
+    fk_id_product_category: ""
+  }
     
   // Traer lista de suscripciones del usuario
   private updateSubscriptionList(){
     if(this.nuevaSuscripcion.fk_id_user != null){
          
       this.equipoService.getSubscriptions("" + this.nuevaSuscripcion.fk_id_user).subscribe(res=>{
-        this.UserSubscription = <any>res
+        var request:requestSubscriptions = <any>res
+        this.UserSubscription = request.msg
 
         for(var index in this.UserSubscription){
           this.UserSubscriptionID.push(this.UserSubscription[index].id_product_category)
@@ -128,6 +141,7 @@ export class ProductsComponent implements OnInit {
   subscribed:boolean = false
 
   departments:any[] = []
+  categories:any[] = []
   UserSubscription:subscription[] = []
   UserSubscriptionID:number[] = []
 
@@ -145,7 +159,16 @@ export class ProductsComponent implements OnInit {
         console.log(error)
       })
 
-    }else{
+    }else{ /// Si esta suscrito, anular suscripción
+      this.equipoService.deleteSubscription(this.nuevaSuscripcion).subscribe(res=>{
+        var info:BookInfo = <any>res
+        console.log(info.msg)
+
+        this.subscribed = false
+        this.updateSubscriptionList()
+      }, error =>{
+        console.log(error)
+      })
     }
     
   }

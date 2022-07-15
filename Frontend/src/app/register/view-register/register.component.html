@@ -120,26 +120,18 @@
                                 <td class="tbl-col-nombre">Selecciona tu ubicación</td>
                                 <td class="tbl-col-depto">
                                     <select [(ngModel)]="registro.fk_id_department" class="selector" name="Departamento" formControlName="ubicacion">
-                                        
-                                        <option value="1">Atlantida</option>
-                                        <option value="2">Choluteca</option>
-                                        <option value="3">Colon</option>
-                                        <option value="4">Comayagua</option>
-                                        <option value="5">Copan</option>
-                                        <option value="6">Cortes</option>
-                                        <option value="7">El Paraiso</option>
-                                        <option value="8">Francisco Morazán</option>
-                                        <option value="9">Gracias a Dios</option>
-                                        <option value="10">Intibuca</option>
-                                        <option value="11">Islas de la Bahia</option>
-                                        <option value="12">La Paz</option>
-                                        <option value="13">Lempira</option>
-                                        <option value="14">Ocotepeque</option>
-                                        <option value="15">Olancho</option>
-                                        <option value="16">Santa Barbara</option>
-                                        <option value="17">Valle</option>
-                                        <option value="18">Yoro</option>
+
+                                        <!-- Traer departamentos de la base de datos-->
+                                        <option *ngFor="let department of departments" [value]="department.id_department">
+                                            {{department.var_name}}
+                                        </option>
+
                                     </select>
+
+                                    <div class="errors-container" *ngIf="validateDepartments" align="center">
+                                        <p class="errors-msg" *ngIf="validateDepartments">Debe seleccionar un departamento</p>
+                                    </div>
+
                                 </td>
                             </tr>
                         </thead>
@@ -159,9 +151,9 @@
                 </div>
             </div>
 
-            <button (click)="agregar()" type="submit" [disabled]="loginForm.invalid" class="btn" >Registrarme</button>
+            <button (click)="agregar()" type="submit" [disabled]="loginForm.invalid" class="btn">Registrarme</button>
             <div class="errors-container" *ngIf="error">
-                <p class="errors-msg" >Ocurrio un error, intentelo de nuevo</p>
+                <p class="errors-msg" *ngIf="error">Ocurrio un error, intentelo de nuevo</p>
             </div>
         </form>
     </div>
