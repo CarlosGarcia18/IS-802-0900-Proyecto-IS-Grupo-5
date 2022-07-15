@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, filter, traerProducto, wishList} from '../../SERVICES/equipo.service';
+import { EquipoService, filter, traerProducto, subscribe, subscription,} from '../../SERVICES/equipo.service';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
@@ -25,7 +25,9 @@ export class ProductsComponent implements OnInit {
       })
 
       // Suscripción
-      this.listaDeseos.fk_id_user = localStorage.getItem('token');
+      this.nuevaSuscripcion.fk_id_user = localStorage.getItem('token');
+
+      this.updateSubscriptionList()
 
       // Filtro
       this.filtrar()
@@ -54,24 +56,46 @@ export class ProductsComponent implements OnInit {
     fk_id_product_category:""
     }
 
-  listaDeseos: wishList = {
+  nuevaSuscripcion: subscribe = {
     fk_id_user: "",
     fk_id_product_category: ""
   }
     
-    
-    filtrar(){
+  // Traer lista de suscripciones del usuario
+  private updateSubscriptionList(){
+    if(this.nuevaSuscripcion.fk_id_user != null){
+         
+      this.equipoService.getSubscriptions("" + this.nuevaSuscripcion.fk_id_user).subscribe(res=>{
+        this.UserSubscription = <any>res
 
-    this.listaDeseos.fk_id_product_category = this.filtro.fk_id_product_category;
+        for(var index in this.UserSubscription){
+          this.UserSubscriptionID.push(this.UserSubscription[index].id_product_category)
+        }
+
+      }, error =>{
+        console.log(error) 
+      })
+
+    } 
+
+  }
+    
+  filtrar(){
+
+    this.nuevaSuscripcion.fk_id_product_category = this.filtro.fk_id_product_category;
     //Aparecer y desaparecer el boton de suscribirse
-    if((this.filtro.fk_id_product_category) != ""){
+    if((this.filtro.fk_id_product_category) != "" && this.nuevaSuscripcion.fk_id_user != "" && this.nuevaSuscripcion.fk_id_user != null){
       this.enableSubscription = true
+
+      if(this.UserSubscriptionID.includes(+this.filtro.fk_id_product_category)){
+        this.subscribed = true
+      }else{
+        this.subscribed = false
+      }
+
     }else{
       this.enableSubscription = false
     }
-    this.subscribed = false
-    
-
 
     //Ejecutar funcion 
      this.equipoService.filtrar(this.filtro).subscribe(res=>{
@@ -104,16 +128,19 @@ export class ProductsComponent implements OnInit {
   subscribed:boolean = false
 
   departments:any[] = []
+  UserSubscription:subscription[] = []
+  UserSubscriptionID:number[] = []
 
   suscribirse(){
 
     if(this.subscribed === false){ /// Si no esta suscrito
-      this.equipoService.addWishList(this.listaDeseos).subscribe(res=>{
-        console.log(this.listaDeseos)
+      this.equipoService.addsubscription(this.nuevaSuscripcion).subscribe(res=>{
+        console.log(this.nuevaSuscripcion)
         var info:BookInfo = <any>res
         console.log(info.msg)
 
         this.subscribed = true
+        this.updateSubscriptionList()
       }, error =>{
         console.log(error)
       })
