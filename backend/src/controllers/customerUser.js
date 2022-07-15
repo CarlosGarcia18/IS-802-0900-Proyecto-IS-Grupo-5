@@ -415,8 +415,10 @@ controller.getWishlist=(req,res)=>{
 
     sql1= `SELECT * FROM user WHERE id_user=${id_user}`
     
-    sql3=`SELECT product.var_name, product.text_description, product.dou_price FROM product
-        INNER JOIN wish_list ON product.id_product= wish_list.fk_id_product
+    
+    sql3=`SELECT pr.var_name, pr.text_description, pr.dou_price, ph.id_photographs,ph.var_name  FROM product pr
+        INNER JOIN wish_list ON pr.id_product= wish_list.fk_id_product 
+        INNER JOIN photographs ph ON  pr.id_product=ph.fk_id_product
         WHERE wish_list.fk_id_user=${id_user}`
 
         conection.query(sql1,(err,rows,fields)=>{
