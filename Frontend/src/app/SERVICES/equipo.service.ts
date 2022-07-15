@@ -22,6 +22,10 @@ export class EquipoService {
 
   }
 
+  getProductCategories(){
+    return this.http.get(this.url+"/productCategory")
+  }
+
   getProductos(){
     return this.http.get<newProducto[]>(this.url)
   }
@@ -72,6 +76,10 @@ export class EquipoService {
 
   getSubscriptions(id_user:string){
     return this.http.get(this.url+"/getSubscriptions/" + id_user)
+  }
+
+  deleteSubscription(eliminarSuscripcion:subscribe){
+    return this.http.post(this.url+"/unsubscribeCategory", eliminarSuscripcion)
   }
 
 }
@@ -147,6 +155,12 @@ export interface uploadPhoto{
 export interface subscribe{
   fk_id_user: string | null
   fk_id_product_category: string
+}
+
+export interface requestSubscriptions{
+  status: string
+  msg: subscription[]
+
 }
 
 export interface subscription{

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, filter, traerProducto, subscribe, subscription,} from '../../SERVICES/equipo.service';
+import { EquipoService, filter, traerProducto, subscribe, requestSubscriptions, subscription} from '../../SERVICES/equipo.service';
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-products',
@@ -20,6 +20,13 @@ export class ProductsComponent implements OnInit {
       // Traer los departamentos
       this.equipoService.getDepartments().subscribe(res=>{
         this.departments = <any>res
+      }, error =>{
+        console.log(error) 
+      })
+
+      // Traer todas las categorias
+      this.equipoService.getProductCategories().subscribe(res=>{
+        this.categories = <any>res
       }, error =>{
         console.log(error) 
       })
@@ -60,14 +67,21 @@ export class ProductsComponent implements OnInit {
     fk_id_user: "",
     fk_id_product_category: ""
   }
+
+  eliminarSuscripcion: subscribe = {
+    fk_id_user: "",
+    fk_id_product_category: ""
+  }
     
   // Traer lista de suscripciones del usuario
   private updateSubscriptionList(){
     if(this.nuevaSuscripcion.fk_id_user != null){
          
       this.equipoService.getSubscriptions("" + this.nuevaSuscripcion.fk_id_user).subscribe(res=>{
-        this.UserSubscription = <any>res
+        var request:requestSubscriptions = <any>res
+        this.UserSubscription = request.msg
 
+        this.UserSubscriptionID = []
         for(var index in this.UserSubscription){
           this.UserSubscriptionID.push(this.UserSubscription[index].id_product_category)
         }
@@ -128,6 +142,7 @@ export class ProductsComponent implements OnInit {
   subscribed:boolean = false
 
   departments:any[] = []
+  categories:any[] = []
   UserSubscription:subscription[] = []
   UserSubscriptionID:number[] = []
 
@@ -135,8 +150,17 @@ export class ProductsComponent implements OnInit {
 
     if(this.subscribed === false){ /// Si no esta suscrito
       this.equipoService.addsubscription(this.nuevaSuscripcion).subscribe(res=>{
-        console.log(this.nuevaSuscripcion)
         var info:BookInfo = <any>res
+
+        /// Alerta
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: info.msg,
+          showConfirmButton: false,
+          timer: 1500
+        })
+
         console.log(info.msg)
 
         this.subscribed = true
@@ -145,7 +169,42 @@ export class ProductsComponent implements OnInit {
         console.log(error)
       })
 
-    }else{
+    }else{ /// Si esta suscrito, anular suscripción
+
+      /// Alerta cancelar sub
+      Swal.fire({
+        title: '¿Anular la suscripción de ' + this.UserSubscription[this.UserSubscriptionID.indexOf(+this.nuevaSuscripcion.fk_id_product_category)].var_name + '?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+        cancelButtonText: 'No',
+        confirmButtonText: 'Anular'
+      }).then((result) => {
+        if (result.isConfirmed) {
+
+          /// Llama a la funcion de borrar suscripción
+          this.equipoService.deleteSubscription(this.nuevaSuscripcion).subscribe(res=>{
+            var info:BookInfo = <any>res
+            console.log(info.msg)
+    
+            this.subscribed = false
+            this.updateSubscriptionList()
+          }, error =>{
+            console.log(error)
+          })
+
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: "Suscripción anulada",
+            showConfirmButton: false,
+            timer: 1500
+          })
+        }
+      })
+
+
     }
     
   }
