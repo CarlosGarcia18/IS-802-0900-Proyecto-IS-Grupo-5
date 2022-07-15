@@ -220,12 +220,24 @@ body{
     }
     }
     /*icono de favoritos*/
-#fav-icon{
+.fav-icon{
     padding-left: 100px;
     padding-top: 15px;
     color: lightcoral;
+    cursor: pointer;
     
 }
-#fav-icon:hover{
+.fav-icon:hover{
    color: red;
+}
+
+.fav-icon-select{
+    padding-left: 100px;
+    padding-top: 15px;
+    color: red;
+    cursor: pointer;
+    
+}
+.fav-icon-select:hover{
+    color: lightcoral;
 }

@@ -64,7 +64,7 @@
             <table>
                 <tr>
                     <td><h3>{{item.var_name}}</h3></td>
-                    <td class="icon-col"><i id="fav-icon" class="fa-solid fa-heart"></i></td>
+                    <td class="icon-col"><i (click)="item.whishlist=='true'?deleteWihlist(item.id_product,item):addWihlist(item.id_product,item)" [ngClass]="item.whishlist=='true' ? 'fa-solid fa-heart fav-icon-select' :'fav-icon fa-solid fa-heart'"></i></td>
                 </tr>
             </table>    
             <h6>L.{{item.dou_price}}</h6>

@@ -78,6 +78,18 @@ export class EquipoService {
     return this.http.get(this.url+"/getSubscriptions/" + id_user)
   }
 
+  listWishlist(id:string|null){
+    return this.http.get(this.url+"/getFavs/"+id)
+  }
+
+  deleteWishlist(data:deleteWishlist){
+    return this.http.post(this.url+"/deleteFav",data)
+  }
+
+  addWishlist(data:deleteWishlist){
+    return this.http.post(this.url+"/addFav",data)
+  }
+  
   deleteSubscription(eliminarSuscripcion:subscribe){
     return this.http.post(this.url+"/unsubscribeCategory", eliminarSuscripcion)
   }
@@ -87,18 +99,30 @@ export class EquipoService {
 export interface filter{
   fk_id_department: string,
   dou_price:string,
-  fk_id_product_category:string
+  fk_id_product_category:string,
+  id_user:string|null
 }
 
 export interface traerProducto{
   id_photographs : number,
+  id_product:string,
   var_name_photo: string,
   fk_id_user: number,
   fk_id_department: number,
   var_name: string,
   text_description: string,
   dou_price: number,
-  publication_date: string
+  publication_date: string,
+  whishlist:string
+}
+
+export interface wishListProducts{
+  id_photographs : number,
+  id_product: number,
+  var_name_photo: string,
+  var_name: string,
+  text_description: string,
+  dou_price: number
 }
 
 export interface Registro{
@@ -171,5 +195,10 @@ export interface subscription{
 
 export interface user{
   fk_id_user: string|null 
+}
+
+export interface deleteWishlist{
+  id_user:string|null
+  id_product:string
 }
 

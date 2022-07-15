@@ -54,9 +54,11 @@ controller.postProduct = (req,res) =>{
 }
 
 controller.productFiltering = (req,res) =>{
-    const{fk_id_department,fk_id_product_category,dou_price}=req.body
-    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
-        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product where `
+    const{fk_id_department,fk_id_product_category,dou_price,id_user}=req.body
+    let sql1 = `SELECT product.id_product,if(wl.fk_id_user is NULL,"false","true") as whishlist,photographs.id_photographs,`
+        +`photographs.var_name AS var_name_photo,product.fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
+        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product `
+        +`LEFT OUTER JOIN  wish_list wl ON wl.fk_id_product=product.id_product AND wl.fk_id_user=${id_user}  where `
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `

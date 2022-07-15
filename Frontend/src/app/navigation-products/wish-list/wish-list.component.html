@@ -1,1 +1,35 @@
-<p>wish-list works!</p>
+<div class="title-wishlist">
+    <h1 class="title-wishlist-text">Lista de Deseos</h1>
+</div>
+
+<h2 *ngIf="error" class="text-emphy-product">{{afterGet.msg}}</h2>
+
+<div *ngIf="!(error)" class="carousel-container" >
+    <div  class="gallery" >
+        
+        <div class="content" *ngFor="let item of afterGet.msg | slice:desde:hasta" >
+            <img [src] = "'http://localhost:3000/' + item.var_name_photo" alt="">
+            <div class="content-inf">
+                <div class="content-inf-text">
+                    <h4>{{item.var_name}}</h4>
+                </div>
+                <div style="width:20px">
+                    <i (click)="removeProduct(item.id_product.toString())" class="fa-solid fa-heart icon-product"></i>
+                </div>
+            </div>
+            <h6>L.{{item.dou_price}}</h6> 
+            <h6 *ngIf="">{{afterDelete.msg}}</h6>           
+            <button class="buy">Ver</button>
+        </div>
+
+    </div>
+    
+</div>
+
+<h3 *ngIf="errorDelete" class="text-emphy-product">{{afterDelete.msg}}</h3>
+
+<mat-paginator *ngIf="!(error)" [length]="afterGet.msg.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>
