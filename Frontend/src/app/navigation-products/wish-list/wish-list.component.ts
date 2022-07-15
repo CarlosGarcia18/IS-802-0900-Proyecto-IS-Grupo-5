@@ -40,11 +40,13 @@ error = false
     this.equipoService.listWishlist(localStorage.getItem("token")).subscribe(
       res=>{
         this.afterGet = <any>res
+        console.log(this.afterGet);
+        
         if (this.afterGet.status == "202") {
           this.empty = true
         }else if (this.afterGet.status == "201") {
           this.WrongUser = true
-        }else{
+        }else if (this.afterGet.status != "200"){
           this.error = true
         }
       },

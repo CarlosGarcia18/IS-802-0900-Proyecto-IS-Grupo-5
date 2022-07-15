@@ -419,7 +419,7 @@ controller.getWishlist=(req,res)=>{
     sql3=`SELECT pr.id_product,pr.var_name, pr.text_description, pr.dou_price, ph.id_photographs,ph.var_name as var_name_photo FROM product pr
         INNER JOIN wish_list ON pr.id_product= wish_list.fk_id_product 
         INNER JOIN photographs ph ON  pr.id_product=ph.fk_id_product
-        WHERE wish_list.fk_id_user=${id_user} group by pr.id_product ORDER BY pr.publication_date DESC`
+        WHERE wish_list.fk_id_user=${id_user} AND bit_availability = 1 group by pr.id_product ORDER BY pr.publication_date DESC`
 
         conection.query(sql1,(err,rows,fields)=>{
             if(err) res.json({status: '0', error:err.sqlMessage})
