@@ -180,9 +180,9 @@ CREATE TABLE SUBSCRIPTION(
 
 ) COMMENT "SUBSCRIPCIONES A LAS CATEGORIAS";
 
--- Crear una llave primaria compuesta con dos llaves foraneas de la tabla WISH_LIST
+-- Crear una llave primaria compuesta con dos llaves foraneas de la tabla SUBSCRIPTION
 ALTER TABLE SUBSCRIPTION
-	ADD CONSTRAINT pk_wish_list PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product_category);
+	ADD CONSTRAINT pk_subscription PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product_category);
 
 
 

@@ -9,7 +9,7 @@ import { Router} from '@angular/router';
 })
 export class NavigationProductsComponent implements OnInit {
 
-  constructor(private EquipoSetvice:EquipoService,private router: Router) {
+  constructor(private EquipoService:EquipoService,private router: Router) {
     this.name = <any>null
   }
 
@@ -18,8 +18,8 @@ export class NavigationProductsComponent implements OnInit {
   ruta:string = "home/termsAndConditions"//ruta para terminos y condicions
   ngOnInit(): void {
     //si se quiere que una consulta se ejecute al iniciar la pagina, colocar el suscribe aqui
-    if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){//veriicamos que existe un token en localstorage
-      this.EquipoSetvice.getUser(localStorage.getItem('token')!).subscribe(
+    if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){//vericamos que existe un token en localstorage
+      this.EquipoService.getUser(localStorage.getItem('token')!).subscribe(
         res=>{
           this.name = <any>res;
         },

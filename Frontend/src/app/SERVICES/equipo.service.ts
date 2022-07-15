@@ -26,6 +26,10 @@ export class EquipoService {
     return this.http.get<newProducto[]>(this.url)
   }
 
+  traeProd(id: string|null){
+    return this.http.get(this.url+"/productUser/"+id)
+  }
+
   addCodigo(codigo:codigo)/*: observable<any> */{
     return this.http.post(this.url+"/credential/confirm",codigo)
   }
@@ -59,15 +63,19 @@ export class EquipoService {
   }
 
   filtrar(filtro:filter){
-    
     return this.http.post(this.url+"/productFiltering", filtro)
   }
+
+  addWishList(listaDeseos:wishList){
+    return this.http.post(this.url+"/subscribeCategory", listaDeseos)
+  }
+
 }
 
 export interface filter{
-  fk_id_department: number,
-  dou_price:number,
-  fk_id_product_category:number
+  fk_id_department: string,
+  dou_price:string,
+  fk_id_product_category:string
 }
 
 export interface traerProducto{
@@ -132,4 +140,12 @@ export interface uploadPhoto{
   fk_id_product: string
 }
 
+export interface wishList{
+  fk_id_user: string | null
+  fk_id_product_category: string
+}
+
+export interface user{
+  fk_id_user: string|null 
+}
 

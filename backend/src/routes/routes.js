@@ -70,6 +70,25 @@ routers.post('/product/postImage/:id', fileUpload, customerO.postImage)
 //Eliminar un producto dado un id // Elimina todas las imagenes del producto
 routers.delete('/product/delete/:id',customerO.deleteProduct)
 
+//suscribir usuario
+routers.post('/subscribeCategory',customerU.subscribeUser)
+
+
+//desuscribir usuario
+routers.post('/unsubscribeCategory',customerU.Unsubscribe)
+
+
+//dar de baja suscripcion de usuario
+routers.post('/unsubscribeCategory',customerU.Unsubscribe)
+//listar suscripciones
+routers.post('/getSubscriptions', customerU.getSubscriptions)
+
+//dar de baja favorito
+routers.post('/deleteFav',customerU.deleteFavorite)
+//listar favoritos
+routers.post('/getFavs', customerU.getWishlist)
+//agregar a favoritos
+routers.post('/addFav', customerU.addFavorite)
 
 //exportacion de rutas
 module.exports = routers

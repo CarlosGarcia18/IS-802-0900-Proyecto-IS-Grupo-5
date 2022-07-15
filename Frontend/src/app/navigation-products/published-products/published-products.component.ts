@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, newProducto } from 'src/app/SERVICES/equipo.service';
+import { EquipoService, newProducto, traerProducto, user } from 'src/app/SERVICES/equipo.service';
 import { NewProductsComponent } from '../new-products/new-products.component';
 import { ProductsComponent } from '../products/products.component';
 import { PageEvent } from '@angular/material/paginator';
@@ -11,31 +11,47 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class PublishedProductsComponent implements OnInit {
   //newProducto[] se importa la clase
-  productoList:newProducto[]=[];
-
+  
+  productoList:traerProducto[]=[];
+  
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
-    this.getProducList
+    //this.usuario.fk_id_user=localStorage.getItem('token')
+    
+    this.getProducList()
   }
 
   getProducList(){
+  this.equipoService.traeProd(localStorage.getItem('token')).subscribe(res=>{
+    this.productoList=<any>res
+    console.log(this.productoList)
+  }, error =>{
+    console.log(error)
+})
+  }
+  /*getProducList(){
     this.equipoService.getProductos().subscribe({ /*Otra forma de hacerlo  data=>{
       console.log(data)
       this.productoList=data;
     }
       
        */
+      /*
       next: (data:newProducto[]) =>{
        this.productoList=data;
+       console.log(data)
       },
       /*EN caso de algun error */
-      error:(err:any)=>{
+      /*error:(err:any)=>{
         console.log('Error mostrado')
       }
+      
     })
+  }*/
+  usuario: user = {
+    fk_id_user: ''
   }
-
 
 
   eliminarProducto(id: any){
