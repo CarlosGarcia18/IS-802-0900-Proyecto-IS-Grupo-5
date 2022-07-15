@@ -449,7 +449,7 @@ controller.deleteFavorite=(req,res)=>{
     let sql2=`SELECT * FROM product WHERE id_product=${id_product}`
     let sql3=`SELECT * FROM wish_list WHERE fk_id_user=${id_user} AND fk_id_product=${id_product}`
     
-    let sql4=`DELETE FROM wish_list WHERE fk_id_user= ${id_user} AND fk_id_product= ${id_product_category}`
+    let sql4=`DELETE FROM wish_list WHERE fk_id_user= ${id_user} AND fk_id_product= ${id_product}`
 
     conection.query(sql1,(err,rows,fields)=>{ //consulta 1
         if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta

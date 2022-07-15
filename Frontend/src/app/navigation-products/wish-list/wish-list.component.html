@@ -2,9 +2,9 @@
     <h1 class="title-wishlist-text">Lista de Deseos</h1>
 </div>
 
-<h2 *ngIf="empty || WrongUser || error" class="text-emphy-product">{{afterGet.msg}}</h2>
+<h2 *ngIf="error" class="text-emphy-product">{{afterGet.msg}}</h2>
 
-<div *ngIf="!(empty || WrongUser || error)" class="carousel-container" >
+<div *ngIf="!(error)" class="carousel-container" >
     <div  class="gallery" >
         
         <div class="content" *ngFor="let item of afterGet.msg | slice:desde:hasta" >
@@ -14,10 +14,11 @@
                     <h4>{{item.var_name}}</h4>
                 </div>
                 <div style="width:20px">
-                    <i (click)="removeProduct()" class="fa-solid fa-heart icon-product"></i>
+                    <i (click)="removeProduct(item.id_product.toString())" class="fa-solid fa-heart icon-product"></i>
                 </div>
             </div>
-            <h6>L.{{item.dou_price}}</h6>            
+            <h6>L.{{item.dou_price}}</h6> 
+            <h6 *ngIf="">{{afterDelete.msg}}</h6>           
             <button class="buy">Ver</button>
         </div>
 
@@ -25,7 +26,9 @@
     
 </div>
 
-<mat-paginator *ngIf="!(empty || WrongUser || error)" [length]="afterGet.msg.length"
+<h3 *ngIf="errorDelete" class="text-emphy-product">{{afterDelete.msg}}</h3>
+
+<mat-paginator *ngIf="!(error)" [length]="afterGet.msg.length"
               [pageSize]="pageSize"
               (page)="cambiarPagina($event)"
               >
