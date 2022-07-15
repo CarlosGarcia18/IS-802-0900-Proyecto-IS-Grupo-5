@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, filter, traerProducto, subscribe, requestSubscriptions, subscription} from '../../SERVICES/equipo.service';
+
+import { EquipoService, filter, traerProducto, subscribe, requestSubscriptions, subscription, deleteWishlist} from '../../SERVICES/equipo.service';
+
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
@@ -33,6 +35,7 @@ export class ProductsComponent implements OnInit {
 
       // Suscripción
       this.nuevaSuscripcion.fk_id_user = localStorage.getItem('token');
+      this.filtro.id_user = localStorage.getItem('token');
 
       this.updateSubscriptionList()
 
@@ -60,7 +63,8 @@ export class ProductsComponent implements OnInit {
   filtro: filter={
     fk_id_department:"",
     dou_price:"",
-    fk_id_product_category:""
+    fk_id_product_category:"",
+    id_user:""
     }
 
   nuevaSuscripcion: subscribe = {
@@ -214,9 +218,54 @@ export class ProductsComponent implements OnInit {
     this.desde=e.pageIndex*e.pageSize;
     this.hasta=this.desde+e.pageSize;
   }
+
+  addWihlist(id:string,item:traerProducto){
+    let data:deleteWishlist = {
+      id_user:localStorage.getItem("token"),
+      id_product:id
+    }
+    this.equipoService.addWishlist(data).subscribe(
+      res=>{
+        let afterDelete:after = <any> res
+        if (afterDelete.status=="201" ||
+          afterDelete.status=="202" ||
+          afterDelete.status=="203" ||
+          afterDelete.status=="0") {
+            window.alert(afterDelete.msg)
+        } else{
+          item.whishlist="true"
+        }
+      }
+    )
+  }
+
+  deleteWihlist(id:string,item:traerProducto){
+    let data:deleteWishlist = {
+      id_user:localStorage.getItem("token"),
+      id_product:id
+    }
+    this.equipoService.deleteWishlist(data).subscribe(
+      res=>{
+        let afterDelete:after = <any> res
+        if (afterDelete.status=="201" ||
+          afterDelete.status=="202" ||
+          afterDelete.status=="203" ||
+          afterDelete.status=="0") {
+            window.alert(afterDelete.msg)
+        } else{
+          item.whishlist="false"
+        }
+      }
+    )
+  }
 }
 
 interface BookInfo {
   status : string ;
   msg: string;
+}
+
+interface after{
+  "status": string,
+  "msg": string
 }
