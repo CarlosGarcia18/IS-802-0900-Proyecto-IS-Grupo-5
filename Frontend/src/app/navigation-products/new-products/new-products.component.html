@@ -7,119 +7,160 @@
 
 
 
-  
-<div class="inter">
-<form class="div_padre" [formGroup]="productoForm">
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    agreggar Producto
+  </button>
 
-    <div class="div_padre" >
-        <div class="div_hijo" >
-            <input class="div_hijo" (change)="capturarFile($event)" type="file" placeholder="arrastra  o seleccciona" multiple>
-        </div >
-        <!--Previsualizacion-->
-        <!-- <div *ngIf="previsualizacion">
-            <img [src]="previsualizacion" alt="">
-        </div>  -->
-    
-        <div *ngFor="let item of archivos" class="contenedor-imagenes">
-            <img [src]="item"  alt="" width="30" class="imag" >
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Ingrese el Producto </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-    
+        <div class="modal-body">
+
+
+            <br>
+
+            <form class="div_padre" [formGroup]="productoForm">
+
+                <div class="div_padre" >
+                    <div class="form-group" >
+                        <input class="form-control-file" (change)="capturarFile($event)" type="file" placeholder="seleccciona" multiple>
+                        <img src="..." class="card-img-top" alt="...">
+                      </div >
+                    <br>
+
+
+                    <!--Previsualizacion-->
+                    <!-- <div *ngIf="previsualizacion">
+                        <img [src]="previsualizacion" alt="">
+                    </div>  -->
+                    <br>
+                    <div *ngFor="let item of archivos" class="contenedor-imagenes">
+                        <img [src]="item"  alt="" width="30" class="imag" >
+                    </div>
+
+                </div>
+                <br>
+                <!--Boton para subir el archivo-->
+                <div class="form">
+                    <td>Titulo</td>
+                    <input type="text" class="inputs-containe" [(ngModel)]="producto.var_name" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
+                    formControlName="titulo">
+
+                </div>
+
+                <br>
+
+                <div class="form">
+                    <td>Precio</td>
+                    <input type="text" class="inputs-containe" [(ngModel)]="producto.dou_price" placeholder="precio" #precio required formControlName="precio">
+                </div>
+
+
+                <div class="form">
+                    <td class="nom">Categoria de Producto</td>
+                    <select [(ngModel)]="producto.fk_id_product_category" class="inputs-containe form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required formControlName="categoria">
+
+                        <option value=" "  selected disabled hidden>Categoría</option>
+                        <option value="0">Categoría</option>
+                            <option value="1">Hogar</option>
+                            <option value="2">Futuros Padres</option>
+                            <option value="3">Mascotas</option>
+                            <option value="4">Inmuebles</option>
+                            <option value="5">Hogar</option>
+                            <option value="6">Vehiculos</option>
+                            <option value="7">Moda</option>
+                            <option value="8">Electrónica</option>
+                            <option value="9">Servicios</option>
+                            <option value="10">Negocios</option>
+                            <option value="11">Hogar</option>
+                            <option value="12">Empleo</option>
+
+                    </select>
+                </div>
+
+
+
+
+                <div  class="form">
+                    <label for="Estado" class="inputs-containe">Estado del producto</label>
+                    <select [(ngModel)]="producto.fk_id_product_status" name="estado" id=""  formControlName="estado">
+                        <option value=" "  selected disabled hidden>Estado</option>
+                        <option value="1">Nuevo</option>
+                        <option value="2">Usado</option>
+
+                    </select>
+                </div>
+
+                <div class="form">
+                    <label for="">Descripcion del Producto</label>
+                    <textarea [(ngModel)]="producto.text_description" rows="2" class="inputs-containe" placeholder="descripcion" required  formControlName="decripcion"></textarea>
+                </div>
+
+                <div class="form">
+                    <table class="table">
+                        <thead class="table" >
+                            <tr>
+                                <td class="tbl-col-nombre">Selecciona tu ubicación</td>
+                                <td class="tbl-col-depto">
+                                    <select [(ngModel)]="producto.fk_id_department"
+                                     name="Departamento" formControlName="ubicacion" class="inputs-containe">
+                                        <option value=" "  selected disabled hidden>Ubicacion</option>
+                                        <option value="1">Atlantida</option>
+                                        <option value="2">Choluteca</option>
+                                        <option value="3">Colon</option>
+                                        <option value="4">Comayagua</option>
+                                        <option value="5">Copan</option>
+                                        <option value="6">Cortes</option>
+                                        <option value="7">El Paraiso</option>
+                                        <option value="8">Francisco Morazán</option>
+                                        <option value="9">Gracias a Dios</option>
+                                        <option value="10">Intibuca</option>
+                                        <option value="11">Islas de la Bahia</option>
+                                        <option value="12">La Paz</option>
+                                        <option value="13">Lempira</option>
+                                        <option value="14">Ocotepeque</option>
+                                        <option value="15">Olancho</option>
+                                        <option value="16">Santa Barbara</option>
+                                        <option value="17">Valle</option>
+                                        <option value="18">Yoro</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+
+
+
+            </form>
+
+
+
+
+
+
+        </div>
+        <div class="modal-footer">
+              <!--Boton para subir el archivo y cerrar el modal-->
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Guardar</button>
+        </div>
+      </div>
     </div>
-   
-    <!--Boton para subir el archivo-->
-    <div class="form">
-        <td>Titulo</td>
-        <input type="text" class="inputs-containe" [(ngModel)]="producto.var_name" placeholder="Escribe el titulo" formControlName="titulo" name="titulo" #titulo required
-        formControlName="titulo">
-
-    </div>
-
-    <div class="form">
-        <td>Precio</td>
-        <input type="text" class="inputs-containe" [(ngModel)]="producto.dou_price" placeholder="precio" #precio required formControlName="precio">
-    </div>
-
-
-    <div class="form">
-        <td class="nom">Categoria de Producto</td>
-        <select [(ngModel)]="producto.fk_id_product_category" class="inputs-containe form-select btn-secondary bg-light text-secondary w-50" id="categoria" name="categoria" required formControlName="categoria">
-
-            <option value=" "  selected disabled hidden>Categoría</option>
-            <option value="0">Categoría</option>
-                <option value="1">Hogar</option>
-                <option value="2">Futuros Padres</option>
-                <option value="3">Mascotas</option>
-                <option value="4">Inmuebles</option>
-                <option value="5">Hogar</option>
-                <option value="6">Vehiculos</option>
-                <option value="7">Moda</option>
-                <option value="8">Electrónica</option>
-                <option value="9">Servicios</option>
-                <option value="10">Negocios</option>
-                <option value="11">Hogar</option>
-                <option value="12">Empleo</option>
-            
-        </select>
-    </div>
+  </div>
 
 
 
 
-    <div  class="form">
-        <label for="Estado" class="inputs-containe">Estado del producto</label>
-        <select [(ngModel)]="producto.fk_id_product_status" name="estado" id=""  formControlName="estado">
-            <option value=" "  selected disabled hidden>Estado</option>
-            <option value="1">Nuevo</option>
-            <option value="2">Usado</option>
-
-        </select>
-    </div>
-
-    <div class="form">
-        <label for="">Descripcion del Producto</label>
-        <textarea [(ngModel)]="producto.text_description" rows="2" class="inputs-containe" placeholder="descripcion" required  formControlName="decripcion"></textarea>
-    </div>
-
-    <div class="form">
-        <table class="table">
-            <thead class="table" >
-                <tr>
-                    <td class="tbl-col-nombre">Selecciona tu ubicación</td>
-                    <td class="tbl-col-depto">
-                        <select [(ngModel)]="producto.fk_id_department"
-                         name="Departamento" formControlName="ubicacion" class="inputs-containe">
-                            <option value=" "  selected disabled hidden>Ubicacion</option>
-                            <option value="1">Atlantida</option>
-                            <option value="2">Choluteca</option>
-                            <option value="3">Colon</option>
-                            <option value="4">Comayagua</option>
-                            <option value="5">Copan</option>
-                            <option value="6">Cortes</option>
-                            <option value="7">El Paraiso</option>
-                            <option value="8">Francisco Morazán</option>
-                            <option value="9">Gracias a Dios</option>
-                            <option value="10">Intibuca</option>
-                            <option value="11">Islas de la Bahia</option>
-                            <option value="12">La Paz</option>
-                            <option value="13">Lempira</option>
-                            <option value="14">Ocotepeque</option>
-                            <option value="15">Olancho</option>
-                            <option value="16">Santa Barbara</option>
-                            <option value="17">Valle</option>
-                            <option value="18">Yoro</option>
-                        </select>
-                    </td>
-                </tr>
-            </thead>
-        </table>
-    </div>
-     <!--Boton para subir el archivo-->
-     <div>
-        <button class="buton" type="submit" (click)="subirArchivo()">Guardar</button>
-    </div>
 
 
-</form>
-</div>  
-</label>  
+
+</label>
 

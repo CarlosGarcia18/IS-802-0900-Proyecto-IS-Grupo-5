@@ -344,12 +344,12 @@ controller.subscribeUser=(req, res)=>{
 //////////////////////////// DAR DE BAJA SUSCRIPCION //////////////////////////////////////////
 
 controller.Unsubscribe=(req,res)=>{
-    const{id_user,id_product_category}=req.body;
+    const{fk_id_user,fk_id_product_category}=req.body;
 
-    let sql1=`SELECT * FROM USER WHERE id_user = ${id_user}`
-    let sql2=`SELECT * FROM product_category WHERE id_product_category=${id_product_category}`
-    let sql3=`SELECT * FROM subscription WHERE fk_id_user=${id_user} AND fk_id_product_category=${id_product_category}`
-    let sql4=`DELETE FROM subscription WHERE fk_id_user= ${id_user} and fk_id_product_category= ${id_product_category}`
+    let sql1=`SELECT * FROM USER WHERE id_user = ${fk_id_user}`
+    let sql2=`SELECT * FROM product_category WHERE id_product_category=${fk_id_product_category}`
+    let sql3=`SELECT * FROM subscription WHERE fk_id_user=${fk_id_user} AND fk_id_product_category=${fk_id_product_category}`
+    let sql4=`DELETE FROM subscription WHERE fk_id_user= ${fk_id_user} and fk_id_product_category= ${fk_id_product_category}`
 
     conection.query(sql1,(err,rows,fields)=>{ //consulta 1
         if(err) res.json({status: '0', error:err.sqlMessage});//posible error en consulta
@@ -383,7 +383,7 @@ controller.Unsubscribe=(req,res)=>{
 
 ///////////////////// LISTAR SUSCRIPCIONES ///////////////////////////
 controller.getSubscriptions=(req,res)=>{
-    const{id_user}=req.body
+    const{id_user}=req.params
 
     sql1= `SELECT * FROM user WHERE id_user=${id_user}`
     sql2=`SELECT product_category.var_name, product_category.id_product_category FROM product_category
@@ -398,7 +398,7 @@ controller.getSubscriptions=(req,res)=>{
                     if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
                     else{
                         if(rows.length!=0){
-                            res.json({status:'200', msg:rows})
+                            res.status(200).json(rows)
                         }
                         else{res.json({status:'202', msg:"No existen suscripciones"})}
                     }

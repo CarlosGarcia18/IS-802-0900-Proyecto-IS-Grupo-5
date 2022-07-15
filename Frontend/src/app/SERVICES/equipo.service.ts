@@ -26,6 +26,10 @@ export class EquipoService {
     return this.http.get<newProducto[]>(this.url)
   }
 
+  traeProd(id: string|null){
+    return this.http.get(this.url+"/productUser/"+id)
+  }
+
   addCodigo(codigo:codigo)/*: observable<any> */{
     return this.http.post(this.url+"/credential/confirm",codigo)
   }
@@ -62,8 +66,12 @@ export class EquipoService {
     return this.http.post(this.url+"/productFiltering", filtro)
   }
 
-  addWishList(listaDeseos:wishList){
-    return this.http.post(this.url+"/subscribeCategory", listaDeseos)
+  addsubscription(suscribirse:subscribe){
+    return this.http.post(this.url+"/subscribeCategory", suscribirse)
+  }
+
+  getSubscriptions(id_user:string){
+    return this.http.get(this.url+"/getSubscriptions/" + id_user)
   }
 
   listWishlist(id:string|null){
@@ -149,9 +157,18 @@ export interface uploadPhoto{
   fk_id_product: string
 }
 
-export interface wishList{
+export interface subscribe{
   fk_id_user: string | null
   fk_id_product_category: string
 }
 
+export interface subscription{
+  var_name: string
+  id_product_category: number
+
+}
+
+export interface user{
+  fk_id_user: string|null 
+}
 

@@ -65,7 +65,7 @@ error = false
   }
 
   removeProduct(){
-    console.log("elimina wishlist")
+    var resultado = window.confirm('¿Esta seguro de eliminar el producto?')
   }
 }
 

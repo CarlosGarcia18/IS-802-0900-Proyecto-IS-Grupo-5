@@ -80,8 +80,9 @@ routers.post('/unsubscribeCategory',customerU.Unsubscribe)
 
 //dar de baja suscripcion de usuario
 routers.post('/unsubscribeCategory',customerU.Unsubscribe)
+
 //listar suscripciones
-routers.post('/getSubscriptions', customerU.getSubscriptions)
+routers.get('/getSubscriptions/:id_user', customerU.getSubscriptions)
 
 //dar de baja favorito
 routers.post('/deleteFav',customerU.deleteFavorite)
