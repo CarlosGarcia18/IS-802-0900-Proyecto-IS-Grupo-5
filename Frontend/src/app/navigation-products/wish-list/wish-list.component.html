@@ -2,10 +2,12 @@
     <h1 class="title-wishlist-text">Lista de Deseos</h1>
 </div>
 
-<div  class="carousel-container" >
+<h2 *ngIf="empty || WrongUser || error" class="text-emphy-product">{{afterGet.msg}}</h2>
+
+<div *ngIf="!(empty || WrongUser || error)" class="carousel-container" >
     <div  class="gallery" >
         
-        <div class="content" *ngFor="let item of lista | slice:desde:hasta" >
+        <div class="content" *ngFor="let item of afterGet.msg | slice:desde:hasta" >
             <img [src] = "'http://localhost:3000/' + item.var_name_photo" alt="">
             <div class="content-inf">
                 <div class="content-inf-text">
@@ -23,7 +25,7 @@
     
 </div>
 
-<mat-paginator [length]="lista.length"
+<mat-paginator *ngIf="!(empty || WrongUser || error)" [length]="afterGet.msg.length"
               [pageSize]="pageSize"
               (page)="cambiarPagina($event)"
               >

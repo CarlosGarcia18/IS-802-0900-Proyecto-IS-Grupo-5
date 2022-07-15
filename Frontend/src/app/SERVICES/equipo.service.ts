@@ -66,6 +66,10 @@ export class EquipoService {
     return this.http.post(this.url+"/subscribeCategory", listaDeseos)
   }
 
+  listWishlist(id:string|null){
+    return this.http.get(this.url+"/getFavs/"+id)
+  }
+
 }
 
 export interface filter{
@@ -83,6 +87,15 @@ export interface traerProducto{
   text_description: string,
   dou_price: number,
   publication_date: string
+}
+
+export interface wishListProducts{
+  id_photographs : number,
+  id_product: number,
+  var_name_photo: string,
+  var_name: string,
+  text_description: string,
+  dou_price: number
 }
 
 export interface Registro{

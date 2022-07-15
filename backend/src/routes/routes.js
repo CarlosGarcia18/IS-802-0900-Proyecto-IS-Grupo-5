@@ -86,7 +86,7 @@ routers.post('/getSubscriptions', customerU.getSubscriptions)
 //dar de baja favorito
 routers.post('/deleteFav',customerU.deleteFavorite)
 //listar favoritos
-routers.post('/getFavs', customerU.getWishlist)
+routers.get('/getFavs/:id_user', customerU.getWishlist)
 //agregar a favoritos
 routers.post('/addFav', customerU.addFavorite)
 

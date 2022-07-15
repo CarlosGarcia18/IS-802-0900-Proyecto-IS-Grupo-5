@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+import { EquipoService,wishListProducts } from '../../SERVICES/equipo.service'
 
 @Component({
   selector: 'app-wish-list',
@@ -7,20 +8,8 @@ import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
   styleUrls: ['./wish-list.component.scss'],
 })
 export class WishListComponent implements OnInit {
-  list = {
-    id_photographs: '1',
-    var_name_photo: 'iJhsg37391jksnjiBnGG.jpg',
-    fk_id_user: '2',
-    fk_id_department: '3',
-    var_name: 'Luis Ernesto castillo el escamich',
-    text_description: 'Mucho texto',
-    dou_price: 1234,
-    publication_date: '12/12/12',
-  };
 
-  lista: any[] = [this.list, this.list, this.list];
-
-  constructor(private paginator: MatPaginatorIntl) {
+  constructor(private paginator: MatPaginatorIntl,private equipoService:EquipoService) {
     paginator.itemsPerPageLabel = "Productos por pagina:"
     paginator.firstPageLabel = "Primer página"
     paginator.lastPageLabel = "Ultima página"
@@ -30,7 +19,38 @@ export class WishListComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+empty = false
+WrongUser = false
+error = false
+  afterGet:after={
+    status:"0",
+    msg:[
+      {
+        id_photographs : 0,
+        id_product: 0,
+        var_name_photo: "null",
+        var_name: "null",
+        text_description: "null",
+        dou_price: 0
+      }
+    ]
+  }
+
+  ngOnInit(): void {
+    this.equipoService.listWishlist(localStorage.getItem("token")).subscribe(
+      res=>{
+        this.afterGet = <any>res
+        if (this.afterGet.status == "202") {
+          this.empty = true
+        }else if (this.afterGet.status == "201") {
+          this.WrongUser = true
+        }else{
+          this.error = true
+        }
+      },
+      err=> this.error = true
+    )
+  }
 
   pageSize = 12;
   desde: number = 0;
@@ -45,4 +65,9 @@ export class WishListComponent implements OnInit {
   removeProduct(){
     console.log("elimina wishlist")
   }
+}
+
+interface after{
+  "status": string,
+  "msg": wishListProducts[]
 }
