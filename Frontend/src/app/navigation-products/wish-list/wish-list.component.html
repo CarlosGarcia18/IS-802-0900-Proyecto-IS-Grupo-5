@@ -1,1 +1,30 @@
-<p>wish-list works!</p>
+<div class="title-wishlist">
+    <h1 class="title-wishlist-text">Lista de Deseos</h1>
+</div>
+
+<div  class="carousel-container" >
+    <div  class="gallery" >
+        
+        <div class="content" *ngFor="let item of lista | slice:desde:hasta" >
+            <img [src] = "'http://localhost:3000/' + item.var_name_photo" alt="">
+            <div class="content-inf">
+                <div class="content-inf-text">
+                    <h4>{{item.var_name}}</h4>
+                </div>
+                <div style="width:20px">
+                    <i (click)="removeProduct()" class="fa-solid fa-heart icon-product"></i>
+                </div>
+            </div>
+            <h6>L.{{item.dou_price}}</h6>            
+            <button class="buy">Ver</button>
+        </div>
+
+    </div>
+    
+</div>
+
+<mat-paginator [length]="lista.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>

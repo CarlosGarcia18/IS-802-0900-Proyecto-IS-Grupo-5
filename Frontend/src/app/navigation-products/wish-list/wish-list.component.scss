@@ -1,0 +1,96 @@
+.title-wishlist{
+  background-color: white;
+  margin-top: -20px;
+  height: 150px;
+  padding-top: 20px;
+  &-text{
+    margin: 90px 0px 42px;
+    text-align: center;
+  }
+}
+
+.carousel-container {
+  background-color: #dbedf5;
+  display: flex;
+  margin-top: 10px;
+  .gallery {
+    display: block;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    margin-left: 50px;
+    margin-right: 50px;
+    .content {
+      width: 240px;
+      margin: 15px;
+      box-sizing: border-box;
+      float: left;
+      border-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+      padding-top: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: 0.4s;
+      background-color: white;
+      &:hover {
+        box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
+        transform: translate(0px, -8px);
+        transition: 0.6s;
+        .icon-product:hover{
+          color: lightcoral;
+        }
+      }
+      &-inf{
+        display: flex;
+        align-items: center;
+        padding: 0px 10px 2px;
+        &-text{
+          width: 100%;
+          h4{
+            margin: 0px;
+          }
+        }
+        .icon-product{
+          color: red;
+        }
+      }
+      img {
+        width: 200px;
+        height: 200px;
+        text-align: center;
+        margin: 0 auto;
+        display: block;
+      }
+      .buy {
+        background-color: #252f37;
+        text-align: center;
+        font-size: 16px;
+        color: #fff;
+        width: 100%;
+        padding: 8px;
+        border: 0px;
+        outline: none;
+        cursor: pointer;
+        margin-top: 5px;
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+      }
+      .buy:hover {
+        cursor: pointer;
+        background: #ff9f43;
+        color: white;
+      }
+      h6 {
+        font-size: 14px;
+        text-align: left;
+        padding-left: 10px;
+        color: #222f3e;
+        margin: 0;
+      }
+    }
+    
+  }
+}
