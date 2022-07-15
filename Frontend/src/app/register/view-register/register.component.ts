@@ -62,8 +62,11 @@ export class RegisterComponent implements OnInit {
     return this.loginForm.get('check') as FormControl
   }
 
+  departments:any[] = []
+  validateDepartments:boolean = false
+
   registro: Registro={
-  fk_id_department:1,
+  fk_id_department:0,
   var_email:"",
   var_name:"",
   var_lastname:"",
@@ -83,29 +86,44 @@ export class RegisterComponent implements OnInit {
             { }
 
   ngOnInit(): void {
+    // Traer los departamentos
+    this.EquipoService.getDepartments().subscribe(res=>{
+      this.departments = <any>res
+    }, error =>{
+      console.log(error) 
+    })
+
   }
 
   existEmail=false
   error=false
   
   agregar(){
-    
-    this.EquipoService.addUsuario(this.registro).subscribe(
-      res => {
-        var status:BookInfo = <any>res
-        //console.log(hola)
-        if (status.status == '200') {
-          localStorage.setItem("token",status.id)
-          this.loginForm.reset();
-          this.router.navigate(['navigationProducts'])
-        }else if (status.status == '1'){
-          this.existEmail = true
-        }else{
-          this.error = true
-        }
-      },
-      err => console.log(err)
-    );
+
+    if(this.registro.fk_id_department != 0){
+
+      this.EquipoService.addUsuario(this.registro).subscribe(
+        res => {
+          var status:BookInfo = <any>res
+          //console.log(hola)
+          if (status.status == '200') {
+            localStorage.setItem("token",status.id)
+            this.loginForm.reset();
+            this.router.navigate(['navigationProducts'])
+          }else if (status.status == '1'){
+            this.existEmail = true
+          }else{
+            this.error = true
+          }
+        },
+        err => console.log(err)
+      );
+
+    }else{
+      this.validateDepartments = true
+
+    }
+  
     //this.router.navigate(['/user'])
    
   }

@@ -398,7 +398,7 @@ controller.getSubscriptions=(req,res)=>{
                     if(err) res.json({status:'0', error:err.sqlMessage})//posible error en consulta a BDD
                     else{
                         if(rows.length!=0){
-                            res.status(200).json(rows)
+                            res.json({status:'200', msg:rows})
                         }
                         else{res.json({status:'202', msg:"No existen suscripciones"})}
                     }

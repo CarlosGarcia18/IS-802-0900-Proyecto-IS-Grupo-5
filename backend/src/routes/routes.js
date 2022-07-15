@@ -44,6 +44,9 @@ routers.post('/auth', customerU.auth)
 //trae todos los departamentos
 routers.get('/departament',customerO.getDepartament)
 
+//trae todas las categorias de productos
+routers.get('/productCategory',customerO.getCategory)
+
 //Envia la actualizacion de la contraseña body => var_email, tex_password
 routers.put('/userPassword',customerU.updatePasswordUser)
 
@@ -72,11 +75,6 @@ routers.delete('/product/delete/:id',customerO.deleteProduct)
 
 //suscribir usuario
 routers.post('/subscribeCategory',customerU.subscribeUser)
-
-
-//desuscribir usuario
-routers.post('/unsubscribeCategory',customerU.Unsubscribe)
-
 
 //dar de baja suscripcion de usuario
 routers.post('/unsubscribeCategory',customerU.Unsubscribe)

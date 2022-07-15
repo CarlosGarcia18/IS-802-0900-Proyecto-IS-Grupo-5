@@ -35,17 +35,19 @@
     background-color: #FAA11D;
     cursor: pointer;
     height: 32px;
+    width: 160px;
 }
 
-.btn-subscribed{
+.btn-unsubscribe{
     letter-spacing: 1px;
-    font-size: 14px;
+    font-size: 12px;
     color: white;
     border: none;
     border-radius: 20px;
-    background-color: #222f3e;
+    background-color: rgb(240, 115, 115);
     cursor: pointer;
     height: 32px;
+    width: 160px;
 }
 
 

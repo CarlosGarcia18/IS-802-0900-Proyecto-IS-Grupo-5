@@ -19,6 +19,16 @@ controller.getDepartament = (req,res) =>{
     })
 }
 
+controller.getCategory = (req,res) =>{
+    let sql =`select * from PRODUCT_CATEGORY`
+    conection.query(sql,(err,rows,fields) =>{
+        if(err) res.send(err.sqlMessage);
+        else{
+            res.json(rows)
+        }
+    })
+}
+
 //funcion para insertar un producto /// Sin las imagenes
 controller.postProduct = (req,res) =>{
     const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, text_description, dou_price} = req.body
