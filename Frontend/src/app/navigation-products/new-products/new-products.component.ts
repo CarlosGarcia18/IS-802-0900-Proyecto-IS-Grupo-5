@@ -63,13 +63,18 @@ get ubicacionControl():FormControl{
   return this.productoForm.get('ubicacion') as FormControl
 }
 
-  capturarFile(event:any): any{
-    Array.from(event.target.files).forEach((element:any) => {
-      this.loadFile(element);
+capturarFile(event:any): any{
+  Array.from(event.target.files).forEach((element:any) => {
+    this.loadFile(element);
+    if(this.archivos.length < 10){
       this.archivos.push(element)
-      
-    });
-  }
+      console.log("\n\n<<<<"+this.archivos.length+"\n\n");
+    }else{
+      window.alert('no mas de 10 imagenes')
+      return
+    }
+  });
+}
 
   loadFile(file:File){
     const reader=new FileReader();
@@ -89,7 +94,7 @@ get ubicacionControl():FormControl{
 
   //Extraer el base 64
   /*
-  extraerBase64 =async ($event:any) => new Promise((resolve,reject) =>{ 
+  extraerBase64 =async ($event:any) => new Promise((resolve,reject) =>{
     try{
       const unsafeImg = window.URL.createObjectURL($event);
       const image= this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
@@ -111,7 +116,7 @@ get ubicacionControl():FormControl{
     }
   });
   */
-  
+
 
 
 
@@ -139,7 +144,7 @@ get ubicacionControl():FormControl{
     //Sube el producto
     this.equipoService.newProducto(this.producto)
     .subscribe(res=>{
-      
+
       var info:BookInfo = <any>res
 
       //Recorre el arreglo de archivos
@@ -147,19 +152,19 @@ get ubicacionControl():FormControl{
         const formularioDeDatos = new FormData();
         formularioDeDatos.append('image',archivo)
         console.log(archivo)
-        
+
         //Sube archivo uno por uno
         this.equipoService.productoFoto(formularioDeDatos, info.id)
           .subscribe(res=>{
             console.log('Respuesta ',res)
         })
-        
+
       })
 
       console.log('respuesta del servidor',res);
 
     })
-     
+
 
     try{
     }catch(e){
