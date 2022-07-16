@@ -181,7 +181,7 @@ body{
     }
     /*icono de favoritos*/
 #fav-icon{
-    padding-left: 100px;
+    padding-left: 80px;
     padding-top: 15px;
     color:red;
     
@@ -192,4 +192,24 @@ body{
     margin-left: 15px;
     color:#252f37;
     font-size: 14px;
+}
+table{
+    table-layout: fixed;
+    width: 200px;
+    margin-top: 15px;
+}
+
+ .name-col {
+    
+    width: 150px;
+    word-wrap: break-word;
+}
+.icon-col{
+    width: 50px;
+    word-wrap: break-word;
+}
+
+p{
+    margin-top: 10px;
+    margin-right: 10px;
 }

@@ -3,6 +3,7 @@
     text-align: center;
     color: #252f37;
     margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .h4-class{
@@ -16,6 +17,7 @@
  h5{
     color: #252f37;
     margin-bottom: 0px;
+    margin-top: 23px;
   
  }
 
@@ -56,6 +58,7 @@
 .container3{
     display:flex;
     background-color: white;
+    padding-top: 50px;
 }
 
 .container1{
@@ -110,7 +113,7 @@ body{
     }
     h3{
     text-align: left;
-    
+
     padding-left: 30px;
     font-size: 18px;
     margin: 0;
@@ -160,7 +163,9 @@ body{
     
     h6{
     font-size: 14px;
+    
     text-align: left;
+    max-width: 100%;
     padding-left: 30px;
     color: #222f3e;
     margin: 0;
@@ -221,8 +226,9 @@ body{
     }
     /*icono de favoritos*/
 .fav-icon{
-    padding-left: 100px;
+    padding-left: 80px;
     padding-top: 15px;
+    padding-right: 20px;
     color: lightcoral;
     cursor: pointer;
     
@@ -232,8 +238,9 @@ body{
 }
 
 .fav-icon-select{
-    padding-left: 100px;
+    padding-left: 80px;
     padding-top: 15px;
+    padding-right: 20px;
     color: red;
     cursor: pointer;
     
@@ -241,3 +248,20 @@ body{
 .fav-icon-select:hover{
     color: lightcoral;
 }
+
+table{
+    table-layout: fixed;
+    width: 200px;
+    margin-top: 15px;
+}
+
+ .name-col {
+    
+    width: 150px;
+    word-wrap: break-word;
+}
+.icon-col{
+    width: 50px;
+    word-wrap: break-word;
+}
+
