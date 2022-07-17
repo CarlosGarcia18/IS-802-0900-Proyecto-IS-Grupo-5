@@ -32,10 +32,15 @@
     color: white;
     border: none;
     border-radius: 20px;
-    background-color: #FAA11D;
+    background-color: #252f37;
     cursor: pointer;
     height: 32px;
     width: 160px;
+}
+.btn-suscribe:hover{
+    cursor: pointer;
+    background: #ff9f43;
+    color: white;
 }
 
 .btn-unsubscribe{
@@ -44,12 +49,17 @@
     color: white;
     border: none;
     border-radius: 20px;
-    background-color: rgb(240, 115, 115);
+    background-color: #252f37;
     cursor: pointer;
     height: 32px;
     width: 160px;
 }
 
+.btn-unsubscribe:hover{
+    cursor: pointer;
+    background: #f07373;
+    color: white;
+}
 
 
 /**/
