@@ -83,7 +83,54 @@ align-content: stretch;
   background-color: rgb(252, 252, 252);
 }
 
+.container-images{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  align-content: flex-start;
+}
 
+.pre-imagen{
+  width: 62px;
+  height: 62px;
+  background-size: cover;
+  margin: 2px;
+  border-style: outset;
+  border-color: unset;
+}
+
+.pre-imagen:hover .deleteFile{
+  opacity: 100;
+}
+
+.pre-imagen:hover .deleteFile:hover{
+  color: red;
+}
+
+.deleteFile{
+  width: 25px;
+  height: 29px;
+  text-align: center;
+  margin-left: auto;
+  font-size: 19px;
+  font-weight: bold;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.content-upload-image{
+  display:inline-block;
+  vertical-align:top;
+  display: flex;
+  height: 247px;
+  justify-content: center;
+}
+
+.table>:not(caption)>*>* {
+  border-bottom:none
+}
 
 
 
