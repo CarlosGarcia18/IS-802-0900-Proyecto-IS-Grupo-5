@@ -15,6 +15,7 @@ export class NewProductsComponent implements OnInit {
   public previsualizacion: any;
   public archivos: any = []; //Sera de tipo array
   public image: any; //Enviar una imagen a la vez al servidor
+  categories:any[] = []
 
   constructor(
     private equipoService: EquipoService,
@@ -23,6 +24,12 @@ export class NewProductsComponent implements OnInit {
 
   ngOnInit(): void {
     this.producto.fk_id_user = localStorage.getItem('token');
+    // Traer todas las categorias
+    this.equipoService.getProductCategories().subscribe(res=>{
+      this.categories = <any>res
+    }, error =>{
+      console.log(error) 
+    })
   }
 
   //agregar el formGrup
