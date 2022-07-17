@@ -4,6 +4,7 @@ import { NavigationProductsComponent } from './view-navigation/navigation-produc
 import { ProductsComponent } from "./products/products.component";
 import { WishListComponent } from "./wish-list/wish-list.component";
 import { PublishedProductsComponent } from "./published-products/published-products.component";
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 const routes: Routes = [
   { 
@@ -12,7 +13,8 @@ const routes: Routes = [
     children:[
       {path: '',component:ProductsComponent},
       {path: 'wishlist',component:WishListComponent},
-      {path: 'published',component:PublishedProductsComponent}
+      {path: 'published',component:PublishedProductsComponent},
+      {path: 'subscriptions',component:SubscriptionsComponent}
     ]  
   }
 ];

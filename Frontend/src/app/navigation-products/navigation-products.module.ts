@@ -9,6 +9,7 @@ import { WishListComponent } from './wish-list/wish-list.component';
 import { ProductsComponent } from './products/products.component';
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NewProductsComponent,
     PublishedProductsComponent,
     WishListComponent,
-    ProductsComponent
+    ProductsComponent,
+    SubscriptionsComponent
   ],
   imports: [
     CommonModule,
