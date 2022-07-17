@@ -1,18 +1,10 @@
-import { ReadVarExpr } from '@angular/compiler';
-import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
-import { async } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NativeDateAdapter } from '@angular/material/core';
-import { DomSanitizer, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import {
   newProducto,
   EquipoService,
-  uploadPhoto,
 } from '../../SERVICES/equipo.service';
-
-interface HtmlInputEvent extends Event {
-  target: (HTMLInputElement & EventTarget) | null;
-}
 
 @Component({
   selector: 'new-products',
@@ -26,7 +18,7 @@ export class NewProductsComponent implements OnInit {
 
   constructor(
     private equipoService: EquipoService,
-    private sanitizer: DomSanitizer
+    private raute:Router
   ) {}
 
   ngOnInit(): void {
@@ -151,14 +143,8 @@ get nombreControl():FormControl{
             console.log('Respuesta ', res);
           });
       });
-
-      console.log('respuesta del servidor', res);
+      this.raute.navigate([`navigationProducts/published`])
     });
-
-    try {
-    } catch (e) {
-      console.log('Error', e);
-    }
   }
 }
 
