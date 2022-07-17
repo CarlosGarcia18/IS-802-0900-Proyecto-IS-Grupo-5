@@ -1,7 +1,8 @@
 import { ReadVarExpr } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { async } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NativeDateAdapter } from '@angular/material/core';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { newProducto, EquipoService, uploadPhoto } from "../../SERVICES/equipo.service";
 
@@ -32,11 +33,15 @@ export class NewProductsComponent implements OnInit {
 //agregar el formGrup
 productoForm=new FormGroup({
   // nombre: new FormControl('',[Validators.required, Validators.minLength(2) ]),
-  titulo: new FormControl('',[Validators.required]),
-  precio: new FormControl('',[Validators.required]),
+  titulo: new FormControl('',[Validators.required,
+  Validators.minLength(3),
+  Validators.maxLength(20)]),
+  precio: new FormControl('',[Validators.required,
+  Validators.minLength(2)]),
   categoria:new FormControl('',[Validators.required]),
   estado:new FormControl('',[Validators.required]),
-  decripcion:new FormControl('',[Validators.required]),
+  decripcion:new FormControl('',[Validators.required,
+  Validators.minLength(3), Validators.maxLength(30)]),
   ubicacion:new FormControl('',[Validators.required])
 })
 /*
@@ -64,16 +69,15 @@ get ubicacionControl():FormControl{
 }
 
 capturarFile(event:any): any{
-  Array.from(event.target.files).forEach((element:any) => {
-    this.loadFile(element);
-    if(this.archivos.length < 10){
-      this.archivos.push(element)
-      console.log("\n\n<<<<"+this.archivos.length+"\n\n");
-    }else{
-      window.alert('no mas de 10 imagenes')
-      return
-    }
-  });
+  if(event.target.files.length < 10){
+      Array.from(event.target.files).forEach((element:any) => {
+        this.loadFile(element);
+          this.archivos.push(element)
+          console.log("\n\n<<<<"+this.archivos.length+"\n\n");
+      });
+}else{
+  alert('No más de 10 imágenes')
+}
 }
 
   loadFile(file:File){
@@ -127,7 +131,7 @@ capturarFile(event:any): any{
     fk_id_product_status: '',
     var_name: '',
     text_description: '',
-    dou_price: ''
+    dou_price:0
   }
 
   /*agregarFavorito(){

@@ -15,8 +15,8 @@ export class EquipoService {
 
   addUsuario(registro:Registro){
       return this.http.post(this.url+"/user", registro)
-  } 
-  
+  }
+
   getDepartments(){
     return this.http.get(this.url+"/departament")
 
@@ -40,9 +40,9 @@ export class EquipoService {
 
   updatePassword(update:updatePassword){
       return this.http.put(this.url+"/userPassword", update)
-  } 
+  }
 
-  
+
   authLogin(auth:login){
       return this.http.post(this.url+"/auth", auth)
   }
@@ -50,7 +50,7 @@ export class EquipoService {
   getUser(id:string){
     return this.http.get(this.url+"/user/"+id)
   }
- 
+
   emailModule1(module1:emailCredential){
     return this.http.post(this.url+"/credential", module1)
   }
@@ -89,7 +89,7 @@ export class EquipoService {
   addWishlist(data:deleteWishlist){
     return this.http.post(this.url+"/addFav",data)
   }
-  
+
   deleteSubscription(eliminarSuscripcion:subscribe){
     return this.http.post(this.url+"/unsubscribeCategory", eliminarSuscripcion)
   }
@@ -167,8 +167,8 @@ export interface newProducto {
     fk_id_product_status: string
     var_name: string
     text_description: string
-    dou_price: string
-    
+    dou_price: number
+
 }
 
 export interface uploadPhoto{
@@ -194,7 +194,7 @@ export interface subscription{
 }
 
 export interface user{
-  fk_id_user: string|null 
+  fk_id_user: string|null
 }
 
 export interface deleteWishlist{
