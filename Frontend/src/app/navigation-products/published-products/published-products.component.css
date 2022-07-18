@@ -69,8 +69,8 @@ body{
     font-family:Nunito Sans;
     }
     h3{
-    text-align: letf;
-    padding-left: 30px;
+    text-align: left;
+    padding-left: 10px;
     font-size: 18px;
     margin: 0;
     padding-top: 10px;
@@ -121,7 +121,7 @@ body{
     h6{
     font-size: 14px;
     text-align: left;
-    padding-left: 30px;
+    padding-left: 8px;
     color: #222f3e;
     margin: 0;
     }
@@ -181,7 +181,7 @@ body{
     }
     /*icono de favoritos*/
 #fav-icon{
-    padding-left: 80px;
+    padding-left: 105px;
     padding-top: 15px;
     color:red;
     
@@ -205,7 +205,7 @@ table{
     word-wrap: break-word;
 }
 .icon-col{
-    width: 50px;
+    width: 40px;
     word-wrap: break-word;
 }
 
@@ -213,4 +213,7 @@ p{
     margin-top: 10px;
     margin-right: 10px;
     text-align: center;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
