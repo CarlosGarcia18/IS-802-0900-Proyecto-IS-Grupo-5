@@ -150,6 +150,8 @@ get nombreControl():FormControl{
             console.log('Respuesta ', res);
           });
       });
+      this.archivos.length=0
+      this.srcArray.length=0
       this.raute.navigate([`navigationProducts/published`])
     });
   }
