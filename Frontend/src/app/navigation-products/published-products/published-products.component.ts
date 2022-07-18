@@ -87,17 +87,10 @@ export class PublishedProductsComponent implements OnInit {
     })
   } */
 ////////////////////PAGINACION////////////////
-pageSize=6;
+pageSize=8;
 desde:number= 0;
-hasta:number=6;
-items :any[]=[{nombre: 'Producto 1',  precio: 'L.70', descr:'en buen estado, no se aceptan cambios'},
-            {nombre: 'Producto 2', precio: 'L.90', descr:'en buen estado'},
-            {nombre: 'Producto 3', precio: 'L.80', descr:'en buen estado'},
-            {nombre: 'Producto 4', precio: 'L.220', descr:'en buen estado'},
-            {nombre: 'Producto 5', precio: 'L.9230', descr:'en buen estado'},
-            {nombre: 'Producto 6', precio: 'L.900', descr:'en buen estado'},
-            {nombre: 'Producto 7', precio: 'L.19.00', descr:'en buen estado'},
-            {nombre: 'Producto 8', precio: 'L.980',descr:'en buen estado'}];
+hasta:number=8;
+
 
 cambiarPagina(e:PageEvent){
   console.log(e)
