@@ -1,6 +1,6 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD 
 const controller = {} //definicion de controller que guardara las rutas
-const fs= require('fs')
+const fs= require('fs').promises
 const path = require('path')
 
 //funcion de prueba
@@ -85,26 +85,45 @@ controller.productFiltering = (req,res) =>{
 controller.deleteProduct = (req,res)=>{
     const {id} = req.params
 
-    //Elimina todas las imagenes que contiene el producto
-    let sql1 =`delete from PHOTOGRAPHS where fk_id_product =${id}`
-    conection.query(sql1,(err,rows,fields)=>{
-        if(err) res.send(err.sqlMessage);
+    let sql = `SELECT var_name FROM plazitanet.photographs WHERE fk_id_product =${id}`
+    let sql2 =`delete from PRODUCT where id_product =${id}`
+    
+    conection.query(sql,(err,rows,fields)=>{
+        if(err) res.json({status:'1', msg:sqlMessage});
         else{
+            
+            //Elimina todas las imagenes que contiene el producto del servidor
+            const files = []
+
+            for(var index in rows){
+                console.log(index + "--------------------")
+                console.log(rows[index].var_name)
+                files.push("src/dbimagesProducts/" + rows[index].var_name)
+
+
+            }
+
+            Promise.all(files.map(file => fs.unlink(file)))
+            .then(() => {
+                console.log('Todos los archivos se eliminaron del servidor')
+            })
+            .catch(err => {
+                console.error('Ocurrio un error al borrar los archivos', err)
+            })
 
             //Elimina el producto
-            let sql2 =`delete from PRODUCT where id_product =${id}`
             conection.query(sql2,(err,rows,fields)=>{
-                if(err) res.send(err.sqlMessage);
+                if(err) res.json({status:'0', msg:err.sqlMessage});
                 else{
-                    res.json({status:'200', reply:'Producto Eliminado'})
+                    res.json({status:'200', msf:'Producto Eliminado'})
                 }
             })
-    
+
         }
     })
 
-
 }
+
 
 controller.postImage = (req,res) =>{
 
@@ -116,9 +135,9 @@ controller.postImage = (req,res) =>{
         VALUES('${name}','${extension}',${id})`
 
     conection.query(sql, (err, rows) => {
-        if(err) return res.json(err);
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
         else{
-            res.send({status:'200', reply:'Imagen agregada al producto'})
+            res.send({status:'200', msg:'Imagen agregada al producto'})
         }
         
     })

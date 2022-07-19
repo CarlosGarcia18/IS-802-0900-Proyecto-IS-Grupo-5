@@ -52,7 +52,8 @@ CREATE TABLE PRODUCT(
     FOREIGN KEY (fk_id_department) REFERENCES DEPARTMENT(id_department),
     
     fk_id_product_category BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a la categoria del producto",
-    FOREIGN KEY (fk_id_product_category) REFERENCES PRODUCT_CATEGORY(id_product_category),
+    FOREIGN KEY (fk_id_product_category) REFERENCES PRODUCT_CATEGORY(id_product_category)
+    ON DELETE CASCADE,
     
     fk_id_product_status BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a el estado del producto",
     FOREIGN KEY (fk_id_product_status) REFERENCES PRODUCT_STATUS(id_product_status),
@@ -75,7 +76,7 @@ CREATE TABLE PHOTOGRAPHS(
     
 	fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto",
     FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
-
+    ON DELETE CASCADE
 
 ) COMMENT "FOTOGRAFÍAS";
 
@@ -86,7 +87,8 @@ CREATE TABLE COMMENTARY(
     FOREIGN KEY (fk_id_user) REFERENCES USER(id_user),
     
     fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a los productos (Anuncios)",
-    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product),
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
+    ON DELETE CASCADE,
     
     text_contents TEXT NOT NULL COMMENT "Contenido",
     tim_date timestamp NOT NULL COMMENT "Fecha de creación del comentario"
@@ -115,7 +117,8 @@ CREATE TABLE COMPLAINT(
     FOREIGN KEY (fk_id_user_complaining) REFERENCES USER(id_user),
     
 	fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto del que se hizo la denuncia",
-    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product),
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
+    ON DELETE CASCADE,
     
     fk_id_complaint_category BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a la categoria de la denuncia",
     FOREIGN KEY (fk_id_complaint_category) REFERENCES COMPLAINT_CATEGORY(id_complaint_category),
@@ -130,7 +133,8 @@ CREATE TABLE CHAT(
 	id_chat SERIAL PRIMARY KEY,
     
     fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto en el que se habre un chat",
-    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product),
+    FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
+    ON DELETE CASCADE,
     
     fk_id_user_buyer BIGINT UNSIGNED NOT NULL COMMENT "Usuario Comprador",
     FOREIGN KEY (fk_id_user_buyer) REFERENCES USER(id_user),
@@ -148,7 +152,8 @@ CREATE TABLE MESSAGE(
     text_contents TEXT NOT NULL COMMENT "Contenido del mensaje",
     
     fk_id_chat BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al chat que pertenece este mensaje",
-    FOREIGN KEY (fk_id_chat) REFERENCES CHAT(id_chat),
+    FOREIGN KEY (fk_id_chat) REFERENCES CHAT(id_chat)
+    ON DELETE CASCADE,
     
     fk_id_user BIGINT UNSIGNED NOT NULL COMMENT "Usuario que escribio el mensaje",
     FOREIGN KEY (fk_id_user) REFERENCES USER(id_user)
@@ -163,6 +168,7 @@ CREATE TABLE WISH_LIST(
     
     fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al Producto",
     FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
+    ON DELETE CASCADE
 
 ) COMMENT "LISTA DE DESEOS O FAVORITOS";
 
@@ -177,6 +183,7 @@ CREATE TABLE SUBSCRIPTION(
     
     fk_id_product_category BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a las categorias",
     FOREIGN KEY (fk_id_product_category) REFERENCES PRODUCT_CATEGORY(id_product_category)
+    ON DELETE CASCADE
 
 ) COMMENT "SUBSCRIPCIONES A LAS CATEGORIAS";
 
