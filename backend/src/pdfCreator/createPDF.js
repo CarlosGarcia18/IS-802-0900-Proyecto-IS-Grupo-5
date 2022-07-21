@@ -20,8 +20,9 @@ function generate(id) {
     displayTitle: true
   });
   let r = id + '_suscription.pdf'
-  let p = '../documentPDF/' + r
+  let p = './src/documentPDF/' + r
   pdf.pdfCreate(r)
+  console.log(fs.createWriteStream(p))
   doc.pipe(fs.createWriteStream(p));
 
   // Set some meta data
@@ -31,9 +32,7 @@ function generate(id) {
   return doc
 }
 
-function head(y,struct,doc) {
-  struct.add(
-    doc.struct('P', () => {
+function head(y,doc) {
       let grad = doc.linearGradient(0, 0, 100, 0);
       grad.stop(0, '#74ebd5')
           .stop(1, '#9face6');
@@ -43,31 +42,20 @@ function head(y,struct,doc) {
         .fontSize(22)
         .fill(grad)
         .text('Da un vistazo a tus productos recomendados', 50, y,{align: 'center'});
-    })
-  );
+    
 
-  return struct
 }
 
-function newCat(y,struct,doc,cat) {
-  struct.add(
-    doc.struct('P', () => {
+function newCat(y,doc,cat) {
       doc
         .font('Helvetica')
         .fontSize(18)
         .fill('#fbac38')
         .text(cat, 50, y,{align: 'center'});
-    })
-  );
-
-  return struct
+    
 }
 
-function products(obj,y,struct,doc) {
-  struct.add(
-    doc.struct(
-      'P',
-      () => {
+function products(obj,y,doc) {
         doc.image(path.join(__dirname,'../dbimagesProducts/iJhsg37391jksnjiBnGG.jpg') ,50,y,{
           fit: [80, 80], align: 'center', valign: 'center'
         })
@@ -75,10 +63,7 @@ function products(obj,y,struct,doc) {
         .fontSize(15).fillColor('black').text(obj.var_name_product,140,y)
         .fontSize(10).text(obj.text_description)
         .font('Times-Bold').fontSize(13).fillColor('red').text(obj.dou_price,{align: 'right'})
-      }
-    )
-  );
-  return struct
+ 
 }
 
 
