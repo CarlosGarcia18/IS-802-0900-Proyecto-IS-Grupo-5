@@ -1,5 +1,7 @@
 var PDFDocument = require('pdfkit');
 var fs = require('fs');
+const path = require('path')
+const pdf = require('./html-pdf')
 
 function generateStruct(doc) {
   // Initialise document logical structure
@@ -17,8 +19,10 @@ function generate(id) {
     tagged: true,
     displayTitle: true
   });
-
-  doc.pipe(fs.createWriteStream('../documentPDF/' + id + '-suscription.pdf'));
+  let r = id + '_suscription.pdf'
+  let p = '../documentPDF/' + r
+  pdf.pdfCreate(r)
+  doc.pipe(fs.createWriteStream(p));
 
   // Set some meta data
   doc.info['Title'] = 'Test Document';
@@ -62,9 +66,9 @@ function newCat(y,struct,doc,cat) {
 function products(obj,y,struct,doc) {
   struct.add(
     doc.struct(
-      'Figure',
+      'P',
       () => {
-        doc.image('../dbimagesProducts/'+obj.var_name,50,y,{
+        doc.image(path.join(__dirname,'../dbimagesProducts/iJhsg37391jksnjiBnGG.jpg') ,50,y,{
           fit: [80, 80], align: 'center', valign: 'center'
         })
         .font('Times-Roman')
