@@ -56,14 +56,13 @@ function newCat(y,doc,cat) {
 }
 
 function products(obj,y,doc) {
-        doc.image(path.join(__dirname,'../dbimagesProducts/iJhsg37391jksnjiBnGG.jpg') ,50,y,{
+        doc.image(path.join(__dirname,'../dbimagesProducts/'+obj.var_name) ,50,y,{
           fit: [80, 80], align: 'center', valign: 'center'
         })
         .font('Times-Roman')
         .fontSize(15).fillColor('black').text(obj.var_name_product,140,y)
         .fontSize(10).text(obj.text_description)
         .font('Times-Bold').fontSize(13).fillColor('red').text(obj.dou_price,{align: 'right'})
- 
 }
 
 
