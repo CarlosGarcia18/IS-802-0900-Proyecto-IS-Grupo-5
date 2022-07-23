@@ -144,4 +144,36 @@ controller.postImage = (req,res) =>{
     
 }
 
+
+controller.getProducto=(req,res)=>{
+    const{id_producto}=req.params
+
+    let sql1=`SELECT prod.fk_id_user, prod.var_name AS titulo, prod.text_description, prod.int_views, prod.dou_price, 
+    u.var_name AS nombre, u.var_lastname AS apellido, cat.var_name AS categoria, dep.var_name AS departamento, stat.var_name AS estado FROM product prod 
+    INNER JOIN user u ON prod.fk_id_user=u.id_user
+    INNER JOIN product_category cat ON prod.fk_id_product_category=cat.id_product_category
+    INNER JOIN department dep ON prod.fk_id_department=dep.id_department
+    INNER JOIN product_status stat ON prod.fk_id_product_status=stat.id_product_status
+    WHERE id_product=${id_producto}`
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
+        else{
+            res.json(rows)
+        }
+    })
+}
+
+controller.getProductImages=(req,res)=>{
+    const{id_producto}=req.params
+
+    let sql1=  `SELECT var_name FROM photographs WHERE fk_id_product=${id_producto} `
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
+        else{
+            res.json(rows)
+        }
+    })
+}
 module.exports = controller

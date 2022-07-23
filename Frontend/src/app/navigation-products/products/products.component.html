@@ -1,5 +1,3 @@
-<!--Componente para mostrar los productos y los filtro de los mismos-->
-
 <div class="container1">
     <h1>¡Bienvenido!</h1>
 </div>
@@ -8,22 +6,11 @@
     <div class="select-container">
             <form [formGroup]="filterForm" action="POST">
             <H5>Filtrar por: </H5>
-            
-            <!--(change)="filtrar()"-->
-            
             <select [(ngModel)]="filtro.fk_id_department"  class="selector" (change)="filtrar()"
                 name="Departamento" formControlName="ubicacion" >
-
                 <option value="">Ubicación</option>
-
-                <!-- Traer departamentos de la base de datos-->
-                <option *ngFor="let department of departments" [value]="department.id_department">
-                    {{department.var_name}}
-                </option>
-                
+                <option *ngFor="let department of departments" [value]="department.id_department">{{department.var_name}}</option>  
             </select>
-            
-        
             <select [(ngModel)]="filtro.dou_price" class="selector" (change)="filtrar()"  name="precio" formControlName="precio">
                 <option value="">Precio menor a:</option>
                 <option value="100">100</option>
@@ -31,20 +18,14 @@
                 <option value="1000">1000</option>
                 <option value="2000">2000</option>
                 <option value="5000">5000</option>
-
             </select>
-            
-        
             <select [(ngModel)]="filtro.fk_id_product_category"  class="selector" (change)="filtrar()"  name="Categoria" formControlName="categoria">
                 <option value="">Categoría</option>
-
                 <!-- Traer las categorias de la base de datos-->
                 <option *ngFor="let category of categories" [value]="category.id_product_category">
                     {{category.var_name}}
                 </option>
-                
             </select>
-            
             <div class="btn-suscribe-container" *ngIf="enableSubscription">
                 <button class="btn-suscribe" type="submit" (click)="suscribirse()" *ngIf="!subscribed">SUSCRIBIRME</button> 
                 <button class="btn-unsubscribe" type="submit" (click)="suscribirse()" *ngIf="subscribed">ANULAR SUSCRIPCIÓN</button> 
@@ -54,11 +35,8 @@
        
 </div>
 
-    
-
 <div  class="carousel-container" >
     <div  class="gallery" >
-        
         <div class="content" *ngFor="let item of lista | slice:desde:hasta" >
             <img [src] = "'http://localhost:3000/' + item.var_name_photo" alt="">
             <table>
@@ -68,11 +46,10 @@
                 </tr>
             </table>    
             <h3>L.{{item.dou_price}}</h3>
-            <button class="buy">Ver</button>
+            <!--<p class="h5-descrip">{{item.text_description}}</p>-->
+            <button type="button-watch" class="buy" (click)="cargarProducto(item.id_product.toString())" (click)="cargarImagenes(item.id_product.toString())" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Ver</button>
         </div>
-
     </div>
-    
 </div>
 
 <mat-paginator [length]="lista.length"
@@ -80,3 +57,73 @@
               (page)="cambiarPagina($event)"
               >
 </mat-paginator>
+
+
+  <!-- Modal -->
+  
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">         
+<div class="gallery-2">
+
+    <!--*ngFor="let item of productoList"-->
+    <div class="content-2" *ngFor="let item of producto">
+        <div id="carouselExampleControlsNoTouching"  class="carousel slide" data-bs-touch="false">
+            <div class="carousel-inner" >
+                <div class="carousel-item active">
+                    <img  [src]="'http://localhost:3000/'+firstImage" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item" *ngFor="let image of images">
+                    <img [src]="'http://localhost:3000/'+image.var_name" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <h3 id="modal-h3">{{item.titulo}}</h3>
+        <h6 id="modal-h6">L. {{item.dou_price}}</h6>
+        <p id="modal-p">{{item.text_description}}</p>
+        <p id="modal-p"><strong>Estado:</strong>  {{item.estado}}</p>
+        <p id="modal-p"><strong>Categoria:</strong> {{item.categoria}}</p>
+            <p id="modal-p"><i class="fa-solid fa-location-dot"></i>   {{item.departamento}}</p>
+            <p id="modal-p"><i class="fa-solid fa-eye"></i>   {{item.int_views}}</p>
+        <div class="seller-container">
+            <h4><strong>{{item.nombre}}  {{item.apellido}} </strong> </h4>
+            <p class="p-califica">Calificame</p>
+            <div class="star-widget">
+                <input type="radio" name="rate" id="rate-5" (click)="calificar(5)" >
+                <label for="rate-5" class="fas fa-star"></label>
+                <input type="radio" name="rate" id="rate-4" (click)="calificar(4)">
+                <label for="rate-4" class="fas fa-star" ></label>
+                <input type="radio" name="rate" id="rate-3"(click)="calificar(3)" >
+                <label for="rate-3" class="fas fa-star" ></label>
+                <input type="radio" name="rate" id="rate-2"(click)="calificar(2)" >
+                <label for="rate-2" class="fas fa-star" ></label>
+                <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" >
+                <label for="rate-1" class="fas fa-star"></label>
+            </div>
+                <div class="btn-container2">
+                    <button type="submit" class="cbtn" style="background-color: #252f37">Contactar</button>
+                    <button type="submit" class="cbtn" style="background-color: brown; margin-left: 20px;">Denunciar</button>
+                </div>
+        </div>
+    </div>
+    <!--<button class="buy-3">Contactar vendedor</button>-->
+    </div>
+    
+</div>
+
+</div>
+
+<app-view-products></app-view-products>

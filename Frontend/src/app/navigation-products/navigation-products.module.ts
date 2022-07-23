@@ -10,6 +10,7 @@ import { ProductsComponent } from './products/products.component';
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
     PublishedProductsComponent,
     WishListComponent,
     ProductsComponent,
-    SubscriptionsComponent
+    SubscriptionsComponent,
+    ViewProductsComponent
   ],
   imports: [
     CommonModule,
