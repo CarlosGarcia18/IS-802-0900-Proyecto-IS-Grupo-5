@@ -35,6 +35,21 @@ INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Entretenimiento');
 INSERT INTO PRODUCT_CATEGORY(var_name) VALUES('Utiles');
 
 
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Discriminación");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Estafa");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Producto para adultos");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Producto o material peligroso");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Trata de personas");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Servicios sexuales");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Drogas");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Productos defectuosos");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Productos robados");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Armas");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Ningún artículo a la venta");
+INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Otro");
+
+
+
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234567
 
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
