@@ -88,7 +88,14 @@ routers.post('/deleteFav',customerU.deleteFavorite)
 routers.get('/getFavs/:id_user', customerU.getWishlist)
 //agregar a favoritos
 routers.post('/addFav', customerU.addFavorite)
-
+//Agrega calificacion
+routers.post('/addcalifications',customerU.qualifications)
+//Agregar comentario
+routers.post('/adddenuncia',customerU.denuncia)
+//Agregar Comentario
+//routers.post('/addcomentary',customerU.comentario)
+//Modificar Vista
+routers.put('/vista/:id',customerU.vista)
 //exportacion de rutas
 module.exports = routers
 //module.exports=app
