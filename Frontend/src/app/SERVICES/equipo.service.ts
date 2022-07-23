@@ -13,6 +13,7 @@ export class EquipoService {
   url ='http://localhost:4200/api'
   constructor(private http:HttpClient) { }
 
+
   addUsuario(registro:Registro){
       return this.http.post(this.url+"/user", registro)
   }
@@ -92,6 +93,22 @@ export class EquipoService {
 
   deleteSubscription(eliminarSuscripcion:subscribe){
     return this.http.post(this.url+"/unsubscribeCategory", eliminarSuscripcion)
+  }
+
+  borrarProducto(id: String ){
+    return this.http.delete(this.url+"/productDelete/"+id)
+  }
+
+  getOneProduct(id: string){
+    return this.http.get(this.url+"/getProducto/"+id)
+  }
+
+  getImages(id:string){
+    return this.http.get(this.url+"/productImages/"+id)
+  }
+
+  qualify(qlfy: qualification){
+    return this.http.post(this.url+"/addcalifications", qlfy)
   }
 
 }
@@ -202,3 +219,29 @@ export interface deleteWishlist{
   id_product:string
 }
 
+export interface deleteProduct{
+  id_product:string
+}
+
+export interface getProduct{
+  fk_id_user : number,
+  titulo: string,
+  text_description: string, 
+  int_views: number, 
+  dou_price: number, 
+	nombre: string,
+  apellido: string,
+  categoria: string,
+  departamento: string, 
+  estado: string
+}
+
+export interface Images{
+  var_name:string
+}
+
+export interface qualification{
+  fk_id_user_qualified: number,
+  fk_id_user_review: string| null, 
+  tin_score: number
+}

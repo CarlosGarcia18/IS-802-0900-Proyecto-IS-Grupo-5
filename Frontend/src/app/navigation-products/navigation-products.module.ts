@@ -11,6 +11,7 @@ import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { ComplaintComponent } from './complaint/complaint.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { ComplaintComponent } from './complaint/complaint.component';
     WishListComponent,
     ProductsComponent,
     SubscriptionsComponent,
-    ComplaintComponent
+    ViewProductsComponent
   ],
   imports: [
     CommonModule,

@@ -12,6 +12,7 @@ import { CredentialRecoveryModule } from './credential-recovery/credential-recov
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 //import { RecoveryLayoutComponent } from './layouts/recovery-layout/recovery-layout.component';
 import { NavigationLayoutComponent } from './layouts/navigation-layout/navigation-layout.component';
+//import { ViewProductComponent } from './view-product/view-product.component';
 
 
 
@@ -20,7 +21,8 @@ import { NavigationLayoutComponent } from './layouts/navigation-layout/navigatio
     AppComponent,
     DefaultLayoutComponent,
     //RecoveryLayoutComponent,
-    NavigationLayoutComponent
+    NavigationLayoutComponent,
+   // ViewProductComponent
   ],
   imports: [
     BrowserModule,
