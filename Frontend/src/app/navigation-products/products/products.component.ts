@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EquipoService, filter, traerProducto, subscribe, requestSubscriptions, subscription, deleteWishlist} from '../../SERVICES/equipo.service';
+import { EquipoService, filter, traerProducto, getProduct, Images, qualification,
+  subscribe, requestSubscriptions, subscription, deleteWishlist} from '../../SERVICES/equipo.service';
 
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
@@ -13,6 +14,15 @@ import Swal from 'sweetalert2';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  
+  producto: getProduct[]=[]
+  images: Images[]=[]
+  firstImage: string=''
+  qlfy: qualification ={
+    fk_id_user_qualified: 0,
+    fk_id_user_review: '', 
+    tin_score: 0
+  }
 
   constructor(private equipoService:EquipoService, private router: Router) {
   }
@@ -250,7 +260,37 @@ export class ProductsComponent implements OnInit {
       }
     )
   }
+
+  contarVistas(){}
+  
+
+cargarProducto(id_producto:string){
+  this.equipoService.getOneProduct(id_producto).subscribe(res=>{
+    this.producto=<any>res
+    this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
+    this.qlfy.fk_id_user_review=localStorage.getItem('token')
+
+    console.log(this.producto)
+  })
+  }
+
+  cargarImagenes(id_producto:string){
+    this.equipoService.getImages(id_producto).subscribe(res=>{
+      this.images=<any>res
+      this.firstImage=this.images[0].var_name
+    })
+  }
+
+  calificar(score:number){
+    this.qlfy.tin_score=score
+    this.equipoService.qualify(this.qlfy).subscribe(res=>{
+      console.log(this.qlfy)
+    })
+  }
+
 }
+
+
 
 interface BookInfo {
   status : string ;

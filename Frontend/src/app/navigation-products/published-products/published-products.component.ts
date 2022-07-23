@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, newProducto, traerProducto, user } from 'src/app/SERVICES/equipo.service';
+import { EquipoService, traerProducto, user, deleteProduct } from 'src/app/SERVICES/equipo.service';
 import { NewProductsComponent } from '../new-products/new-products.component';
 import { ProductsComponent } from '../products/products.component';
 import { PageEvent } from '@angular/material/paginator';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-published-products',
   templateUrl: './published-products.component.html',
@@ -30,71 +30,59 @@ export class PublishedProductsComponent implements OnInit {
     console.log(error)
 })
   }
-  /*getProducList(){
-    this.equipoService.getProductos().subscribe({ /*Otra forma de hacerlo  data=>{
-      console.log(data)
-      this.productoList=data;
-    }
-      
-       */
-      /*
-      next: (data:newProducto[]) =>{
-       this.productoList=data;
-       console.log(data)
-      },
-      /*EN caso de algun error */
-      /*error:(err:any)=>{
-        console.log('Error mostrado')
+  
+  borrarProd(id_product:string){
+    
+    Swal.fire({
+      title: '¿Estás seguro que deseas eliminar el artículo?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      cancelButtonText: 'No',
+      confirmButtonText: 'Eliminar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+        /// Llama a la funcion de borrar producto
+        this.equipoService.borrarProducto(id_product).subscribe((res) =>{
+          console.log('se elimino')
+          this.ngOnInit()
+          }, error => {
+            console.log(error);
+           })
+
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: "Se ha eliminado el producto",
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
-      
     })
-  }*/
+
+  }
+  
   usuario: user = {
     fk_id_user: ''
   }
 
-
-  eliminarProducto(id: any){
-    if(confirm('Desea eliminar')){
-      this.equipoService.eliminarProducto(id).subscribe((data) =>{
-        this.getProducList();
-      }, error => {
-        console.log(error);
-      })
-
-      
-    }
-
-////////////////////PAGINACION////////////////
-
-
-    /*
-    this.equipoService.eliminarProducto(id).subscribe((data) =>{
-      this.toastr.error('El producto fue eliminado con exito' ,'Producto Eliminado');
-      this.getProducList();
-    },error =>{
-      console.log(error);
-    
-    })
-    */
-  }
-  /*eliminarProducto(id: any) {
-    this._productoService.eliminarProducto(id).subscribe(data => {
-      this.toastr.error('El producto fue eliminado con exito' ,'Producto Eliminado');
-      this.obtenerProductos();
-    }, error => {
-      console.log(error);
-    })
-  } */
+  
 ////////////////////PAGINACION////////////////
 pageSize=8;
 desde:number= 0;
 hasta:number=8;
-
 
 cambiarPagina(e:PageEvent){
   console.log(e)
   this.desde=e.pageIndex*e.pageSize;
   this.hasta=this.desde+e.pageSize;
 }
+
+}
+
+interface BookInfo {
+  status : string ;
+  msg: string;
 }
