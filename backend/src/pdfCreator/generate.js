@@ -5,9 +5,7 @@ var fs = require('fs');
 const path = require('path')
 const SQLconsult = require('./SQLconsults')
 
-create1()
-
-function create1() {
+function create() {
     conection.query(SQLconsult.sqlGetUsers, (err2, rows2, fields) => {
         if (err2) console.log({ status: '0', msf: err.sqlMessage });
         else {
@@ -43,7 +41,7 @@ function create1() {
                                         for (let j = 0; j < rows1.length; j++) {
                                             if (rows1[j].fk_id_product_category == cat.fk_id_product_category) {
                                                 if (e > 6) break
-                                                gen.products(rows1[j], y, doc)//genera la targeta del producto
+                                                gen.products(rows1[j], y, doc, e)//genera la targeta del producto
                                                 e++
                                                 y += 90
                                             }
@@ -61,6 +59,9 @@ function create1() {
                     }
                 })
             }
+            console.log("Proceso de creacion de pdfs: Finalizado");
         }
     })
 }
+
+module.exports = { create }
