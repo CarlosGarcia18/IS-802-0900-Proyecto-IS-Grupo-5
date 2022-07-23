@@ -146,6 +146,7 @@ export class ProductsComponent implements OnInit {
 
   enableSubscription:boolean = false
   subscribed:boolean = false
+  modalComplaint:boolean = false
 
   departments:any[] = []
   categories:any[] = []
@@ -286,6 +287,10 @@ cargarProducto(id_producto:string){
     this.equipoService.qualify(this.qlfy).subscribe(res=>{
       console.log(this.qlfy)
     })
+  }
+
+  denunciar(){
+    this.modalComplaint = true
   }
 
 }

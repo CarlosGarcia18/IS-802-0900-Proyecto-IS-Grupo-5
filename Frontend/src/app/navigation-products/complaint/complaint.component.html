@@ -1,0 +1,46 @@
+<div class="modal" id="modalComplaint">
+    <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header text-center">
+            <h5 class="modal-title w-100">Denuncia</h5>
+        </div>
+        <!-- Modal Body -->
+        <div class="modal-body" style="padding-top: 0px;">
+            <br>
+            <form class="div_padre">
+
+                <div class="div_padre">
+                    <div class="form-group">
+            <div>
+                <h1>Denuncia a un vendedor</h1>
+                <h3>Selecciona la categoría de la denuncia</h3>
+                <select class="form-select" name="CategoriaDenuncia" formControlName="categoria" id="categoria">
+                    <option value="1">Discriminación</option>
+                    <option value="2">Estafa</option>
+                    <option value="3">Producto para adultos</option>
+                    <option value="4">Producto o material peligroso</option>
+                    <option value="5">Trata de personas</option>
+                    <option value="6">Servicios sexuales</option>
+                    <option value="7">Drogas</option>
+                    <option value="8">Productos defectuosos</option>
+                    <option value="9">Productos robados</option>
+                    <option value="10">Armas</option>
+                    <option value="11">Ningún artículo a la venta</option>
+                    <option value="12">Otro</option>
+
+                </select>
+                <textarea placeholder="Escribe aquí mas detalles sobre la denuncia" name="comentarios" rows="10" cols="40"></textarea>
+
+            </div>
+
+                    </div>
+                </div>
+            </form>
+            
+            <div class="modal-footer">
+                <!--Botones de enviar o cerrar la denuncia-->
+                <button type="button" class="btn btn-secondary" (click)="openModalComplaint()" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" (clic)="closeModalComplaint()" data-bs-dismiss="modal" type="submit">Enviar</button>
+            </div>
+        </div>
+</div>
