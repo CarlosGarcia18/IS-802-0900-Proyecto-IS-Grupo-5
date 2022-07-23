@@ -5,6 +5,7 @@ import { ProductsComponent } from "./products/products.component";
 import { WishListComponent } from "./wish-list/wish-list.component";
 import { PublishedProductsComponent } from "./published-products/published-products.component";
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { ComplaintComponent } from './complaint/complaint.component';
 
 const routes: Routes = [
   { 
@@ -14,7 +15,8 @@ const routes: Routes = [
       {path: '',component:ProductsComponent},
       {path: 'wishlist',component:WishListComponent},
       {path: 'published',component:PublishedProductsComponent},
-      {path: 'subscriptions',component:SubscriptionsComponent}
+      {path: 'subscriptions',component:SubscriptionsComponent},
+      {path: 'denuncia',component:ComplaintComponent}
     ]  
   }
 ];

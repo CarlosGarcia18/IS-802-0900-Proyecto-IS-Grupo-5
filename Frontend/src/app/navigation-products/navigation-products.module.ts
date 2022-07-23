@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatPaginatorModule} from '@angular/material/paginator';
 import { NavigationProductsRoutingModule } from './navigation-products-routing.module';
 import { NavigationProductsComponent } from './view-navigation/navigation-products.component';
 import { NewProductsComponent } from './new-products/new-products.component';
@@ -10,6 +10,7 @@ import { ProductsComponent } from './products/products.component';
 import { ComponentsModule } from "../components/components.module";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { ComplaintComponent } from './complaint/complaint.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
     PublishedProductsComponent,
     WishListComponent,
     ProductsComponent,
-    SubscriptionsComponent
+    SubscriptionsComponent,
+    ComplaintComponent
   ],
   imports: [
     CommonModule,
