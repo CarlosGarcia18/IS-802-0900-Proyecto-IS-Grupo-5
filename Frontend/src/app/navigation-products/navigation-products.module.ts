@@ -21,7 +21,8 @@ import { ViewProductsComponent } from './view-products/view-products.component';
     WishListComponent,
     ProductsComponent,
     SubscriptionsComponent,
-    ViewProductsComponent
+    ViewProductsComponent,
+    ComplaintComponent
   ],
   imports: [
     CommonModule,

@@ -24,6 +24,7 @@ const fileUpload = multer({
 
 //Direcciones de prueba
 routers.get('/userTest', customerU.test)
+
 routers.get('/adminTest', customerA.test)
 
 //Get User Para recuperar datos a un id Especifico /se debe especificar el id en la ruta/
@@ -103,6 +104,9 @@ routers.get('/getProducto/:id_producto',customerO.getProducto)
 
 //traer todas las imagenes de un producto
 routers.get('/productImages/:id_producto', customerO.getProductImages)
+
+
+routers.post('/SuscriptionsEmail', customerO.envioPDFCorreo)
 
 
 //exportacion de rutas
