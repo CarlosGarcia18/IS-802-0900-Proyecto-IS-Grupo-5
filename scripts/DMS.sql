@@ -67,13 +67,13 @@ INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_passwo
 
 
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (1,1,1,1,"Disco duro externo portátil",1,"250 GB de almacenamiento y 5 meses de garantia",1024,1,"2022-07-02","2022-08-12");
+	VALUES (1,1,7,1,"Disco duro externo portátil",1,"250 GB de almacenamiento y 5 meses de garantia",1024,1,"2022-07-02","2022-08-12");
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (1,1,1,1,"Disco duro externo portátil",1,"480 GB de almacenamiento y 5 meses de garantia",2024,1,"2022-07-06","2022-08-15");
+	VALUES (1,1,7,1,"Disco duro externo portátil",1,"480 GB de almacenamiento y 5 meses de garantia",2024,1,"2022-07-06","2022-08-15");
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (1,2,1,1,"Disco duro externo portátil",1,"1 TB de almacenamiento y 5 meses de garantia",4024,1,"2022-07-01","2022-07-14");
+	VALUES (1,2,7,1,"Disco duro externo portátil",1,"1 TB de almacenamiento y 5 meses de garantia",4024,1,"2022-07-01","2022-07-14");
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 
-	VALUES (3,1,1,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-08-16");
+	VALUES (3,1,7,1,"Disco duro externo portátil",1,"1.5 TB de almacenamiento y 5 meses de garantia",6024,1,"2022-07-03","2022-08-16");
 
 INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("iJhsg37391jksnjiBnGG.jpg","jpg",1);
 INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product) VALUES("ISJS9sjsiIjn9hJKJ98dG.jpg","jpg",2);
