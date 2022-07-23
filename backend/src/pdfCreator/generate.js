@@ -4,7 +4,7 @@ var PDFDocument = require('pdfkit');
 var fs = require('fs');
 const path = require('path')
 const SQLconsult = require('./SQLconsults')
-create()
+
 function create() {
     conection.query(SQLconsult.sqlGetUsers, (err2, rows2, fields) => {
         if (err2) console.log({ status: '0', msf: err.sqlMessage });
