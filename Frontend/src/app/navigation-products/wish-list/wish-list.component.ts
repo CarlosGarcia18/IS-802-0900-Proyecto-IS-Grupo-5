@@ -1,14 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
-import { EquipoService,wishListProducts,deleteWishlist } from '../../SERVICES/equipo.service'
-
+import { EquipoService,wishListProducts,deleteWishlist, getProduct, Images, qualification } from '../../SERVICES/equipo.service'
+import { ViewProductsComponent } from '../view-products/view-products.component';
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
   styleUrls: ['./wish-list.component.scss'],
 })
-export class WishListComponent implements OnInit {
 
+  
+export class WishListComponent implements OnInit {
+  producto: getProduct[]=[]
+  images: Images[]=[]
+  firstImage: string=''
+  qlfy: qualification ={
+    fk_id_user_qualified: 0,
+    fk_id_user_review: '', 
+    tin_score: 0
+  }
+
+  
   constructor(private paginator: MatPaginatorIntl,private equipoService:EquipoService) {
     paginator.itemsPerPageLabel = "Productos por pagina:"
     paginator.firstPageLabel = "Primer página"
@@ -48,6 +59,8 @@ error = false
       }
     ]
   }
+
+  
 
   ngOnInit(): void {
     this.loadProducts()
@@ -104,7 +117,37 @@ error = false
       
     }
   }
+  
+  
+  cargarProducto(id_producto:string){
+  this.equipoService.getOneProduct(id_producto).subscribe(res=>{
+    this.producto=<any>res
+    this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
+    this.qlfy.fk_id_user_review=localStorage.getItem('token')
+
+    console.log(this.producto)
+  })
+  }
+
+  cargarImagenes(id_producto:string){
+    this.equipoService.getImages(id_producto).subscribe(res=>{
+      this.images=<any>res
+      this.firstImage=this.images[0].var_name
+    })
+  }
+
+  calificar(score:number){
+    this.qlfy.tin_score=score
+    this.equipoService.qualify(this.qlfy).subscribe(res=>{
+      console.log(this.qlfy)
+    })
+  }
+  
+
 }
+
+
+
 
 interface after{
   "status": string,

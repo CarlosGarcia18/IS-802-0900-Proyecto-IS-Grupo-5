@@ -24,6 +24,7 @@ const fileUpload = multer({
 
 //Direcciones de prueba
 routers.get('/userTest', customerU.test)
+
 routers.get('/adminTest', customerA.test)
 
 //Get User Para recuperar datos a un id Especifico /se debe especificar el id en la ruta/
@@ -71,7 +72,7 @@ routers.post('/newProduct',customerO.postProduct)
 routers.post('/product/postImage/:id', fileUpload, customerO.postImage)
 
 //Eliminar un producto dado un id // Elimina todas las imagenes del producto
-routers.delete('/product/delete/:id',customerO.deleteProduct)
+routers.delete('/productDelete/:id',customerO.deleteProduct)
 
 //suscribir usuario
 routers.post('/subscribeCategory',customerU.subscribeUser)
@@ -88,6 +89,7 @@ routers.post('/deleteFav',customerU.deleteFavorite)
 routers.get('/getFavs/:id_user', customerU.getWishlist)
 //agregar a favoritos
 routers.post('/addFav', customerU.addFavorite)
+
 //Agrega calificacion
 routers.post('/addcalifications',customerU.qualifications)
 //Agregar comentario
@@ -96,6 +98,17 @@ routers.post('/adddenuncia',customerU.denuncia)
 //routers.post('/addcomentary',customerU.comentario)
 //Modificar Vista
 routers.put('/vista/:id',customerU.vista)
+
+//traer un solo producto
+routers.get('/getProducto/:id_producto',customerO.getProducto)
+
+//traer todas las imagenes de un producto
+routers.get('/productImages/:id_producto', customerO.getProductImages)
+
+
+routers.post('/SuscriptionsEmail', customerO.envioPDFCorreo)
+
+
 //exportacion de rutas
 module.exports = routers
 //module.exports=app

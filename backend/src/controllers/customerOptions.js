@@ -1,5 +1,6 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD 
 const controller = {} //definicion de controller que guardara las rutas
+const nodemailer = require('nodemailer')
 const fs= require('fs').promises
 const path = require('path')
 
@@ -100,7 +101,6 @@ controller.deleteProduct = (req,res)=>{
                 console.log(rows[index].var_name)
                 files.push("src/dbimagesProducts/" + rows[index].var_name)
 
-
             }
 
             Promise.all(files.map(file => fs.unlink(file)))
@@ -115,7 +115,7 @@ controller.deleteProduct = (req,res)=>{
             conection.query(sql2,(err,rows,fields)=>{
                 if(err) res.json({status:'0', msg:err.sqlMessage});
                 else{
-                    res.json({status:'200', msf:'Producto Eliminado'})
+                    res.json({status:'200', msg:'Producto Eliminado'})
                 }
             })
 
@@ -144,4 +144,134 @@ controller.postImage = (req,res) =>{
     
 }
 
+
+controller.getProducto=(req,res)=>{
+    const{id_producto}=req.params
+
+    let sql1=`SELECT prod.fk_id_user, prod.var_name AS titulo, prod.text_description, prod.int_views, prod.dou_price, 
+    u.var_name AS nombre, u.var_lastname AS apellido, cat.var_name AS categoria, dep.var_name AS departamento, stat.var_name AS estado FROM product prod 
+    INNER JOIN user u ON prod.fk_id_user=u.id_user
+    INNER JOIN product_category cat ON prod.fk_id_product_category=cat.id_product_category
+    INNER JOIN department dep ON prod.fk_id_department=dep.id_department
+    INNER JOIN product_status stat ON prod.fk_id_product_status=stat.id_product_status
+    WHERE id_product=${id_producto}`
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
+        else{
+            res.json(rows)
+        }
+    })
+}
+
+controller.getProductImages=(req,res)=>{
+    const{id_producto}=req.params
+
+    let sql1=  `SELECT var_name FROM photographs WHERE fk_id_product=${id_producto} `
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
+        else{
+            res.json(rows)
+        }
+    })
+}
 module.exports = controller
+
+//////////////////////////outlook
+function enviarCorreoOut(destinatario, file, res) {
+    let config = nodemailer.createTransport({
+        host: 'smtp-mail.outlook.com',
+        port: 587,
+        secureConnection: false,
+        tls: {
+            ciphers: 'SSLv3'
+        },
+        auth: {
+            user: '',
+            pass: ''
+        }
+    });
+    const opc = {
+        from: '"Plazita Net" <>',
+        subject: "Recuperacion de cuenta",
+        to: `${destinatario}`,
+        text: `Mira los nuevos productos publicados esta semana.\n Disponibles en PlazitaNet`,
+        attachments: [
+            {
+                filename: file,
+                path: 'src/documentPDF/' + file,
+            }
+        ]
+    };
+
+    config.sendMail(opc, function (error, result) {
+        if (error) { console.log(error) } //error el enviar email
+        else { console.log("Correo enviado a " + destinatario) }    //correcto
+    })
+}
+
+/////////////////////// gmail - hotmail //////////////////////////////////////////
+
+function enviarCorreoGmail(destinatario, id_user, res) {
+    let config = nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: '',
+            pass: ''
+        }
+    });
+    const opc = {
+        from: '"Plazita Net" <>',
+        subject: "Recuperacion de cuenta",
+        to: `${destinatario}`,
+        text: `Mira los nuevos productos publicados esta semana.\n Disponibles en PlazitaNet`,
+        attachments: [
+            {
+                filename: id_user + "_suscription.pdf",
+                path: 'src/documentPDF/' + id_user + "_suscription.pdf",
+            }
+        ]
+    };
+
+    config.sendMail(opc, function (error, result,) {
+        if (error) { console.log(error) } //error el enviar email
+        else { console.log("Correo enviado a " + destinatario) }    //correcto
+    })                                   /////////////////////////////////
+}
+
+controller.envioPDFCorreo = (req,res) => {
+    //Obtiene los correos de todos los usuarios que no han sido dados de baja
+    let sql = `SELECT id_user, var_email FROM USER WHERE bit_status = 1`
+
+    conection.query(sql, (err, rows, fields) => {
+        if (err) res.json({ status: '0', error: err.sqlMessage });//posible error en consulta
+        else {
+            for(var index in rows){
+                //evaluar smtp provider
+                let n = rows[index].var_email.search('gmail.com')
+                let n2 = rows[index].var_email.search('outlook.com')
+                let n3 = rows[index].var_email.search('hotmail.com')
+
+                if (n2 != -1) {
+                    console.log('outlook')
+                    enviarCorreoOut(rows[index].var_email, rows[index].id_user, res);
+                } else {
+                    if (n3 != -1) {
+                        enviarCorreoGmail(rows[index].var_email, rows[index].id_user, res);
+                    } else {
+                        if (n != -1) {
+                            enviarCorreoGmail(rows[index].var_email, rows[index].id_user, res);
+                        }
+                    }
+                }
+
+            }
+            res.json({ status: '200', msg: 'Correos enviados' })
+        }
+    })
+
+
+}

@@ -14,16 +14,15 @@
   <div  class="gallery" >
       
       <div class="content" *ngFor="let item of productoList | slice:desde:hasta" >
-          <img [src]="'http://localhost:3000/' + item.var_name_photo">
-          <table>
-              <tr>
-                  <td class="name-col"><h6><strong>{{item.var_name}}</strong></h6></td>
-                  <td class="icon-col"><i id="fav-icon" class="fa-solid fa-trash-can"></i></td>
-              </tr>
-          </table>    
+          
+        <img [src]="'http://localhost:3000/' + item.var_name_photo">
+         
+          <h6><strong>{{item.var_name}}</strong></h6>
+             
           <h3>L. {{item.dou_price}}</h3>
-          <p class="h5-descrip">{{item.text_description}}</p>
-          <button class="buy">Editar</button>
+         
+          <button class="buy"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
+          <button class="delete" (click)="borrarProd(item.id_product.toString())"><i class="fa-solid fa-trash-can"></i> Eliminar</button>
       </div>
 
   </div>
@@ -34,3 +33,4 @@
             (page)="cambiarPagina($event)"
             >
 </mat-paginator>
+
