@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
-import { EquipoService,wishListProducts,deleteWishlist, getProduct, Images, qualification } from '../../SERVICES/equipo.service'
+import { request } from 'express';
+import { EquipoService,wishListProducts,deleteWishlist, getProduct, Images, qualification, reqQualify } from '../../SERVICES/equipo.service'
 import { ViewProductsComponent } from '../view-products/view-products.component';
 @Component({
   selector: 'app-wish-list',
@@ -18,6 +19,11 @@ export class WishListComponent implements OnInit {
     fk_id_user_review: '', 
     tin_score: 0
   }
+  response: reqQualify={
+    status:'',
+    msg:''
+  }
+  public toggleButton: boolean = false;
 
   
   constructor(private paginator: MatPaginatorIntl,private equipoService:EquipoService) {
@@ -64,6 +70,7 @@ error = false
 
   ngOnInit(): void {
     this.loadProducts()
+    this.toggleButton=false
   }
 
   loadProducts(){
@@ -138,14 +145,23 @@ error = false
 
   calificar(score:number){
     this.qlfy.tin_score=score
+    //this.toggleButton=true;
+
     this.equipoService.qualify(this.qlfy).subscribe(res=>{
-      console.log(this.qlfy)
+      this.response=<any>res
+     // console.log(this.response)
+      if(this.response.status=='203'){
+        this.toggleButton=true
+        console.log('Usuario ya fue calificado')}
+        else {
+        this.toggleButton=false
+        console.log(this.qlfy)
+        }
     })
   }
   
-
+  
 }
-
 
 
 

@@ -245,3 +245,8 @@ export interface qualification{
   fk_id_user_review: string| null, 
   tin_score: number
 }
+
+export interface reqQualify{
+  status: string
+  msg: string
+}

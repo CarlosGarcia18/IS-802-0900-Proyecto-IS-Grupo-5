@@ -1,4 +1,4 @@
-var sqlGetUsers = "SELECT * FROM user"
+var sqlGetUsers = "SELECT * FROM user WHERE bit_status = 1"
 
 function sqlSuscriptions(id) {
     let sql = "SELECT fk_id_user,fk_id_product_category,var_name FROM subscription,product_category"

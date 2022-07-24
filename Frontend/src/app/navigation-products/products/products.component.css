@@ -83,7 +83,8 @@ h5{
     margin-bottom: 25px;
     border-radius: 8px;
     outline: 10em;
-    width: 120px;
+    width: 130px;
+    font-size: 14px;
     box-shadow: rgb(110 110 110 / 75%) 0px 1px 3.5px 0px;
    
 }
@@ -98,7 +99,7 @@ form{
 
 .select-container{
     display: flex;
-    padding-left: 320px;
+    padding-left: 200px;
 }
 
 .carousel-container{
@@ -369,11 +370,9 @@ input:hover~label{
 
 .carousel-control-prev-icon{
   background-color: black;
-  margin-left: -480px;
 }
 .carousel-control-next-icon{
   background-color: black;
-  margin-left: 480px;
 }
 
 .d-block.w-100{
