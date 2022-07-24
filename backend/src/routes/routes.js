@@ -97,7 +97,7 @@ routers.post('/adddenuncia',customerU.denuncia)
 //Agregar Comentario
 //routers.post('/addcomentary',customerU.comentario)
 //Modificar Vista
-routers.put('/vista/:id',customerU.vista)
+routers.get('/vista/:id',customerU.vista)
 
 //traer un solo producto
 routers.get('/getProducto/:id_producto',customerO.getProducto)

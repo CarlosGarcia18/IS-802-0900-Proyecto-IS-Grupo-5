@@ -692,35 +692,19 @@ controller.comentario =(req ,res)=>{
 //=================Modificar Vista============================================
 
 controller.vista=(req,res)=>{
-    /*SELECT @id := dept_id FROM departamentos WHERE departamento = 'Personal'; */
+   
     const{id_product}=req.params
-    const {int_views}=req.body
-    
-    let generateToken = `CALL vistaProduc('${int_views}')` //GENERAMOS EL TOKEN 
-    let sql23=`select * from vistaProduc set
-    int_views=${int_views}`
-    let sql24 = `SELECT int_views FROM PRODUCT WHERE int_views='${int_views}'`
+
+    let generateToken = `CALL vistaProduc(${id_product})` //GENERAMOS EL TOKEN 
     conection.query(generateToken,(err,rows,fields)=>{
         if(err){
-            rows.json({status:'0',error:err.sqlMessage})
+            res.json({status:'0',erorr:err.sqlMessage})
         }else{
-            if(rows.length!=0){
-                conection.query(sql24,(err,rows,fields)=>{
-                    if(err){
-                        rows.json({status:'0',erorr:err.sqlMessage})
-                    }else{
-                        rows.json({status:'200',msg:'Se creo la vista'})
-                    }
-                })
-            }else{
-                rows.json({status:'1' ,error:err.sqlMessage})
-            }
+            res.json({status:'200', msg:'Se modifico '})
         }
+
     })
-        
 }
-
-
 
 
 
