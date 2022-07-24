@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EquipoService, filter, traerProducto, getProduct, Images, qualification,
-  subscribe, requestSubscriptions, subscription, deleteWishlist} from '../../SERVICES/equipo.service';
+  subscribe, requestSubscriptions, subscription, deleteWishlist, reqQualify} from '../../SERVICES/equipo.service';
 
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
@@ -23,11 +23,18 @@ export class ProductsComponent implements OnInit {
     fk_id_user_review: '', 
     tin_score: 0
   }
+  response: reqQualify={
+    status:'',
+    msg:''
+  }
+  public toggleButton: boolean = false;
 
+  
   constructor(private equipoService:EquipoService, private router: Router) {
   }
 
   ngOnInit(): void {
+      this.toggleButton=false
 
       // Traer los departamentos
       this.equipoService.getDepartments().subscribe(res=>{
@@ -284,8 +291,17 @@ cargarProducto(id_producto:string){
 
   calificar(score:number){
     this.qlfy.tin_score=score
+    
     this.equipoService.qualify(this.qlfy).subscribe(res=>{
-      console.log(this.qlfy)
+      this.response=<any>res
+      //console.log(this.response)
+      if(this.response.status=='203'){
+        this.toggleButton=true
+        console.log('Usuario ya fue calificado')}
+        else {
+        this.toggleButton=false
+        console.log(this.qlfy)
+        }
     })
   }
 
