@@ -191,5 +191,3 @@ CREATE TABLE SUBSCRIPTION(
 ALTER TABLE SUBSCRIPTION
 	ADD CONSTRAINT pk_subscription PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product_category);
 
-
-

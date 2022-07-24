@@ -28,3 +28,15 @@ END$$
 #ejemplo de uso del procedimiento
 Call createCode("joseK@gmail.com");
 
+--Producto Almacenado 
+delimiter //
+create  procedure vistaProduc (a_int_views int, id int)
+BEGIN
+update PRODUCT set int_views=1+a_int_views where id_product=id;
+end//
+select * from PRODUCT;
+
+call vistaProduc(0,5);
+
+select * from vistaProduc;
+

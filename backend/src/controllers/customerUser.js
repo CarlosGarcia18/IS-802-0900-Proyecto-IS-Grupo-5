@@ -5,7 +5,7 @@ const path = require('path')
 const nodemailer = require('nodemailer')
 const { parseConnectionUrl } = require('nodemailer/lib/shared')
 
-//////////////////////////outlook
+//////////////////////////outlook createCode
 function enviarCorreoOut(destinatario, codigo, res) {
     let config = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
@@ -578,17 +578,18 @@ controller.qualifications = (req, res) => {
 
 //=================Crear Denuncias==========================================
 controller.denuncia =(req ,res)=>{
-    const{fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,bit_status,
-        text_description,tim_date}=req.body
+    const{fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,
+        text_description}=req.body
 
-    let sql18 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
-    let sql19 = `SELECT * FROM user WHERE id_user=${fk_id_user_complaining} `
-    let sql20 = `SELECT * FROM PRODUCT WHERE id_product=${fk_id_product} `
-    let sql21 = `SELECT * FROM COMPLAINT_CATEGORY WHERE id_COMPLAINT_CATEGORY=${fk_id_complaint_category} `
+    let sql18 = `SELECT 'idUsuario'+ id_user FROM user WHERE id_user = ${fk_id_user}`
+    let sql19 = `SELECT 'id comp'+id_user FROM user WHERE id_user=${fk_id_user_complaining} `
+    let sql20 = `SELECT 'id_producto'+id_product FROM PRODUCT WHERE id_product=${fk_id_product} `
+
+    let sql21 = `SELECT 'id_categoria'+id_COMPLAINT_CATEGORY FROM COMPLAINT_CATEGORY WHERE id_COMPLAINT_CATEGORY=${fk_id_complaint_category} `
     let sql22 = `INSERT INTO COMPLAINT(fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,
-        ,bit_status,text_description,tim_date) 
+        bit_status,text_description,tim_date) 
     VALUES(${fk_id_user},${fk_id_user_complaining},${fk_id_product},${fk_id_complaint_category},
-        ${bit_status},${text_description},${tim_date})`
+        1,"${text_description}",CURRENT_TIMESTAMP())`
 
     //conexion de usuario 1
     conection.query(sql18,(err,rows,fields)=>{
@@ -691,18 +692,32 @@ controller.comentario =(req ,res)=>{
 //=================Modificar Vista============================================
 
 controller.vista=(req,res)=>{
+    /*SELECT @id := dept_id FROM departamentos WHERE departamento = 'Personal'; */
     const{id_product}=req.params
     const {int_views}=req.body
-    let sql21=`UPDATE PRODUCT SET int_views=${int_views}
-    where id_product=${id_product}`
-    conection.query(sql21,(err,rows,fields)=>{
+    
+    let generateToken = `CALL vistaProduc('${int_views}')` //GENERAMOS EL TOKEN 
+    let sql23=`select * from vistaProduc set
+    int_views=${int_views}`
+    let sql24 = `SELECT int_views FROM PRODUCT WHERE int_views='${int_views}'`
+    conection.query(generateToken,(err,rows,fields)=>{
         if(err){
-            res.json({status:'0',error:err.sqlMessage})
+            rows.json({status:'0',error:err.sqlMessage})
         }else{
-            res.json({ status: '200', msg: 'Se agrego calificacion' })
+            if(rows.length!=0){
+                conection.query(sql24,(err,rows,fields)=>{
+                    if(err){
+                        rows.json({status:'0',erorr:err.sqlMessage})
+                    }else{
+                        rows.json({status:'200',msg:'Se creo la vista'})
+                    }
+                })
+            }else{
+                rows.json({status:'1' ,error:err.sqlMessage})
+            }
         }
     })
-
+        
 }
 
 
