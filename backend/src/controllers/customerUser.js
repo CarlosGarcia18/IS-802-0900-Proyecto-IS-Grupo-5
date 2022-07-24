@@ -693,9 +693,9 @@ controller.comentario =(req ,res)=>{
 
 controller.vista=(req,res)=>{
    
-    const{id_product}=req.params
+    const{id}=req.params
 
-    let generateToken = `CALL vistaProduc(${id_product})` //GENERAMOS EL TOKEN 
+    let generateToken = `CALL vistaProduc(${id})` //GENERAMOS EL TOKEN 
     conection.query(generateToken,(err,rows,fields)=>{
         if(err){
             res.json({status:'0',erorr:err.sqlMessage})
