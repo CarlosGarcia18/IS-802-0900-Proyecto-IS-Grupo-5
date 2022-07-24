@@ -3,7 +3,6 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs = require('fs')
 const path = require('path')
 const nodemailer = require('nodemailer')
-const { parseConnectionUrl } = require('nodemailer/lib/shared')
 
 //////////////////////////outlook
 function enviarCorreoOut(destinatario, codigo, res) {

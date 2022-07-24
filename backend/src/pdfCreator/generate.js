@@ -6,6 +6,7 @@ const path = require('path')
 const SQLconsult = require('./SQLconsults')
 
 function create() {
+    gen.deleteFiles()
     conection.query(SQLconsult.sqlGetUsers, (err2, rows2, fields) => {
         if (err2) console.log({ status: '0', msf: err.sqlMessage });
         else {
@@ -19,23 +20,9 @@ function create() {
                                     console.log({ status: '2', msf: err1.sqlMessage });
                                 }
                                 else {
-                                    let doc = new PDFDocument({
-                                        pdfVersion: '1.5',
-                                        lang: 'en-US',
-                                        tagged: true,
-                                        displayTitle: true
-                                    });
-                                    let p = './src/documentPDF/' + rows2[i].id_user + '_suscription.pdf'
-                                    doc.pipe(fs.createWriteStream(p));
-
-                                    gen.information(doc)//genera la informacion
-                                    gen.fonts(doc)//genera las fuentes
-                                    var y = 60
-                                    gen.head(y, doc)//Creacion del encabezado
-                                    y += 35
-                                    var addNewPage = false
-                                    for (let h = 0; h < rows.length; h++) {
-                                        let cat = rows[h]
+                                    var emphyCats = false
+                                    for (let l = 0; l < rows.length; l++) {
+                                        let cat = rows[l]
                                         let emptyProducts = true //verificacion si no hay productos en esa categoria
                                         for (let j = 0; j < rows1.length; j++) {
                                             if (rows1[j].fk_id_product_category == cat.fk_id_product_category) {
@@ -44,26 +31,61 @@ function create() {
                                             }
                                         }
                                         if(!emptyProducts){
-                                            if (h != (rows.length - 1) && addNewPage) doc.addPage()
-                                            addNewPage = true    
-                                            
-                                            gen.newCat(y, doc, cat.var_name)//Titulo de la categoria
-                                            y += 30
-                                            var e = 0
+                                            emphyCats = true
+                                            break
+                                        }
+                                    }
+
+                                    if (emphyCats) {
+                                        let doc = new PDFDocument({
+                                            pdfVersion: '1.5',
+                                            lang: 'en-US',
+                                            tagged: true,
+                                            displayTitle: true
+                                        });
+                                        let p = './src/documentPDF/' + rows2[i].id_user + '_suscription.pdf'
+                                        doc.pipe(fs.createWriteStream(p));
+    
+                                        gen.information(doc)//genera la informacion
+                                        gen.fonts(doc)//genera las fuentes
+                                        var y = 10
+                                        gen.head(y, doc)//Creacion del encabezado
+                                        y += 35
+                                        var addNewPage = false
+                                        
+                                        for (let h = 0; h < rows.length; h++) {
+                                            let cat = rows[h]
+                                            let emptyProducts = true //verificacion si no hay productos en esa categoria
                                             for (let j = 0; j < rows1.length; j++) {
                                                 if (rows1[j].fk_id_product_category == cat.fk_id_product_category) {
-                                                    if (e > 6) break
-                                                    gen.products(rows1[j], y, doc, e)//genera la targeta del producto
-                                                    e++
-                                                    y += 90
+                                                   emptyProducts = false
+                                                   break
                                                 }
                                             }
-                                            y = 60
+                                            if(!emptyProducts){
+                                                if (h != (rows.length - 1) && addNewPage) doc.addPage()
+                                                addNewPage = true    
+                                                
+                                                gen.newCat(y, doc, cat.var_name)//Titulo de la categoria
+                                                y += 30
+                                                var e = 0
+                                                for (let j = 0; j < rows1.length; j++) {
+                                                    if (rows1[j].fk_id_product_category == cat.fk_id_product_category) {
+                                                        if (e > 9) break
+                                                        gen.products(rows1[j], y, doc, e)//genera la targeta del producto
+                                                        e++
+                                                        y += 63
+                                                    }
+                                                }
+                                                y = 60
+                                                
+                                            }
                                             
                                         }
-                                        
+                                        doc.end() //termina la escritura del archivo pdf
                                     }
-                                    doc.end()
+                                    
+                                    
                                 }
                             })
 
@@ -71,7 +93,7 @@ function create() {
                     }
                 })
             }
-            console.log("Proceso de creacion de pdfs: Finalizado");
+            console.log("->Proceso de creacion de pdfs: Finalizado");
         }
     })
 }

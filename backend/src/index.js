@@ -3,6 +3,8 @@ const morgan = require('morgan') //paquete para verificacion
 const routerConstumer = require('./routes/routes')
 const bodyParser=require('body-parser')//config para correo
 const pat = require('path')
+const auth = require('./auto')
+
 //Configuracion del puerto del servidor
 const port = (process.env.port || 3000)
 const cors = require("cors")

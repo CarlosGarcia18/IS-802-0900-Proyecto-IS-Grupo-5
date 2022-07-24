@@ -106,8 +106,6 @@ routers.get('/getProducto/:id_producto',customerO.getProducto)
 routers.get('/productImages/:id_producto', customerO.getProductImages)
 
 
-routers.post('/SuscriptionsEmail', customerO.envioPDFCorreo)
-
 
 //exportacion de rutas
 module.exports = routers

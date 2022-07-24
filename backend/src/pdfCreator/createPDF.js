@@ -1,4 +1,5 @@
 const path = require('path')
+var fs = require('fs');
 
 function information(doc) {
   // Metadatos del archivo PDF
@@ -41,12 +42,12 @@ function products(obj, y, doc, e) {
   //Creacion de productos
   try {
     doc.image(path.join(__dirname, '../dbimagesProducts/' + obj.var_name), 50, y, {
-      fit: [80, 80], align: 'center', valign: 'center'
+      fit: [55, 55], align: 'center', valign: 'center'
     })
       .font('Poppins-Light')
-      .fontSize(15).fillColor('black').text(obj.var_name_product, 140, y)
-      .fontSize(10).text(obj.text_description)
-      .font('Times-Bold').fontSize(13).fillColor('red').text("L." + obj.dou_price, { align: 'right' })
+      .fontSize(15).fillColor('black').text(obj.var_name_product, 115, y)
+      .fontSize(8).text(obj.text_description)
+      .font('Times-Bold').fontSize(12).fillColor('red').text("L." + obj.dou_price, { align: 'right' })
   } catch (error) {
     //Algunas imagenes dan error por ciertas razones, favor remplazarlas
     console.log("Problemas con la imagen: " + obj.var_name)
@@ -55,13 +56,27 @@ function products(obj, y, doc, e) {
 
 }
 
+function deleteFiles() {
+  fs.readdir(path.join(__dirname, '../documentPDF'), 
+  function (err, archivos) {
+    if (err) {
+      console.log(err)
+      return
+    }
+    archivos.map(ar=>{
+      fs.unlinkSync(path.join(__dirname, '../documentPDF/'+ar))
+    })
+  });
+}
+
 module.exports =
 {
   information,
   head,
   newCat,
   products,
-  fonts
+  fonts,
+  deleteFiles
 };
 
 
