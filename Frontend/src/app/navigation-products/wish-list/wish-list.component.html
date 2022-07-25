@@ -11,7 +11,7 @@
             <img [src] = "'http://localhost:3000/' + item.var_name_photo" alt="">
             <div class="content-inf">
                 <div class="content-inf-text">
-                    <h4>{{item.var_name}}</h4>
+                    <h4 style="font-size: 18px; text-align:left">{{item.var_name}}</h4>
                 </div>
                 <div style="width:20px">
                     <i (click)="removeProduct(item.id_product.toString())" class="fa-solid fa-heart icon-product"></i>
@@ -21,7 +21,7 @@
             <h6 *ngIf="">{{afterDelete.msg}}</h6>           
            
            <!-- (click)="cargarProducto(item.id_product)"-->
-            <button class="ver" (click)="cargarProducto(item.id_product.toString())" (click)="cargarImagenes(item.id_product.toString())" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Ver</button>
+            <button class="ver" (click)="sumaVista(item.id_product.toString())"(click)="cargarProducto(item.id_product.toString())" (click)="cargarImagenes(item.id_product.toString())" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Ver</button>
         </div>
 
     </div>
@@ -35,87 +35,101 @@
               (page)="cambiarPagina($event)"
               >
 </mat-paginator>
-<!--<app-view-products id="id"></app-view-products>-->
 
+ <!--modal-->
 
 
   <!-- Modal -->
   
+  
   <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
+    <div class="modal-dialog  modal-dialog-scrollable">
+      <div class="modal-content ">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ngOnInit()"></button>
         </div>
-        <div class="modal-body">         
+        <div class="modal-body">    
+
+       
 <div class="gallery">
 
     <!--*ngFor="let item of productoList"-->
-    <div class="content" *ngFor="let item of producto">
-        <div id="carouselExampleControlsNoTouching"  class="carousel slide" data-bs-touch="false">
-            <div class="carousel-inner" >
-                <div class="carousel-item active">
-                    <img  [src]="'http://localhost:3000/'+firstImage" class="d-block w-100" alt="...">
+   
+        <div class="content" *ngFor="let item of producto">
+            <div id="carouselExampleControlsNoTouching"  class="carousel slide" data-bs-touch="false">
+                <div class="carousel-inner" >
+                    <div class="carousel-item active">
+                        <img  [src]="'http://localhost:3000/'+firstImage" class="d-block w-100" alt="...">
+                    </div>
+                    <div class="carousel-item" *ngFor="let image of images">
+                        <img [src]="'http://localhost:3000/'+image.var_name" class="d-block w-100" alt="...">
+                    </div>
+                    <!--<div class="carousel-item">
+                        <img [src]="'http://localhost:3000/'+image.var_name" class="d-block w-100" alt="...">
+                    </div>-->
+    
                 </div>
-                <div class="carousel-item" *ngFor="let image of images">
-                    <img [src]="'http://localhost:3000/'+image.var_name" class="d-block w-100" alt="...">
-                </div>
-                <!--<div class="carousel-item">
-                    <img [src]="'http://localhost:3000/'+image.var_name" class="d-block w-100" alt="...">
-                </div>-->
-
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+                    
+                  
+             
+            
+            <h3>{{item.titulo}}</h3>
+            <h6>L. {{item.dou_price}}</h6>
+            <p>{{item.text_description}}</p>
+            <p><strong>Estado:</strong>  {{item.estado}}</p>
+            <p><strong>Categoria:</strong> {{item.categoria}}</p>
+            
+                <p class="location-P"><i class="fa-solid fa-location-dot"></i>   {{item.departamento}}</p>
+                <p class="views-p"><i class="fa-solid fa-eye"></i>   {{item.int_views}}</p>
                 
-              
-         
-        
-        <h3>{{item.titulo}}</h3>
-        <h6>L. {{item.dou_price}}</h6>
-        <p>{{item.text_description}}</p>
-        <p><strong>Estado:</strong>  {{item.estado}}</p>
-        <p><strong>Categoria:</strong> {{item.categoria}}</p>
-        
-            <p class="location-P"><i class="fa-solid fa-location-dot"></i>   {{item.departamento}}</p>
-            <p class="views-p"><i class="fa-solid fa-eye"></i>   {{item.int_views}}</p>
-            
-        <div class="seller-container">
-            <h4><strong>{{item.nombre}}  {{item.apellido}} </strong> </h4>
-            <p class="p-califica">Calificame</p>
-            <div class="star-widget">
-            
-                <input type="radio" name="rate" id="rate-5" (click)="calificar(5)" >
-                <label for="rate-5" class="fas fa-star"></label>
-                <input type="radio" name="rate" id="rate-4" (click)="calificar(4)">
-                <label for="rate-4" class="fas fa-star" ></label>
-                <input type="radio" name="rate" id="rate-3"(click)="calificar(3)" >
-                <label for="rate-3" class="fas fa-star" ></label>
-                <input type="radio" name="rate" id="rate-2"(click)="calificar(2)" >
-                <label for="rate-2" class="fas fa-star" ></label>
-                <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" >
-                <label for="rate-1" class="fas fa-star"></label>
-            </div>
-                <div class="btn-container">
-                    <button  type="submit" class="cbtn" style="background-color: #252f37">Contactar</button>
-                    <button type="submit" class="cbtn" style="background-color: brown; margin-left: 20px;">Denunciar</button>
+            <div class="seller-container" >
+                <h4><strong>{{item.nombre}}  {{item.apellido}} </strong> </h4>
+                <p class="p-califica">Calificame</p>
+                <div class="star-widget" > 
+                
+                    <input type="radio" name="rate" id="rate-5" (click)="calificar(5)"  [disabled]="toggleButton" >
+                    <label for="rate-5" class="fas fa-star" ></label>
+                    <input type="radio" name="rate" id="rate-4" (click)="calificar(4)" [disabled]="toggleButton">
+                    <label for="rate-4" class="fas fa-star" ></label>
+                    <input type="radio" name="rate" id="rate-3"(click)="calificar(3)" [disabled]="toggleButton">
+                    <label for="rate-3" class="fas fa-star" ></label>
+                    <input type="radio" name="rate" id="rate-2"(click)="calificar(2)"  [disabled]="toggleButton">
+                    <label for="rate-2" class="fas fa-star" ></label>
+                    <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" [disabled]="toggleButton" >
+                    <label for="rate-1" class="fas fa-star"></label>
                 </div>
+                <p style="color: red; text-align: center;">{{paragraph}}</p>
+                    <div class="btn-container">
+                        <button  type="submit" class="cbtn" style="background-color: #252f37">Contactar</button>
+                        <button type="submit" class="cbtn" style="background-color: brown; margin-left: 20px;">Denunciar</button>
+                    </div>
+            </div>
         </div>
-        
-
-        
-    </div>
-    <!--<button class="buy-3">Contactar vendedor</button>-->
+        <!--<button class="buy-3">Contactar vendedor</button>-->
+     
     </div>
     
-</div>
+            
+       
+       
+        
+       
+    </div>
+    </div>
+    </div>
+    </div>
+    
 
-</div>
+
+    
+    

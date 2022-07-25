@@ -3,9 +3,8 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs = require('fs')
 const path = require('path')
 const nodemailer = require('nodemailer')
-const { parseConnectionUrl } = require('nodemailer/lib/shared')
 
-//////////////////////////outlook
+//////////////////////////outlook createCode
 function enviarCorreoOut(destinatario, codigo, res) {
     let config = nodemailer.createTransport({
         host: 'smtp-mail.outlook.com',
@@ -539,6 +538,7 @@ controller.qualifications = (req, res) => {
     const {fk_id_user_qualified,
         fk_id_user_review, tin_score } = req.body;
     //variables de consulta
+    let sql1=`SELECT * FROM qualification WHERE fk_id_user_qualified=${fk_id_user_qualified} `
     let sql15 = `SELECT * FROM user WHERE id_user = ${fk_id_user_review}`
     let sql16 = `SELECT * FROM user WHERE id_user=${fk_id_user_qualified} `
     let sql17 = `INSERT INTO QUALIFICATION(fk_id_user_qualified,fk_id_user_review,tin_score) 
@@ -557,14 +557,22 @@ controller.qualifications = (req, res) => {
                         res.json({ status: '3', error: err.sqlMessage })
                     } else
                         if (rows.length != 0) {
+                            conection.query(sql1,(err,rows,fields)=>{//revisa si ya fue calificado el usuario
+                                if(err){
+                                    res.json({status:'0', error: err.sqlMessage})
+                                }else 
+                                    if (rows.length==0){
+                                        conection.query(sql17, (err, rows, fields) => {
+                                            if (err) {
+                                                res.json({ status: '4', error: err.sqlMessage })
+                                            } else {
+                                                res.json({ status: '200', msg: 'Se agrego calificacion' })
+                                            }
+                                        }) 
+                                    }else res.json({status: '203', msg: 'Este usuario ya fue calificado'})
+                            })
                             //Conexion calificacion calificacion 
-                            conection.query(sql17, (err, rows, fields) => {
-                                if (err) {
-                                    res.json({ status: '4', error: err.sqlMessage })
-                                } else {
-                                    res.json({ status: '200', msg: 'Se agrego calificacion' })
-                                }
-                            }) 
+                            
                         }else{
                             res.json({status:'2',msg:'el usuario calificador no se encuetra'})
                         }
@@ -578,6 +586,7 @@ controller.qualifications = (req, res) => {
 
 //=================Crear Denuncias==========================================
 controller.denuncia =(req ,res)=>{
+
     const{fk_id_user,fk_id_product,fk_id_complaint_category,
         text_description}=req.body
     let sql18 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
@@ -681,21 +690,19 @@ controller.comentario =(req ,res)=>{
 //=================Modificar Vista============================================
 
 controller.vista=(req,res)=>{
-    const{id_product}=req.params
-    const {int_views}=req.body
-    let sql21=`UPDATE PRODUCT SET int_views=${int_views}
-    where id_product=${id_product}`
-    conection.query(sql21,(err,rows,fields)=>{
+   
+    const{id}=req.params
+
+    let generateToken = `CALL vistaProduc(${id})` //GENERAMOS EL TOKEN 
+    conection.query(generateToken,(err,rows,fields)=>{
         if(err){
-            res.json({status:'0',error:err.sqlMessage})
+            res.json({status:'0',erorr:err.sqlMessage})
         }else{
-            res.json({ status: '200', msg: 'Se agrego calificacion' })
+            res.json({status:'200', msg:'Se modifico '})
         }
+
     })
-
 }
-
-
 
 
 

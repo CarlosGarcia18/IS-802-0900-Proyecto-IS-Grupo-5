@@ -2,7 +2,7 @@
     <h1>¡Bienvenido!</h1>
 </div>
 <div class="container3">
-    <h4 class="h4-class">Productos</h4>
+    <h4 class="h4-class"> <strong>Productos</strong></h4>
     <div class="select-container">
             <form [formGroup]="filterForm" action="POST">
             <H5>Filtrar por: </H5>
@@ -40,14 +40,14 @@
         <div class="content" *ngFor="let item of lista | slice:desde:hasta" >
             <img [src] = "'http://localhost:3000/' + item.var_name_photo" alt="">
             <table>
-                <tr>
+                <tr >
                     <td class="name-col"><h6><strong>{{item.var_name}}</strong></h6></td>
                     <td class="icon-col"><i (click)="item.whishlist=='true'?deleteWihlist(item.id_product,item):addWihlist(item.id_product,item)" [ngClass]="item.whishlist=='true' ? 'fa-solid fa-heart fav-icon-select' :'fav-icon fa-solid fa-heart'"></i></td>
                 </tr>
             </table>    
-            <h3>L.{{item.dou_price}}</h3>
+            <h3 >L.{{item.dou_price}}</h3>
             <!--<p class="h5-descrip">{{item.text_description}}</p>-->
-            <button type="button-watch" class="buy" (click)="cargarProducto(item.id_product.toString())" (click)="cargarImagenes(item.id_product.toString())" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Ver</button>
+            <button type="button-watch" class="buy" (click)="sumaVista(item.id_product.toString())" (click)="cargarProducto(item.id_product.toString())" (click)="cargarImagenes(item.id_product.toString())" data-bs-toggle="modal" data-bs-target="#staticBackdrop" >Ver</button>
         </div>
     </div>
 </div>
@@ -66,7 +66,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel"></h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="closeDenuncia()"></button>
+
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ngOnInit()"></button>
+
         </div>
         <div class="modal-body">
 
@@ -80,7 +82,7 @@
 <div class="gallery-2">
 
     <!--*ngFor="let item of productoList"-->
-    <div class="content-2" *ngFor="let item of producto">
+    <div class="content-2" *ngFor="let prod of producto">
         <div id="carouselExampleControlsNoTouching"  class="carousel slide" data-bs-touch="false">
             <div class="carousel-inner" >
                 <div class="carousel-item active">
@@ -99,26 +101,26 @@
               <span class="visually-hidden">Next</span>
             </button>
         </div>
-        <h3 id="modal-h3">{{item.titulo}}</h3>
-        <h6 id="modal-h6">L. {{item.dou_price}}</h6>
-        <p id="modal-p">{{item.text_description}}</p>
-        <p id="modal-p"><strong>Estado:</strong>  {{item.estado}}</p>
-        <p id="modal-p"><strong>Categoria:</strong> {{item.categoria}}</p>
-            <p id="modal-p"><i class="fa-solid fa-location-dot"></i>   {{item.departamento}}</p>
-            <p id="modal-p"><i class="fa-solid fa-eye"></i>   {{item.int_views}}</p>
+        <h3 id="modal-h3">{{prod.titulo}}</h3>
+        <h6 id="modal-h6">L. {{prod.dou_price}}</h6>
+        <p id="modal-p">{{prod.text_description}}</p>
+        <p id="modal-p"><strong>Estado:</strong>  {{prod.estado}}</p>
+        <p id="modal-p"><strong>Categoria:</strong> {{prod.categoria}}</p>
+            <p id="modal-p"><i class="fa-solid fa-location-dot"></i>   {{prod.departamento}}</p>
+            <p id="modal-p"><i class="fa-solid fa-eye"></i>   {{prod.int_views}}</p>
         <div class="seller-container">
-            <h4><strong>{{item.nombre}}  {{item.apellido}} </strong> </h4>
+            <h4><strong>{{prod.nombre}}  {{prod.apellido}} </strong> </h4>
             <p class="p-califica">Calificame</p>
             <div class="star-widget">
-                <input type="radio" name="rate" id="rate-5" (click)="calificar(5)" >
+                <input type="radio" name="rate" id="rate-5" (click)="calificar(5)" [disabled]="toggleButton" >
                 <label for="rate-5" class="fas fa-star"></label>
-                <input type="radio" name="rate" id="rate-4" (click)="calificar(4)">
+                <input type="radio" name="rate" id="rate-4" (click)="calificar(4)" [disabled]="toggleButton">
                 <label for="rate-4" class="fas fa-star" ></label>
-                <input type="radio" name="rate" id="rate-3"(click)="calificar(3)" >
+                <input type="radio" name="rate" id="rate-3"(click)="calificar(3)" [disabled]="toggleButton">
                 <label for="rate-3" class="fas fa-star" ></label>
-                <input type="radio" name="rate" id="rate-2"(click)="calificar(2)" >
+                <input type="radio" name="rate" id="rate-2"(click)="calificar(2)" [disabled]="toggleButton">
                 <label for="rate-2" class="fas fa-star" ></label>
-                <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" >
+                <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" [disabled]="toggleButton">
                 <label for="rate-1" class="fas fa-star"></label>
             </div>
             

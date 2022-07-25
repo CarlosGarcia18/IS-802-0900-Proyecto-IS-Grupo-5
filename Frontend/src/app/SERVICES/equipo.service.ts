@@ -120,6 +120,9 @@ export class EquipoService {
     return this.http.post(this.url+"/adddenuncia",denuncia)
   }
 
+  views(id:string|null){
+    return this.http.get(this.url+"/vista/"+id)
+  }
 
 }
 
@@ -256,9 +259,16 @@ export interface qualification{
   tin_score: number
 }
 
+
 export interface complaint{
   fk_id_user: string,
   fk_id_product: string,
   fk_id_complaint_category: string,
   text_description: string
 }
+
+export interface reqQualify{
+  status: string
+  msg: string
+}
+
