@@ -63,6 +63,7 @@ export class ProductsComponent implements OnInit {
       this.equipoService.$modalComplaint.subscribe((valor) => {
         this.modalComplaint = valor
       })
+      this.modalComplaint = false
   }
   filterForm=new FormGroup({
     ubicacion: new FormControl(''),
@@ -320,10 +321,6 @@ cargarProducto(id_producto:string){
 
   denunciar(){
     this.modalComplaint = true
-  }
-
-  closeDenuncia(){
-    this.modalComplaint = false
   }
 
 }
