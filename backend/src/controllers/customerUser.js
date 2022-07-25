@@ -578,17 +578,11 @@ controller.qualifications = (req, res) => {
 
 //=================Crear Denuncias==========================================
 controller.denuncia =(req ,res)=>{
-    const{fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,bit_status,
-        text_description,tim_date}=req.body
-
+    const{fk_id_user,fk_id_product,fk_id_complaint_category,
+        text_description}=req.body
     let sql18 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
-    let sql19 = `SELECT * FROM user WHERE id_user=${fk_id_user_complaining} `
     let sql20 = `SELECT * FROM PRODUCT WHERE id_product=${fk_id_product} `
     let sql21 = `SELECT * FROM COMPLAINT_CATEGORY WHERE id_COMPLAINT_CATEGORY=${fk_id_complaint_category} `
-    let sql22 = `INSERT INTO COMPLAINT(fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,
-        ,bit_status,text_description,tim_date) 
-    VALUES(${fk_id_user},${fk_id_user_complaining},${fk_id_product},${fk_id_complaint_category},
-        ${bit_status},${text_description},${tim_date})`
 
     //conexion de usuario 1
     conection.query(sql18,(err,rows,fields)=>{
@@ -596,50 +590,46 @@ controller.denuncia =(req ,res)=>{
             res.json({status:'0',error: err.sqlMessage})
         }else{
             if(rows.length!=0){
-                //conexion de usuario 2
-                conection.query(sql19,(err,rows,fields)=>{
+                //conexion de producto
+                conection.query(sql20,(err,rows,fields)=>{
                     if(err){
-                        res.json({status:'1',error:err.sqlMessage})
+                        res.json({status:'2',error:err.sqlMessage})
                     }else{
                         if(rows.length!=0){
-                            //conexion de producto
-                            conection.query(sql20,(err,rows,fields)=>{
+                            const fk_id_user_complaining = rows[0].fk_id_user
+                            //Coneccion de categoria
+                            conection.query(sql21,(err,rows,fields)=>{
                                 if(err){
-                                    res.json({status:'2',error:err.sqlMessage})
+                                    res.json({status:'3',error:err.sqlMessage})
                                 }else{
                                     if(rows.length!=0){
-                                        //Coneccion de categoria
-                                        conection.query(sql21,(err,rows,fields)=>{
-                                            if(err){
-                                                res.json({status:'3',error:err.sqlMessage})
-                                            }else{
-                                                if(rows.length!=0){
-                                                    //Conexion de insertar datos
-                                                    conection.query(sql22,(err,rows,fields)=>{
-                                                        if(err){
-                                                            res.json({status:'4',error:err.sqlMessage})
-                                                        }else{
-                                                            res.json({status:'200',msg:'Se agrego comentario'})
-                                                        }
-                                                    })
-                                                }else{
-                                                    res.json({status:'2',msg:'la categocia no se encuetra'})
-                                                }
 
+                                        let sql22 = `INSERT INTO COMPLAINT(fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,
+                                            bit_status,text_description,tim_date) 
+                                            VALUES(${fk_id_user},${fk_id_user_complaining},${fk_id_product},${fk_id_complaint_category},
+                                            0,"${text_description}",CURRENT_TIMESTAMP)`
+
+                                        //Conexion de insertar datos
+                                        conection.query(sql22,(err,rows,fields)=>{
+                                            if(err){
+                                                res.json({status:'4',error:err.sqlMessage})
+                                            }else{
+                                                res.json({status:'200',msg:'Se envió la denuncia'})
                                             }
                                         })
                                     }else{
-                                        res.json({status:'2',msg:'el producto denunciado no se encuetra'})
+                                        res.json({status:'2',msg:'La categoria no se encuetra'})
                                     }
+
                                 }
                             })
                         }else{
-                            res.json({status:'2',msg:'el usuario denunciado no se encuetra'})
+                            res.json({status:'2',msg:'El producto denunciado no se encuetra'})
                         }
                     }
-                })
+                })       
             }else{
-                res.json({status:'2',msg:'el usuario no se encuetra'})
+                res.json({status:'2',msg:'El usuario no se encuetra'})
             }
         }
     })

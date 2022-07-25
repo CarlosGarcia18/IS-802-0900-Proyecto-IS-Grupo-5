@@ -51,6 +51,11 @@ export class ProductsComponent implements OnInit {
 
       // Filtro
       this.filtrar()
+
+      //Denuncia
+      this.equipoService.$modalComplaint.subscribe((valor) => {
+        this.modalComplaint = valor
+      })
   }
   filterForm=new FormGroup({
     ubicacion: new FormControl(''),
@@ -263,9 +268,10 @@ export class ProductsComponent implements OnInit {
   }
 
   contarVistas(){}
-  
 
 cargarProducto(id_producto:string){
+  localStorage.setItem('productToken',id_producto)
+
   this.equipoService.getOneProduct(id_producto).subscribe(res=>{
     this.producto=<any>res
     this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
@@ -291,6 +297,10 @@ cargarProducto(id_producto:string){
 
   denunciar(){
     this.modalComplaint = true
+  }
+
+  closeDenuncia(){
+    this.modalComplaint = false
   }
 
 }
