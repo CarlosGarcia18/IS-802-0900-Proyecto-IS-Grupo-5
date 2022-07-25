@@ -24,7 +24,7 @@ export class WishListComponent implements OnInit {
     msg:''
   }
   public toggleButton: boolean = false;
-
+  public paragraph:string=''
   
   constructor(private paginator: MatPaginatorIntl,private equipoService:EquipoService) {
     paginator.itemsPerPageLabel = "Productos por pagina:"
@@ -152,6 +152,7 @@ error = false
      // console.log(this.response)
       if(this.response.status=='203'){
         this.toggleButton=true
+        this.paragraph="Ya has calificado a este vendedor anteriormente"
         console.log('Usuario ya fue calificado')}
         else {
         this.toggleButton=false
@@ -160,6 +161,11 @@ error = false
     })
   }
   
+  sumaVista(id:string){
+    this.equipoService.views(id).subscribe(res=>{
+      console.log(res)
+    })
+  }
   
 }
 

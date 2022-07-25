@@ -111,6 +111,10 @@ export class EquipoService {
     return this.http.post(this.url+"/addcalifications", qlfy)
   }
 
+  views(id:string|null){
+    return this.http.get(this.url+"/vista/"+id)
+  }
+
 }
 
 export interface filter{

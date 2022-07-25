@@ -269,8 +269,13 @@ export class ProductsComponent implements OnInit {
     )
   }
 
-  contarVistas(){}
-  
+  sumaVista(id:string|null){
+    
+    this.equipoService.views(id).subscribe(res=>{
+      console.log(res)
+    
+    })
+  }
 
 cargarProducto(id_producto:string){
   this.equipoService.getOneProduct(id_producto).subscribe(res=>{
