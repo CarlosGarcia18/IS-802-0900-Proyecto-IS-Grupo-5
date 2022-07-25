@@ -123,7 +123,7 @@ CREATE TABLE COMPLAINT(
     fk_id_complaint_category BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia a la categoria de la denuncia",
     FOREIGN KEY (fk_id_complaint_category) REFERENCES COMPLAINT_CATEGORY(id_complaint_category),
     
-    bit_status BIT(1) NOT NULL COMMENT "0 Ignorada | 1 Aprobada",
+    bit_status BIT(1) NOT NULL COMMENT "0 Sin revisar | 1 Aprobada",
     text_description TEXT NOT NULL COMMENT "Descripción",
     tim_date timestamp NOT NULL COMMENT "Fecha de creación de la denuncia"
 

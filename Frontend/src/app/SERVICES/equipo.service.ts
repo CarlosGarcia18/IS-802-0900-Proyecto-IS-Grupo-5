@@ -13,6 +13,7 @@ export class EquipoService {
   url ='http://localhost:4200/api'
   constructor(private http:HttpClient) { }
 
+  $modalComplaint = new EventEmitter<any>();
 
   addUsuario(registro:Registro){
       return this.http.post(this.url+"/user", registro)
@@ -25,6 +26,10 @@ export class EquipoService {
 
   getProductCategories(){
     return this.http.get(this.url+"/productCategory")
+  }
+
+  getComplaintCategories(){
+    return this.http.get(this.url+"/complaintCategories")
   }
 
   getProductos(){
@@ -109,6 +114,10 @@ export class EquipoService {
 
   qualify(qlfy: qualification){
     return this.http.post(this.url+"/addcalifications", qlfy)
+  }
+
+  addComplaint(denuncia: complaint){
+    return this.http.post(this.url+"/adddenuncia",denuncia)
   }
 
   views(id:string|null){
@@ -250,7 +259,16 @@ export interface qualification{
   tin_score: number
 }
 
+
+export interface complaint{
+  fk_id_user: string,
+  fk_id_product: string,
+  fk_id_complaint_category: string,
+  text_description: string
+}
+
 export interface reqQualify{
   status: string
   msg: string
 }
+

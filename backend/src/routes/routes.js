@@ -48,6 +48,9 @@ routers.get('/departament',customerO.getDepartament)
 //trae todas las categorias de productos
 routers.get('/productCategory',customerO.getCategory)
 
+//trae todas las categorias de denuncias
+routers.get('/complaintCategories',customerO.getComplaintCategories)
+
 //Envia la actualizacion de la contraseña body => var_email, tex_password
 routers.put('/userPassword',customerU.updatePasswordUser)
 

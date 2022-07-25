@@ -66,9 +66,19 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="staticBackdropLabel"></h5>
+
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ngOnInit()"></button>
+
         </div>
-        <div class="modal-body">         
+        <div class="modal-body">
+
+        <!--MODAL DENUNCIA-->
+        <div *ngIf="modalComplaint">
+            <app-complaint></app-complaint>
+        </div>
+
+        <div *ngIf="!modalComplaint">
+    
 <div class="gallery-2">
 
     <!--*ngFor="let item of productoList"-->
@@ -113,17 +123,22 @@
                 <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" [disabled]="toggleButton">
                 <label for="rate-1" class="fas fa-star"></label>
             </div>
-                <div class="btn-container2">
-                    <button type="submit" class="cbtn" style="background-color: #252f37">Contactar</button>
-                    <button type="submit" class="cbtn" style="background-color: brown; margin-left: 20px;">Denunciar</button>
-                </div>
+            
+            <div class="btn-container2" *ngIf="filtro.id_user"><!--los botones solo aparecen cuando el usuario esta registrado-->
+                <button type="submit" class="cbtn" style="background-color: #252f37">Contactar</button>
+                <button type="submit" class="cbtn" (click)="denunciar()" style="background-color: brown; margin-left: 20px;">Denunciar</button>
+            </div>
         </div>
     </div>
     <!--<button class="buy-3">Contactar vendedor</button>-->
+    </div>
+
+        <!-- FIN NGIF -->
     </div>
     
 </div>
 
 </div>
+
 
 <app-view-products></app-view-products>
