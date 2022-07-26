@@ -1,6 +1,6 @@
 
 USE PLAZITANET;
-select * from user;
+#select * from user;
 INSERT INTO DEPARTMENT(var_name) VALUES('Atlántida');
 INSERT INTO DEPARTMENT(var_name) VALUES('Colón');
 INSERT INTO DEPARTMENT(var_name) VALUES('Comayagua');

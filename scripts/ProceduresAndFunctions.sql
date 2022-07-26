@@ -26,7 +26,7 @@ BEGIN
 END$$
 
 #ejemplo de uso del procedimiento
-Call createCode("joseK@gmail.com");
+#Call createCode("joseK@gmail.com");
 
 --Producto Almacenado 
 delimiter //
@@ -35,6 +35,6 @@ BEGIN
 update PRODUCT set int_views=(PRODUCT.int_views)+1 where id_product=id; 
 end//
 
-DROP PROCEDURE IF EXISTS vistaProduc; 
-call vistaProduc(9); 
+#DROP PROCEDURE IF EXISTS vistaProduc; 
+#call vistaProduc(9); 
 
