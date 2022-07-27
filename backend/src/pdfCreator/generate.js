@@ -63,7 +63,7 @@ function create() {
                                                 }
                                             }
                                             if(!emptyProducts){
-                                                if (h != (rows.length - 1) && addNewPage) doc.addPage()
+                                                if (addNewPage) doc.addPage()
                                                 addNewPage = true    
                                                 
                                                 gen.newCat(y, doc, cat.var_name)//Titulo de la categoria

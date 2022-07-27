@@ -123,7 +123,7 @@
                 <input type="radio" name="rate" id="rate-1"(click)="calificar(1)" [disabled]="toggleButton">
                 <label for="rate-1" class="fas fa-star"></label>
             </div>
-            
+            <p style="color: red; text-align: center;">{{paragraph}}</p>
             <div class="btn-container2" *ngIf="filtro.id_user"><!--los botones solo aparecen cuando el usuario esta registrado-->
                 <button type="submit" class="cbtn" style="background-color: #252f37">Contactar</button>
                 <button type="submit" class="cbtn" (click)="denunciar()" style="background-color: brown; margin-left: 20px;">Denunciar</button>
