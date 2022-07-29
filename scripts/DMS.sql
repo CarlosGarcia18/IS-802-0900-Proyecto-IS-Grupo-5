@@ -63,7 +63,7 @@ INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_passwo
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES(7, 'delmerespinal2@gmail.com', 'Delmer', 'Espinal', 'Hola123.', 1, 1, '98776654');
 INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(13, 'luqueroberto@gmail.com', 'Roberto', 'de Luque', 'Hello/777', 1, 1, '33445577');
+	VALUES(13, 'guillermodiaz@gmail.com', 'Guillermo', 'Diaz', 'Hello/777', 1, 1, '33445577');
 
 
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 

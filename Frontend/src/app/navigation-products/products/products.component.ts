@@ -29,6 +29,7 @@ export class ProductsComponent implements OnInit {
   }
   public toggleButton: boolean = false;
 
+  public paragraph:string=''
   
   constructor(private equipoService:EquipoService, private router: Router) {
   }
@@ -311,6 +312,7 @@ cargarProducto(id_producto:string){
       //console.log(this.response)
       if(this.response.status=='203'){
         this.toggleButton=true
+        this.paragraph="Ya has calificado a este vendedor anteriormente"
         console.log('Usuario ya fue calificado')}
         else {
         this.toggleButton=false

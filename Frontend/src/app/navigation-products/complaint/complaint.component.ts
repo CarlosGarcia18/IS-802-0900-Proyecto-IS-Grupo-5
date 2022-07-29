@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EquipoService, complaint} from '../../SERVICES/equipo.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class ComplaintComponent implements OnInit {
     }, error =>{
       console.log(error) 
     })
+    
+    this.denuncia.fk_id_product = "" + localStorage.getItem("productToken")
   }
 
   denuncia:complaint = {
@@ -46,10 +49,19 @@ export class ComplaintComponent implements OnInit {
 
   sendNewComplaint(){
     this.denuncia.fk_id_user = "" + localStorage.getItem("token")
-    this.denuncia.fk_id_product = "" + localStorage.getItem("productToken")
     this.equipoService.addComplaint(this.denuncia).subscribe(res => {
       console.log(<any>res)
+
+      const info:BookInfo = <any>res
+      Swal.fire({
+        icon: 'success',
+        title: info.msg,
+        showConfirmButton: false,
+        timer: 1000
+      })
+
     })
+
     this.equipoService.$modalComplaint.emit(false)
 
   }
@@ -59,4 +71,9 @@ export class ComplaintComponent implements OnInit {
     this.equipoService.$modalComplaint.emit(false)
   }
 
+}
+
+interface BookInfo {
+  status : string ;
+  msg: string;
 }
