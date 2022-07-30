@@ -112,6 +112,18 @@ routers.get('/productImages/:id_producto', customerO.getProductImages)
 //Crear un nuevo chat
 routers.post('/chat/newchat',customerC.newChat)
 
+//Traer datos de un chat
+routers.get('/chat/:id_user',customerC.getChats)
+
+//Traer número de mensajes no leidos de un chat
+routers.get('/chat/unreadCounter/:id_chat',customerC.getUnreadCounter)
+
+//Traer una sola foto para el chat
+routers.get('/chat/photo/:id_product',customerC.getPhoto)
+
+//Traer ultimo mensaje del chat
+routers.get('/chat/lastMessage/:id_chat',customerC.getUnreadCounter)
+
 //routers.put('/editorImagenes/:id',customerU.PudProducto)
 
 //crear mensaje
