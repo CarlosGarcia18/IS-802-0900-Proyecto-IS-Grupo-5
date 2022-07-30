@@ -822,43 +822,18 @@ controller.addMessage = (req, res) => {
 }
 
 //Listado de mensaje
-controller.listMessage = (req, res) => {
-    const { fk_id_chat,fk_id_user} = req.params
-
-    let sql27 = `SELECT * FROM user WHERE id_chat = ${fk_id_chat}`
-    let sql28 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
-    let sql29 = `select * from message where fk_id_chat=${fk_id_chat} order by tim_date asc;`
-
-    conection.query(sql27, (err, rows, fields) => {
-        if (err) {
-            ({ status: '0', error: err.sqlMessage });
-        } else {
-            if (rows.length != 0) {
-                conection.query(sql28, (err, rows, fields) => {
-                    if (err) {
-                        res.json({ status: '1', error: err.sqlMessage })
-                    } else {
-                        if (rows.length != 0) {
-                            conection.query(sql29, (err, rows, fields) => {
-                                if (err) {
-                                    res.json({ status: '3', error: err.sqlMessage })
-                                } else {
-                                    res.json({ status: '200', msg:'listado' })
-                                }
-                            })
-                        } else {
-                            res.json({ status: '4', msg: 'No se encuentra Los mensajes' })
-                        }
-                    }
-                })
-            } else {
-                res.json({ status: '5', msg: 'No se encuentra el chat' })
-            }
+controller.listarMenssage =(req, res)=>{
+    const{id} = req.params
+    let sql27=`call listMessage(${id})`
+    conection.query(sql27, (err,rows, fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
         }
     })
 
 }
-
 
 
 

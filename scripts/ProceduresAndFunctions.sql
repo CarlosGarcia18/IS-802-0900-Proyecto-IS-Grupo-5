@@ -38,3 +38,22 @@ end//
 #DROP PROCEDURE IF EXISTS vistaProduc; 
 #call vistaProduc(9); 
 
+--Producto Almacenado Lista de mensajes
+delimiter //
+create  procedure listMessage(id int)
+BEGIN
+ SELECT*FROM MESSAGE where fk_id_chat=id order by tim_date asc; 
+end//
+
+call listMessage(4);
+
+--Otra forma de listar mensajes
+/*
+delimiter //
+create  procedure listMessage2(id int,id2 int)
+BEGIN
+ SELECT*FROM MESSAGE where fk_id_chat=id and fk_id_user=id2  order by tim_date asc; 
+end//
+
+call listMessage2(4,3);
+*/

@@ -113,8 +113,10 @@ routers.get('/productImages/:id_producto', customerO.getProductImages)
 //crear mensaje
 routers.post('/addMessage' , customerU.addMessage)
 
-//Listar mensajes
-routers.get('/listMessage/:fk_id_chat/:fk_id_user',customerU.listMessage)
+
+//Lista Mensaje
+routers.get('/getMessage/:id',customerU.listarMenssage)
+
 
 
 
