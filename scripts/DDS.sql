@@ -132,7 +132,7 @@ CREATE TABLE COMPLAINT(
 CREATE TABLE CHAT(
 	id_chat SERIAL PRIMARY KEY,
     
-    fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto en el que se habre un chat",
+    fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto en el que se abre un chat",
     FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
     ON DELETE CASCADE,
     
