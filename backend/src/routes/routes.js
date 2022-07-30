@@ -112,6 +112,15 @@ routers.get('/productImages/:id_producto', customerO.getProductImages)
 //Crear un nuevo chat
 routers.post('/chat/newchat',customerC.newChat)
 
+//routers.put('/editorImagenes/:id',customerU.PudProducto)
+
+//crear mensaje
+routers.post('/addMessage' , customerU.addMessage)
+
+//Lista Mensaje
+routers.get('/getMessage/:id',customerU.listarMenssage)
+
+
 
 
 //exportacion de rutas
