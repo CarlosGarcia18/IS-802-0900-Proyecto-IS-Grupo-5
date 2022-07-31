@@ -532,6 +532,20 @@ controller.addFavorite = (req, res) => {
     "var_phone":"98765645"
 } */
 
+
+//==================PROMEDIO DE CALIFICACION======================
+controller.avgQualif = (req, res) => {
+    const {fk_id_user_qualified} = req.params;
+    let sql1=`call prom(${fk_id_user_qualified});`
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if (err) 
+            res.json({ status: '0', error: err.sqlMessage })
+            else 
+            res.json(rows[0])
+    })
+}
+
 //==============Agregar Calificacion==========
 
 controller.qualifications = (req, res) => {
@@ -539,7 +553,9 @@ controller.qualifications = (req, res) => {
     const { fk_id_user_qualified,
         fk_id_user_review, tin_score } = req.body;
     //variables de consulta
-    let sql1 = `SELECT * FROM qualification WHERE fk_id_user_qualified=${fk_id_user_qualified} `
+
+    let sql1=`SELECT * FROM qualification WHERE fk_id_user_review=${fk_id_user_review} `
+
     let sql15 = `SELECT * FROM user WHERE id_user = ${fk_id_user_review}`
     let sql16 = `SELECT * FROM user WHERE id_user=${fk_id_user_qualified} `
     let sql17 = `INSERT INTO QUALIFICATION(fk_id_user_qualified,fk_id_user_review,tin_score) 
@@ -647,14 +663,14 @@ controller.denuncia = (req, res) => {
 
 
 //====================Crear Comentarios====================
-/*
+
 controller.comentario =(req ,res)=>{
-    const {fk_id_user, fk_id_product,text_contents,tim_date}=req.body;
+    const {fk_id_user, fk_id_product,text_contents}=req.body;
 
     let sql18=`SELECT * FROM user WHERE id_user = ${fk_id_user}`
     let sql19=`SELECT * FROM product WHERE id_product=${fk_id_product}`
     let sql20=`INSERT INTO COMMENTARY(fk_id_user,fk_id_product,text_contents,tim_date) 
-    VALUES(${fk_id_user}, ${fk_id_product},${text_contents},${tim_date})`
+    VALUES(${fk_id_user}, ${fk_id_product},"${text_contents}", CURRENT_TIMESTAMP)`
 
     conection.query(sql18,(err,rows,fields)=>{
         if(err){
@@ -670,7 +686,7 @@ controller.comentario =(req ,res)=>{
                                 if(err){
                                     res.json({ status: '2', error: err.sqlMessage });
                                 }else{
-                                    res.json({ status: '200', msg: 'Se agrego calificacion' })
+                                    res.json({ status: '200', msg: 'Se agrego el comentario' })
                                 }                 
                             })
                         }else{
@@ -686,7 +702,21 @@ controller.comentario =(req ,res)=>{
 
 }
 
-*/
+//========================== LISTAR COMENTARIOS ==================================
+controller.getComments=(req,res)=>{
+    const{fk_id_product}=req.params;
+
+    let sql1=`CALL obtenerComentarios(${fk_id_product})`
+
+    conection.query(sql1,(err,rows, fields)=>{
+        if(err){
+            res.json({status:'0', msg:err.sqlMessage})}
+        else{
+            res.json(rows[0])
+        }
+    })           
+
+}
 
 //=================Modificar Vista============================================
 

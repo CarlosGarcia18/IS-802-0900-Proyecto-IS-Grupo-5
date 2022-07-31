@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { EquipoService, filter, traerProducto, getProduct, Images, qualification,
-  subscribe, requestSubscriptions, subscription, deleteWishlist, reqQualify} from '../../SERVICES/equipo.service';
+  subscribe, requestSubscriptions,loadComment, subscription, deleteWishlist, reqQualify, Comment, promedio} from '../../SERVICES/equipo.service';
 
 import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
@@ -17,6 +17,9 @@ export class ProductsComponent implements OnInit {
   
   producto: getProduct[]=[]
   images: Images[]=[]
+  comments :loadComment[]=[]
+  qualifyAverage: promedio[]=[]
+
   firstImage: string=''
   qlfy: qualification ={
     fk_id_user_qualified: 0,
@@ -28,9 +31,18 @@ export class ProductsComponent implements OnInit {
     msg:''
   }
   public toggleButton: boolean = false;
-
   public paragraph:string=''
-  
+  public bool: boolean=true
+  public commentBool: boolean=true;
+  public token: number=0
+  public promedio: number=0;
+ public totalComments:  number=0;
+
+  public cond1:boolean=false;
+  public cond2:boolean=false;
+  public cond3:boolean=false;
+  public cond4:boolean=false;
+  public cond5:boolean=false;
   constructor(private equipoService:EquipoService, private router: Router) {
   }
 
@@ -113,17 +125,13 @@ export class ProductsComponent implements OnInit {
         for(var index in this.UserSubscription){
           this.UserSubscriptionID.push(this.UserSubscription[index].id_product_category)
         }
-
       }, error =>{
         console.log(error) 
       })
-
     } 
-
   }
     
   filtrar(){
-
     this.nuevaSuscripcion.fk_id_product_category = this.filtro.fk_id_product_category;
     //Aparecer y desaparecer el boton de suscribirse
     if((this.filtro.fk_id_product_category) != "" && this.nuevaSuscripcion.fk_id_user != "" && this.nuevaSuscripcion.fk_id_user != null){
@@ -149,11 +157,7 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  
-
     ////PAGINACION
-    //DATA DE EJEMPLO
-    
   pageSize=12;
   desde:number= 0;
   hasta:number=12;
@@ -277,22 +281,15 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  sumaVista(id:string|null){
-    
-    this.equipoService.views(id).subscribe(res=>{
-      console.log(res)
-    
-    })
-  }
+  
 
 cargarProducto(id_producto:string){
   localStorage.setItem('productToken',id_producto)
-
   this.equipoService.getOneProduct(id_producto).subscribe(res=>{
     this.producto=<any>res
     this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
     this.qlfy.fk_id_user_review=localStorage.getItem('token')
-
+    this.average(this.producto[0].fk_id_user);
     console.log(this.producto)
   })
   }
@@ -306,10 +303,8 @@ cargarProducto(id_producto:string){
 
   calificar(score:number){
     this.qlfy.tin_score=score
-    
     this.equipoService.qualify(this.qlfy).subscribe(res=>{
       this.response=<any>res
-      //console.log(this.response)
       if(this.response.status=='203'){
         this.toggleButton=true
         this.paragraph="Ya has calificado a este vendedor anteriormente"
@@ -318,13 +313,84 @@ cargarProducto(id_producto:string){
         this.toggleButton=false
         console.log(this.qlfy)
         }
-    })
+    },
+    err=>console.log(err))
   }
 
   denunciar(){
     this.modalComplaint = true
   }
 
+  sumaVista(id:string|null){ 
+    this.equipoService.views(id).subscribe(res=>{
+      console.log(res)
+    })
+  }
+  //promedio estrellas
+average(id:number){
+  this.equipoService.getAVG(id).subscribe(res=>{
+    this.qualifyAverage=<any>res
+    this.promedio=this.qualifyAverage[0].PROMEDIO
+    if(this.promedio >0 && this.promedio<=1){
+        this.cond1=true;
+    }else if((this.promedio>=1.5 && this.promedio<=2)||(this.promedio>2 && this.promedio<2.5)){
+        this.cond1=true; this.cond2=true; 
+    }else if((this.promedio>=2.5 && this.promedio<=3) ||( this.promedio>3 && this.promedio<3.5)){
+        this.cond1=true; this.cond2=true; this.cond3=true; 
+    }else if((this.promedio>=3.5 && this.promedio<=4) || ( this.promedio>4 && this.promedio<4.5)){
+        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true;
+    }else if(this.promedio>=4.5 && this.promedio<=5){
+        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true; this.cond5;
+    }else{
+      this.cond1=false;
+      this.cond2=false;
+      this.cond3=false;
+      this.cond4=false;
+      this.cond5=false;
+    }
+  })
+}
+//comentarios
+showComment(){
+  this.bool=false
+}
+hideComment(){
+  this.bool=true
+}
+
+commentForm = new FormGroup({
+  comentario: new FormControl('', [Validators.required]),
+});
+
+get commentControl(): FormControl {
+  return this.commentForm.get('comentario') as FormControl; 
+}
+comentario:Comment = {
+  fk_id_user: "",
+  fk_id_product:"",
+  text_contents: ""
+}
+
+set(id: string){
+  localStorage.setItem('idProducto', JSON.stringify(id))
+}
+addComment(){
+    this.comentario.fk_id_user = "" + localStorage.getItem("token")
+    this.comentario.fk_id_product=""+localStorage.getItem("idProducto")
+    this.equipoService.addComment(this.comentario).subscribe(res => {
+        console.log(<any>res)
+        this.comentario.text_contents=""
+    },
+    err => console.log(err))
+}
+
+loadComments(id: number){
+  this.equipoService.getProductComments(id).subscribe(res=>{
+    this.comments=<any>res;
+    this.totalComments=this.comments.length
+    console.log(this.comments)
+  })
+}
 }
 
 

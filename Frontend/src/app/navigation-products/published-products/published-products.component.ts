@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, traerProducto, user, deleteProduct } from 'src/app/SERVICES/equipo.service';
+import { EquipoService, traerProducto, user, deleteProduct, newProducto } from 'src/app/SERVICES/equipo.service';
 import { NewProductsComponent } from '../new-products/new-products.component';
 import { ProductsComponent } from '../products/products.component';
 import { PageEvent } from '@angular/material/paginator';
+
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-published-products',
@@ -13,13 +15,22 @@ export class PublishedProductsComponent implements OnInit {
   //newProducto[] se importa la clase
   
   productoList:traerProducto[]=[];
+  categories:any[] = []
+
+  public previsualizacion: any;
+  public archivos: any = []; //Sera de tipo array
+  public image: any; //Enviar una imagen a la vez al servidor
   
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
     //this.usuario.fk_id_user=localStorage.getItem('token')
-    
     this.getProducList()
+    this.equipoService.getProductCategories().subscribe(res=>{
+      this.categories = <any>res
+    }, error =>{
+      console.log(error) 
+    })
   }
 
   getProducList(){
@@ -63,11 +74,148 @@ export class PublishedProductsComponent implements OnInit {
     })
 
   }
+
+
+  
+  srcArray: any = [];
+
+  capturarFile(event: any) {
+    if (event.target.files.length > 0) {
+      if (event.target.files.length <= 10) {
+        let files = event.target.files;
+
+        let file;
+        for (let i = 0; i < files.length; i++) {
+          if (this.archivos.length < 10) {
+            file = files[i];
+            this.archivos.push(file);
+            const reader = new FileReader();
+            reader.onload = (file) => {
+              this.srcArray.push({
+                img: reader.result,
+                id: this.srcArray.length == 0 ? 0 : this.srcArray.length,
+              });
+            };
+            reader.readAsDataURL(file);
+          } else {
+            window.alert('No mas de 10 imagenes');
+          }
+        }
+      }else{
+        window.alert('No mas de 10 imagenes');
+      }
+    }
+  }
+
+  deleteFile(id: number) {
+    this.srcArray.splice(id, 1);
+    this.archivos.splice(id, 1);
+
+    for (let i = 0; i < this.srcArray.length; i++) {
+      this.srcArray[i].id = i;
+    }
+  }
+  
+
+/////////////////////////////////////MODIFICAR
+
+
+  //agregar el formGrup
+  productoForm = new FormGroup({
+    // nombre: new FormControl('',[Validators.required, Validators.minLength(2) ]),
+    titulo: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(20),
+    ]),
+    precio: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    categoria: new FormControl('', [Validators.required]),
+    estado: new FormControl('', [Validators.required]),
+    decripcion: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+      Validators.maxLength(30),
+    ]),
+    ubicacion: new FormControl('', [Validators.required]),
+  });
+  /*
+get nombreControl():FormControl{
+  return this.loginForm.get('nombre') as FormControl
+}*/
+
+  get tituloControl(): FormControl {
+    return this.productoForm.get('titulo') as FormControl;
+  }
+  get precioControl(): FormControl {
+    return this.productoForm.get('precio') as FormControl;
+  }
+  get categoriaControl(): FormControl {
+    return this.productoForm.get('categoria') as FormControl;
+  }
+  get estadoControl(): FormControl {
+    return this.productoForm.get('estado') as FormControl;
+  }
+  get descripcionControl(): FormControl {
+    return this.productoForm.get('decripcion') as FormControl;
+  }
+  get ubicacionControl(): FormControl {
+    return this.productoForm.get('ubicacion') as FormControl;
+  }
+
+ 
+    setItem(id_product:string){
+      localStorage.setItem("idProductoModal",id_product) //lo usamos despues para cargar el producto y actualizarlo
+      
+      this.equipoService.getUnProducto(localStorage.getItem("idProductoModal")).subscribe(res=>{
+          this.producto = res[0]
+          console.log(typeof this.producto)
+          console.log(this.producto)
+      }, err=>console.log(err))
+
+    }
+
+    guardarCambios(){
+        this.equipoService.updateProduct(localStorage.getItem("idProductoModal"), this.producto).subscribe(res=>{
+            console.log(res)
+        })
+    }
+
+/* Para subir Archivo*/
+subirArchivo(): any {
+  //Sube el producto
+  this.equipoService.newProducto(this.producto).subscribe((res) => {
+    var info: BookInfo2 = <any>res;
+
+    //Recorre el arreglo de archivos
+    this.archivos.forEach((archivo: any) => {
+      const formularioDeDatos = new FormData();
+      formularioDeDatos.append('image', archivo);
+      console.log(archivo);
+
+      //Sube archivo uno por uno
+      this.equipoService.productoFoto(formularioDeDatos, info.id).subscribe((res) => {
+          console.log('Respuesta ', res);
+        });
+    });
+    this.archivos.length=0
+    this.srcArray.length=0
+    
+    
+  });
+}
   
   usuario: user = {
     fk_id_user: ''
   }
-
+  producto: newProducto = {
+    fk_id_user: '',
+    fk_id_department: '',
+    fk_id_product_category: '',
+    fk_id_product_status: '',
+    var_name: '',
+    text_description: '',
+    dou_price: 0,
+  };
   
 ////////////////////PAGINACION////////////////
 pageSize=8;
@@ -86,3 +234,9 @@ interface BookInfo {
   status : string ;
   msg: string;
 }
+
+interface BookInfo2 {
+  status: string;
+  id: string;
+}
+

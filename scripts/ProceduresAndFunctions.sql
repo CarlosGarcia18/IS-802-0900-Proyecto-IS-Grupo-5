@@ -35,8 +35,26 @@ BEGIN
 update PRODUCT set int_views=(PRODUCT.int_views)+1 where id_product=id; 
 end//
 
-#DROP PROCEDURE IF EXISTS vistaProduc; 
-#call vistaProduc(9); 
+DELIMITER &&
+CREATE PROCEDURE obtenerComentarios(IN id int)
+BEGIN
+     SELECT user.var_name, user.var_lastname, commentary.text_contents, commentary.tim_date 
+		FROM commentary 
+		INNER JOIN user ON user.id_user=commentary.fk_id_user
+		WHERE commentary.fk_id_product = id ORDER BY commentary.tim_date DESC;
+END&&
+
+DROP procedure obtenerComentarios;
+
+call  obtenerComentarios(161);
+
+DELIMITER &&
+CREATE PROCEDURE prom(IN id int)
+BEGIN
+    SELECT CAST(AVG(tin_score)  AS DECIMAL(10,1)) AS PROMEDIO FROM qualification WHERE fk_id_user_qualified=id;
+
+END&&
+
 
 --Producto Almacenado Lista de mensajes
 delimiter //

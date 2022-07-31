@@ -2,7 +2,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Module2Component } from '../credential-recovery/module2/module2.component';
 import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Timestamp } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -104,8 +104,12 @@ export class EquipoService {
     return this.http.delete(this.url+"/productDelete/"+id)
   }
 
-  getOneProduct(id: string){
+  getOneProduct(id: string|null){
     return this.http.get(this.url+"/getProducto/"+id)
+  }
+
+  getUnProducto(id_producto:string|null){
+    return this.http.get<newProducto[]>(this.url+"/getProdMod/"+id_producto)
   }
 
   getImages(id:string){
@@ -124,6 +128,21 @@ export class EquipoService {
     return this.http.get(this.url+"/vista/"+id)
   }
 
+  addComment(comentario: Comment){
+    return this.http.post(this.url+"/addComment", comentario)
+  }
+
+  getProductComments(fk_id_product: number){
+    return this.http.get(this.url+"/comments/"+fk_id_product)
+  }
+
+  getAVG(fk_id_user_qualified:number){
+    return this.http.get(this.url+"/prom/"+fk_id_user_qualified)
+  }
+
+  updateProduct(id_product:string|null, product:newProducto){
+    return this.http.put(this.url+"/editProduct/"+id_product, product)
+  }
 }
 
 export interface filter{
@@ -237,6 +256,7 @@ export interface deleteProduct{
 }
 
 export interface getProduct{
+  id_product: number,
   fk_id_user : number,
   titulo: string,
   text_description: string, 
@@ -250,7 +270,8 @@ export interface getProduct{
 }
 
 export interface Images{
-  var_name:string
+  var_name:string,
+  var_extensio: string
 }
 
 export interface qualification{
@@ -267,8 +288,24 @@ export interface complaint{
   text_description: string
 }
 
+export interface Comment{
+  fk_id_user: string,
+  fk_id_product: string,
+  text_contents: string
+}
+
 export interface reqQualify{
   status: string
   msg: string
+}
+
+export interface loadComment{
+  var_name: string,
+  var_lastname: string,
+  text_contents: string,
+  tim_date: string
+}
+export interface promedio{
+  PROMEDIO: number;
 }
 

@@ -96,10 +96,16 @@ routers.post('/addFav', customerU.addFavorite)
 
 //Agrega calificacion
 routers.post('/addcalifications',customerU.qualifications)
+
 //Agregar comentario
 routers.post('/adddenuncia',customerU.denuncia)
+
 //Agregar Comentario
-//routers.post('/addcomentary',customerU.comentario)
+routers.post('/addComment',customerU.comentario)
+
+//listar comentarios
+routers.get('/comments/:fk_id_product',customerU.getComments)
+
 //Modificar Vista
 routers.get('/vista/:id',customerU.vista)
 
@@ -108,6 +114,7 @@ routers.get('/getProducto/:id_producto',customerO.getProducto)
 
 //traer todas las imagenes de un producto
 routers.get('/productImages/:id_producto', customerO.getProductImages)
+
 
 //Crear un nuevo chat
 routers.post('/chat/newchat',customerC.newChat)
@@ -126,8 +133,15 @@ routers.post('/addMessage' , customerU.addMessage)
 //Lista Mensaje
 routers.get('/getMessage/:id',customerU.listarMenssage)
 
+//editar producto
+routers.put('/editProduct/:id_product',customerO.editProduct)
+
+//traer un producto version para la edicion del producto del modal
+routers.get('/getProdMod/:id_producto',customerO.getProductoModal)
 
 
+routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
+//promedio estrellas
 
 //exportacion de rutas
 module.exports = routers
