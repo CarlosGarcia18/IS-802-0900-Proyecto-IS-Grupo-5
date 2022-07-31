@@ -115,11 +115,8 @@ routers.post('/chat/newchat',customerC.newChat)
 //Traer datos de un chat
 routers.get('/chat/:id_user',customerC.getChats)
 
-//Traer número de mensajes no leidos de un chat
-routers.get('/chat/unreadCounter/:id_chat',customerC.getUnreadCounter)
-
-//Traer ultimo mensaje del chat
-routers.get('/chat/lastMessage/:id_chat',customerC.getUnreadCounter)
+//Traer ultimo mensaje del chat y la cantidad de mensajes no leidos
+routers.get('/chat/lastMessage/:id_chat',customerC.getlastMessage)
 
 //routers.put('/editorImagenes/:id',customerU.PudProducto)
 

@@ -109,31 +109,24 @@ controller.getChats = (req,res) => {
 
 }
 
-// Mensajes no leidos de un chat
-controller.getUnreadCounter = (req,res) => {
+// Traer el ultimo mensaje y cantidad de no leidos
+controller.getlastMessage = (req,res) => {
     const{id_chat}=req.params
-    let sql = `SELECT COUNT(*) AS no_leido FROM (MESSAGE INNER JOIN CHAT ON MESSAGE.fk_id_chat = CHAT.id_chat) WHERE MESSAGE.fk_id_chat = ${id_chat} AND MESSAGE.bit_status = 0`
+    let sql = `SELECT text_contents AS ultimo_mensaje FROM MESSAGE WHERE fk_id_chat=${id_chat} ORDER BY MESSAGE.id_message DESC LIMIT 1;`
+    let sql1 = `SELECT COUNT(*) no_leidos FROM MESSAGE WHERE MESSAGE.fk_id_chat = ${id_chat} AND MESSAGE.bit_status = 0`
     conection.query(sql,(err,rows,fields)=>{
         if(err){
             res.json({status:'2',msg: err.sqlMessage})
         }else{
-            res.json(rows[0].no_leido)
-        }
-    })
-    
-}
-
-
-// Traer el ultimo mensaje
-controller.getUnreadCounter = (req,res) => {
-    const{id_chat}=req.params
-    let sql = `SELECT text_contents AS ultimo_mensaje FROM MESSAGE WHERE fk_id_chat=${id_chat} ORDER BY MESSAGE.id_message DESC LIMIT 1;`
-    conection.query(sql,(err,rows,fields)=>{
-        if(err){
-            res.json({status:'4',msg: err.sqlMessage})
-        }else{
             if(rows.length!=0){
-                res.json(rows[0].ultimo_mensaje)
+                conection.query(sql1,(err,rows2,fields)=>{
+                    if(err){
+                        res.json({status:'3',msg: err.sqlMessage})
+                    }else{
+                        console.log(rows2[0].no_leidos)
+                        res.json({"ultimo_mensaje":rows[0].ultimo_mensaje, "no_leidos":rows2[0].no_leidos})
+                    }
+                })
             }else{
                 res.json({status:'0',msg: "No hay mensajes en este chat"})
             }
