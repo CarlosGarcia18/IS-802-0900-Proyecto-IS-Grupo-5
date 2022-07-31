@@ -1,6 +1,8 @@
 const conection = require('../config/connection')//requerimos la conexion a la BD
 const controller = {} //definicion de controller que guardara las rutas
 
+let userList = new Map();
+
 controller.newChat = (req,res) => {
     const {fk_id_product, fk_id_user_buyer, fk_id_user_seller} = req.body
 
@@ -79,10 +81,12 @@ controller.getChats = (req,res) => {
     const{id_user}=req.params
 
     let sql = `SELECT * FROM USER WHERE id_user = ${id_user}`
-    let sql1 = `SELECT USER.var_name AS Vendedor, PRODUCT.id_product, PRODUCT.var_name AS Producto, CHAT.id_chat 
-        FROM ((CHAT INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product) 
+    let sql1 = `SELECT USER.var_name AS Vendedor, PRODUCT.id_product, PRODUCT.var_name AS Producto, CHAT.id_chat, PHOTOGRAPHS.var_name AS Foto
+        FROM (((CHAT INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product)
+        INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product)
         INNER JOIN USER ON USER.id_user = CHAT.fk_id_user_seller)
-        WHERE CHAT.fk_id_user_buyer = ${id_user};`
+        WHERE CHAT.fk_id_user_buyer = ${id_user}
+        GROUP BY product.id_product`
 
     conection.query(sql,(err,rows,fields)=>{ // Comprueba si existe el usuario
         if(err){
@@ -92,27 +96,6 @@ controller.getChats = (req,res) => {
                 conection.query(sql1,(err,rows,fields)=>{ // Trae el nombre del vendedor, id del producto, nombre del producto, id del chat, 
                  
                     res.json({status:'200',msg: rows})
-
-                    /*
-                    for(index in rows){
-                        let sql2 = `SELECT COUNT(*) AS no_leido FROM (MESSAGE INNER JOIN CHAT ON MESSAGE.fk_id_chat = CHAT.id_chat) 
-                            WHERE MESSAGE.fk_id_chat = ${rows[index].id_chat} AND MESSAGE.bit_status = 0`
-
-                            conection.query(sql2,(err,rows2,fields)=>{
-                                var json = {
-                                    "Vendedor": rows[index].Vendedor,
-                                    "id_product": rows[index].id_product,
-                                    "Producto": rows[index].Producto,
-                                    "id_chat": rows[index].id_chat,
-                                    "no_leido": rows2[0].no_leido
-                                }
-                                chats.push(json)
-                                
-                                
-                            })
-                             res.json(chats)
-                    }// Fin del for*/
-                
 
                 })
               
@@ -140,19 +123,6 @@ controller.getUnreadCounter = (req,res) => {
     
 }
 
-// Una sola foto para el chat
-controller.getPhoto = (req,res) => {
-    const{id_product}=req.params
-    let sql = `SELECT var_name AS Foto FROM photographs WHERE fk_id_product = ${id_product} ORDER BY PHOTOGRAPHS.id_photographs ASC LIMIT 1;`
-    conection.query(sql,(err,rows,fields)=>{
-        if(err){
-            res.json({status:'3',msg: err.sqlMessage})
-        }else{
-            res.json(rows[0].Foto)
-        }
-    })
-    
-}
 
 // Traer el ultimo mensaje
 controller.getUnreadCounter = (req,res) => {
