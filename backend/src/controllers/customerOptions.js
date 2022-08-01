@@ -3,6 +3,7 @@ const controller = {} //definicion de controller que guardara las rutas
 const nodemailer = require('nodemailer')
 const fs= require('fs').promises
 const path = require('path')
+const { text } = require('body-parser')
 
 //funcion de prueba
 controller.test = (req,res) => {
@@ -158,7 +159,7 @@ controller.postImage = (req,res) =>{
 controller.getProducto=(req,res)=>{
     const{id_producto}=req.params
 
-    let sql1=`SELECT prod.fk_id_user, prod.var_name AS titulo, prod.text_description, prod.int_views, prod.dou_price, 
+    let sql1=`SELECT prod.id_product, prod.fk_id_user, prod.var_name AS titulo, prod.text_description, prod.int_views, prod.dou_price, 
     u.var_name AS nombre, u.var_lastname AS apellido, cat.var_name AS categoria, dep.var_name AS departamento, stat.var_name AS estado FROM product prod 
     INNER JOIN user u ON prod.fk_id_user=u.id_user
     INNER JOIN product_category cat ON prod.fk_id_product_category=cat.id_product_category
@@ -177,7 +178,44 @@ controller.getProducto=(req,res)=>{
 controller.getProductImages=(req,res)=>{
     const{id_producto}=req.params
 
-    let sql1=  `SELECT var_name FROM photographs WHERE fk_id_product=${id_producto} `
+    let sql1=  `SELECT var_name,var_extension  FROM photographs WHERE fk_id_product=${id_producto} `
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
+        else{
+            res.json(rows)
+        }
+    })
+}
+
+controller.editProduct=(req,res)=>{
+    const{id_product}=req.params
+    const{var_name, dou_price, text_description, 
+        fk_id_product_category, fk_id_product_status, fk_id_department}=req.body;
+
+    let sql1= `UPDATE product SET 
+    var_name="${var_name}", dou_price=${dou_price}, text_description="${text_description}", 
+    fk_id_product_category=${fk_id_product_category}, 
+    fk_id_product_status=${fk_id_product_status}, fk_id_department=${fk_id_department}
+    WHERE id_product=${id_product}`
+
+    conection.query(sql1,(err,rows, fields)=>{
+        if(err)
+            return res.json({status:'0', msg:err.sqlMessage})
+        else
+        return res.json({status:'200', msg:'El producto se ha actualizado correctamente'})
+       
+    })
+}
+
+//Version 2 traer un producto al modal para editar 
+
+controller.getProductoModal=(req,res)=>{
+    const{id_producto}=req.params
+
+    let sql1=`SELECT p.id_product,  p.var_name , p.text_description,  p.dou_price,
+    p.fk_id_product_category, p.fk_id_product_status, p.fk_id_department FROM product p
+    WHERE id_product=${id_producto}`
 
     conection.query(sql1,(err,rows,fields)=>{
         if(err) return res.json({status:'0', msg:err.sqlMessage});

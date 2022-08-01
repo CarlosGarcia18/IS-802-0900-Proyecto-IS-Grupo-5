@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
-import { EquipoService,wishListProducts,deleteWishlist, getProduct, Images, qualification, reqQualify } from '../../SERVICES/equipo.service'
+import { EquipoService,wishListProducts,deleteWishlist,getProduct,Images, qualification, reqQualify, loadComment, Comment,  promedio } from '../../SERVICES/equipo.service'
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
@@ -9,21 +10,38 @@ import { EquipoService,wishListProducts,deleteWishlist, getProduct, Images, qual
 
   
 export class WishListComponent implements OnInit {
-  producto: getProduct[]=[]
-  images: Images[]=[]
-  firstImage: string=''
-  qlfy: qualification ={
-    fk_id_user_qualified: 0,
-    fk_id_user_review: '', 
-    tin_score: 0
-  }
-  response: reqQualify={
-    status:'',
-    msg:''
-  }
-  public toggleButton: boolean = false;
-  public paragraph:string=''
   
+ producto: getProduct[]=[]
+ images: Images[]=[]
+ comments: loadComment[]=[]
+ qualifyAverage: promedio[]=[]
+ firstImage: string=''
+
+ qlfy: qualification ={
+   fk_id_user_qualified: 0,
+   fk_id_user_review: '', 
+   tin_score: 0
+ }
+
+ response: reqQualify={
+   status:'',
+   msg:''
+ }
+ public toggleButton: boolean = false;
+ public paragraph:string=''
+ public bool: boolean=true
+ public commentBool: boolean=true;
+ public token: number=0
+ public promedio: number=0;
+ public totalComments:  number=0;
+
+ public cond1:boolean=false;
+ public cond2:boolean=false;
+ public cond3:boolean=false;
+ public cond4:boolean=false;
+ public cond5:boolean=false;
+ 
+
   constructor(private paginator: MatPaginatorIntl,private equipoService:EquipoService) {
     paginator.itemsPerPageLabel = "Productos por pagina:"
     paginator.firstPageLabel = "Primer página"
@@ -61,8 +79,6 @@ error = false
       }
     ]
   }
-
-  
 
   ngOnInit(): void {
     this.loadProducts()
@@ -116,36 +132,35 @@ error = false
             this.loadProducts()
           }
         }
-      )
-      
+      ) 
     }
   }
   
   
-  cargarProducto(id_producto:string){
+ // modal 
+ cargarProducto(id_producto:string){
   this.equipoService.getOneProduct(id_producto).subscribe(res=>{
     this.producto=<any>res
     this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
     this.qlfy.fk_id_user_review=localStorage.getItem('token')
-
+    this.average(this.producto[0].fk_id_user);
     console.log(this.producto)
-  })
+  },
+  err => console.log(err))
   }
 
   cargarImagenes(id_producto:string){
     this.equipoService.getImages(id_producto).subscribe(res=>{
       this.images=<any>res
       this.firstImage=this.images[0].var_name
-    })
+    },
+    err => console.log(err))
   }
 
   calificar(score:number){
     this.qlfy.tin_score=score
-    //this.toggleButton=true;
-
     this.equipoService.qualify(this.qlfy).subscribe(res=>{
       this.response=<any>res
-     // console.log(this.response)
       if(this.response.status=='203'){
         this.toggleButton=true
         this.paragraph="Ya has calificado a este vendedor anteriormente"
@@ -154,18 +169,84 @@ error = false
         this.toggleButton=false
         console.log(this.qlfy)
         }
-    })
+    },
+    err => console.log(err))
   }
   
   sumaVista(id:string){
     this.equipoService.views(id).subscribe(res=>{
       console.log(res)
+    },
+    err => console.log(err))
+  }
+  //promedio estrellas
+  average(id:number){
+    this.equipoService.getAVG(id).subscribe(res=>{
+      this.qualifyAverage=<any>res
+      this.promedio=this.qualifyAverage[0].PROMEDIO
+      if(this.promedio >0 && this.promedio<=1){
+        this.cond1=true;
+    }else if((this.promedio>=1.5 && this.promedio<=2)||(this.promedio>2 && this.promedio<2.5)){
+        this.cond1=true; this.cond2=true; 
+    }else if((this.promedio>=2.5 && this.promedio<=3) ||( this.promedio>3 && this.promedio<3.5)){
+        this.cond1=true; this.cond2=true; this.cond3=true; 
+    }else if((this.promedio>=3.5 && this.promedio<=4) || ( this.promedio>4 && this.promedio<4.5)){
+        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true;
+    }else if(this.promedio>=4.5 && this.promedio<=5){
+        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true; this.cond5;
+    }else{
+      this.cond1=false;
+      this.cond2=false;
+      this.cond3=false;
+      this.cond4=false;
+      this.cond5=false;
+    }
     })
   }
+  //comentarios
+  showComment(){
+    this.bool=false
+  }
+  hideComment(){
+    this.bool=true
+  }
+
+  commentForm = new FormGroup({
+    comentario: new FormControl('', [Validators.required]),
+  });
+
+  get commentControl(): FormControl {
+    return this.commentForm.get('comentario') as FormControl; 
+  }
+  comentario:Comment = {
+    fk_id_user: "",
+    fk_id_product:"",
+    text_contents: ""
+  }
   
+  set(id: string){
+    localStorage.setItem('idProducto', JSON.stringify(id))
+  }
+  addComment(){
+    this.comentario.fk_id_user = "" + localStorage.getItem("token")
+    this.comentario.fk_id_product=""+localStorage.getItem("idProducto")
+    this.equipoService.addComment(this.comentario).subscribe(res => {
+        console.log(<any>res)
+        this.comentario.text_contents=""
+       // console.log(typeof parseInt(this.comentario.fk_id_product));//ver typo de parseo de token
+       // this.loadComments();
+    },
+    err => console.log(err))
+  }
+  
+  loadComments(id: number){
+    this.equipoService.getProductComments(id).subscribe(res=>{
+      this.comments=<any>res;
+      this.totalComments=this.comments.length
+      console.log(this.comments)
+    })
+  }
 }
-
-
 
 interface after{
   "status": string,

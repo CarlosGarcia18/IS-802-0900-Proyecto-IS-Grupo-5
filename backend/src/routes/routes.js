@@ -3,6 +3,7 @@ const routers = require('express').Router()//Direccionamiento en express
 const customerU = require('../controllers/customerUser')//funciones de llamada por parte del usuario
 const customerA = require('../controllers/customerAdmin')//funciones de llamada por parte del administrador
 const customerO = require('../controllers/customerOptions')//funciones de llamada por parte del administrador
+const customerC = require('../controllers/customerChat')//funciones de llamada por parte del chat
 
 const path = require('path')
 const multer = require('multer')
@@ -95,10 +96,16 @@ routers.post('/addFav', customerU.addFavorite)
 
 //Agrega calificacion
 routers.post('/addcalifications',customerU.qualifications)
+
 //Agregar comentario
 routers.post('/adddenuncia',customerU.denuncia)
+
 //Agregar Comentario
-//routers.post('/addcomentary',customerU.comentario)
+routers.post('/addComment',customerU.comentario)
+
+//listar comentarios
+routers.get('/comments/:fk_id_product',customerU.getComments)
+
 //Modificar Vista
 routers.get('/vista/:id',customerU.vista)
 
@@ -109,6 +116,32 @@ routers.get('/getProducto/:id_producto',customerO.getProducto)
 routers.get('/productImages/:id_producto', customerO.getProductImages)
 
 
+//Crear un nuevo chat
+routers.post('/chat/newchat',customerC.newChat)
+
+//Traer datos de un chat
+routers.get('/chat/:id_user',customerC.getChats)
+
+//Traer ultimo mensaje del chat y la cantidad de mensajes no leidos
+routers.get('/chat/lastMessage/:id_chat',customerC.getlastMessage)
+
+//routers.put('/editorImagenes/:id',customerU.PudProducto)
+
+//crear mensaje
+routers.post('/addMessage' , customerU.addMessage)
+
+//Lista Mensaje
+routers.get('/getMessage/:id',customerU.listarMenssage)
+
+//editar producto
+routers.put('/editProduct/:id_product',customerO.editProduct)
+
+//traer un producto version para la edicion del producto del modal
+routers.get('/getProdMod/:id_producto',customerO.getProductoModal)
+
+
+routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
+//promedio estrellas
 
 //exportacion de rutas
 module.exports = routers

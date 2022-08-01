@@ -3,6 +3,7 @@ const controller = {} //definicion de controller que guardara las rutas
 const fs = require('fs')
 const path = require('path')
 const nodemailer = require('nodemailer')
+const { connect } = require('../config/connection')
 
 //////////////////////////outlook createCode
 function enviarCorreoOut(destinatario, codigo, res) {
@@ -483,7 +484,7 @@ controller.deleteFavorite = (req, res) => {
 /////////////////AGREGAR PRODUCTO A FAVORITOS/////////////////////////
 
 controller.addFavorite = (req, res) => {
-    const { id_user, id_product ,} = req.body;
+    const { id_user, id_product, } = req.body;
 
     let sql1 = `SELECT * FROM user WHERE id_user = ${id_user}`
     let sql2 = `SELECT * FROM product WHERE id_product=${id_product}`
@@ -531,14 +532,30 @@ controller.addFavorite = (req, res) => {
     "var_phone":"98765645"
 } */
 
+
+//==================PROMEDIO DE CALIFICACION======================
+controller.avgQualif = (req, res) => {
+    const {fk_id_user_qualified} = req.params;
+    let sql1=`call prom(${fk_id_user_qualified});`
+
+    conection.query(sql1,(err,rows,fields)=>{
+        if (err) 
+            res.json({ status: '0', error: err.sqlMessage })
+            else 
+            res.json(rows[0])
+    })
+}
+
 //==============Agregar Calificacion==========
 
 controller.qualifications = (req, res) => {
     //constate
-    const {fk_id_user_qualified,
+    const { fk_id_user_qualified,
         fk_id_user_review, tin_score } = req.body;
     //variables de consulta
-    let sql1=`SELECT * FROM qualification WHERE fk_id_user_qualified=${fk_id_user_qualified} `
+
+    let sql1=`SELECT * FROM qualification WHERE fk_id_user_review=${fk_id_user_review} `
+
     let sql15 = `SELECT * FROM user WHERE id_user = ${fk_id_user_review}`
     let sql16 = `SELECT * FROM user WHERE id_user=${fk_id_user_qualified} `
     let sql17 = `INSERT INTO QUALIFICATION(fk_id_user_qualified,fk_id_user_review,tin_score) 
@@ -550,68 +567,68 @@ controller.qualifications = (req, res) => {
             res.json({ status: '0', error: err.sqlMessage })
             //throw err
         } else {
-            if (rows.length != 0) { 
+            if (rows.length != 0) {
                 //Conexion de usuario 2
                 conection.query(sql16, (err, rows, fields) => {
                     if (err) {
                         res.json({ status: '3', error: err.sqlMessage })
                     } else
                         if (rows.length != 0) {
-                            conection.query(sql1,(err,rows,fields)=>{//revisa si ya fue calificado el usuario
-                                if(err){
-                                    res.json({status:'0', error: err.sqlMessage})
-                                }else 
-                                    if (rows.length==0){
+                            conection.query(sql1, (err, rows, fields) => {//revisa si ya fue calificado el usuario
+                                if (err) {
+                                    res.json({ status: '0', error: err.sqlMessage })
+                                } else
+                                    if (rows.length == 0) {
                                         conection.query(sql17, (err, rows, fields) => {
                                             if (err) {
                                                 res.json({ status: '4', error: err.sqlMessage })
                                             } else {
                                                 res.json({ status: '200', msg: 'Se agrego calificacion' })
                                             }
-                                        }) 
-                                    }else res.json({status: '203', msg: 'Este usuario ya fue calificado'})
+                                        })
+                                    } else res.json({ status: '203', msg: 'Este usuario ya fue calificado' })
                             })
                             //Conexion calificacion calificacion 
-                            
-                        }else{
-                            res.json({status:'2',msg:'el usuario calificador no se encuetra'})
+
+                        } else {
+                            res.json({ status: '2', msg: 'el usuario calificador no se encuetra' })
                         }
                 })
-            }else{
-                res.json({status:'1', msg:'no se encuentra el usuario calificado'})
+            } else {
+                res.json({ status: '1', msg: 'no se encuentra el usuario calificado' })
             }
         }
     })
 }
 
 //=================Crear Denuncias==========================================
-controller.denuncia =(req ,res)=>{
+controller.denuncia = (req, res) => {
 
-    const{fk_id_user,fk_id_product,fk_id_complaint_category,
-        text_description}=req.body
+    const { fk_id_user, fk_id_product, fk_id_complaint_category,
+        text_description } = req.body
     let sql18 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
     let sql20 = `SELECT * FROM PRODUCT WHERE id_product=${fk_id_product} `
     let sql21 = `SELECT * FROM COMPLAINT_CATEGORY WHERE id_COMPLAINT_CATEGORY=${fk_id_complaint_category} `
 
     //conexion de usuario 1
-    conection.query(sql18,(err,rows,fields)=>{
-        if(err){
-            res.json({status:'0',error: err.sqlMessage})
-        }else{
-            if(rows.length!=0){
+    conection.query(sql18, (err, rows, fields) => {
+        if (err) {
+            res.json({ status: '0', error: err.sqlMessage })
+        } else {
+            if (rows.length != 0) {
                 //conexion de producto
-                conection.query(sql20,(err,rows,fields)=>{
-                    if(err){
-                        res.json({status:'2',error:err.sqlMessage})
-                    }else{
-                        if(rows.length!=0){
+                conection.query(sql20, (err, rows, fields) => {
+                    if (err) {
+                        res.json({ status: '2', error: err.sqlMessage })
+                    } else {
+                        if (rows.length != 0) {
                             const fk_id_user_complaining = rows[0].fk_id_user
                             //Coneccion de categoria
-                            conection.query(sql21,(err,rows,fields)=>{
-                                if(err){
-                                    res.json({status:'3',error:err.sqlMessage})
-                                }else{
-                                    if(rows.length!=0){
+                            conection.query(sql21, (err, rows, fields) => {
+                                if (err) {
+                                    res.json({ status: '3', error: err.sqlMessage })
+                                } else {
+                                    if (rows.length != 0) {
 
                                         let sql22 = `INSERT INTO COMPLAINT(fk_id_user,fk_id_user_complaining,fk_id_product,fk_id_complaint_category,
                                             bit_status,text_description,tim_date) 
@@ -619,26 +636,26 @@ controller.denuncia =(req ,res)=>{
                                             0,"${text_description}",CURRENT_TIMESTAMP)`
 
                                         //Conexion de insertar datos
-                                        conection.query(sql22,(err,rows,fields)=>{
-                                            if(err){
-                                                res.json({status:'4',error:err.sqlMessage})
-                                            }else{
-                                                res.json({status:'200',msg:'Se envió la denuncia'})
+                                        conection.query(sql22, (err, rows, fields) => {
+                                            if (err) {
+                                                res.json({ status: '4', error: err.sqlMessage })
+                                            } else {
+                                                res.json({ status: '200', msg: 'Se envió la denuncia' })
                                             }
                                         })
-                                    }else{
-                                        res.json({status:'2',msg:'La categoria no se encuetra'})
+                                    } else {
+                                        res.json({ status: '2', msg: 'La categoria no se encuetra' })
                                     }
 
                                 }
                             })
-                        }else{
-                            res.json({status:'2',msg:'El producto denunciado no se encuetra'})
+                        } else {
+                            res.json({ status: '2', msg: 'El producto denunciado no se encuetra' })
                         }
                     }
-                })       
-            }else{
-                res.json({status:'2',msg:'El usuario no se encuetra'})
+                })
+            } else {
+                res.json({ status: '2', msg: 'El usuario no se encuetra' })
             }
         }
     })
@@ -646,14 +663,14 @@ controller.denuncia =(req ,res)=>{
 
 
 //====================Crear Comentarios====================
-/*
+
 controller.comentario =(req ,res)=>{
-    const {fk_id_user, fk_id_product,text_contents,tim_date}=req.body;
+    const {fk_id_user, fk_id_product,text_contents}=req.body;
 
     let sql18=`SELECT * FROM user WHERE id_user = ${fk_id_user}`
     let sql19=`SELECT * FROM product WHERE id_product=${fk_id_product}`
     let sql20=`INSERT INTO COMMENTARY(fk_id_user,fk_id_product,text_contents,tim_date) 
-    VALUES(${fk_id_user}, ${fk_id_product},${text_contents},${tim_date})`
+    VALUES(${fk_id_user}, ${fk_id_product},"${text_contents}", CURRENT_TIMESTAMP)`
 
     conection.query(sql18,(err,rows,fields)=>{
         if(err){
@@ -669,7 +686,7 @@ controller.comentario =(req ,res)=>{
                                 if(err){
                                     res.json({ status: '2', error: err.sqlMessage });
                                 }else{
-                                    res.json({ status: '200', msg: 'Se agrego calificacion' })
+                                    res.json({ status: '200', msg: 'Se agrego el comentario' })
                                 }                 
                             })
                         }else{
@@ -685,25 +702,168 @@ controller.comentario =(req ,res)=>{
 
 }
 
-*/
+//========================== LISTAR COMENTARIOS ==================================
+controller.getComments=(req,res)=>{
+    const{fk_id_product}=req.params;
+
+    let sql1=`CALL obtenerComentarios(${fk_id_product})`
+
+    conection.query(sql1,(err,rows, fields)=>{
+        if(err){
+            res.json({status:'0', msg:err.sqlMessage})}
+        else{
+            res.json(rows[0])
+        }
+    })           
+
+}
 
 //=================Modificar Vista============================================
 
-controller.vista=(req,res)=>{
-   
-    const{id}=req.params
+controller.vista = (req, res) => {
+
+    const { id } = req.params
 
     let generateToken = `CALL vistaProduc(${id})` //GENERAMOS EL TOKEN 
-    conection.query(generateToken,(err,rows,fields)=>{
-        if(err){
-            res.json({status:'0',erorr:err.sqlMessage})
-        }else{
-            res.json({status:'200', msg:'Se modifico '})
+    conection.query(generateToken, (err, rows, fields) => {
+        if (err) {
+            res.json({ status: '0', error: err.sqlMessage })
+        } else {
+            res.json({ status: '200', msg: 'Se modifico ' })
         }
 
     })
 }
+/*
+controller.PudProducto=(req,res)=>{
+    const{id}=req.params
 
+    const{fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,
+        dou_price,bit_availability,publication_date,expiration_date} = req.body;
+
+        let sql22=`SELECT * FROM user WHERE id_user = ${fk_id_user}`
+        let sql23=`SELECT * FROM DEPARTMENT WHERE id_department = ${fk_id_department}`
+        let sql24=`SELECT * FROM PRODUCT_CATEGORY WHERE id_product_category = ${fk_id_product_category}`
+        let sql25=`SELECT * FROM PRODUCT_STATUS WHERE id_product_status = ${fk_id_product_status}`
+
+
+        let sql26 = `update PRODUCT set 
+        fk_id_user=${fk_id_user},
+        fk_id_department=${fk_id_department},
+        fk_id_product_category=${fk_id_product_category},
+        fk_id_product_status=${fk_id_product_status} ` +
+        `var_name='${var_name}', ` +
+        `text_description='${text_description}', ` +
+        `dou_price=${dou_price}, ` +
+        `bit_availability=${bit_availability}, ` +
+        `publication_date='${publication_date}', ` +
+        `expiration_date='${expiration_date}' where id_user = ${id}`
+
+        conection.query(sql22,(err,rows,fields)=>{
+          if(err){  res.json({status:'0',erorr:err.sqlMessage});
+        }else{
+            if(rows.length!=0){
+                conection.query(sql23,(err,rows,fields)=>{
+                    if(err){
+                        res.json({status:'1',error:err.sqlMessage})
+                    }else{
+                        if(rows.length!=0){
+                            conection.query(sql24,(err,rows,fields)=>{
+                                if(err){
+                                    res.json({status:'2',error:err.sqlMessage})
+                                }else{
+                                    if(rows.length!=0){
+                                        conection.query(sql25,(err,rows,fields)=>{
+                                            if(err){
+                                                res.json({status:'3',error:err.sqlMessage})
+                                            }else{
+                                                if(rows.length!=0){
+                                                    conection.query(sql26,(err,rows,fields)=>{
+                                                        if(err){
+                                                            res.json({status:'4',error:err.sqlMessage})
+                                                        }else{
+                                                            res.json({status:'200', msg:'Se modifico correctamente'})
+                                                        }
+                                                    })
+
+                                                }
+                                            }
+                                        })
+
+                                    }
+                                }
+                            })
+                        }
+
+
+                    }
+                })
+            }
+        }
+
+
+        })
+        
+
+}
+*/
+
+
+//Crear Mensaje
+controller.addMessage = (req, res) => {
+    const{fk_id_chat,fk_id_user,text_contents}=req.body
+    let sql27 = `SELECT * FROM CHAT WHERE id_chat = ${fk_id_chat}`
+    let sql28 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
+    let sql29 = `INSERT INTO MESSAGE(tim_date,bit_status, text_contents,fk_id_chat,fk_id_user) 
+    VALUES(CURRENT_TIMESTAMP(),0,'${text_contents}',${fk_id_chat},${fk_id_user})`
+    //Conexion 1 sql27
+    conection.query(sql27,( err,rows,fields)=>{
+        if(err){
+            res.json({status:'0', error: err.sqlMessage})
+        }else{
+            if(rows.length!=0){
+                //conexion 2 sql 28
+                conection.query(sql28,(err,rows,fields)=>{
+                    if(err){
+                        res.json({status:'1',error:err.sqlMessage})
+                    }else{
+                        if(rows.length!=0){
+                            //conexion 3 sql 29
+                            conection.query(sql29,(err,rows,fields)=>{
+                                if(err){
+                                    res.json({status:'2', error:err.sqlMessage})
+                                }else{
+                                    res.json({status:'200' ,msg:'Se conecto'})
+                                }
+                            })
+
+                        }else{
+                             res.json({status:'3' ,msg:'No se encuentra el usuario'})
+                        }
+
+                    }
+                })
+            }else{
+                 res.json({status:'4' ,msg:'No se encuentra el chat'})
+            }
+        }
+    })
+
+}
+
+//Listado de mensaje
+controller.listarMenssage =(req, res)=>{
+    const{id} = req.params
+    let sql27=`call listMessage(${id})`
+    conection.query(sql27, (err,rows, fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+
+}
 
 
 
