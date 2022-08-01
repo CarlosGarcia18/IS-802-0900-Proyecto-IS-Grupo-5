@@ -1,8 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
-import { request } from 'express';
 import { EquipoService,wishListProducts,deleteWishlist, getProduct, Images, qualification, reqQualify } from '../../SERVICES/equipo.service'
-import { ViewProductsComponent } from '../view-products/view-products.component';
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
@@ -32,8 +30,6 @@ export class WishListComponent implements OnInit {
     paginator.lastPageLabel = "Ultima página"
     paginator.nextPageLabel = "Siguiente página"
     paginator.previousPageLabel = "Página anterior"
-    console.log(paginator)
-
   }
 
 errorDelete = false
@@ -93,7 +89,7 @@ error = false
 
   pageSize = 12;
   desde: number = 0;
-  hasta: number = 6;
+  hasta: number = 12;
 
   cambiarPagina(e: PageEvent) {
     console.log(e);

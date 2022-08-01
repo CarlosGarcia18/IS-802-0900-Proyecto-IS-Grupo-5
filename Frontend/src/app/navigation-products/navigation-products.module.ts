@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { ViewProductsComponent } from './view-products/view-products.component';
+import { ChatsComponent } from './chats/chats.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ViewProductsComponent } from './view-products/view-products.component';
     ProductsComponent,
     SubscriptionsComponent,
     ViewProductsComponent,
-    ComplaintComponent
+    ComplaintComponent,
+    ChatsComponent
   ],
   imports: [
     CommonModule,

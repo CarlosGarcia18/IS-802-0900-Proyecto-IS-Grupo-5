@@ -1,0 +1,46 @@
+<div class="page-chat">
+    <div class="bar-chats">
+        <div *ngFor="let p of [1,2,3,4,8,7,7,7,7,5,6,6]">
+            <div class="bar-chats-content">
+                <div class="bar-chats-content-image" [style]="'background-image: url('+'http://localhost:3000/1.jpg'+')'">
+                </div>
+                <div class="bar-chats-content-text">
+                    <h4 style="font-size: 18px;">Producto</h4>
+                    <h5 style="font-size: 15px;">Vendedor</h5>
+                    <h6 style="font-size: 13px;">Mensaje ...</h6>
+                </div>
+                <div class="bar-chats-content-unread-chat">
+                    <span>5</span>
+                </div>
+            </div>
+            <hr>
+        </div>
+    </div>
+    <div class="messenge">
+        <div class="messenge-text" #messengeContainer>
+            <div class="messenge-text-1">
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+            <div class="messenge-text-2">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem error neque debitis ipsam laudantium doloremque. Est illum, necessitatibus alias unde voluptate corporis ab eum ratione in sequi consectetur, nobis molestias!</p>
+            </div>
+            <div class="messenge-text-2" *ngFor="let p of [1,2,3,43,4,5,56]">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit, voluptatibus. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem error neque debitis ipsam laudantium doloremque. Est illum, necessitatibus alias unde voluptate corporis ab eum ratione in sequi consectetur, nobis molestias!</p>
+            </div>
+        </div>
+        <div class="messenge-send">
+            <div class="messenge-send-text">
+                <textarea name="" id="" placeholder="Escribe un mensaje aqui">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis magni optio fuga laborum quas. Praesentium quod placeat, laboriosam repudiandae recusandae veritatis eum excepturi repellendus ut aliquam corporis exercitationem accusantium nemo repellat maiores aut minus temporibus tempora ipsam quas doloribus cum!
+                </textarea>
+                <!--<div class="messenge-send-text-p">
+                    <div class="messenge-send-text-pp" contenteditable="true">
+                        <p><span data-lexical-text="true">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, incidunt. Illum quibusdam corrupti placeat! Beatae ad aperiam distinctio cum rem animi, vero dolorem tempore ipsum exercitationem natus corrupti modi quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur quisquam ad reiciendis, dicta sunt similique nisi omnis veniam veritatis nostrum error porro molestiae sapiente impedit asperiores reprehenderit est! Saepe minus commodi quam quaerat illo magni at nam numquam cumque perferendis?</span></p>
+                    </div>
+                </div>-->
+            </div>
+            <div class="messenge-send-button">
+                <i class="fa-solid fa-paper-plane"></i>
+            </div>
+        </div>
+    </div>
+</div>

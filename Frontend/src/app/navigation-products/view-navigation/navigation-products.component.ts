@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipoService } from "../../SERVICES/equipo.service";
 import { Router} from '@angular/router';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-navigation-products',
@@ -9,8 +10,13 @@ import { Router} from '@angular/router';
 })
 export class NavigationProductsComponent implements OnInit {
 
-  constructor(private EquipoService:EquipoService,private router: Router) {
+  constructor(private paginator: MatPaginatorIntl, private EquipoService:EquipoService,private router: Router) {
     this.name = <any>null
+    paginator.itemsPerPageLabel = "Productos por pagina:"
+    paginator.firstPageLabel = "Primer página"
+    paginator.lastPageLabel = "Ultima página"
+    paginator.nextPageLabel = "Siguiente página"
+    paginator.previousPageLabel = "Página anterior"
   }
 
   name:user[]//arreglo para traer el usuario
