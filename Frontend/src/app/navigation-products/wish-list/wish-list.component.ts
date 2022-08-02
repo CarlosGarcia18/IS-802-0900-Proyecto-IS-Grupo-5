@@ -67,7 +67,7 @@ error = false
         var_name_photo: "null",
         var_name: "null",
         text_description: "null",
-        dou_price: 0
+        dou_price: ""
       }
     ]
   }
@@ -81,7 +81,7 @@ error = false
         var_name_photo: "null",
         var_name: "null",
         text_description: "null",
-        dou_price: 0
+        dou_price: ""
       }
     ]
   }

@@ -297,7 +297,17 @@ controller.productUser = (req, res) => {
     conection.query(sql1, (err, rows, fields) => {
         if (err) res.json(err);//posible error en consulta
         else {
-            res.json(rows)//todo salio bien
+            const currency = function(number){
+                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
+            };
+            const rows2 = rows
+                .map(row => ({
+                    ...row,
+                    dou_price: currency(row.dou_price)
+
+                }))
+
+            res.json(rows2)//todo salio bien
         }
     })
 }
@@ -429,7 +439,17 @@ controller.getWishlist = (req, res) => {
                     if (err) res.json({ status: '0', error: err.sqlMessage })//posible error en consulta a BDD
                     else {
                         if (rows.length != 0) {
-                            res.json({ status: '200', msg: rows })
+                                const currency = function(number){
+                                    return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
+                                };
+                                const rows2 = rows
+                                .map(row => ({
+                                    ...row,
+                                    dou_price: currency(row.dou_price)
+                
+                                }))
+
+                            res.json({ status: '200', msg: rows2 })
                         }
                         else { res.json({ status: '202', msg: "No hay productos en la lista de deseos" }) }
                     }

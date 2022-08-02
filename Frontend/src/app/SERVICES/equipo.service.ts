@@ -171,7 +171,7 @@ export interface wishListProducts{
   var_name_photo: string,
   var_name: string,
   text_description: string,
-  dou_price: number
+  dou_price: string
 }
 
 export interface Registro{
