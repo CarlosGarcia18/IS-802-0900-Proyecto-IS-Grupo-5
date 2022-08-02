@@ -11,9 +11,7 @@ function newChat(req, res){
     let sql1 = `SELECT * FROM PRODUCT WHERE id_product = ${fk_id_product}`
     let sql2 = `SELECT * FROM USER WHERE id_user = ${fk_id_user_buyer}`
     let sql3 = `SELECT * FROM USER WHERE id_user = ${fk_id_user_seller}`
-    let sql4 = `SELECT * FROM CHAT WHERE fk_id_product = ${fk_id_product} AND fk_id_user_buyer = ${fk_id_user_buyer} AND fk_id_user_seller = ${fk_id_user_seller};`
-    let sql = `INSERT INTO CHAT (fk_id_product, fk_id_user_buyer, fk_id_user_seller) 
-        VALUES(${fk_id_product},${fk_id_user_buyer},${fk_id_user_seller})`
+    let sql = `CALL sp_newChat(${fk_id_product},${fk_id_user_buyer},${fk_id_user_seller})`
 
     conection.query(sql1,(err,rows,fields)=>{ // Comprueba si existe el producto
         if(err){
@@ -31,7 +29,19 @@ function newChat(req, res){
                                         res.emit('newchatresponse', {status:'3',msg: err.sqlMessage})
                                     }else{
                                         if(rows.length!=0){
-
+                                            conection.query(sql,(err,rows,fields)=>{
+                                                if(err){
+                                                    res.emit('newchatresponse', {status:'4',msg: err.sqlMessage})
+                                                }else{
+                                                    if(rows[0][0].status == 200){
+                                                        res.emit('newchatresponse', {status:'200',msg: "El nuevo chat vacio ha sido creado", id_chat: rows[0][0].id_chat, messenge: []})
+                                                    }else{
+                                                        res.emit('newchatresponse', {status:'202',msg: "Ya existe este chat", id_chat: rows[0][0].id_chat})
+                                                    }
+                                                    
+                                                }
+                                            })
+                                            /*
                                             conection.query(sql4,(err,rows,fields)=>{ // Comprueba si ya existe ese chat
                                                 if(err){
                                                     res.emit('newchatresponse', {status:'4',msg: err.sqlMessage})
@@ -51,7 +61,7 @@ function newChat(req, res){
                                                     }
                                                 }
 
-                                            })            
+                                            })*/       
                             
                                         }else{
                                             res.emit('newchatresponse', {status:'0',msg:'El usuario vendedor no se encuentra'})

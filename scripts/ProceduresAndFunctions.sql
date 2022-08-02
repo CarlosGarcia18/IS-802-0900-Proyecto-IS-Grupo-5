@@ -75,3 +75,33 @@ end//
 
 call listMessage2(4,3);
 */
+
+
+-- Funcion para crear un chat vacio
+drop procedure if exists sp_newChat;
+delimiter $$
+create procedure sp_newChat(id_product BIGINT UNSIGNED, id_user_buyer BIGINT UNSIGNED, id_user_seller BIGINT UNSIGNED)
+BEGIN
+	DECLARE id BIGINT UNSIGNED;
+    DECLARE status TINYINT UNSIGNED;
+
+	SELECT id_chat INTO id FROM CHAT WHERE fk_id_product = id_product AND fk_id_user_buyer = id_user_buyer AND fk_id_user_seller = id_user_seller;
+	
+    IF id THEN
+		SELECT 202 INTO status; 
+		SELECT id AS id_chat;
+    ELSE
+		INSERT INTO CHAT (fk_id_product, fk_id_user_buyer, fk_id_user_seller) 
+			VALUES(id_product,id_user_buyer,id_user_seller);
+		
+        SELECT 200 INTO status;
+		SELECT last_insert_id() AS id_chat;
+    END IF;
+	
+end$$
+
+CALL sp_newChat(101, 1, 2);
+
+
+
+
