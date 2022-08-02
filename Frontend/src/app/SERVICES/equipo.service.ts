@@ -132,7 +132,7 @@ export class EquipoService {
     return this.http.post(this.url+"/addComment", comentario)
   }
 
-  getProductComments(fk_id_product: number){
+  getProductComments(fk_id_product: string|null){
     return this.http.get(this.url+"/comments/"+fk_id_product)
   }
 
@@ -160,7 +160,7 @@ export interface traerProducto{
   fk_id_department: number,
   var_name: string,
   text_description: string,
-  dou_price: number,
+  dou_price: string,
   publication_date: string,
   whishlist:string
 }
@@ -171,7 +171,7 @@ export interface wishListProducts{
   var_name_photo: string,
   var_name: string,
   text_description: string,
-  dou_price: number
+  dou_price: string
 }
 
 export interface Registro{
@@ -303,7 +303,7 @@ export interface loadComment{
   var_name: string,
   var_lastname: string,
   text_contents: string,
-  tim_date: string
+  tim_date: Date
 }
 export interface promedio{
   PROMEDIO: number;

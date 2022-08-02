@@ -37,8 +37,9 @@ export class ProductsComponent implements OnInit {
   public token: number=0
   public promedio: number=0;
  public totalComments:  number=0;
-
-  public cond1:boolean=false;
+ public date:string=new Date().toLocaleString()
+ public block:boolean=true;
+ public cond1:boolean=false;
   public cond2:boolean=false;
   public cond3:boolean=false;
   public cond4:boolean=false;
@@ -48,7 +49,10 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit(): void {
       this.toggleButton=false
-
+       
+      if(localStorage.getItem("token")){
+        this.block=false;
+      }
       // Traer los departamentos
       this.equipoService.getDepartments().subscribe(res=>{
         this.departments = <any>res
@@ -380,14 +384,19 @@ addComment(){
     this.equipoService.addComment(this.comentario).subscribe(res => {
         console.log(<any>res)
         this.comentario.text_contents=""
+        this.loadComments(this.comentario.fk_id_product)
     },
     err => console.log(err))
+    
 }
 
-loadComments(id: number){
+loadComments(id: string|null){
   this.equipoService.getProductComments(id).subscribe(res=>{
     this.comments=<any>res;
     this.totalComments=this.comments.length
+    
+    console.log(this.date)
+
     console.log(this.comments)
   })
 }

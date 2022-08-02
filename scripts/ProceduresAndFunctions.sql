@@ -28,7 +28,7 @@ END$$
 #ejemplo de uso del procedimiento
 #Call createCode("joseK@gmail.com");
 
---Producto Almacenado 
+-- Producto Almacenado 
 delimiter //
 create  procedure vistaProduc(id int)
 BEGIN
@@ -56,7 +56,7 @@ BEGIN
 END&&
 
 
---Producto Almacenado Lista de mensajes
+-- Producto Almacenado Lista de mensajes
 delimiter //
 create  procedure listMessage(id int)
 BEGIN
@@ -65,7 +65,7 @@ end//
 
 call listMessage(4);
 
---Otra forma de listar mensajes
+-- Otra forma de listar mensajes
 /*
 delimiter //
 create  procedure listMessage2(id int,id2 int)

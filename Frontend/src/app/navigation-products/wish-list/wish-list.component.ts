@@ -10,7 +10,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
   
 export class WishListComponent implements OnInit {
-  
+ 
  producto: getProduct[]=[]
  images: Images[]=[]
  comments: loadComment[]=[]
@@ -34,7 +34,7 @@ export class WishListComponent implements OnInit {
  public token: number=0
  public promedio: number=0;
  public totalComments:  number=0;
-
+ public date:string=new Date().toLocaleString()
  public cond1:boolean=false;
  public cond2:boolean=false;
  public cond3:boolean=false;
@@ -61,7 +61,7 @@ error = false
         var_name_photo: "null",
         var_name: "null",
         text_description: "null",
-        dou_price: 0
+        dou_price: ""
       }
     ]
   }
@@ -75,13 +75,14 @@ error = false
         var_name_photo: "null",
         var_name: "null",
         text_description: "null",
-        dou_price: 0
+        dou_price: ""
       }
     ]
   }
 
   ngOnInit(): void {
     this.loadProducts()
+   
     this.toggleButton=false
   }
 
@@ -205,7 +206,9 @@ error = false
   }
   //comentarios
   showComment(){
-    this.bool=false
+   
+      this.bool=false
+    
   }
   hideComment(){
     this.bool=true
@@ -229,17 +232,17 @@ error = false
   }
   addComment(){
     this.comentario.fk_id_user = "" + localStorage.getItem("token")
+    
     this.comentario.fk_id_product=""+localStorage.getItem("idProducto")
     this.equipoService.addComment(this.comentario).subscribe(res => {
         console.log(<any>res)
         this.comentario.text_contents=""
-       // console.log(typeof parseInt(this.comentario.fk_id_product));//ver typo de parseo de token
-       // this.loadComments();
+        this.loadComments(this.comentario.fk_id_product)
     },
     err => console.log(err))
   }
   
-  loadComments(id: number){
+  loadComments(id: string|null){
     this.equipoService.getProductComments(id).subscribe(res=>{
       this.comments=<any>res;
       this.totalComments=this.comments.length
