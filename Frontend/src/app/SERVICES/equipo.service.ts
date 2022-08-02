@@ -132,7 +132,7 @@ export class EquipoService {
     return this.http.post(this.url+"/addComment", comentario)
   }
 
-  getProductComments(fk_id_product: number){
+  getProductComments(fk_id_product: string|null){
     return this.http.get(this.url+"/comments/"+fk_id_product)
   }
 
@@ -303,7 +303,7 @@ export interface loadComment{
   var_name: string,
   var_lastname: string,
   text_contents: string,
-  tim_date: string
+  tim_date: Date
 }
 export interface promedio{
   PROMEDIO: number;
