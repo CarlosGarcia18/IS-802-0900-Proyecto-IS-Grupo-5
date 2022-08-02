@@ -160,7 +160,7 @@ export interface traerProducto{
   fk_id_department: number,
   var_name: string,
   text_description: string,
-  dou_price: number,
+  dou_price: string,
   publication_date: string,
   whishlist:string
 }

@@ -80,7 +80,21 @@ controller.productFiltering = (req,res) =>{
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json(err);//posible error en consulta
         else{
-            res.json(rows)//todo salio bien
+            
+            
+            //Funcion para dar formato a los precios
+
+            const currency = function(number){
+                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
+            };
+            const rows2 = rows
+                .map(row => ({
+                    ...row,
+                    dou_price: currency(row.dou_price)
+
+                }))
+
+            res.json(rows2)//todo salio bien
         }
         })
 }
@@ -170,6 +184,14 @@ controller.getProducto=(req,res)=>{
     conection.query(sql1,(err,rows,fields)=>{
         if(err) return res.json({status:'0', msg:err.sqlMessage});
         else{
+            
+            //Funcion para dar formato a los precios
+            const currency = function(number){
+                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
+            };
+            console.log(currency(rows[0].dou_price))
+            rows[0].dou_price = currency(rows[0].dou_price)
+
             res.json(rows)
         }
     })
@@ -220,6 +242,13 @@ controller.getProductoModal=(req,res)=>{
     conection.query(sql1,(err,rows,fields)=>{
         if(err) return res.json({status:'0', msg:err.sqlMessage});
         else{
+            //Funcion para dar formato a los precios
+            const currency = function(number){
+                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
+            };
+            console.log(currency(rows[0].dou_price))
+            rows[0].dou_price = currency(rows[0].dou_price)
+
             res.json(rows)
         }
     })
