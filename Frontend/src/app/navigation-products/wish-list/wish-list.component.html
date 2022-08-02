@@ -108,7 +108,7 @@
                             <div>
                                <!-- <p style="color: red; text-align: center;">{{paragraph}}</p>-->
                                     <div class="btn-options" >
-                                        <button (click)="showComment()" (click)="loadComments(item.id_product)" type="submit" class="cbtn" style="background-color: #252f37">Ver Comentarios</button>
+                                        <button (click)="showComment()" (click)="loadComments(item.id_product.toString())"   type="submit" class="cbtn" style="background-color: #252f37">Ver Comentarios</button>
                                         <button  type="submit" class="cbtn" style="background-color: #93BEE2; margin-left: 10px;">Contactar</button>
                                         <button type="submit" class="cbtn" style="background-color: #FAA11D; margin-left: 10px;">Denunciar</button>
                                     </div>
@@ -122,7 +122,7 @@
                 <hr >
                         <h6 style="text-align: left; font-size:20px"><strong>{{totalComments}} comentarios</strong> </h6>
                         
-                        <form  [formGroup]="commentForm"class="user-comment" style="display: flex; margin-top: 30px; margin-bottom: 50px; ">
+                        <form  [formGroup]="commentForm"   class="user-comment" style="display: flex; margin-top: 30px; margin-bottom: 50px; ">
                             <input [(ngModel)]="comentario.text_contents"  id="input-comment" type="text" placeholder="Agrega un comentario" formControlName="comentario" >
                             <button  type="submit" (click)="addComment()"  [disabled]="!comentario.text_contents">Comentar</button>
                         </form>
@@ -132,7 +132,7 @@
                             <div class="content" style="box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
                                 <p style="font-size: 14px;"><i class="fa-solid fa-user"></i>  <strong>  {{comment.var_name}} {{comment.var_lastname}}</strong></p>
                                 <p style="font-size: 14px">{{comment.text_contents}}</p>
-                                <p style="font-size:11px; text-align: right;">{{comment.tim_date}}</p>
+                                <p style="font-size:11px; text-align: right;">{{date}}</p>
                             </div>
                             
                         </div>
