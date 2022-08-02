@@ -3,7 +3,6 @@ const routers = require('express').Router()//Direccionamiento en express
 const customerU = require('../controllers/customerUser')//funciones de llamada por parte del usuario
 const customerA = require('../controllers/customerAdmin')//funciones de llamada por parte del administrador
 const customerO = require('../controllers/customerOptions')//funciones de llamada por parte del administrador
-const customerC = require('../controllers/customerChat')//funciones de llamada por parte del chat
 
 const path = require('path')
 const multer = require('multer')
@@ -115,7 +114,7 @@ routers.get('/getProducto/:id_producto',customerO.getProducto)
 //traer todas las imagenes de un producto
 routers.get('/productImages/:id_producto', customerO.getProductImages)
 
-
+/* Se usan a traves de sockets
 //Crear un nuevo chat
 routers.post('/chat/newchat',customerC.newChat)
 
@@ -124,6 +123,7 @@ routers.get('/chat/:id_user',customerC.getChats)
 
 //Traer ultimo mensaje del chat y la cantidad de mensajes no leidos
 routers.get('/chat/lastMessage/:id_chat',customerC.getlastMessage)
+*/
 
 //routers.put('/editorImagenes/:id',customerU.PudProducto)
 
