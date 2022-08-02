@@ -8,7 +8,7 @@ import { Observable, Subscriber } from 'rxjs';
 export class WebSocketsService {
 
   socket:any
-  url ='http://localhost:4200/api'
+  url ='http://localhost:3000'
 
   constructor() { 
     this.socket = io(this.url)
@@ -17,6 +17,7 @@ export class WebSocketsService {
   listen(eventName:String){
     return new Observable((Subscriber)=>{
       this.socket.on(eventName, (data:any)=>{
+        console.log("hola")
         Subscriber.next(data);
       })
     })
