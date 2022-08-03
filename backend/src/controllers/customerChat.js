@@ -98,21 +98,16 @@ function getChats(req,res){
     const{id_user}=req
 
     let sql = `SELECT * FROM USER WHERE id_user = ${id_user}`
-    let sql1 = `SELECT USER.var_name AS Vendedor, PRODUCT.id_product, PRODUCT.var_name AS Producto, CHAT.id_chat, PHOTOGRAPHS.var_name AS Foto
-        FROM (((CHAT INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product)
-        INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product)
-        INNER JOIN USER ON USER.id_user = CHAT.fk_id_user_seller)
-        WHERE CHAT.fk_id_user_buyer = ${id_user} OR CHAT.fk_id_user_seller=${id_user}
-        GROUP BY product.id_product`
+    let sql1 = `CALL sp_chatData(${id_user})`
+
     conection.query(sql,(err,rows,fields)=>{ // Comprueba si existe el usuario
         if(err){
             res.emit('getchatsresponse',({status:'1',msg: err.sqlMessage}))
         }else{
             if(rows.length!=0){
                 conection.query(sql1,(err,rows,fields)=>{ // Trae el nombre del vendedor, id del producto, nombre del producto, id del chat, 
-                    
-                    console.log(rows)
-                    res.emit('getchatsresponse',rows)
+                
+                    res.emit('getchatsresponse',{status:'200' , msg: rows[0]})
 
                 })
               
@@ -124,33 +119,6 @@ function getChats(req,res){
 
     })
 
-}
-
-// Traer el ultimo mensaje y cantidad de no leidos por chat
-function getlastMessage(req,res){
-    const{id_chat}=req
-    let sql = `SELECT text_contents AS ultimo_mensaje FROM MESSAGE WHERE fk_id_chat=${id_chat} ORDER BY MESSAGE.id_message DESC LIMIT 1;`
-    let sql1 = `SELECT COUNT(*) no_leidos FROM MESSAGE WHERE MESSAGE.fk_id_chat = ${id_chat} AND MESSAGE.bit_status = 0`
-    conection.query(sql,(err,rows,fields)=>{
-        if(err){
-            res.emit('getlastmessageresponse',({status:'2',msg: err.sqlMessage}))
-        }else{
-            if(rows.length!=0){
-                conection.query(sql1,(err,rows2,fields)=>{
-                    if(err){
-                        res.emit('getlastmessageresponse',({status:'3',msg: err.sqlMessage}))
-                    }else{
-                        console.log(rows2[0].no_leidos)
-                        res.emit('getlastmessageresponse',({"ultimo_mensaje":rows[0].ultimo_mensaje, "no_leidos":rows2[0].no_leidos}))
-                    }
-                })
-            }else{
-                res.emit('getlastmessageresponse',({status:'0',msg: "No hay mensajes en este chat"}))
-            }
-            
-        }
-    })
-    
 }
 
 //Crear Mensaje
@@ -216,7 +184,6 @@ function listMessages(req, res){
 module.exports = { 
     newChat, 
     getChats,
-    getlastMessage, 
     addMessage,
     listMessages
 }
