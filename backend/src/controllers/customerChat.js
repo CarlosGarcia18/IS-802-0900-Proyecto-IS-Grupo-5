@@ -92,9 +92,8 @@ function getChats(req,res){
         FROM (((CHAT INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product)
         INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product)
         INNER JOIN USER ON USER.id_user = CHAT.fk_id_user_seller)
-        WHERE CHAT.fk_id_user_buyer = ${id_user}
+        WHERE CHAT.fk_id_user_buyer = ${id_user} OR CHAT.fk_id_user_seller=${id_user}
         GROUP BY product.id_product`
-
     conection.query(sql,(err,rows,fields)=>{ // Comprueba si existe el usuario
         if(err){
             res.emit('getchatsresponse',({status:'1',msg: err.sqlMessage}))

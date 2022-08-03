@@ -18,6 +18,7 @@ const routes: Routes = [
       {path: 'published',component:PublishedProductsComponent},
       {path: 'subscriptions',component:SubscriptionsComponent},
       {path: 'chats/:id',component:ChatsComponent},
+      {path: 'chats',component:ChatsComponent},
       {path: 'viewProd',component:ViewProductsComponent}
     ]  
   }

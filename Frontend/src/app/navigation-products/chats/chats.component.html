@@ -1,13 +1,13 @@
 <div class="page-chat">
     <div class="bar-chats">
-        <div *ngFor="let p of [1,2,3,4,8,7,7,7,7,5,6,6]">
+        <div *ngFor="let p of chats">
             <div class="bar-chats-content">
-                <div class="bar-chats-content-image" [style]="'background-image: url('+'http://localhost:3000/1.jpg'+')'">
+                <div class="bar-chats-content-image" [style]="'background-image: url('+'http://localhost:3000/'+p.Foto+')'">
                 </div>
                 <div class="bar-chats-content-text">
-                    <h4 style="font-size: 18px;">Producto</h4>
-                    <h5 style="font-size: 15px;">Vendedor</h5>
-                    <h6 style="font-size: 13px;">Mensaje ...</h6>
+                    <h4 style="font-size: 18px;">{{p.Producto}}</h4>
+                    <h5 style="font-size: 15px;">{{p.Vendedor}}</h5>
+                    <h6 style="font-size: 13px;">jjj</h6>
                 </div>
                 <div class="bar-chats-content-unread-chat">
                     <span>5</span>

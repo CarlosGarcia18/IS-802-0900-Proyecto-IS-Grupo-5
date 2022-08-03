@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import {WebSocketsService} from '../../SERVICES/web-sockets.service'
+//import io from 'socket.io-client'
+import { WebSocketsService } from "../../SERVICES/web-sockets.service";
+import {chats,messenge} from '../../../assets'
 
 @Component({
   selector: 'app-chats',
@@ -8,30 +10,31 @@ import {WebSocketsService} from '../../SERVICES/web-sockets.service'
 })
 export class ChatsComponent implements OnInit {
 
+  //io = io('http://localhost:3000/')
   @ViewChild("messengeContainer") mCont:ElementRef = new ElementRef("")
-  constructor(private WebSocketsService:WebSocketsService) {
-    
-  }
+  constructor(private WebSocketsService:WebSocketsService) {}
+
+  chats:chats[] = []
 
   ngOnInit(): void {
-    var div:HTMLElement|null = document.getElementById('scrollDiv');
-      div!.scrollTop = 9999;
-    
-    this.WebSocketsService.listen("emitMessenge").subscribe((data)=>{
-      console.log(data);
+    this.WebSocketsService.emit("getchats",{"id_user":localStorage.getItem("token")})
+    this.WebSocketsService.listen("getchatsresponse").subscribe((data:any)=>{
+      this.chats = data
     })
-
-    this.valida()
-    
   }
 
-  valida(){
-    this.WebSocketsService.emit("messenge",[{"hola":"hola"}])
+  getLastMessenge(idChat:string){
+    this.WebSocketsService.emit("getlastmessage",{"id_chat":idChat})
+    this.WebSocketsService.listen("getchatsresponse").subscribe((data:any)=>{
+      console.log(data);
+      return ""
+    })
   }
 
   ngAfterViewChecked(){
     this.mCont.nativeElement.scrollTop = 
     this.mCont.nativeElement.scrollHeight;
   }
+
 
 }
