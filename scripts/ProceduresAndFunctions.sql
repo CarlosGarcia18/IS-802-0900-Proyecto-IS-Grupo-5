@@ -89,18 +89,38 @@ BEGIN
 	
     IF id THEN
 		SELECT 202 INTO status; 
-		SELECT id AS id_chat;
+		SELECT id AS id_chat, status;
     ELSE
 		INSERT INTO CHAT (fk_id_product, fk_id_user_buyer, fk_id_user_seller) 
 			VALUES(id_product,id_user_buyer,id_user_seller);
 		
         SELECT 200 INTO status;
-		SELECT last_insert_id() AS id_chat;
+		SELECT last_insert_id() AS id_chat, status;
     END IF;
 	
 end$$
 
-CALL sp_newChat(101, 1, 2);
+CALL sp_newChat(101, 1, 3);
+
+-- Mensaje nuevo
+drop procedure if exists sp_sendMessage;
+delimiter $$
+create procedure sp_sendMessage(contents TEXT, id_chat BIGINT UNSIGNED, id_user BIGINT UNSIGNED)
+BEGIN
+	INSERT INTO MESSAGE(tim_date, bit_status, text_contents, fk_id_chat, fk_id_user) 
+		VALUES(CURRENT_TIMESTAMP() ,0 , contents, id_chat, id_user);
+        
+	SELECT * FROM MESSAGE WHERE id_message = last_insert_id();
+
+end$$
+/*
+SELECT USER.var_name AS Vendedor, PRODUCT.id_product, PRODUCT.var_name AS Producto, CHAT.id_chat,CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer AS Comprador, PHOTOGRAPHS.var_name AS Foto
+	FROM (((CHAT INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product)
+	INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product)
+    INNER JOIN USER ON USER.id_user = CHAT.fk_id_user_seller)
+    WHERE CHAT.fk_id_user_buyer = 5
+    GROUP BY product.id_product;
+*/
 
 
 

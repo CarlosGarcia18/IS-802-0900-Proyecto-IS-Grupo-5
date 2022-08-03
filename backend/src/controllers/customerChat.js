@@ -154,6 +154,69 @@ function getlastMessage(req,res){
     
 }
 
+//Crear Mensaje
+function addMessage(req, res){
+    const{fk_id_chat,fk_id_user,text_contents}=req
+    let sql27 = `SELECT * FROM CHAT WHERE id_chat = ${fk_id_chat}`
+    let sql28 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
+    let sql29 = `CALL sp_sendMessage('${text_contents}',${fk_id_chat},${fk_id_user})`
+    //Conexion 1 sql27
+    conection.query(sql27,( err,rows,fields)=>{
+        if(err){
+            res.emit('addMessageResponse',{status:'0', error: err.sqlMessage})
+        }else{
+            if(rows.length!=0){
+                //conexion 2 sql 28
+                conection.query(sql28,(err,rows,fields)=>{
+                    if(err){
+                        res.emit('addMessageResponse',{status:'1',error:err.sqlMessage})
+                    }else{
+                        if(rows.length!=0){
+                            //conexion 3 sql 29
+                            conection.query(sql29,(err,rows,fields)=>{
+                                if(err){
+                                    res.emit('addMessageResponse',{status:'2', error:err.sqlMessage})
+                                }else{
+                                    res.emit('addMessageResponse',{status:'200' , msg: rows[0][0], info: 'Se envio el mensaje'})
+                                }
+                            })
+
+                        }else{
+                             res.emit('addMessageResponse',{status:'3' ,msg:'No se encuentra el usuario'})
+                        }
+
+                    }
+                })
+            }else{
+                 res.emit('addMessageResponse',{status:'4' ,msg:'No se encuentra el chat'})
+            }
+        }
+    })
+
+}
+
+//Listado de mensaje
+function listMessages(req, res){
+    console.log(req)
+    const{id} = req
+    let sql27=`call listMessage(${id})`
+    conection.query(sql27, (err,rows, fields)=>{
+        if(err){
+            res.emit('listmessagesResponse',{ status:'0', error: err.sqlMessage})
+        }else{
+            res.emit('listmessagesResponse',{ status:'200', msg:rows[0]})
+        }
+    })
+
+}
+
+
 
 //exportacion de modulos
-module.exports = { newChat, getChats ,getlastMessage}
+module.exports = { 
+    newChat, 
+    getChats,
+    getlastMessage, 
+    addMessage,
+    listMessages
+}
