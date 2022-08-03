@@ -131,11 +131,11 @@ END$$
 
 DROP FUNCTION IF EXISTS fn_unread_messages;
 delimiter $$
-CREATE FUNCTION fn_unread_messages(id_chat BIGINT UNSIGNED)
+CREATE FUNCTION fn_unread_messages(id_chat BIGINT UNSIGNED, id_user BIGINT UNSIGNED)
 	RETURNS INTEGER
 BEGIN
 	DECLARE unread_messages INTEGER;
-	SELECT COUNT(*) INTO unread_messages FROM MESSAGE WHERE MESSAGE.fk_id_chat = id_chat AND MESSAGE.bit_status = 0;
+	SELECT COUNT(*) INTO unread_messages FROM MESSAGE WHERE fk_id_chat = id_chat AND bit_status = 0 AND fk_id_user != id_user;
     RETURN unread_messages;
 END$$
 
@@ -170,7 +170,7 @@ drop procedure if exists sp_chatData;
 delimiter $$
 create procedure sp_chatData(id BIGINT UNSIGNED)
 BEGIN
-	SELECT CHAT.id_chat, fn_unread_messages(CHAT.id_chat) AS no_leidos, fn_last_message(CHAT.id_chat) AS ultimo_mensaje, fn_determineRole(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Rol ,
+	SELECT CHAT.id_chat, fn_unread_messages(CHAT.id_chat, USER.id_user) AS no_leidos, fn_last_message(CHAT.id_chat) AS ultimo_mensaje, fn_determineRole(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Rol ,
 	fn_evaluateName(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Nombre, CHAT.fk_id_user_buyer AS id_comprador, CHAT.fk_id_user_seller AS id_vendedor,
 	CHAT.fk_id_product, PRODUCT.var_name AS Producto, PHOTOGRAPHS.var_name AS Foto
 	FROM USER
