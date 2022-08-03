@@ -162,19 +162,19 @@ function addMessage(req, res){
     //Conexion 1 sql27
     conection.query(sql27,( err,rows,fields)=>{
         if(err){
-            res.emit('addMessageResponse',{status:'0', error: err.sqlMessage})
+            res.emit('addMessageResponse',{status:'0', msg: err.sqlMessage})
         }else{
             if(rows.length!=0){
                 //conexion 2 sql 28
                 conection.query(sql28,(err,rows,fields)=>{
                     if(err){
-                        res.emit('addMessageResponse',{status:'1',error:err.sqlMessage})
+                        res.emit('addMessageResponse',{status:'1',msg:err.sqlMessage})
                     }else{
                         if(rows.length!=0){
                             //conexion 3 sql 29
                             conection.query(sql29,(err,rows,fields)=>{
                                 if(err){
-                                    res.emit('addMessageResponse',{status:'2', error:err.sqlMessage})
+                                    res.emit('addMessageResponse',{status:'2', msg:err.sqlMessage})
                                 }else{
                                     res.emit('addMessageResponse',{status:'200' , msg: rows[0][0], info: 'Se envio el mensaje'})
                                 }
@@ -201,7 +201,7 @@ function listMessages(req, res){
     let sql27=`call listMessage(${id})`
     conection.query(sql27, (err,rows, fields)=>{
         if(err){
-            res.emit('listmessagesResponse',{ status:'0', error: err.sqlMessage})
+            res.emit('listmessagesResponse',{ status:'0', msg: err.sqlMessage})
         }else{
             res.emit('listmessagesResponse',{ status:'200', msg:rows[0]})
         }

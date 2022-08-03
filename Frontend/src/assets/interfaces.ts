@@ -14,3 +14,18 @@ export interface messenge{
     no_leidos:string
 }
 
+export interface sendMessenge{
+    fk_id_chat:string
+    fk_id_user:string|null
+    text_contents:string
+}
+
+export interface listMessenge{
+    bit_status: ArrayBuffer
+    fk_id_chat: string
+    fk_id_user: string
+    id_message: string
+    text_contents: string
+    tim_date: string
+}
+

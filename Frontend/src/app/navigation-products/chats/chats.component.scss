@@ -42,6 +42,12 @@
             margin: 4px 0px;
         }
         &-content{
+            &:hover{
+                background-color: #909496;
+                transition: all .3s;
+                color: white;
+                cursor: pointer;
+            }
             display: flex;
             &-image{
                 width: 70px;
