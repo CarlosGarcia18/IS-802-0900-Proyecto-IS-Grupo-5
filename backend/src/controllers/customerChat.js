@@ -177,7 +177,7 @@ function addMessage(req, res){
                                 if(err){
                                     res.emit('addMessageResponse',{status:'2', error:err.sqlMessage})
                                 }else{
-                                    res.emit('addMessageResponse',{status:'200' , msg: rows[0][0], info: 'Se envio el mensaje'})
+                                    res.emit('addMessageResponse',{status:'200' , msg: rows[0], info: 'Se envio el mensaje'})
                                 }
                             })
 
