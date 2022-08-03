@@ -21,11 +21,10 @@ export interface sendMessenge{
 }
 
 export interface listMessenge{
-    bit_status: ArrayBuffer
-    fk_id_chat: string
     fk_id_user: string
     id_message: string
     text_contents: string
-    tim_date: string
+    hourMessenge: string
+    dateMessenge: string
 }
 

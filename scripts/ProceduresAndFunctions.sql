@@ -60,7 +60,7 @@ END&&
 delimiter //
 create  procedure listMessage(id int)
 BEGIN
- SELECT*FROM MESSAGE where fk_id_chat=id order by tim_date asc; 
+ SELECT date_format(tim_date,'%d/%m/%Y') as dateMessenge,time_format(tim_date,'%H:%i') as hourMessenge, text_contents, fk_id_user FROM MESSAGE where fk_id_chat=id order by tim_date asc; 
 end//
 
 call listMessage(4);

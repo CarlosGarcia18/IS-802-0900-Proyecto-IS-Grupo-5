@@ -156,6 +156,7 @@ function getlastMessage(req,res){
 //Crear Mensaje
 function addMessage(req, res){
     const{fk_id_chat,fk_id_user,text_contents}=req
+    console.log(fk_id_chat+"    "+fk_id_user+"    "+text_contents);
     let sql27 = `SELECT * FROM CHAT WHERE id_chat = ${fk_id_chat}`
     let sql28 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
     let sql29 = `CALL sp_sendMessage('${text_contents}',${fk_id_chat},${fk_id_user})`

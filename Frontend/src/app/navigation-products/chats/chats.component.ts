@@ -16,9 +16,9 @@ export class ChatsComponent implements OnInit {
   });
 
   dataM:sendMessenge = {
-    fk_id_chat:"",
-    fk_id_user:"",
-    text_contents:""
+    "fk_id_chat":"",
+    "fk_id_user":"",
+    "text_contents":""
   }
 
   get messengeControl():FormControl{
@@ -31,6 +31,7 @@ export class ChatsComponent implements OnInit {
   chats:chats[] = []
   messenge:listMessenge[]|null = null
   token:string|null = ""
+  chatSelected:string = ""
 
   ngOnInit(): void {
     this.dataM.fk_id_user = localStorage.getItem('token')
@@ -42,6 +43,7 @@ export class ChatsComponent implements OnInit {
   }
 
   getMessages(idChat:string){
+    this.dataM.fk_id_chat = idChat
     this.WebSocketsService.emit("listmessages",{"id":idChat})
     this.WebSocketsService.listen("listmessagesResponse").subscribe((data:any)=>{
       if (data.status=="200") {
@@ -50,12 +52,14 @@ export class ChatsComponent implements OnInit {
     })
   }
 
-  sendMessenge(idChat:string){
-    this.dataM.fk_id_chat = idChat
+  sendMessenge(){
     this.WebSocketsService.emit("listmessages",this.dataM)
     this.WebSocketsService.listen("listmessagesResponse").subscribe((data:any)=>{
       if (data.status=="200") {
         this.messenge = data.msg
+      }else{
+        console.log(data);
+        
       }
     })
   }

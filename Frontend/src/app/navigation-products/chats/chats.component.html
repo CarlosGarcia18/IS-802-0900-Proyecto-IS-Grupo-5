@@ -17,14 +17,15 @@
         </div>
     </div>
     <div class="messenge">
-        <div class="messenge-text" #messengeContainer>
-            <h3 *ngIf="messenge == null || messenge.length == 0" style="margin-top: 50px; text-align:center;">Escriba un mensaje</h3>
+        <h3 *ngIf="messenge == null" style="margin-bottom: 300px; text-align:center;">Selecciona una conversacion</h3>
+        <div *ngIf="messenge != null" class="messenge-text" #messengeContainer>
+            <h3 *ngIf="messenge?.length == 0" style="margin-top: 50px; text-align:center;">Escriba un mensaje</h3>
             <div [class]="mes.fk_id_user==token? 'messenge-text-2':'messenge-text-1'" *ngFor="let mes of messenge">
-                <h6 style="font-size: 11px; text-align: right; margin: 0px;">{{mes.tim_date.substring(0,10)}}</h6>
+                <h6 style="font-size: 11px; text-align: right; margin: 0px;">{{mes.dateMessenge+"    "}}<b>{{mes.hourMessenge}}</b></h6>
                 <p>{{mes.text_contents}}</p>
             </div>
         </div>
-        <div class="messenge-send">
+        <div *ngIf="messenge != null" class="messenge-send">
             <div class="messenge-send-text">
                 <form [formGroup]="dataMessenge" method="POST">
                     <textarea [(ngModel)]="dataM.text_contents" formControlName="messenge" placeholder="Escribe un mensaje aqui">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis magni optio fuga laborum quas. Praesentium quod placeat, laboriosam repudiandae recusandae veritatis eum excepturi repellendus ut aliquam corporis exercitationem accusantium nemo repellat maiores aut minus temporibus tempora ipsam quas doloribus cum!
@@ -32,7 +33,7 @@
                 </form>
             </div>
             <div class="messenge-send-button">
-                <i class="fa-solid fa-paper-plane"></i>
+                <i (click)="sendMessenge()" class="fa-solid fa-paper-plane"></i>
             </div>
         </div>
     </div>
