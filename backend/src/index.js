@@ -59,8 +59,8 @@ const io = new serverIO.Server(server,{
 })
 
 io.on('connection',(socket)=>{
-    socket.on("test", (socket) =>{
-        console.log(`Bienvenido` )
+    socket.on("test", () =>{
+        console.log(`Bienvenido ${socket.id}` )
     })
 
     // Data es un json del estilo en que se hace en las rutas
@@ -82,6 +82,19 @@ io.on('connection',(socket)=>{
 
         // Dentro de la funcion se envia una respuesta 'getlastmessageresponse'
         customerC.getlastMessage(data, socket)
+
+    })
+
+    socket.on('addMessage', (data) => {
+
+        // Dentro de la funcion se envia una respuesta 'addMessageResponse'
+        customerC.addMessage(data, socket)
+
+    })
+
+    socket.on('listmessages', (data) => {
+        // Dentro de la funcion se envia una respuesta 'addMessageResponse'
+        customerC.listMessages(data, socket)
 
     })
 
