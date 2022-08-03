@@ -113,16 +113,7 @@ BEGIN
 	SELECT * FROM MESSAGE WHERE fk_id_chat = id_chat;
 
 end$$
-/*
-SELECT USER.var_name AS Vendedor, PRODUCT.id_product, PRODUCT.var_name AS Producto, CHAT.id_chat,CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer AS Comprador, PHOTOGRAPHS.var_name AS Foto, CHAT.last_message
-	FROM (((CHAT INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product)
-	INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product)
-    INNER JOIN USER ON USER.id_user = CHAT.fk_id_user_seller OR USER.id_user = CHAT.fk_id_user_buyer)
-    WHERE CHAT.fk_id_user_buyer = 1
-    GROUP BY product.id_product;
-*/
 
-/*
 DROP FUNCTION IF EXISTS fn_evaluateName;
 delimiter $$
 CREATE FUNCTION fn_evaluateName(user_id BIGINT UNSIGNED, buyer_id BIGINT UNSIGNED, seller_id BIGINT UNSIGNED)
@@ -130,21 +121,66 @@ CREATE FUNCTION fn_evaluateName(user_id BIGINT UNSIGNED, buyer_id BIGINT UNSIGNE
 BEGIN
 	DECLARE user_name VARCHAR(50);
 	IF user_id = buyer_id THEN
-		SELECT var_name INTO user_name FROM USER WHERE id_user = seller_id;
+		SELECT CONCAT(var_name,' ',var_lastname) INTO user_name FROM USER WHERE id_user = seller_id;
 		RETURN user_name;
     ELSE
-		SELECT var_name INTO user_name FROM USER WHERE id_user = buyer_id;
+		SELECT CONCAT(var_name,' ',var_lastname) INTO user_name FROM USER WHERE id_user = buyer_id;
 		RETURN user_name;
 	END IF;
 END$$
-*/
 
+DROP FUNCTION IF EXISTS fn_unread_messages;
+delimiter $$
+CREATE FUNCTION fn_unread_messages(id_chat BIGINT UNSIGNED)
+	RETURNS INTEGER
+BEGIN
+	DECLARE unread_messages INTEGER;
+	SELECT COUNT(*) INTO unread_messages FROM MESSAGE WHERE MESSAGE.fk_id_chat = id_chat AND MESSAGE.bit_status = 0;
+    RETURN unread_messages;
+END$$
 
-/*
-SELECT CHAT.id_chat, CHAT.fk_id_product, USER.var_name, CHAT.fk_id_user_buyer AS Comprador, CHAT.fk_id_user_seller AS Vendedor 
+DROP FUNCTION IF EXISTS fn_last_message;
+delimiter $$
+CREATE FUNCTION fn_last_message(id_chat BIGINT UNSIGNED)
+	RETURNS TEXT
+BEGIN
+	DECLARE last_message TEXT;
+    SELECT text_contents INTO last_message FROM MESSAGE WHERE fk_id_chat=id_chat ORDER BY MESSAGE.id_message DESC LIMIT 1;
+    RETURN last_message;
+
+END$$
+
+DROP FUNCTION IF EXISTS fn_determineRole;
+delimiter $$
+CREATE FUNCTION fn_determineRole(user_id BIGINT UNSIGNED, buyer_id BIGINT UNSIGNED, seller_id BIGINT UNSIGNED)
+	RETURNS VARCHAR(10)
+BEGIN
+	DECLARE user_rol VARCHAR(10);
+	IF user_id = buyer_id THEN
+		SELECT "Vendedor" INTO user_rol;
+		RETURN user_rol;
+    ELSE
+		SELECT "Cliente" INTO user_rol;
+		RETURN user_rol;
+	END IF;
+END$$
+
+-- Traer datos de los chats
+drop procedure if exists sp_chatData;
+delimiter $$
+create procedure sp_chatData(id BIGINT UNSIGNED)
+BEGIN
+	SELECT CHAT.id_chat, fn_unread_messages(CHAT.id_chat) AS no_leidos, fn_last_message(CHAT.id_chat) AS ultimo_mensaje, fn_determineRole(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Rol ,
+	fn_evaluateName(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Nombre, CHAT.fk_id_user_buyer AS id_comprador, CHAT.fk_id_user_seller AS id_vendedor,
+	CHAT.fk_id_product, PRODUCT.var_name AS Producto, PHOTOGRAPHS.var_name AS Foto
 	FROM USER
     INNER JOIN CHAT ON USER.id_user = CHAT.fk_id_user_seller OR USER.id_user = CHAT.fk_id_user_buyer
-    where USER.id_user = 1;
+    INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product
+    INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product
+    where USER.id_user = id
+    GROUP BY product.id_product;
 
-*/
+end$$
+
+
 

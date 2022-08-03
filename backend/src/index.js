@@ -78,13 +78,6 @@ io.on('connection',(socket)=>{
 
     })
 
-    socket.on('getlastmessage',(data) => {
-
-        // Dentro de la funcion se envia una respuesta 'getlastmessageresponse'
-        customerC.getlastMessage(data, socket)
-
-    })
-
     socket.on('addMessage', (data) => {
 
         // Dentro de la funcion se envia una respuesta 'addMessageResponse'
