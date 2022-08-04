@@ -131,7 +131,7 @@ CREATE TABLE COMPLAINT(
 
 CREATE TABLE CHAT(
 	id_chat SERIAL PRIMARY KEY,
-    
+    modification_date timestamp NOT NULL COMMENT "Esto almacena la fecha y la hora de publicacion del mensaje",
     fk_id_product BIGINT UNSIGNED NOT NULL COMMENT "Hace referencia al producto en el que se abre un chat",
     FOREIGN KEY (fk_id_product) REFERENCES PRODUCT(id_product)
     ON DELETE CASCADE,

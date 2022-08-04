@@ -54,13 +54,15 @@ END&&
 
 
 -- Producto Almacenado Lista de mensajes
+drop procedure if exists listMessage;
 delimiter //
-create  procedure listMessage(id int)
+create  procedure listMessage(id int,idUser int)
 BEGIN
- SELECT*FROM MESSAGE where fk_id_chat=id order by tim_date asc; 
+ UPDATE MESSAGE SET bit_status=1 WHERE fk_id_chat = id AND fk_id_user=idUser;
+ SELECT date_format(tim_date,'%d/%m/%Y') as dateMessenge,time_format(tim_date,'%H:%i') as hourMessenge, if(bit_status=0,0,1) as bit_status, text_contents, fk_id_user FROM MESSAGE where fk_id_chat=id order by tim_date asc; 
 end//
 
-call listMessage(4);
+call listMessage(4,1);
 
 -- Otra forma de listar mensajes
 /*
@@ -88,8 +90,8 @@ BEGIN
 		SELECT 202 INTO status; 
 		SELECT id AS id_chat, status;
     ELSE
-		INSERT INTO CHAT (fk_id_product, fk_id_user_buyer, fk_id_user_seller) 
-			VALUES(id_product,id_user_buyer,id_user_seller);
+		INSERT INTO CHAT (modification_date, fk_id_product, fk_id_user_buyer, fk_id_user_seller) 
+			VALUES(CURRENT_TIMESTAMP(),id_product,id_user_buyer,id_user_seller);
 		
         SELECT 200 INTO status;
 		SELECT last_insert_id() AS id_chat, status;
@@ -106,8 +108,8 @@ create procedure sp_sendMessage(contents TEXT, id_chat BIGINT UNSIGNED, id_user 
 BEGIN
 	INSERT INTO MESSAGE(tim_date, bit_status, text_contents, fk_id_chat, fk_id_user) 
 		VALUES(CURRENT_TIMESTAMP() ,0 , contents, id_chat, id_user);
-        
-	SELECT * FROM MESSAGE WHERE fk_id_chat = id_chat;
+	UPDATE CHAT SET modification_date = CURRENT_TIMESTAMP() WHERE CHAT.id_chat = id_chat;
+	SELECT date_format(tim_date,'%d/%m/%Y') as dateMessenge,time_format(tim_date,'%H:%i') as hourMessenge,if(bit_status=0,0,1) as bit_status, text_contents, fk_id_user FROM MESSAGE where fk_id_chat=id_chat order by tim_date asc;
 
 end$$
 
@@ -167,7 +169,8 @@ drop procedure if exists sp_chatData;
 delimiter $$
 create procedure sp_chatData(id BIGINT UNSIGNED)
 BEGIN
-	SELECT CHAT.id_chat, fn_unread_messages(CHAT.id_chat, USER.id_user) AS no_leidos, fn_last_message(CHAT.id_chat) AS ultimo_mensaje, fn_determineRole(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Rol ,
+	SELECT CHAT.id_chat,(SELECT user.var_name FROM USER where id_user = CHAT.fk_id_user_buyer) AS fk_id_user_buyer,
+    (SELECT user.var_name FROM USER where id_user = CHAT.fk_id_user_seller) AS fk_id_user_seller, fn_unread_messages(CHAT.id_chat, USER.id_user) AS no_leidos, fn_last_message(CHAT.id_chat) AS ultimo_mensaje, fn_determineRole(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Rol ,
 	fn_evaluateName(USER.id_user, CHAT.fk_id_user_seller, CHAT.fk_id_user_buyer) AS Nombre, CHAT.fk_id_user_buyer AS id_comprador, CHAT.fk_id_user_seller AS id_vendedor,
 	CHAT.fk_id_product, PRODUCT.var_name AS Producto, PHOTOGRAPHS.var_name AS Foto
 	FROM USER
@@ -175,8 +178,7 @@ BEGIN
     INNER JOIN PRODUCT ON PRODUCT.id_product = CHAT.fk_id_product
     INNER JOIN PHOTOGRAPHS ON PHOTOGRAPHS.fk_id_product = PRODUCT.id_product
     where USER.id_user = id
-    GROUP BY product.id_product;
-
+    GROUP BY product.id_product order by CHAT.modification_date DESC;
 end$$
 
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
