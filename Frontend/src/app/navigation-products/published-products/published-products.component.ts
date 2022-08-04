@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, traerProducto, user, deleteProduct, newProducto } from 'src/app/SERVICES/equipo.service';
+import { EquipoService, traerProducto, user, deleteProduct,Images, newProducto } from 'src/app/SERVICES/equipo.service';
 import { NewProductsComponent } from '../new-products/new-products.component';
 import { ProductsComponent } from '../products/products.component';
 import { PageEvent } from '@angular/material/paginator';
@@ -31,6 +31,7 @@ export class PublishedProductsComponent implements OnInit {
     }, error =>{
       console.log(error) 
     })
+    this.cargadas.length=0
   }
 
   getProducList(){
@@ -106,7 +107,6 @@ export class PublishedProductsComponent implements OnInit {
       }
     }
   }
-
   deleteFile(id: number) {
     this.srcArray.splice(id, 1);
     this.archivos.splice(id, 1);
@@ -161,17 +161,15 @@ get nombreControl():FormControl{
   get ubicacionControl(): FormControl {
     return this.productoForm.get('ubicacion') as FormControl;
   }
-
+public fotos=[]
  
     setItem(id_product:string){
       localStorage.setItem("idProductoModal",id_product) //lo usamos despues para cargar el producto y actualizarlo
-      
       this.equipoService.getUnProducto(localStorage.getItem("idProductoModal")).subscribe(res=>{
           this.producto = res[0]
           console.log(typeof this.producto)
           console.log(this.producto)
       }, err=>console.log(err))
-
     }
 
     guardarCambios(){
@@ -180,11 +178,46 @@ get nombreControl():FormControl{
         })
     }
 
+  public eliminadas:any[]=[]
+  public imag=[]
+  public cargadas:any=[]
+
+    imagenes(){
+        this.equipoService.getimg(localStorage.getItem('idProductoModal')).subscribe(res=>{
+          this.imag=<any>res
+          for( let i=0; i<this.imag.length;i++){
+            this.cargadas.push({id: i, nm: this.imag[i]})
+          }
+          console.log(this.cargadas)
+        })
+    }
+
+    eliminar(id:string, _nm:string){
+      this.cargadas.splice(id,1)
+      for (let i = 0; i < this.cargadas.length; i++) {
+        this.cargadas[i].id = i;
+      }
+
+      this.eliminadas.push({id:id, nm:_nm })
+      console.log(this.cargadas)
+      console.log(this.eliminadas)  
+    }
+
+   deleteImages(){
+    this.equipoService.deleteFiles(this.eliminadas).subscribe(res=>{
+
+    })
+   }
+
+
 /* Para subir Archivo*/
 subirArchivo(): any {
   //Sube el producto
-  this.equipoService.newProducto(this.producto).subscribe((res) => {
-    var info: BookInfo2 = <any>res;
+  this.equipoService.updateProduct(localStorage.getItem("idProductoModal"), this.producto).subscribe(res=>{
+    
+   // var info: BookInfo2 = <any>res;
+   
+    
 
     //Recorre el arreglo de archivos
     this.archivos.forEach((archivo: any) => {
@@ -193,13 +226,19 @@ subirArchivo(): any {
       console.log(archivo);
 
       //Sube archivo uno por uno
-      this.equipoService.productoFoto(formularioDeDatos, info.id).subscribe((res) => {
+      this.equipoService.productoFoto(formularioDeDatos, localStorage.getItem("idProductoModal")).subscribe((res) => {
           console.log('Respuesta ', res);
         });
     });
+
+     //delete files
+     if(this.eliminadas.length!=0){
+      this.deleteImages()
+    }
+
     this.archivos.length=0
     this.srcArray.length=0
-    
+    this.ngOnInit()
     
   });
 }

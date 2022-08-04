@@ -143,6 +143,10 @@ routers.get('/getProdMod/:id_producto',customerO.getProductoModal)
 routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 //promedio estrellas
 
+
+routers.get('/imagenes/:fk_id_product', customerO.imagenes)
+
+routers.post('/deleteFiles',customerO.updatePhotos)
 //exportacion de rutas
 module.exports = routers
 //module.exports=app
