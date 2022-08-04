@@ -141,8 +141,9 @@
                            <!-- <p style="color: red; text-align: center;">{{paragraph}}</p>-->
                                 <div class="btn-options" [hidden]="block">
                                     <button (click)="showComment()" (click)="loadComments(item.id_product.toString())" type="submit" class="cbtn" style="background-color: #252f37">Ver Comentarios</button>
-                                    <button  type="submit" class="cbtn" style="background-color: #93BEE2; margin-left: 10px;">Contactar</button>
-                                    <button type="submit" class="cbtn" style="background-color: #FAA11D; margin-left: 10px;" (click)="denunciar()">Denunciar</button>
+                                    <button *ngIf="item.fk_id_user != user" data-bs-dismiss="modal" aria-label="Close" 
+                                        type="submit" class="cbtn" (click)="newChat(item.fk_id_user,item.id_product)" style="background-color: #93BEE2; margin-left: 10px;">Contactar</button>
+                                    <button *ngIf="item.fk_id_user != user" type="submit" class="cbtn" style="background-color: #FAA11D; margin-left: 10px;" (click)="denunciar()">Denunciar</button>
                                 </div>
                         </div>
                     </td>

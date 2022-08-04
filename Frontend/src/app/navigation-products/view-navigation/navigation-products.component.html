@@ -12,7 +12,7 @@
             <a routerLink='published' routerLinkActive="active" *ngIf="toDisplay">Publicados</a>
             <a routerLink='../navigationProducts' routerLinkActive="active" *ngIf="toDisplay">Ver Productos</a>
                 </div>
-            <a *ngIf="toDisplay" routerLink='chats/1' style="padding: 2px 25px;"><i class="fa-solid fa-envelope" style="font-size: 22px;"></i></a>
+            <a *ngIf="toDisplay" routerLink='chats' style="padding: 2px 25px;"><i class="fa-solid fa-envelope" style="font-size: 22px;"></i></a>
             <a routerLink='' routerLinkActive="active" (click)="eliminaToken()">Salir</a>
         
     </nav>

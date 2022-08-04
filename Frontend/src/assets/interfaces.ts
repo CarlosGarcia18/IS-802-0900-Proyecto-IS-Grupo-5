@@ -1,22 +1,21 @@
 export interface chats{
     Foto: string
+    Nombre: string
     Producto: string
-    Vendedor: string
-    id_chat: string
-    id_product: string
-    messenge: string
-}
-
-export interface messenge{
-    msg:string
-    status:string
-    ultimo_mensaje:string
-    no_leidos:string
+    Rol: string
+    fk_id_product: string
+    id_chat: number
+    id_comprador: number
+    id_vendedor: number
+    no_leidos: string
+    ultimo_mensaje: string
+    fk_id_user_buyer:string
+    fk_id_user_seller:string
 }
 
 export interface sendMessenge{
-    fk_id_chat:string
-    fk_id_user:string|null
+    fk_id_chat:number
+    fk_id_user:number|null
     text_contents:string
 }
 
@@ -26,5 +25,6 @@ export interface listMessenge{
     text_contents: string
     hourMessenge: string
     dateMessenge: string
+    bit_status:number
 }
 

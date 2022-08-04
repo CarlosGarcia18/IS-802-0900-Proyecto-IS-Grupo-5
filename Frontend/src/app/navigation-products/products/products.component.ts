@@ -7,6 +7,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router} from '@angular/router';
 import Swal from 'sweetalert2';
+import { WebSocketsService } from "../../SERVICES/web-sockets.service";
 
 @Component({
   selector: 'app-products',
@@ -44,13 +45,18 @@ export class ProductsComponent implements OnInit {
   public cond3:boolean=false;
   public cond4:boolean=false;
   public cond5:boolean=false;
-  constructor(private equipoService:EquipoService, private router: Router) {
+  constructor(
+    private equipoService:EquipoService, 
+    private router: Router,
+    private WebSocketsService:WebSocketsService) {
   }
 
   ngOnInit(): void {
+
       this.toggleButton=false
        
       if(localStorage.getItem("token")){
+        this.user = Number(localStorage.getItem('token'))
         this.block=false;
       }
       // Traer los departamentos
@@ -398,6 +404,15 @@ loadComments(id: string|null){
     console.log(this.date)
 
     console.log(this.comments)
+  })
+}
+
+user:number = 0
+
+newChat(idUser:number,idProduct:number){
+  this.WebSocketsService.emit("newchat",{"fk_id_product":idProduct, "fk_id_user_buyer":idUser, "fk_id_user_seller":localStorage.getItem('token')})
+  this.WebSocketsService.listen("newchatresponse").subscribe((data:any)=>{
+    if (data.status=='200'||data.status=='202') this.router.navigate([`navigationProducts/chats/${data.id_chat}`])
   })
 }
 }

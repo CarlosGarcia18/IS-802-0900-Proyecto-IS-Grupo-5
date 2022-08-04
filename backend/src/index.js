@@ -91,5 +91,16 @@ io.on('connection',(socket)=>{
 
     })
 
+    socket.on('listmessagesv2', (data) => {
+        // Dentro de la funcion se envia una respuesta 'addMessageResponse'
+        customerC.listMessagesv2(data, socket)
+
+    })
+
+    socket.on('listmessagesv3', (data) => {
+        // Dentro de la funcion se envia una respuesta 'addMessageResponse'
+        customerC.listMessagesv3(data, socket)
+
+    })
 
 })

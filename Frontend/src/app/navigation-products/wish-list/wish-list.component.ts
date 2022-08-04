@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
 import { EquipoService,wishListProducts,deleteWishlist,getProduct,Images, qualification, reqQualify, loadComment, Comment,  promedio } from '../../SERVICES/equipo.service'
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { WebSocketsService } from "../../SERVICES/web-sockets.service";
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-wish-list',
   templateUrl: './wish-list.component.html',
@@ -42,7 +45,13 @@ export class WishListComponent implements OnInit {
  public cond5:boolean=false;
  
 
-  constructor(private paginator: MatPaginatorIntl,private equipoService:EquipoService) {
+  constructor
+    (
+      private paginator: MatPaginatorIntl,
+      private equipoService:EquipoService,
+      private WebSocketsService:WebSocketsService,
+      private router:Router
+    ) {
     paginator.itemsPerPageLabel = "Productos por pagina:"
     paginator.firstPageLabel = "Primer página"
     paginator.lastPageLabel = "Ultima página"
@@ -80,7 +89,10 @@ error = false
     ]
   }
 
+  user:number = 0
+
   ngOnInit(): void {
+    this.user = Number(localStorage.getItem('token'))
     this.loadProducts()
    
     this.toggleButton=false
@@ -247,6 +259,13 @@ error = false
       this.comments=<any>res;
       this.totalComments=this.comments.length
       console.log(this.comments)
+    })
+  }
+
+  newChat(idUser:number,idProduct:number){
+    this.WebSocketsService.emit("newchat",{"fk_id_product":idProduct, "fk_id_user_buyer":idUser, "fk_id_user_seller":localStorage.getItem('token')})
+    this.WebSocketsService.listen("newchatresponse").subscribe((data:any)=>{
+      if (data.status=='200'||data.status=='202') this.router.navigate([`navigationProducts/chats/${data.id_chat}`])
     })
   }
 }

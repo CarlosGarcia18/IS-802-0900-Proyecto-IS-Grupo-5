@@ -13,10 +13,15 @@ function newChat(req, res){
     let sql3 = `SELECT * FROM USER WHERE id_user = ${fk_id_user_seller}`
     let sql = `CALL sp_newChat(${fk_id_product},${fk_id_user_buyer},${fk_id_user_seller})`
 
+    if (fk_id_user_buyer==fk_id_user_seller) {
+        console.log('hola, son iguales')
+        res.emit('newchatresponse', {status:'201',msg: "No se puede mandar mensajes a su propio usuario"})
+    }else{
     conection.query(sql1,(err,rows,fields)=>{ // Comprueba si existe el producto
         if(err){
             res.emit('newchatresponse', {status:'1',msg: err.sqlMessage})
         }else{
+            console.log("hola user:"+fk_id_user_buyer+"   user:"+fk_id_user_seller+"   product"+fk_id_product)
             if(rows.length!=0){ 
                 conection.query(sql2,(err,rows,fields)=>{ // Comprueba si existe el usuario comprador
                     if(err){
@@ -38,7 +43,6 @@ function newChat(req, res){
                                                     }else{
                                                         res.emit('newchatresponse', {status:'202',msg: "Ya existe este chat", id_chat: rows[0][0].id_chat})
                                                     }
-                                                    
                                                 }
                                             })
                                             /*
@@ -87,6 +91,7 @@ function newChat(req, res){
         }
 
     })
+    }
 
 }
 
@@ -108,7 +113,6 @@ function getChats(req,res){
                 conection.query(sql1,(err,rows,fields)=>{ // Trae el nombre del vendedor, id del producto, nombre del producto, id del chat, 
                 
                     res.emit('getchatsresponse',{status:'200' , msg: rows[0]})
-
                 })
               
             }else{
@@ -128,6 +132,7 @@ function addMessage(req, res){
     let sql27 = `SELECT * FROM CHAT WHERE id_chat = ${fk_id_chat}`
     let sql28 = `SELECT * FROM user WHERE id_user = ${fk_id_user}`
     let sql29 = `CALL sp_sendMessage('${text_contents}',${fk_id_chat},${fk_id_user})`
+    let sql1 = `CALL sp_chatData(${fk_id_user})`
     //Conexion 1 sql27
     conection.query(sql27,( err,rows,fields)=>{
         if(err){
@@ -145,7 +150,14 @@ function addMessage(req, res){
                                 if(err){
                                     res.emit('addMessageResponse',{status:'2', msg:err.sqlMessage})
                                 }else{
-                                    res.emit('addMessageResponse',{status:'200' , msg: rows[0], info: 'Se envio el mensaje'})
+                                    conection.query(sql1,(err1,rows1,fields)=>{
+                                        if(err1){
+                                            res.emit('addMessageResponse',{status:'2', msg:err1.sqlMessage})
+                                        }else{
+                                            res.emit('addMessageResponse',{status:'200' , msg: rows[0], msgChat: rows1[0], info: 'Se envio el mensaje'})
+                                            res.broadcast.emit('addMessageResponse',{status:'200' , msg:'si', info: 'Se envio el mensaje'})
+                                        }
+                                    })
                                 }
                             })
 
@@ -157,6 +169,7 @@ function addMessage(req, res){
                 })
             }else{
                  res.emit('addMessageResponse',{status:'4' ,msg:'No se encuentra el chat'})
+                 
             }
         }
     })
@@ -166,8 +179,23 @@ function addMessage(req, res){
 //Listado de mensaje
 function listMessages(req, res){
     console.log(req)
-    const{id} = req
-    let sql27=`call listMessage(${id})`
+    const{id,idUser} = req
+    let sql27=`call listMessage(${id},${idUser})`
+    conection.query(sql27, (err,rows, fields)=>{
+        if(err){
+            res.emit('listmessagesResponse',{ status:'0', msg: err.sqlMessage})
+        }else{
+            res.emit('listmessagesResponse',{ status:'200', msg:rows[0]})
+            res.broadcast.emit('listmessagesResponseUsers',{ status:'200', msg:id})
+        }
+    })
+}
+
+//Listado de mensaje v2
+function listMessagesv2(req, res){
+    console.log(req)
+    const{id,idUser} = req
+    let sql27=`call listMessage(${id},${idUser})`
     conection.query(sql27, (err,rows, fields)=>{
         if(err){
             res.emit('listmessagesResponse',{ status:'0', msg: err.sqlMessage})
@@ -175,7 +203,20 @@ function listMessages(req, res){
             res.emit('listmessagesResponse',{ status:'200', msg:rows[0]})
         }
     })
+}
 
+//Listado de mensaje v2
+function listMessagesv3(req, res){
+    console.log(req)
+    const{id,idUser} = req
+    let sql27=`call listMessage(${id},${idUser})`
+    conection.query(sql27, (err,rows, fields)=>{
+        if(err){
+            res.emit('listmessagesResponse',{ status:'0', msg: err.sqlMessage})
+        }else{
+            res.emit('listmessagesResponse',{ status:'201', msg:rows[0]})
+        }
+    })
 }
 
 
@@ -185,5 +226,7 @@ module.exports = {
     newChat, 
     getChats,
     addMessage,
-    listMessages
+    listMessages,
+    listMessagesv2,
+    listMessagesv3
 }
