@@ -35,6 +35,7 @@ BEGIN
 update PRODUCT set int_views=(PRODUCT.int_views)+1 where id_product=id; 
 end//
 
+## LISTAR COMENTARIOS
 DELIMITER &&
 CREATE PROCEDURE obtenerComentarios(IN id int)
 BEGIN
@@ -44,15 +45,11 @@ BEGIN
 		WHERE commentary.fk_id_product = id ORDER BY commentary.tim_date DESC;
 END&&
 
-DROP procedure obtenerComentarios;
-
-call  obtenerComentarios(161);
-
+##PROMEDIO DE CALIFICACION
 DELIMITER &&
 CREATE PROCEDURE prom(IN id int)
 BEGIN
     SELECT CAST(AVG(tin_score)  AS DECIMAL(10,1)) AS PROMEDIO FROM qualification WHERE fk_id_user_qualified=id;
-
 END&&
 
 
@@ -184,7 +181,13 @@ BEGIN
     GROUP BY product.id_product order by CHAT.modification_date DESC;
 end$$
 
-call sp_chatData(5)
+##BORRAR IMAGENES EN EDICION DE PRODUCTO
 
-
+DELIMITER //
+CREATE PROCEDURE deletePhotos(IN nombre VARCHAR(200))
+BEGIN
+	DELETE p.* FROM photographs p WHERE id_photographs IN
+		(SELECT id_photographs FROM 
+				(SELECT id_photographs FROM photographs WHERE var_name=nombre)x);
+END //
 

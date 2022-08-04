@@ -68,7 +68,7 @@ export class EquipoService {
   eliminarProducto(id:string):Observable<any>{
     return this.http.delete(this.url +id);
   }
-  productoFoto(file:FormData, id:string){
+  productoFoto(file:FormData, id:string|null){
     return this.http.post(this.url +"/product/postImage/"+id,file);
   }
 
@@ -143,7 +143,17 @@ export class EquipoService {
   updateProduct(id_product:string|null, product:newProducto){
     return this.http.put(this.url+"/editProduct/"+id_product, product)
   }
+  getimg(fk_id_product:null|string){
+    return this.http.get(this.url+"/imagenes/"+fk_id_product)
+  }
+
+  deleteFiles(filesArr:any){
+    return this.http.post(this.url+"/deleteFiles", filesArr)
+  }
+
 }
+
+
 
 export interface filter{
   fk_id_department: string,
@@ -271,7 +281,7 @@ export interface getProduct{
 
 export interface Images{
   var_name:string,
-  var_extensio: string
+  var_extension?: string
 }
 
 export interface qualification{

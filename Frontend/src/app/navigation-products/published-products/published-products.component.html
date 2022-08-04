@@ -21,7 +21,7 @@
              
           <h3>L. {{item.dou_price}}</h3>
          <!--<h3>{{item.id_product}}</h3>-->
-          <button class="buy" data-bs-toggle="modal" data-bs-target="#myModal2" (click)="setItem(item.id_product)"><i class="fa-regular fa-pen-to-square" ></i> Editar</button>
+          <button class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop " (click)="setItem(item.id_product)" (click)="imagenes()"><i class="fa-regular fa-pen-to-square" ></i> Editar</button>
           <button class="delete" (click)="borrarProd(item.id_product.toString())"><i class="fa-solid fa-trash-can"></i> Eliminar</button>
       </div>
 
@@ -32,12 +32,14 @@
 
 <!---------------------------------------- MODAL SUBIR PRODUCTO ------------------------------------------------------->
 <!-- Modal -->
-<div class="modal" id="myModal2">
+<div class="modal fade"  id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
       <div class="modal-header text-center">
         <h5 class="modal-title w-100">Articulo en Venta </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="ngOnInit()"></button>
+
       </div>
       <!-- Modal Body -->
       <div class="modal-body" style="padding-top: 0px;">
@@ -46,13 +48,14 @@
         <form class="div_padre" [formGroup]="productoForm">
 
           <div class="div_padre">
-            <div class="form-group">
-              <label [for]="archivos.length<10?'imagenn':''"> <!--si tamano de "archivos" menor a 10 coloca la imagen de la camra sino inhabilita para subir mas-->>
+            <div class="form-group" >
+              <label [for]="(archivos.length+cargadas.length)<10?'imagenn':''">
                 <div class="content-upload-image">
                   <img title="imagen" id="imagen-p"
         
-                  [src]="archivos.length<10?'../../../assets/Imagenes/fotoImagenes.png':'../../../assets/Imagenes/no-image-produ.png'" 
-                  [style]="archivos.length<10?'cursor: pointer;':'cursor: not-allowed'">
+                  [src]="(archivos.length+cargadas.length)<10?'../../../assets/Imagenes/fotoImagenes.png':'../../../assets/Imagenes/no-image-produ.png'" 
+                  [style]="(archivos.length+cargadas.length)<10?'cursor: pointer;':'cursor: not-allowed'">
+                
                 </div>
                 <div style="display:inline-block;width: 100%;">
                   <h6 style="font-size: 13px;;text-align: center;">
@@ -64,9 +67,12 @@
                 (change)="capturarFile($event)" type="file" placeholder="seleccciona" multiple>
             </div>
             <!--Previsializacion-->
-            <div class="container-images">
-              <div class="pre-imagen" *ngFor="let item of srcArray" [style]="'background-image: url('+item.img+');'">
-                <h5 class="deleteFile" (click)="deleteFile(item.id)">x</h5>
+            <div class="container-images" >
+              <div class="pre-imagen" *ngFor="let item of cargadas "[style]="'background-image: url(http://localhost:3000/'+item.nm+');'">
+                <h5 class="deleteFile" (click)="eliminar(item.id, item.nm)">x</h5>
+              </div>
+              <div class="pre-imagen" *ngFor="let item2 of srcArray" [style]="'background-image: url('+item2.img+');'">
+                <h5 class="deleteFile" (click)="deleteFile(item2.id)">x</h5>
               </div>
             </div>
           </div>
@@ -80,6 +86,7 @@
                 formControlName="titulo">
                
               <label for="titulo">Título</label>
+              
             </div>
             <div class="errors-container"
               *ngIf="tituloControl.invalid && (tituloControl.touched || tituloControl.dirty)">
@@ -202,11 +209,12 @@
         </form>
 
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" >
         <!--Boton para subir el archivo y cerrar el modal-->
-        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        <button type="submit" class="btn btn-primary" (click)="guardarCambios()" data-bs-dismiss="modal">Actualizar</button> 
-    </div>
+        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="ngOnInit()">Cerrar</button>
+        <button type="submit" class="btn btn-primary" (click)="subirArchivo()" (click)="ngOnInit()" data-bs-dismiss="modal">Actualizar</button> 
+        
+      </div>
     </div>
   </div>
 </div>

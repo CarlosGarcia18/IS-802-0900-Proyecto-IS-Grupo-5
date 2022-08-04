@@ -28,7 +28,7 @@ export class NewProductsComponent implements OnInit {
     this.equipoService.getProductCategories().subscribe(res=>{
       this.categories = <any>res
     }, error =>{
-      console.log(error) 
+      console.log(error)
     })
   }
 
@@ -112,7 +112,7 @@ get nombreControl():FormControl{
       this.srcArray[i].id = i;
     }
   }
-  
+
   producto: newProducto = {
     fk_id_user: '',
     fk_id_department: '',
@@ -152,7 +152,7 @@ get nombreControl():FormControl{
       });
       this.archivos.length=0
       this.srcArray.length=0
-      this.raute.navigate([`navigationProducts/published`])
+      this.raute.navigate([`navigationProducts/published1`])
     });
   }
 }

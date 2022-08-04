@@ -2,8 +2,10 @@ const conection = require('../config/connection')//requerimos la conexion a la B
 const controller = {} //definicion de controller que guardara las rutas
 const nodemailer = require('nodemailer')
 const fs= require('fs').promises
+const fs2= require('fs')
 const path = require('path')
 const { text } = require('body-parser')
+const { Console } = require('console')
 
 //funcion de prueba
 controller.test = (req,res) => {
@@ -230,6 +232,33 @@ controller.editProduct=(req,res)=>{
     })
 }
 
+controller.updatePhotos=(req,res)=>{
+    arr=req.body
+    filesArr=[]
+    for(var index in arr){
+        console.log(arr[index].nm)
+        filesArr.push("src/dbimagesProducts/" + arr[index].nm)
+        conection.query(`call deletePhotos("${arr[index].nm}")`,(err,rows, fields)=>{
+            if(err)
+                console.log(err.sqlMessage)
+            else
+             console.log('Fotos actualizadas')
+           
+        })
+
+        }
+        console.log(filesArr)
+       // return res.end({status:'201', msg:'borrado'})
+        Promise.all(filesArr.map(file => fs.unlink(file)))
+        .then(() => {
+            console.log('Todos los archivos se eliminaron del servidor')
+        })
+        .catch(err => {
+            console.error('Ocurrio un error al borrar los archivos', err)
+        })
+
+}
+
 //Version 2 traer un producto al modal para editar 
 
 controller.getProductoModal=(req,res)=>{
@@ -253,4 +282,25 @@ controller.getProductoModal=(req,res)=>{
         }
     })
 }
+
+controller.imagenes=(req,res)=>{
+    const{fk_id_product}=req.params
+    let data=[]
+    let sql=`SELECT var_name from photographs WHERE fk_id_product=${fk_id_product}`
+    let arr=[]
+    conection.query(sql,(err,rows,fields)=>{
+        if(err) return res.json({status:'0', msg:err.sqlMessage});
+        else{
+            for(i in rows){
+                data.push( rows[i].var_name)
+            }
+           res.send(data)
+           }
+       
+        
+    })
+    
+  //  const data= fs2.readFileSync(path.join(__dirname, '..\\dbimagesProducts\\'+))
+}
+
 module.exports = controller
