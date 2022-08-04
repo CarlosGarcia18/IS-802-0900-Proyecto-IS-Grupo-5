@@ -8,16 +8,17 @@ import { SubscriptionsComponent } from './subscriptions/subscriptions.component'
 
 import { ViewProductsComponent } from './view-products/view-products.component';
 const routes: Routes = [
-  { 
-    path: '', 
-    component: NavigationProductsComponent, 
+  {
+    path: '',
+    component: NavigationProductsComponent,
     children:[
       {path: '',component:ProductsComponent},
       {path: 'wishlist',component:WishListComponent},
       {path: 'published',component:PublishedProductsComponent},
       {path: 'subscriptions',component:SubscriptionsComponent},
-      {path: 'viewProd',component:ViewProductsComponent}
-    ]  
+      {path: 'viewProd',component:ViewProductsComponent},
+      {path: 'published1',component:PublishedProductsComponent}
+    ]
   }
 ];
 
