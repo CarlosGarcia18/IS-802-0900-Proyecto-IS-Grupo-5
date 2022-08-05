@@ -42,7 +42,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: 0.4s;
       background-color: white;
-      height: 327px;
+      height: fit-content;
       &:hover {
         box-shadow: 0 0 11px rgba(33, 33, 33, 0.2);
         transform: translate(0px, -8px);
@@ -118,7 +118,7 @@ body{
   text-align: center;
   font-size: 28px;
   margin: 0;
-  padding-top: 10px;
+  //padding-top: 10px;
   }
   a{
   text-decoration: none;
