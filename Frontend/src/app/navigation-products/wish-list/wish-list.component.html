@@ -61,7 +61,7 @@
                                                 <img [src]="'http://localhost:3000/'+firstImage" class="d-block w-100"
                                                     alt="...">
                                             </div>
-                                            <div class="carousel-item" *ngFor="let image of images">
+                                            <div class="carousel-item" *ngFor="let image of images.slice(1)">
                                                 <img [src]="'http://localhost:3000/'+image.var_name"
                                                     class="d-block w-100" alt="...">
                                             </div>
