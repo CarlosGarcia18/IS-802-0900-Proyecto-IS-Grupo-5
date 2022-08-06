@@ -32,6 +32,7 @@ export class PublishedProductsComponent implements OnInit {
       console.log(error) 
     })
     this.cargadas.length=0
+    this.eliminadas.length=0
   }
 
   getProducList(){
