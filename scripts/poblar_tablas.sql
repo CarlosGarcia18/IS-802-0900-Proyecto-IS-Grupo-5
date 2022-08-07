@@ -728,6 +728,57 @@ VALUES
 	(200,4,3,10,1,"Lápiz Tinta","Lápiz Tinta con Stylus, Colores Disponibles: Negro, Plateado, Azul, Verde Claro, Verde Oscuro y Rojo",10,98,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
 INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
 	VALUES("50.jpg","jpg",200);
+    
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'vbiggen0@jigsy.com', 'Vida', 'Biggen', 'mgtjRstOYaCq', 1, '2244556288');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'iselwyne1@ameblo.jp', 'Inessa', 'Selwyne', 'WkhJdSvZWg', 1, '7385435194');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (9, 'tgraber2@cyberchimps.com', 'Thaddeus', 'Graber', 'pS34D2QV', 1, '3344117981');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'fdeatta3@ask.com', 'Freddi', 'De Atta', 'LmnA0Ym', 1, '6582367845');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'ffarnon4@nature.com', 'Floyd', 'Farnon', 'x6wxkGSW', 1, '6435613818');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (12, 'cbirchill5@list-manage.com', 'Colene', 'Birchill', 'SctHZ2kcY', 1, '4596380194');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (3, 'rbourgourd6@technorati.com', 'Rowena', 'Bourgourd', 'bGUhK4SeG', 1, '7689958345');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'bbrixham7@homestead.com', 'Beau', 'Brixham', 'M1f6xk', 1, '9499911393');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'ecorrao8@nbcnews.com', 'Elwyn', 'Corrao', 'Ghg05n7dNswz', 1, '1669930402');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (8, 'flyster9@cornell.edu', 'Fremont', 'Lyster', 'vYeihRx3p', 1, '8034482102');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'swissona@apple.com', 'Stace', 'Wisson', 'he1dY5LNQiU', 1, '5733867229');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'cdowlingb@gravatar.com', 'Chaddy', 'Dowling', 'IJIwfBtV', 1, '5924362470');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (15, 'gsalmondc@wp.com', 'Galen', 'Salmond', 'eRkIIG', 1, '2104583754');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'ekemelld@hexun.com', 'Edita', 'Kemell', 'wxQ9hoK44Rl', 1, '5438240906');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (9, 'dpechane@webnode.com', 'Debbi', 'Pechan', 'GAQIlE159fFs', 1, '8549327334');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (14, 'ccondyf@slideshare.net', 'Coletta', 'Condy', 'XkSnDCx2', 1, '2452140082');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (4, 'bartissg@ezinearticles.com', 'Brigid', 'Artiss', 'UQdmPl24I', 1, '9166087642');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (2, 'chartburnh@noaa.gov', 'Cristen', 'Hartburn', 'wVPOmQiL0', 1, '3502378391');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (14, 'minklesi@xrea.com', 'Melicent', 'Inkles', '5Qh7AtZKB', 1, '1815422938');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (18, 'lpennycockj@i2i.jp', 'Lalo', 'Pennycock', 'TrDCGAJHzs', 1, '1827202751');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'kcreerk@discovery.com', 'Kristan', 'Creer', 'QRWRQAOy', 1, '6301341018');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (6, 'jlynasl@360.cn', 'Janeen', 'Lynas', 'xJtYSouNOy', 1, '7013095052');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'fcraighillm@amazon.co.jp', 'Farr', 'Craighill', 'Ut2bEkI', 1, '8304231279');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'kcorwinn@dion.ne.jp', 'Keir', 'Corwin', 'DL1Xi1', 1, '8796688079');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (2, 'hnevinso@tmall.com', 'Hermy', 'Nevins', 'n6Yqwk2', 1, '7247379180');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (15, 'lcleerep@skype.com', 'Loise', 'Cleere', 'dOb30T', 1, '5844843151');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (8, 'xgammillq@businessinsider.com', 'Xena', 'Gammill', 'fzTpBthTPe1', 1, '7013332731');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (3, 'hshintonr@goodreads.com', 'Hans', 'Shinton', 'xR7pjz0VE81s', 1, '9592348421');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'tsteffans@paypal.com', 'Tine', 'Steffan', 'vg95Isfyk', 1, '3216945923');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (3, 'szanazzit@google.ru', 'Shae', 'Zanazzi', 'vtQrT7B', 1, '8909972273');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'mcorradeschiu@free.fr', 'Mattie', 'Corradeschi', '84PmMWN', 1, '4724796740');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (4, 'ewalrondv@discovery.com', 'Eachelle', 'Walrond', 'gNgrkckf', 1, '2982891162');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'msheeresw@studiopress.com', 'Milena', 'Sheeres', '6fRcTY4X06', 1, '4191505911');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'akeerix@fotki.com', 'Antony', 'Keeri', 'PCWTEc', 1, '9103090190');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'clamzedy@pcworld.com', 'Claudelle', 'Lamzed', 'D3YpMsZe', 1, '6879121441');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'lpenticootz@google.co.uk', 'Lamond', 'Penticoot', '3vUsoCxN', 1, '6375327238');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'zcotsford10@feedburner.com', 'Zared', 'Cotsford', 'I68MSQA', 1, '3535547147');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (6, 'bputman11@nsw.gov.au', 'Burnaby', 'Putman', 'kKyJyG8i1', 1, '8862094794');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (8, 'nditchburn12@furl.net', 'Nick', 'Ditchburn', 'rQS2R3fcZNB', 1, '1533099410');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'glatliff13@accuweather.com', 'Gibb', 'Latliff', 'Hlxr0Uq', 1, '4454279427');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'mlabbett14@blogspot.com', 'Marie-ann', 'Labbett', 'ZGBNkT', 1, '6658025373');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (9, 'mgirard15@bloglines.com', 'Marna', 'Girard', 'zurkIlt', 1, '7149483265');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'jjerg16@hp.com', 'Joya', 'Jerg', 'kryQnuHq', 1, '7491492556');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'ntaveriner17@weebly.com', 'Nilson', 'Taveriner', 'RDcB2xi', 1, '7932450394');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (17, 'lschober18@dmoz.org', 'Lem', 'Schober', '68eWSjXwVj', 1, '4135934098');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'mclixby19@google.fr', 'Maison', 'Clixby', 'JZeT6dMb', 1, '5455931420');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'sscogin1a@mapy.cz', 'Skip', 'Scogin', 'Wve0BEI', 1, '7081049987');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (15, 'yrutt1b@tripod.com', 'Yule', 'Rutt', 'YP6BZ2L', 1, '5641987710');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'sgogay1c@home.pl', 'Serene', 'Gogay', 'Zk0FhFCg', 1, '5267996872');
+insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (14, 'jterbruggen1d@java.com', 'Johnath', 'Terbruggen', 'D0gXB1do26Vb', 1, '7989053743');
 
 INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
@@ -929,57 +980,6 @@ INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
 VALUES
 	((SELECT fk_id_user FROM PRODUCT WHERE id_product =106), 33, 106, 2, 0, 'Mi primera inquietud queja es esto', current_timestamp());
-
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'vbiggen0@jigsy.com', 'Vida', 'Biggen', 'mgtjRstOYaCq', 1, '2244556288');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'iselwyne1@ameblo.jp', 'Inessa', 'Selwyne', 'WkhJdSvZWg', 1, '7385435194');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (9, 'tgraber2@cyberchimps.com', 'Thaddeus', 'Graber', 'pS34D2QV', 1, '3344117981');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'fdeatta3@ask.com', 'Freddi', 'De Atta', 'LmnA0Ym', 1, '6582367845');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'ffarnon4@nature.com', 'Floyd', 'Farnon', 'x6wxkGSW', 1, '6435613818');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (12, 'cbirchill5@list-manage.com', 'Colene', 'Birchill', 'SctHZ2kcY', 1, '4596380194');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (3, 'rbourgourd6@technorati.com', 'Rowena', 'Bourgourd', 'bGUhK4SeG', 1, '7689958345');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'bbrixham7@homestead.com', 'Beau', 'Brixham', 'M1f6xk', 1, '9499911393');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'ecorrao8@nbcnews.com', 'Elwyn', 'Corrao', 'Ghg05n7dNswz', 1, '1669930402');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (8, 'flyster9@cornell.edu', 'Fremont', 'Lyster', 'vYeihRx3p', 1, '8034482102');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'swissona@apple.com', 'Stace', 'Wisson', 'he1dY5LNQiU', 1, '5733867229');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'cdowlingb@gravatar.com', 'Chaddy', 'Dowling', 'IJIwfBtV', 1, '5924362470');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (15, 'gsalmondc@wp.com', 'Galen', 'Salmond', 'eRkIIG', 1, '2104583754');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'ekemelld@hexun.com', 'Edita', 'Kemell', 'wxQ9hoK44Rl', 1, '5438240906');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (9, 'dpechane@webnode.com', 'Debbi', 'Pechan', 'GAQIlE159fFs', 1, '8549327334');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (14, 'ccondyf@slideshare.net', 'Coletta', 'Condy', 'XkSnDCx2', 1, '2452140082');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (4, 'bartissg@ezinearticles.com', 'Brigid', 'Artiss', 'UQdmPl24I', 1, '9166087642');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (2, 'chartburnh@noaa.gov', 'Cristen', 'Hartburn', 'wVPOmQiL0', 1, '3502378391');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (14, 'minklesi@xrea.com', 'Melicent', 'Inkles', '5Qh7AtZKB', 1, '1815422938');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (18, 'lpennycockj@i2i.jp', 'Lalo', 'Pennycock', 'TrDCGAJHzs', 1, '1827202751');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'kcreerk@discovery.com', 'Kristan', 'Creer', 'QRWRQAOy', 1, '6301341018');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (6, 'jlynasl@360.cn', 'Janeen', 'Lynas', 'xJtYSouNOy', 1, '7013095052');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'fcraighillm@amazon.co.jp', 'Farr', 'Craighill', 'Ut2bEkI', 1, '8304231279');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'kcorwinn@dion.ne.jp', 'Keir', 'Corwin', 'DL1Xi1', 1, '8796688079');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (2, 'hnevinso@tmall.com', 'Hermy', 'Nevins', 'n6Yqwk2', 1, '7247379180');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (15, 'lcleerep@skype.com', 'Loise', 'Cleere', 'dOb30T', 1, '5844843151');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (8, 'xgammillq@businessinsider.com', 'Xena', 'Gammill', 'fzTpBthTPe1', 1, '7013332731');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (3, 'hshintonr@goodreads.com', 'Hans', 'Shinton', 'xR7pjz0VE81s', 1, '9592348421');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'tsteffans@paypal.com', 'Tine', 'Steffan', 'vg95Isfyk', 1, '3216945923');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (3, 'szanazzit@google.ru', 'Shae', 'Zanazzi', 'vtQrT7B', 1, '8909972273');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (11, 'mcorradeschiu@free.fr', 'Mattie', 'Corradeschi', '84PmMWN', 1, '4724796740');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (4, 'ewalrondv@discovery.com', 'Eachelle', 'Walrond', 'gNgrkckf', 1, '2982891162');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'msheeresw@studiopress.com', 'Milena', 'Sheeres', '6fRcTY4X06', 1, '4191505911');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'akeerix@fotki.com', 'Antony', 'Keeri', 'PCWTEc', 1, '9103090190');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'clamzedy@pcworld.com', 'Claudelle', 'Lamzed', 'D3YpMsZe', 1, '6879121441');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'lpenticootz@google.co.uk', 'Lamond', 'Penticoot', '3vUsoCxN', 1, '6375327238');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (13, 'zcotsford10@feedburner.com', 'Zared', 'Cotsford', 'I68MSQA', 1, '3535547147');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (6, 'bputman11@nsw.gov.au', 'Burnaby', 'Putman', 'kKyJyG8i1', 1, '8862094794');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (8, 'nditchburn12@furl.net', 'Nick', 'Ditchburn', 'rQS2R3fcZNB', 1, '1533099410');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'glatliff13@accuweather.com', 'Gibb', 'Latliff', 'Hlxr0Uq', 1, '4454279427');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (1, 'mlabbett14@blogspot.com', 'Marie-ann', 'Labbett', 'ZGBNkT', 1, '6658025373');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (9, 'mgirard15@bloglines.com', 'Marna', 'Girard', 'zurkIlt', 1, '7149483265');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'jjerg16@hp.com', 'Joya', 'Jerg', 'kryQnuHq', 1, '7491492556');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'ntaveriner17@weebly.com', 'Nilson', 'Taveriner', 'RDcB2xi', 1, '7932450394');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (17, 'lschober18@dmoz.org', 'Lem', 'Schober', '68eWSjXwVj', 1, '4135934098');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (16, 'mclixby19@google.fr', 'Maison', 'Clixby', 'JZeT6dMb', 1, '5455931420');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (7, 'sscogin1a@mapy.cz', 'Skip', 'Scogin', 'Wve0BEI', 1, '7081049987');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (15, 'yrutt1b@tripod.com', 'Yule', 'Rutt', 'YP6BZ2L', 1, '5641987710');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (10, 'sgogay1c@home.pl', 'Serene', 'Gogay', 'Zk0FhFCg', 1, '5267996872');
-insert into USER (fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values (14, 'jterbruggen1d@java.com', 'Johnath', 'Terbruggen', 'D0gXB1do26Vb', 1, '7989053743');
 
 INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
