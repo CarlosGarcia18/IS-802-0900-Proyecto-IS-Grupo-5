@@ -63,7 +63,8 @@ const routes: Routes = [
         pathMatch: "full"
       }
     ]
-  }
+  },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 ];
 
 @NgModule({
