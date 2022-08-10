@@ -164,8 +164,10 @@ error = false
 
   cargarImagenes(id_producto:string){
     this.equipoService.getImages(id_producto).subscribe(res=>{
-      this.images=<any>res
+        this.images=<any>res
+     
       this.firstImage=this.images[0].var_name
+      
     },
     err => console.log(err))
   }
@@ -206,7 +208,7 @@ error = false
     }else if((this.promedio>=3.5 && this.promedio<=4) || ( this.promedio>4 && this.promedio<4.5)){
         this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true;
     }else if(this.promedio>=4.5 && this.promedio<=5){
-        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true; this.cond5;
+        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true; this.cond5=true;
     }else{
       this.cond1=false;
       this.cond2=false;
