@@ -1,5 +1,6 @@
 .container-page{
     display: flex;
+    margin-top: 75px;
 }
 
 .header{
@@ -71,7 +72,7 @@ div{
 }
 
 .div-botones{
-    margin-top: 100px;
+    margin-top: 25px;
 }
 
 button{
@@ -79,8 +80,8 @@ button{
     background-color: #252F37;
     border-color:azure;
     margin-top: 30px;
-    margin-left: 10%;
-    height: 60px;
+    margin-left: 25px;
+    height: 50px;
     width: 250px;
     font-size: 14px;
     color: azure;
