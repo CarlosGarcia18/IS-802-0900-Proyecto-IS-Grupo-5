@@ -74,6 +74,9 @@ body{
     font-size: 18px;
     margin: 0;
     padding-top: 10px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
     }
     a{
     text-decoration: none;
@@ -208,7 +211,9 @@ table{
 p{
     margin-top: 10px;
     margin-right: 10px;
+    margin-left: 10px;
     text-align: center;
+    font-size: 14px;
     overflow:hidden;
     white-space:nowrap;
     text-overflow: ellipsis;

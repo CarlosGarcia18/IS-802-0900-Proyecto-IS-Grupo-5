@@ -19,7 +19,7 @@ export class WishListComponent implements OnInit {
  comments: loadComment[]=[]
  qualifyAverage: promedio[]=[]
  firstImage: string=''
-
+ modalComplaint:boolean = false
  qlfy: qualification ={
    fk_id_user_qualified: 0,
    fk_id_user_review: '', 
@@ -96,8 +96,15 @@ error = false
     this.loadProducts()
    
     this.toggleButton=false
+      //Denuncia
+      this.equipoService.$modalComplaint.subscribe((valor) => {
+        this.modalComplaint = valor
+      })
+      this.modalComplaint = false
   }
-
+  denunciar(){
+    this.modalComplaint = true
+  }
   loadProducts(){
     this.equipoService.listWishlist(localStorage.getItem("token")).subscribe(
       res=>{

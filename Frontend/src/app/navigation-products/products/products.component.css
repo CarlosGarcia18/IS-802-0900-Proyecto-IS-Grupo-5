@@ -165,7 +165,12 @@ body{
     margin: 0 auto;
     display: block;
     }
-    
+   .info{
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+   }
     h6{
     font-size: 14px;
     
@@ -216,7 +221,7 @@ body{
     }
     /*icono de favoritos*/
 .fav-icon{
-    padding-left: 80px;
+    
     padding-top: 15px;
     padding-right: 20px;
     color: lightcoral;
@@ -228,7 +233,7 @@ body{
 }
 
 .fav-icon-select{
-    padding-left: 80px;
+    
     padding-top: 15px;
     padding-right: 20px;
     color: red;
@@ -257,7 +262,7 @@ table{
 
 
 p{
-    margin-top: 10px;
+    
     margin-right: 10px;
     text-align: center;
     

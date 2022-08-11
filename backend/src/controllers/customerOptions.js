@@ -181,7 +181,7 @@ controller.getProducto=(req,res)=>{
     INNER JOIN product_category cat ON prod.fk_id_product_category=cat.id_product_category
     INNER JOIN department dep ON prod.fk_id_department=dep.id_department
     INNER JOIN product_status stat ON prod.fk_id_product_status=stat.id_product_status
-    WHERE id_product=${id_producto}`
+    WHERE id_product=${id_producto}  `
 
     conection.query(sql1,(err,rows,fields)=>{
         if(err) return res.json({status:'0', msg:err.sqlMessage});
@@ -264,8 +264,8 @@ controller.updatePhotos=(req,res)=>{
 controller.getProductoModal=(req,res)=>{
     const{id_producto}=req.params
 
-    let sql1=`SELECT p.id_product,  p.var_name , p.text_description,  p.dou_price,
-    p.fk_id_product_category, p.fk_id_product_status, p.fk_id_department FROM product p
+    let sql1=`SELECT p.id_product,  p.var_name , p.text_description,  p.dou_price, 
+    p.fk_id_product_category, p.fk_id_product_status, p.fk_id_department , product_category.var_name AS categoria FROM product p INNER JOIN product_category ON product_category.id_product_category= p.fk_id_product_category
     WHERE id_product=${id_producto}`
 
     conection.query(sql1,(err,rows,fields)=>{

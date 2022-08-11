@@ -151,6 +151,21 @@ export class EquipoService {
     return this.http.post(this.url+"/deleteFiles", filesArr)
   }
 
+  addCategory(category:Categoria){
+    return this.http.post(this.url+"/admin/addCategory",category)
+  }
+
+  updateCategory(category: Categoria){
+    return this.http.post(this.url+"/admin/updateCategory/", category)
+  }
+
+  deleteCategory(categoria: Categoria){
+    return this.http.put(this.url+"/admin/deleteCategory",categoria)
+  }
+  getCategory(id_product_category: number){
+    return this.http.get<Categoria[]>(this.url+"/admin/getCategory/"+ id_product_category)
+  }
+  
 }
 
 
@@ -166,6 +181,7 @@ export interface traerProducto{
   id_photographs : number,
   id_product:string,
   var_name_photo: string,
+  categoria: string,
   fk_id_user: number,
   fk_id_department: number,
   var_name: string,
@@ -227,7 +243,7 @@ export interface newProducto {
     var_name: string
     text_description: string
     dou_price: number
-
+    categoria?:string
 }
 
 export interface uploadPhoto{
@@ -276,7 +292,8 @@ export interface getProduct{
   apellido: string,
   categoria: string,
   departamento: string, 
-  estado: string
+  estado: string,
+  status: string
 }
 
 export interface Images{
@@ -317,5 +334,10 @@ export interface loadComment{
 }
 export interface promedio{
   PROMEDIO: number;
+}
+
+export interface Categoria{
+  id_product_category: number;
+  var_name:string;
 }
 

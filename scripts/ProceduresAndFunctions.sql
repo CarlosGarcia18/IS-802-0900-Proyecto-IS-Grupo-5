@@ -191,3 +191,12 @@ BEGIN
 				(SELECT id_photographs FROM photographs WHERE var_name=nombre)x);
 END //
 
+#Actualizar Cat. de los productos a indefinida 
+DELIMITER //
+CREATE PROCEDURE UpdateCategory(IN id bigint)
+BEGIN
+	UPDATE product SET fk_id_product_category=
+			(SELECT id_product_category FROM 
+					(SELECT  id_product_category FROM product_category WHERE var_name="Indefinida")x) 
+	WHERE fk_id_product_category= id;
+END//

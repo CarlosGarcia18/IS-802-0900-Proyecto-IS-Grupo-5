@@ -66,6 +66,7 @@ routers.post('/credential/confirm', customerU.confirmaCodigo)
 //trae los productos disponible segun los diferentes filtros
 routers.post('/productFiltering',customerO.productFiltering)
 
+//trae los productos
 routers.get('/productUser/:id',customerU.productUser)
 
 //Agregar un producto
@@ -147,6 +148,17 @@ routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 routers.get('/imagenes/:fk_id_product', customerO.imagenes)
 
 routers.post('/deleteFiles',customerO.updatePhotos)
+
+//agregar una categoria
+routers.post('/admin/addCategory', customerA.addCategory)
+//actualizar una categoria
+routers.post('/admin/updateCategory', customerA.updateCategory)
+//traer una categoria
+routers.get('/admin/getCategory/:id_product_category', customerA.getOneCategory)
+//eliminar categoria
+routers.put('/admin/deleteCategory', customerA.deleteCategory)
+
+
 //exportacion de rutas
 module.exports = routers
 //module.exports=app

@@ -17,9 +17,11 @@
           
         <img [src]="'http://localhost:3000/' + item.var_name_photo">
          
-          <h6><strong>{{item.var_name}}</strong></h6>
-             
-          <h3>L. {{item.dou_price}}</h3>
+          <p><strong>{{item.var_name}}</strong></p>
+             <div style="width: 80%; display:inline-flex"><h3 >L. {{item.dou_price}}</h3></div>
+          
+          <div *ngIf="item.categoria=='Indefinida'" style="width:20%; display:inline-flex"><i class="fa-solid fa-triangle-exclamation" style="color:red"></i></div>
+          
          <!--<h3>{{item.id_product}}</h3>-->
           <button class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop " (click)="setItem(item.id_product)" (click)="imagenes()"><i class="fa-regular fa-pen-to-square" ></i> Editar</button>
           <button class="delete" (click)="borrarProd(item.id_product.toString())"><i class="fa-solid fa-trash-can"></i> Eliminar</button>
@@ -114,16 +116,18 @@
           </div>
 
 
-          <div class="form">
-            <div class="form-floating mb-3 mt-3">
+          <div class="form"  >
+            <div class="form-floating mb-3 mt-3" >
               <select class="form-select" [(ngModel)]="producto.fk_id_product_category" id="categoria" name="categoria"
                 required formControlName="categoria">
-                <option *ngFor="let category of categories" [value]="category.id_product_category">
-                  {{category.var_name}}
+                <option *ngFor="let category of categories" [value]="category.id_product_category" >
+                  {{category.var_name}} 
                 </option>
+               
               </select>
               <label class="nom" for="categoria">Categoria de Producto</label>
             </div>
+            
             <div class="errors-container"
               *ngIf="categoriaControl.invalid && (categoriaControl.touched || categoriaControl.dirty)">
               <p class="errors-msg" class="fs-6" *ngIf="categoriaControl.hasError('required')">El campo es obligatorio
@@ -218,3 +222,5 @@
     </div>
   </div>
 </div>
+
+
