@@ -108,6 +108,11 @@ export class EquipoService {
     return this.http.get(this.url+"/getProducto/"+id)
   }
 
+  getOneDenuncias(id:string){
+    return this.http.get(this.url+"/getDenuncias/"+id)
+
+  }
+
   getUnProducto(id_producto:string|null){
     return this.http.get<newProducto[]>(this.url+"/getProdMod/"+id_producto)
   }
@@ -128,10 +133,7 @@ export class EquipoService {
     return this.http.get(this.url+"/vista/"+id)
   }
 
-  getDenuncias(id:string){
-    return this.http.get(this.url+"/getDenuncias/"+id)
 
-  }
 
   addComment(comentario: Comment){
     return this.http.post(this.url+"/addComment", comentario)
@@ -300,7 +302,7 @@ export interface qualification{
 
 export interface complaint{
   fk_id_user: string,
-  fk_id_product: string,
+  fk_id_product: string| null,
   fk_id_complaint_category: string,
   text_description: string
 }
