@@ -114,19 +114,6 @@ routers.get('/getProducto/:id_producto',customerO.getProducto)
 //traer todas las imagenes de un producto
 routers.get('/productImages/:id_producto', customerO.getProductImages)
 
-/* Se usan a traves de sockets
-//Crear un nuevo chat
-routers.post('/chat/newchat',customerC.newChat)
-
-//Traer datos de un chat
-routers.get('/chat/:id_user',customerC.getChats)
-
-//Traer ultimo mensaje del chat y la cantidad de mensajes no leidos
-routers.get('/chat/lastMessage/:id_chat',customerC.getlastMessage)
-*/
-
-//routers.put('/editorImagenes/:id',customerU.PudProducto)
-
 //crear mensaje
 routers.post('/addMessage' , customerU.addMessage)
 
@@ -147,6 +134,10 @@ routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 routers.get('/imagenes/:fk_id_product', customerO.imagenes)
 
 routers.post('/deleteFiles',customerO.updatePhotos)
+
+//obtener datos de grafica de categorias
+routers.get('/categoryChart/:fk_id_product_category',customerA.productsCategory)
+
 //exportacion de rutas
 module.exports = routers
-//module.exports=app
+

@@ -7,7 +7,7 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { ExpiryTimeComponent } from './expiry-time/expiry-time.component';
 import { ComplaintsComponent } from './complaints/complaints.component';
 import { CategoriesComponent } from './categories/categories.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,9 @@ import { CategoriesComponent } from './categories/categories.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports:[
     AdminComponent

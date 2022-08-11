@@ -1,1 +1,22 @@
-<app-graphic [data]="data" [labels]="labels" type="pie" [showLabelsY]="true"></app-graphic>
+<div class="content-charts">
+    <div class="content-charts-1">
+        <div class="content-charts-1-selects">
+            <i [ngClass]="{'content-charts-1-selects-select':selectedTypeChartCategories=='bar'?true:false,'content-charts-1-selects-item':selectedTypeChartCategories=='bar'?false:true }"
+                class="fa-solid fa-chart-column" (click)="changeChart('1','bar')"></i>
+            <i [ngClass]="{'content-charts-1-selects-select':selectedTypeChartCategories=='line'?true:false,'content-charts-1-selects-item':selectedTypeChartCategories=='line'?false:true}"
+                class="fa-solid fa-chart-line" (click)="changeChart('1','line')"></i>
+            <i [ngClass]="{'content-charts-1-selects-select':selectedTypeChartCategories=='pie'?true:false,'content-charts-1-selects-item':selectedTypeChartCategories=='pie'?false:true}"
+                class="fa-solid fa-chart-pie" (click)="changeChart('1','pie')"></i>
+            <i [ngClass]="{'content-charts-1-selects-select':selectedTypeChartCategories=='doughnut'?true:false,'content-charts-1-selects-item':selectedTypeChartCategories=='doughnut'?false:true}"
+                class="fa-solid fa-circle-dot" (click)="changeChart('1','doughnut')"></i>
+        </div>
+        <app-graphic [type]="selectedTypeChartCategories" [idCanva]="'1'"></app-graphic>
+        <div class="details">
+            <h6 [title]="topCategories.label"><i style="color:green" class="fa-solid fa-arrow-turn-up"></i> {{topCategories.label.substring(0,25)}}: <span style="color:green">{{topCategories.value}}</span></h6>
+            <h6 [title]="downCategories.label"><i style="color:red"  class="fa-solid fa-arrow-turn-down"></i> {{downCategories.label.substring(0,25)}}: <span style="color:red">{{downCategories.value}}</span></h6>
+        </div>
+        <select [(ngModel)]="selectChart.select" class="select-category" (change)="getDataCategories('1')">
+            <option *ngFor="let item of categories" [value]="item.id_product_category">{{item.var_name}}</option>
+        </select>
+    </div>
+</div>

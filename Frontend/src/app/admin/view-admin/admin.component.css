@@ -1,5 +1,6 @@
 .container-page{
     display: flex;
+    width: 100%;
 }
 
 .header{
@@ -17,7 +18,7 @@
 /*NAV-BAR*/
 
 .menu-admin{
-    width: 300px;
+    width: 390px;
     background-color: #252F37;
     height: 100vh;
 }
@@ -96,4 +97,8 @@ button:hover{
 i{
     margin-left: 25px;
     margin-right: 10px;
+}
+
+.components-container{
+    width: 100%;
 }

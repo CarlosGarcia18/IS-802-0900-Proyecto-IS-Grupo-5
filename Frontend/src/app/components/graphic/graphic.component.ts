@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ChartsService } from '../../SERVICES/charts.service'
+import { dataChart } from '../../../assets'
 import {
+  ChartData, ChartOptions,
   Chart,
   LinearScale,
   BarElement,
@@ -44,15 +47,19 @@ Chart.register(
   styleUrls: ['./graphic.component.css'],
 })
 export class GraphicComponent implements OnInit {
-  constructor() {}
 
-  @Input() type: 'bar' | 'doughnut' | 'line' | 'pie'  = 'line';
-  @Input() labels: string[] = [];
-  @Input() data: number[] = [];
+  labels: string[]=[];
+  data: number[]=[];
+  showLabelsY: boolean = true;
+  constructor(private ChartsService:ChartsService) {
+    
+  }
+
+  @Input() type: 'bar' | 'doughnut' | 'line' | 'pie' = 'line';
   @Input() label: string = '';
   @Input() width: string = '400px';
   @Input() showLabelsX: boolean = false;
-  @Input() showLabelsY: boolean = true;
+  @Input() idCanva:string = '0'
 
   colorBar: string[] = ['rgba(126, 225, 252, 0.7)', 'rgba(183,184,230, 0.7)'];
   borderColorLine: string = 'rgb(183,184,230)';
@@ -72,73 +79,202 @@ export class GraphicComponent implements OnInit {
     'rgb(51,1,155)',
   ];
 
+  options:ChartOptions = {}
+
+  dataChartBar:ChartData<'bar'>={
+    labels: [],
+    datasets: [],
+  }
+
+  dataChartLine:ChartData<'line'>={
+    labels: [],
+    datasets: [],
+  }
+
+  dataChartPie:ChartData<'pie'>={
+    labels: [],
+    datasets: [],
+  }
+
+  dataChartDoughnut:ChartData<'doughnut'>={
+    labels: [],
+    datasets: [],
+  }
+
+  private bar(){
+    console.log(this.labels)
+    this.dataChartBar={
+      labels: this.labels,
+      datasets: [
+        {
+          label: this.label,
+          data: this.data,
+          //tension: 0.3,
+          backgroundColor:
+            this.type == 'bar'
+              ? this.colorBar
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? this.colorDoughnut
+              : this.type == 'line'
+              ? 'rgba(100,100,200,.2)'
+              : '',
+          borderColor:
+            this.type == 'line'
+              ? this.borderColorLine
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? 'rgba(0,0,0,0)'
+              : '',
+          //pointBackgroundColor:
+           // this.type == 'line' ? this.pointBackgroundColor : '',
+          //hoverOffset: 4,
+          //fill: true,
+        },
+      ],
+    }
+  }
+
+  private line(){
+    this.dataChartLine={
+      labels: this.labels,
+      datasets: [
+        {
+          label: this.label,
+          data: this.data,
+          tension: 0.3,
+          backgroundColor:
+            this.type == 'bar'
+              ? this.colorBar
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? this.colorDoughnut
+              : this.type == 'line'
+              ? 'rgba(100,100,200,.2)'
+              : '',
+          borderColor:
+            this.type == 'line'
+              ? this.borderColorLine
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? 'rgba(0,0,0,0)'
+              : '',
+          pointBackgroundColor:
+            this.type == 'line' ? this.pointBackgroundColor : '',
+          //hoverOffset: 4,
+          fill: true,
+        },
+      ],
+    }
+  }
+
+  private pie(){
+    this.dataChartPie={
+      labels: this.labels,
+      datasets: [
+        {
+          label: this.label,
+          data: this.data,
+          backgroundColor:
+            this.type == 'bar'
+              ? this.colorBar
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? this.colorDoughnut
+              : this.type == 'line'
+              ? 'rgba(100,100,200,.2)'
+              : '',
+          borderColor:
+            this.type == 'line'
+              ? this.borderColorLine
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? 'rgba(0,0,0,0)'
+              : '',
+          hoverOffset: 4,
+        },
+      ],
+    }
+  }
+
+  private doughnut(){
+    this.dataChartDoughnut={
+      labels: this.labels,
+      datasets: [
+        {
+          label: this.label,
+          data: this.data,
+          backgroundColor:
+            this.type == 'bar'
+              ? this.colorBar
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? this.colorDoughnut
+              : this.type == 'line'
+              ? 'rgba(100,100,200,.2)'
+              : '',
+          borderColor:
+            this.type == 'line'
+              ? this.borderColorLine
+              : this.type == 'doughnut' || this.type == 'pie'
+              ? 'rgba(0,0,0,0)'
+              : '',
+          hoverOffset: 4,
+        },
+      ],
+    }
+  }
+
   ngOnInit(): void {
-    const myChart = new Chart('myChart', {
-      type: this.type,
-      data: {
-        labels: this.labels,
-        datasets: [
-          {
-            label: this.label,
-            data: this.data,
-            tension: 0.3,
-            backgroundColor:
-              this.type == 'bar'
-                ? this.colorBar
-                : this.type == 'doughnut' || this.type == 'pie'
-                ? this.colorDoughnut
-                : this.type == 'line'
-                ? 'rgba(100,100,200,.2)'
-                : '',
-            borderColor:
-              this.type == 'line'
-                ? this.borderColorLine
-                : this.type == 'doughnut' || this.type == 'pie'
-                ? 'rgba(0,0,0,0)'
-                : '',
-            pointBackgroundColor:
-              this.type == 'line' ? this.pointBackgroundColor : '',
-            hoverOffset: 4,
-            fill: true,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              display: this.showLabelsY,
-            },
-            grid: {
-              drawBorder:
-                this.type == 'doughnut' || this.type == 'pie' ? false : true,
-              drawTicks:
-                this.type == 'doughnut' || this.type == 'pie' ? false : true,
-              drawOnChartArea:
-                this.type == 'doughnut' || this.type == 'pie' ? false : true,
-            },
-          },
-          x: {
-            ticks: {
-              display: this.showLabelsX,
-            },
-            grid: {
-              drawBorder:
-                this.type == 'doughnut' || this.type == 'pie' ? false : true,
-              drawTicks:
-                this.type == 'doughnut' || this.type == 'pie' ? false : true,
-              drawOnChartArea: false
-            },
-          },
+    this.ChartsService.selectedData$.subscribe((ch:dataChart)=>{
+      if (ch.id==this.idCanva) {
+        this.data = ch.data;
+        this.labels = ch.labels;
+        this.showLabelsY = ch.y;
+        this.loadData();
+      }
+    })
+  }
+
+  loadData(){
+    if (this.type=='bar') {
+      this.bar()
+    } else if (this.type=='line') {
+      this.line()
+    } else if (this.type=='pie') {
+      this.pie()
+    } else {
+      this.doughnut()
+    }   
+    
+    this.options={
+    responsive: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: {
+          display: this.showLabelsY,
         },
-        plugins: {
-          legend: {
-            display: false,
-          },
+        grid: {
+          drawBorder:
+            this.type == 'doughnut' || this.type == 'pie' ? false : true,
+          drawTicks:
+            this.type == 'doughnut' || this.type == 'pie' ? false : true,
+          drawOnChartArea:
+            this.type == 'doughnut' || this.type == 'pie' ? false : true,
         },
       },
-    });
+      x: {
+        ticks: {
+          display: this.showLabelsX,
+        },
+        grid: {
+          drawBorder:
+            this.type == 'doughnut' || this.type == 'pie' ? false : true,
+          drawTicks:
+            this.type == 'doughnut' || this.type == 'pie' ? false : true,
+          drawOnChartArea: false,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+  }
   }
 }
