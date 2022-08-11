@@ -128,6 +128,11 @@ export class EquipoService {
     return this.http.get(this.url+"/vista/"+id)
   }
 
+  getDenuncias(id:string){
+    return this.http.get(this.url+"/getDenuncias/"+id)
+
+  }
+
   addComment(comentario: Comment){
     return this.http.post(this.url+"/addComment", comentario)
   }
@@ -150,6 +155,8 @@ export class EquipoService {
   deleteFiles(filesArr:any){
     return this.http.post(this.url+"/deleteFiles", filesArr)
   }
+
+
 
 }
 
@@ -269,13 +276,13 @@ export interface getProduct{
   id_product: number,
   fk_id_user : number,
   titulo: string,
-  text_description: string, 
-  int_views: number, 
-  dou_price: number, 
+  text_description: string,
+  int_views: number,
+  dou_price: number,
 	nombre: string,
   apellido: string,
   categoria: string,
-  departamento: string, 
+  departamento: string,
   estado: string
 }
 
@@ -286,7 +293,7 @@ export interface Images{
 
 export interface qualification{
   fk_id_user_qualified: number,
-  fk_id_user_review: string| null, 
+  fk_id_user_review: string| null,
   tin_score: number
 }
 

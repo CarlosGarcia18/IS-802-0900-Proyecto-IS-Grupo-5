@@ -885,6 +885,22 @@ controller.listarMenssage =(req, res)=>{
 
 }
 
+//Listar Denuncias
+controller.listarDenuncia =(req, res)=>{
+    const{id}=req.params
+
+    let sql28=`call listDenuncias12(${id})`
+
+    conection.query(sql28, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+    
+}
+
 
 
 //exportacion de controler
