@@ -30,6 +30,9 @@ routers.get('/adminTest', customerA.test)
 //Get User Para recuperar datos a un id Especifico /se debe especificar el id en la ruta/
 routers.get('/user/:id',customerU.getUser)
 
+//Get que retorna true si es admin y false si no lo es
+routers.get('/userRol/:id',customerU.getRol)
+
 //Agregar usuario (body -> json)
 routers.post('/user',customerU.postUser)
 
@@ -123,7 +126,7 @@ routers.get('/chat/:id_user',customerC.getChats)
 
 //Traer ultimo mensaje del chat y la cantidad de mensajes no leidos
 routers.get('/chat/lastMessage/:id_chat',customerC.getlastMessage)
-*/
+
 
 //routers.put('/editorImagenes/:id',customerU.PudProducto)
 
@@ -132,6 +135,7 @@ routers.post('/addMessage' , customerU.addMessage)
 
 //Lista Mensaje
 routers.get('/getMessage/:id',customerU.listarMenssage)
+*/
 
 //editar producto
 routers.put('/editProduct/:id_product',customerO.editProduct)

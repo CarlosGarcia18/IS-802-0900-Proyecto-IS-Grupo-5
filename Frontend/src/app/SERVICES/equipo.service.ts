@@ -57,6 +57,10 @@ export class EquipoService {
     return this.http.get(this.url+"/user/"+id)
   }
 
+  getUserRol(id:string){
+    return this.http.get(this.url+"/userRol/"+id)
+  }
+
   emailModule1(module1:emailCredential){
     return this.http.post(this.url+"/credential", module1)
   }
@@ -190,7 +194,6 @@ export interface Registro{
   var_name:string,
   var_lastname:string,
   tex_password:string,
-  bit_rol:number,
   bit_status:number,
   var_phone:string
 }

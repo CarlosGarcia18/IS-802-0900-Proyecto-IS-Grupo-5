@@ -5,9 +5,10 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ExpiryTimeComponent } from './expiry-time/expiry-time.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { AdminComponent } from './view-admin/admin.component';
+import { VigilanteGuard } from './vigilante.guard';
 
 
-const routes: Routes = [{ path: '', component: AdminComponent, 
+const routes: Routes = [{ path: '', component: AdminComponent, canActivate: [VigilanteGuard],
 children:[
   {path: '',component:CategoriesComponent},
   {path: 'complaint',component:ComplaintsComponent},

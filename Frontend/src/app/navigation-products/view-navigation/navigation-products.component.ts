@@ -40,6 +40,7 @@ export class NavigationProductsComponent implements OnInit {
   eliminaToken(){
     if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){
       localStorage.removeItem('token')
+      localStorage.removeItem('isAdmin')
     }
   }
 }
@@ -51,4 +52,9 @@ interface user{
     var_lastname:string,
     bit_status:number,
     var_phone:string
+}
+
+interface BookInfo {
+  rol : boolean ;
+  msg: string;
 }
