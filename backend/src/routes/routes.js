@@ -151,6 +151,12 @@ routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 routers.get('/imagenes/:fk_id_product', customerO.imagenes)
 
 routers.post('/deleteFiles',customerO.updatePhotos)
+
+routers.get('/getDenuncias/:id',customerU.listarDenuncia)
+
+//obtener datos de grafica de categorias
+routers.get('/categoryChart/:fk_id_product_category',customerA.productsCategory)
+
 //exportacion de rutas
 module.exports = routers
-//module.exports=app
+

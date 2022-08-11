@@ -8,32 +8,25 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CredentialRecoveryModule } from './credential-recovery/credential-recovery.module';
-//import { LoginModule } from './login/login.module';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
-//import { RecoveryLayoutComponent } from './layouts/recovery-layout/recovery-layout.component';
 import { NavigationLayoutComponent } from './layouts/navigation-layout/navigation-layout.component';
-//import { ViewProductComponent } from './view-product/view-product.component';
-
+import { NgChartsModule } from 'ng2-charts'
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DefaultLayoutComponent,
-    //RecoveryLayoutComponent,
     NavigationLayoutComponent,
-   // ViewProductComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    //LandingModule,
-    //RegisterModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CredentialRecoveryModule
-    //TermsAndConditionsModule
+    CredentialRecoveryModule,
+    NgChartsModule
   ],
   providers: [CargarScriptsService],
   bootstrap: [AppComponent]
