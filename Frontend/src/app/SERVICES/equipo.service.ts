@@ -1,8 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Module2Component } from '../credential-recovery/module2/module2.component';
-import { FormBuilder } from '@angular/forms';
-import { Observable, Timestamp } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
