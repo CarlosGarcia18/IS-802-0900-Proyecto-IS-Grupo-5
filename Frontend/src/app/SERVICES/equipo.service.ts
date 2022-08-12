@@ -172,6 +172,10 @@ export class EquipoService {
     return this.http.get<Categoria[]>(this.url+"/admin/getCategory/"+ id_product_category)
   }
 
+  updateEstadoUsu(id_user:String){
+    return this.http.put(this.url+"/admin/updateEstado/",id_user)
+  }
+
 }
 
 
