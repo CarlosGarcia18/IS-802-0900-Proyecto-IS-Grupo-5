@@ -212,11 +212,3 @@ BEGIN
 END//
 
 
-delimiter //
-create  procedure listDenuncias12(id int)
-BEGIN
- SELECT*FROM COMPLAINT where fk_id_user_complaining=id order by tim_date asc;
-end//
-
-call listDenuncias12(2);
-

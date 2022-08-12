@@ -18,7 +18,7 @@ controller.productsCategory = (req,res) =>{
 
     conection.query(sql,(err,rows,fields)=>{
         if (err) {
-            res.json({status:'0', msg:sqlMessage});
+            res.json({status:'0', msg:err.sqlMessage});
         }
         let chartLabel=[];
         let chartData=[];
@@ -120,6 +120,59 @@ controller.deleteCategory=(req,res)=>{
         }
     })
 
+}
+
+controller.amountUserRegister = (req,res) =>{
+    const {firstDate,lastDate} = req.body
+
+    let sql = `SELECT COUNT(*) as amount, date_format(u.registration_date,'%d/%m/%Y') as date from plazitanet.user as u `
+    +`WHERE u.bit_status=1 AND u.bit_rol=1 AND u.registration_date between '${firstDate}'`
+    +` AND '${lastDate}' group by date order by u.registration_date`
+
+    if (lastDate=='current') {
+        sql = `SELECT COUNT(*) as amount, date_format(u.registration_date,'%d/%m/%Y') as date from plazitanet.user as u `
+        +`WHERE u.bit_status=1 AND u.bit_rol=1 AND u.registration_date between '${firstDate}'`
+        +` AND current_timestamp() group by date order by u.registration_date`
+    }
+
+    conection.query(sql,(err,rows,fields)=>{
+        if (err) {
+            res.json({status:'0', msg:err.sqlMessage});
+        }
+        if (rows.length<1) {
+            res.json({status:'200', 'labels':[], 'data':[], 'up':{label:"",value:0}, 'down':{label:"",value:0}})
+        }else{
+            let chartLabel=[];
+            let chartData=[];
+            let up ={
+                label:"",
+                value:-1
+            }
+            let down ={
+                label:rows[0].date,
+                value:rows[0].amount
+            }
+            rows.map(data=>{
+                chartLabel.push(data.date)
+                chartData.push(data.amount)
+                if (data.amount>up.value) {
+                    up={
+                        label:data.date,
+                        value:data.amount
+                    }
+                }
+                if (data.amount<down.value) {
+                    down={
+                        label:data.date,
+                        value:data.amount
+                    }
+                }
+            })
+
+            res.json({status:'200', 'labels':chartLabel, 'data':chartData, 'up':up, 'down':down})
+        }
+        
+    })
 }
 
 module.exports = controller
