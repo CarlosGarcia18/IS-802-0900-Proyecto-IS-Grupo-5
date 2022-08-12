@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, complaint } from '../../SERVICES/equipo.service';
+import { EquipoService, complaint, user } from '../../SERVICES/equipo.service';
 
 import { qualification,reqQualify} from '../../SERVICES/equipo.service';
-
 
 @Component({
   selector: 'app-complaints',
@@ -12,6 +11,9 @@ import { qualification,reqQualify} from '../../SERVICES/equipo.service';
 export class ComplaintsComponent implements OnInit {
   //Denuncia es de tipo inferzar complaint
   denuncias: complaint[]=[]
+  user: user[]=[]
+  //Listar los usuarios que tengan denuncias
+  //
 
   qlfy: complaint={
     fk_id_user: '',
@@ -34,29 +36,10 @@ export class ComplaintsComponent implements OnInit {
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
+    this.listarDenuncia
   }
-/*
-  argarProducto(id_denuncias:string){
-    localStorage.setItem('productToken',id_denuncias)
-    this.equipoService.getOneDenuncias(id_denuncias).subscribe(res=>{
-      this.denuncias=<any>res
-      this.qlfy.fk_id_user_qualified=parseInt(this.denuncias[0].fk_id_user)
-      this.qlfy.fk_id_user_review=localStorage.getItem('token')
-      console.log(this.denuncias)
-    })
-    }
-*/
 
-/*
-cargarProducto(id_producto:string){
-  this.equipoService.getOneProduct(id_producto).subscribe(res=>{
-    this.producto=<any>res
-    this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
-    this.qlfy.fk_id_user_review=localStorage.getItem('token')
-    this.average(this.producto[0].fk_id_user);
-    console.log(this.producto)
-  },
-*/
+
 listarDenuncia(id_User:string){
   this.equipoService.getOneDenuncias(id_User).subscribe(res=>{
     this.denuncias=<any>res
@@ -67,8 +50,19 @@ listarDenuncia(id_User:string){
     console.log(this.denuncias)
   })
 
-
 }
+
+/*
+eliminarUser(id_user:string){
+
+  this.equipoService.deleteUser(id_user).subscribe(res=>{
+    console.log('Se elimino')
+    this.ngOnInit()
+  }, error => {
+    console.log(error);
+  })
+}
+*/
 
 
 }

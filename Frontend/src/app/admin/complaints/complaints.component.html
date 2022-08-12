@@ -1,25 +1,32 @@
-<div class="container mt-4">
-  <table class="table">
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th>Nombre</th>
-              <th>Descripción</th>
-              <th>Estado</th>
-          </tr>
-      </thead>
-      <tbody>
-        <div class="content" *ngFor="let denuncias of denuncias " ></div>
-          <tr th:*ngFor="let denuncias of denuncias ">
-              <td th:text=""></td>
-              <td th:text=></td>
-              <td th:text="${categoria.Descripcion}"></td>
-              <td th:text="${categoria.Estado}"></td>
-              <td>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span>Listado de Denuncias</span>
+          <table *ngIf="denuncias.length>0" class="table table-striped ">
+            <thead>
+              <tr>
+                <th scope="col">Id Denuncia</th>
+                <th scope="col">Usuario Denunciado</th>
+                <th scope="col">Usuario que hace la Denuncia </th>
+                <th scope="col">Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of denuncias">
+                <td>{{item.fk_id_product}}</td>
+                <td>{{item.fk_id_user}}</td>
+                <th >{{item.fk_id_complaint_category}}</th>
+                <td>{{item.text_description}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 *ngIf="denuncias.length>0">No hay Denuncias</h5>
 
-                <a class="btn btn-danger">Eliminar</a>
-              </td>
-          </tr>
-      </tbody>
-  </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

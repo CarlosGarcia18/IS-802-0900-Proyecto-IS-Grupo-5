@@ -15,7 +15,7 @@
             <h6 [title]="topCategories.label"><i style="color:green" class="fa-solid fa-arrow-turn-up"></i> {{topCategories.label.substring(0,25)}}: <span style="color:green">{{topCategories.value}}</span></h6>
             <h6 [title]="downCategories.label"><i style="color:red"  class="fa-solid fa-arrow-turn-down"></i> {{downCategories.label.substring(0,25)}}: <span style="color:red">{{downCategories.value}}</span></h6>
         </div>
-        <select [(ngModel)]="selectChart.select" class="select-category" (change)="getDataCategories('1')">
+        <select title="a" [(ngModel)]="selectChart.select" class="select-category" (change)="getDataCategories('1')">
             <option *ngFor="let item of categories" [value]="item.id_product_category">{{item.var_name}}</option>
         </select>
     </div>

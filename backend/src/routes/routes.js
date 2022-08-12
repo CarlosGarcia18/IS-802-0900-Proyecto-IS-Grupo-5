@@ -151,8 +151,9 @@ routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 routers.get('/imagenes/:fk_id_product', customerO.imagenes)
 
 routers.post('/deleteFiles',customerO.updatePhotos)
-
+//Listar denuncias por el id
 routers.get('/getDenuncias/:id',customerU.listarDenuncia)
+
 
 //obtener datos de grafica de categorias
 routers.get('/categoryChart/:fk_id_product_category',customerA.productsCategory)
@@ -170,7 +171,13 @@ routers.get('/admin/getCategory/:id_product_category', customerA.getOneCategory)
 routers.put('/admin/deleteCategory', customerA.deleteCategory)
 
 //listar denuncias
-routers.get('/getDenuncias/:id',customerU.listarDenuncia)
+routers.get('/getDenuncias/:id',customerA.listarDenuncia)
+
+//Eliminar usuario y productos por el id de usuario
+routers.delete('/deleUser/:id',customerU.deleteUserTotal)
+
+//Modificar Estado del usuario
+routers.post('/admin/updateEstado/:id',customerA.cambiarEstado)
 
 //exportacion de rutas
 module.exports = routers
