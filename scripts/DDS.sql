@@ -31,6 +31,7 @@ CREATE TABLE COMPLAINT_CATEGORY(
 
 CREATE TABLE USER(
     id_user SERIAL PRIMARY KEY,
+	registration_date timestamp NOT NULL COMMENT "Fecha de registro del usuario",
     fk_id_department BIGINT UNSIGNED NOT NULL COMMENT "Determina de que departamento es el usuario",
     FOREIGN KEY (fk_id_department) REFERENCES DEPARTMENT(id_department),
     var_code VARCHAR(7) NULL COMMENT "Codigo de recuperacion de credenciales",

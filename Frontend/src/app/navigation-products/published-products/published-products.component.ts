@@ -39,6 +39,7 @@ export class PublishedProductsComponent implements OnInit {
   this.equipoService.traeProd(localStorage.getItem('token')).subscribe(res=>{
     this.productoList=<any>res
     console.log(this.productoList)
+   
   }, error =>{
     console.log(error)
 })
@@ -215,7 +216,7 @@ public fotos=[]
 subirArchivo(): any {
   //Sube el producto
   this.equipoService.updateProduct(localStorage.getItem("idProductoModal"), this.producto).subscribe(res=>{
-    
+    console.log(res)
    // var info: BookInfo2 = <any>res;
    
     
@@ -240,6 +241,8 @@ subirArchivo(): any {
     this.archivos.length=0
     this.srcArray.length=0
     this.ngOnInit()
+
+  
     
   });
 }
@@ -255,6 +258,7 @@ subirArchivo(): any {
     var_name: '',
     text_description: '',
     dou_price: 0,
+    categoria:''
   };
   
 ////////////////////PAGINACION////////////////
@@ -268,6 +272,7 @@ cambiarPagina(e:PageEvent){
   this.hasta=this.desde+e.pageSize;
 }
 
+
 }
 
 interface BookInfo {
@@ -279,4 +284,3 @@ interface BookInfo2 {
   status: string;
   id: string;
 }
-
