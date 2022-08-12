@@ -100,7 +100,7 @@ controller.postUser = (req, res) => {
     let sql1 = `SELECT id_user from USER where var_email='${var_email}'`
     //verificar que el correo no ha sido registrado
     let sql = `insert into USER(registration_date,fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(CURRENT_TIMESTAMP(),${fk_id_department},'${var_email}','${var_name}',
-    '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
+    '${var_lastname}','${tex_password}',1,${bit_status},'${var_phone}')`
     conection.query(sql1, (err, rows, fields) => {
         if (err) res.send({ status: '0', id: "" }); //error en consulta
         else if (rows.length == 0) {
