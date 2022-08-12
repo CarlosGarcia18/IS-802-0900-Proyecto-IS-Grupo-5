@@ -179,6 +179,9 @@ routers.delete('/deleUser/:id',customerU.deleteUserTotal)
 //Modificar Estado del usuario
 routers.post('/admin/updateEstado/:id',customerA.cambiarEstado)
 
+//ListadoUsuario 
+routers.get('/admin/listUser/:id',customerA.listadoUsuario)
+
 //exportacion de rutas
 module.exports = routers
 

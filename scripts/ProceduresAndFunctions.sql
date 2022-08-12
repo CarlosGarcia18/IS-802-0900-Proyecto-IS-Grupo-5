@@ -220,3 +220,17 @@ end//
 
 call listDenuncias12(2);
 
+--Listado de denuncias por usuario
+delimiter //
+create  procedure ListadoUsuarios(id int)
+BEGIN
+select * from user
+where exists (select * from complaint
+where fk_id_user=id_user)
+and id_user= id;
+end//
+
+
+call ListadoUsuarios();
+
+

@@ -154,4 +154,20 @@ controller.cambiarEstado =(req, res)=>{
     
 }
 
+controller.listadoUsuario =(req, res)=>{
+    const{id}=req.params
+
+    let sql14=`call ListadoUsuarios(${id})`
+
+    conection.query(sql14, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+    
+}
+
+
 module.exports = controller

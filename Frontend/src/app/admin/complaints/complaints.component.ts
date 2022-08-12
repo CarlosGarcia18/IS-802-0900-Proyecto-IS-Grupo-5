@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, complaint, user } from '../../SERVICES/equipo.service';
+import { EquipoService, complaint, user, Registro } from '../../SERVICES/equipo.service';
 
 import { qualification,reqQualify} from '../../SERVICES/equipo.service';
 
@@ -11,6 +11,9 @@ import { qualification,reqQualify} from '../../SERVICES/equipo.service';
 export class ComplaintsComponent implements OnInit {
   //Denuncia es de tipo inferzar complaint
   denuncias: complaint[]=[]
+  //Se implementa la interfaz registro
+  user1:Registro[]=[]
+  //Se implementa la interfaz user
   user: user[]=[]
   //Listar los usuarios que tengan denuncias
   //
@@ -22,22 +25,33 @@ export class ComplaintsComponent implements OnInit {
     text_description: ''
   }
 
-/*
-  qlfy: qualification ={
-    fk_id_user_qualified: 0,
-    fk_id_user_review: '',
-    tin_score: 0
+  use: Registro={
+    fk_id_department: 0,
+    var_email: '',
+    var_name: '',
+    var_lastname: '',
+    tex_password: '',
+    bit_status: 0,
+    var_phone: ''
   }
-  response: reqQualify={
-    status:'',
-    msg:''
-  }
-*/
+
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
     this.listarDenuncia
+    this.listarUsuariosDenuncia
   }
+
+listarUsuariosDenuncia(id_User:string){
+  this.equipoService.getUserDenuncia(id_User).subscribe(res=>{
+    this.user1=<any> res
+    this.use.var_name
+    this.use.var_lastname
+
+  }, error =>{
+    console.log(error)
+  })
+}
 
 
 listarDenuncia(id_User:string){
@@ -48,21 +62,13 @@ listarDenuncia(id_User:string){
     this.qlfy.text_description
     this.qlfy.fk_id_complaint_category
     console.log(this.denuncias)
+  }, error =>{
+    console.log(error)
   })
 
 }
 
-/*
-eliminarUser(id_user:string){
 
-  this.equipoService.deleteUser(id_user).subscribe(res=>{
-    console.log('Se elimino')
-    this.ngOnInit()
-  }, error => {
-    console.log(error);
-  })
-}
-*/
 
 
 }

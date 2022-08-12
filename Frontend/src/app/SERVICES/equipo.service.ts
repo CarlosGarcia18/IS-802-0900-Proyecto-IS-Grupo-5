@@ -105,6 +105,10 @@ export class EquipoService {
   borrarProducto(id: String ){
     return this.http.delete(this.url+"/productDelete/"+id)
   }
+  //Trae los usuario con denuncias
+  getUserDenuncia(id: String|null){
+    return this.http.get(this.url+"/admin/listUser/"+id)
+  }
 
   getOneProduct(id: string|null){
     return this.http.get(this.url+"/getProducto/"+id)

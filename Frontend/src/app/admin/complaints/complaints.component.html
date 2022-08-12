@@ -3,6 +3,43 @@
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
         <div class="card-body text-center">
+          <span>Listado de Usuarios</span>
+          <table *ngIf="user1.length>0" class="table table-striped ">
+            <thead>
+              <tr>
+                <th scope="col">name</th>
+                <th scope="col">lastname</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item2 of user1">
+                <td>{{item2.var_name}}</td>
+                <td>{{item2.var_lastname}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+          <h5 *ngIf="denuncias.length>0">No hay Denuncias</h5>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
           <span>Listado de Denuncias</span>
           <table *ngIf="denuncias.length>0" class="table table-striped ">
             <thead>
