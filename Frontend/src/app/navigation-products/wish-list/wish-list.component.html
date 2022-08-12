@@ -10,14 +10,14 @@
         <div class="content" *ngFor="let item of afterGet.msg | slice:desde:hasta">
             <img [src]="'http://localhost:3000/' + item.var_name_photo" alt="">
             <div class="content-inf">
-                <div class="content-inf-text">
-                    <h4 style="font-size: 18px; text-align:left">{{item.var_name}}</h4>
+                <div class="content-inf-text" style="width: 90%;">
+                    <p class="info" style="font-size: 14px; text-align:left"><strong>{{item.var_name}}</strong></p>
                 </div>
                 <div style="width:20px">
                     <i (click)="removeProduct(item.id_product.toString())" class="fa-solid fa-heart icon-product"></i>
                 </div>
             </div>
-            <h6>L.{{item.dou_price}}</h6>
+            <p class="info">L.{{item.dou_price}}</p>
 
             <h6 *ngIf="">{{afterDelete.msg}}</h6>
 
@@ -48,6 +48,13 @@
             </div>
 
             <div class="modal-body" *ngFor="let item of producto">
+                 <!--MODAL DENUNCIA-->
+            <div *ngIf="modalComplaint">
+                <app-complaint></app-complaint>
+            </div>
+
+        <div *ngIf="!modalComplaint">
+
                 <table style=" width:100%">
                     <tr style="width: 100%;">
                         <td style="width: 50%;">
@@ -126,7 +133,7 @@
                                         data-bs-dismiss="modal" aria-label="Close" (click)="newChat(item.fk_id_user,item.id_product)"
                                         style="background-color: #93BEE2; margin-left: 10px;">Contactar</button>
                                     <button *ngIf="item.fk_id_user != user" type="submit" class="cbtn"
-                                        style="background-color: #FAA11D; margin-left: 10px;">Denunciar</button>
+                                        style="background-color: #FAA11D; margin-left: 10px;" (click)="denunciar()">Denunciar</button>
                                 </div>
                             </div>
                         </td>
@@ -157,7 +164,7 @@
 
                     </div>
                 </div>
-
+</div>
             </div>
         </div>
     </div>

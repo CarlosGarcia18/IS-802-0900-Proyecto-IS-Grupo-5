@@ -157,6 +157,21 @@ routers.get('/getDenuncias/:id',customerU.listarDenuncia)
 //obtener datos de grafica de categorias
 routers.get('/categoryChart/:fk_id_product_category',customerA.productsCategory)
 
+//agregar una categoria
+routers.post('/admin/addCategory', customerA.addCategory)
+
+//actualizar una categoria
+routers.post('/admin/updateCategory', customerA.updateCategory)
+
+//traer una categoria
+routers.get('/admin/getCategory/:id_product_category', customerA.getOneCategory)
+
+//eliminar categoria
+routers.put('/admin/deleteCategory', customerA.deleteCategory)
+
+//listar denuncias
+routers.get('/getDenuncias/:id',customerU.listarDenuncia)
+
 //exportacion de rutas
 module.exports = routers
 

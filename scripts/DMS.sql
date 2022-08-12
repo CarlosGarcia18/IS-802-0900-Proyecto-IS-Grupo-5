@@ -52,18 +52,18 @@ INSERT INTO COMPLAINT_CATEGORY(var_name) VALUES("Otro");
 
 -- INSERTAR EL USUARIO ADMINISTRADOR CORREO: admin@admin.com CONTRASEÑA: 1234567
 
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(8, 'admin@admin.com', 'admin', 'plazitanet', '1234567', 0, 1, '99000000');
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(2, 'mariadb@gmail.com', 'Maria', 'Gonzales', 'Hola1234//', 1, 1, '89676545');
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(1, 'joseK@gmail.com', 'Jose', 'Kalix', 'joseK-123', 1, 1, '56243142');
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(15, 'kevin_manuel@hotmail.com', 'Kevin', 'Manuel', 'KevinManuel1/', 1, 1, '98786756');
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(7, 'delmerespinal2@gmail.com', 'Delmer', 'Espinal', 'Hola123.', 1, 1, '98776654');
-INSERT INTO USER(fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES(13, 'guillermodiaz@gmail.com', 'Guillermo', 'Diaz', 'Hello/777', 1, 1, '33445577');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-01',8, 'admin@admin.com', 'admin', 'plazitanet', '1234567', 0, 1, '99000000');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-07-01',2, 'mariadb@gmail.com', 'Maria', 'Gonzales', 'Hola1234//', 1, 1, '89676545');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-07-04',1, 'joseK@gmail.com', 'Jose', 'Kalix', 'joseK-123', 1, 1, '56243142');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-04',15, 'kevin_manuel@hotmail.com', 'Kevin', 'Manuel', 'KevinManuel1/', 1, 1, '98786756');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-07-12',7, 'delmerespinal2@gmail.com', 'Delmer', 'Espinal', 'Hola123.', 1, 1, '98776654');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-07-20',13, 'guillermodiaz@gmail.com', 'Guillermo', 'Diaz', 'Hello/777', 1, 1, '33445577');
 
 
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 

@@ -99,9 +99,8 @@ controller.postUser = (req, res) => {
     const { fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone } = req.body
     let sql1 = `SELECT id_user from USER where var_email='${var_email}'`
     //verificar que el correo no ha sido registrado
-    let sql = `insert into USER(fk_id_department,var_email,var_name,var_lastname,tex_password,bit_status,var_phone) values(${fk_id_department},'${var_email}','${var_name}',
-    '${var_lastname}','${tex_password}',${bit_status},'${var_phone}')`
-    //try {
+    let sql = `insert into USER(registration_date,fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(CURRENT_TIMESTAMP(),${fk_id_department},'${var_email}','${var_name}',
+    '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
     conection.query(sql1, (err, rows, fields) => {
         if (err) res.send({ status: '0', id: "" }); //error en consulta
         else if (rows.length == 0) {
@@ -306,8 +305,8 @@ controller.updateUser = (req, res) => {
 
 controller.productUser = (req, res) => {
     const { id } = req.params
-    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
-        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product where `
+    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date, product_category.var_name AS categoria`
+        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product INNER JOIN product_category ON product_category.id_product_category= product.fk_id_product_category  where `
     sql1 += `product.fk_id_user=${id} group by product.id_product ORDER BY publication_date DESC`
 
     conection.query(sql1, (err, rows, fields) => {
@@ -770,81 +769,6 @@ controller.vista = (req, res) => {
 
     })
 }
-/*
-controller.PudProducto=(req,res)=>{
-    const{id}=req.params
-
-    const{fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,
-        dou_price,bit_availability,publication_date,expiration_date} = req.body;
-
-        let sql22=`SELECT * FROM user WHERE id_user = ${fk_id_user}`
-        let sql23=`SELECT * FROM DEPARTMENT WHERE id_department = ${fk_id_department}`
-        let sql24=`SELECT * FROM PRODUCT_CATEGORY WHERE id_product_category = ${fk_id_product_category}`
-        let sql25=`SELECT * FROM PRODUCT_STATUS WHERE id_product_status = ${fk_id_product_status}`
-
-
-        let sql26 = `update PRODUCT set 
-        fk_id_user=${fk_id_user},
-        fk_id_department=${fk_id_department},
-        fk_id_product_category=${fk_id_product_category},
-        fk_id_product_status=${fk_id_product_status} ` +
-        `var_name='${var_name}', ` +
-        `text_description='${text_description}', ` +
-        `dou_price=${dou_price}, ` +
-        `bit_availability=${bit_availability}, ` +
-        `publication_date='${publication_date}', ` +
-        `expiration_date='${expiration_date}' where id_user = ${id}`
-
-        conection.query(sql22,(err,rows,fields)=>{
-          if(err){  res.json({status:'0',erorr:err.sqlMessage});
-        }else{
-            if(rows.length!=0){
-                conection.query(sql23,(err,rows,fields)=>{
-                    if(err){
-                        res.json({status:'1',error:err.sqlMessage})
-                    }else{
-                        if(rows.length!=0){
-                            conection.query(sql24,(err,rows,fields)=>{
-                                if(err){
-                                    res.json({status:'2',error:err.sqlMessage})
-                                }else{
-                                    if(rows.length!=0){
-                                        conection.query(sql25,(err,rows,fields)=>{
-                                            if(err){
-                                                res.json({status:'3',error:err.sqlMessage})
-                                            }else{
-                                                if(rows.length!=0){
-                                                    conection.query(sql26,(err,rows,fields)=>{
-                                                        if(err){
-                                                            res.json({status:'4',error:err.sqlMessage})
-                                                        }else{
-                                                            res.json({status:'200', msg:'Se modifico correctamente'})
-                                                        }
-                                                    })
-
-                                                }
-                                            }
-                                        })
-
-                                    }
-                                }
-                            })
-                        }
-
-
-                    }
-                })
-            }
-        }
-
-
-        })
-        
-
-}
-*/
-
-/* Las funciones estan en customerChat
 //Crear Mensaje
 controller.addMessage = (req, res) => {
     const{fk_id_chat,fk_id_user,text_contents}=req.body
@@ -918,6 +842,20 @@ controller.listarDenuncia =(req, res)=>{
     
 }
 
+controller.listarDenuncia =(req, res)=>{
+    const{id}=req.params
+
+    let sql28=`call listDenuncias12(${id})`
+
+    conection.query(sql28, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+
+}
 
 //exportacion de controler
 module.exports = controller

@@ -19,7 +19,7 @@ export class WishListComponent implements OnInit {
  comments: loadComment[]=[]
  qualifyAverage: promedio[]=[]
  firstImage: string=''
-
+ modalComplaint:boolean = false
  qlfy: qualification ={
    fk_id_user_qualified: 0,
    fk_id_user_review: '', 
@@ -96,8 +96,15 @@ error = false
     this.loadProducts()
    
     this.toggleButton=false
+      //Denuncia
+      this.equipoService.$modalComplaint.subscribe((valor) => {
+        this.modalComplaint = valor
+      })
+      this.modalComplaint = false
   }
-
+  denunciar(){
+    this.modalComplaint = true
+  }
   loadProducts(){
     this.equipoService.listWishlist(localStorage.getItem("token")).subscribe(
       res=>{
@@ -164,8 +171,10 @@ error = false
 
   cargarImagenes(id_producto:string){
     this.equipoService.getImages(id_producto).subscribe(res=>{
-      this.images=<any>res
+        this.images=<any>res
+     
       this.firstImage=this.images[0].var_name
+      
     },
     err => console.log(err))
   }
@@ -206,7 +215,7 @@ error = false
     }else if((this.promedio>=3.5 && this.promedio<=4) || ( this.promedio>4 && this.promedio<4.5)){
         this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true;
     }else if(this.promedio>=4.5 && this.promedio<=5){
-        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true; this.cond5;
+        this.cond1=true; this.cond2=true; this.cond3=true;  this.cond4=true; this.cond5=true;
     }else{
       this.cond1=false;
       this.cond2=false;
