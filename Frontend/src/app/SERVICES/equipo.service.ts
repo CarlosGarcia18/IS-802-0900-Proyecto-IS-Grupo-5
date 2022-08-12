@@ -105,6 +105,10 @@ export class EquipoService {
   borrarProducto(id: String ){
     return this.http.delete(this.url+"/productDelete/"+id)
   }
+  //Trae los usuario con denuncias
+  getUserDenuncia(){
+    return this.http.get(this.url+"/admin/listUser/")
+  }
 
   getOneProduct(id: string|null){
     return this.http.get(this.url+"/getProducto/"+id)
@@ -170,6 +174,10 @@ export class EquipoService {
   }
   getCategory(id_product_category: number){
     return this.http.get<Categoria[]>(this.url+"/admin/getCategory/"+ id_product_category)
+  }
+
+  updateEstadoUsu(id_user:String){
+    return this.http.put(this.url+"/admin/updateEstado/",id_user)
   }
 
 }

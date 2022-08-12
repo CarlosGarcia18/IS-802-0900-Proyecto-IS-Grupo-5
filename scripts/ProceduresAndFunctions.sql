@@ -212,3 +212,34 @@ BEGIN
 END//
 
 
+delimiter //
+create  procedure listDenuncias12(id int)
+BEGIN
+ SELECT*FROM COMPLAINT where fk_id_user_complaining=id order by tim_date asc;
+end//
+
+call listDenuncias12(2);
+
+--Listado de denuncias por usuario
+delimiter //
+create  procedure ListadoUsuarios(id int)
+BEGIN
+select * from user
+where exists (select * from complaint
+where fk_id_user=id_user)
+and id_user= id;
+end//
+
+
+call ListadoUsuarios();
+
+
+delimiter //
+create  procedure ListadoUsuarios31()
+BEGIN
+select * from user
+where exists (select * from complaint
+where fk_id_user=id_user);
+end//
+
+call ListadoUsuarios31();

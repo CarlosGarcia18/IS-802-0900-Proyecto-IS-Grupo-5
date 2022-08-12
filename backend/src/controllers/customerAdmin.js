@@ -201,4 +201,66 @@ controller.amountCategory = (req,res) =>{
 }
 
 
+//Listar Denuncias
+controller.listarDenuncia =(req, res)=>{
+    const{id}=req.params
+
+    let sql28=`call listDenuncias12(${id})`
+
+    conection.query(sql28, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+    
+}
+
+/*Modificar Estado*/
+controller.cambiarEstado =(req, res)=>{
+    const{id}=req.params
+
+    let sql13=`call modificarEstado(${id})`
+
+    conection.query(sql13, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+    
+}
+/*
+controller.listadoUsuario =(req, res)=>{
+    const{id}=req.params
+
+    let sql14=`call ListadoUsuarios(${id})`
+
+    conection.query(sql14, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+     
+}*/
+
+controller.listadoUsuario =(req, res)=>{
+    
+    let sql15=`call ListadoUsuarios31();`
+
+    conection.query(sql15, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json(rows[0])
+        }
+    })
+     
+}
+
+
 module.exports = controller

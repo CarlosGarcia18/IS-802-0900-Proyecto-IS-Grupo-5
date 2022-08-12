@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { EquipoService, complaint } from '../../SERVICES/equipo.service';
+import { EquipoService, complaint, user, Registro } from '../../SERVICES/equipo.service';
 
 import { qualification,reqQualify} from '../../SERVICES/equipo.service';
-
 
 @Component({
   selector: 'app-complaints',
@@ -12,6 +11,12 @@ import { qualification,reqQualify} from '../../SERVICES/equipo.service';
 export class ComplaintsComponent implements OnInit {
   //Denuncia es de tipo inferzar complaint
   denuncias: complaint[]=[]
+  //Se implementa la interfaz registro
+  user:Registro[]=[]
+  //Se implementa la interfaz user
+
+  //Listar los usuarios que tengan denuncias
+  //
 
   qlfy: complaint={
     fk_id_user: '',
@@ -20,43 +25,37 @@ export class ComplaintsComponent implements OnInit {
     text_description: ''
   }
 
-/*
-  qlfy: qualification ={
-    fk_id_user_qualified: 0,
-    fk_id_user_review: '',
-    tin_score: 0
+  use: Registro={
+    fk_id_department: 0,
+    var_email: '',
+    var_name: '',
+    var_lastname: '',
+    tex_password: '',
+    bit_status: 0,
+    var_phone: ''
   }
-  response: reqQualify={
-    status:'',
-    msg:''
-  }
-*/
+
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
-  }
-/*
-  argarProducto(id_denuncias:string){
-    localStorage.setItem('productToken',id_denuncias)
-    this.equipoService.getOneDenuncias(id_denuncias).subscribe(res=>{
-      this.denuncias=<any>res
-      this.qlfy.fk_id_user_qualified=parseInt(this.denuncias[0].fk_id_user)
-      this.qlfy.fk_id_user_review=localStorage.getItem('token')
-      console.log(this.denuncias)
-    })
-    }
-*/
+    this.listarDenuncia
+    this.listarUsuariosDenuncia()
 
-/*
-cargarProducto(id_producto:string){
-  this.equipoService.getOneProduct(id_producto).subscribe(res=>{
-    this.producto=<any>res
-    this.qlfy.fk_id_user_qualified=this.producto[0].fk_id_user
-    this.qlfy.fk_id_user_review=localStorage.getItem('token')
-    this.average(this.producto[0].fk_id_user);
-    console.log(this.producto)
-  },
-*/
+  }
+
+listarUsuariosDenuncia(){
+  this.equipoService.getUserDenuncia().subscribe(res=>{
+    this.user=<any> res
+    console.log(this.user)
+    this.use.var_name
+    this.use.var_lastname
+
+  }, error =>{
+    console.log(error)
+  })
+}
+
+
 listarDenuncia(id_User:string){
   this.equipoService.getOneDenuncias(id_User).subscribe(res=>{
     this.denuncias=<any>res
@@ -65,10 +64,13 @@ listarDenuncia(id_User:string){
     this.qlfy.text_description
     this.qlfy.fk_id_complaint_category
     console.log(this.denuncias)
+  }, error =>{
+    console.log(error)
   })
 
-
 }
+
+
 
 
 }

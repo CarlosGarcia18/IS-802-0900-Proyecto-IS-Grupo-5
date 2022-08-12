@@ -20,7 +20,7 @@ export class PublishedProductsComponent implements OnInit {
   public previsualizacion: any;
   public archivos: any = []; //Sera de tipo array
   public image: any; //Enviar una imagen a la vez al servidor
-  
+  public alertMsg=''
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
@@ -33,6 +33,7 @@ export class PublishedProductsComponent implements OnInit {
     })
     this.cargadas.length=0
     this.eliminadas.length=0
+    this.alertMsg=''
   }
 
   getProducList(){
@@ -169,6 +170,10 @@ public fotos=[]
       localStorage.setItem("idProductoModal",id_product) //lo usamos despues para cargar el producto y actualizarlo
       this.equipoService.getUnProducto(localStorage.getItem("idProductoModal")).subscribe(res=>{
           this.producto = res[0]
+          if(this.producto.categoria=='Indefinida'){
+            this.alertMsg="La categoria de este producto ha sido eliminada del sistema, edita tu producto seleccionando otra categoria"
+          }
+          
           console.log(typeof this.producto)
           console.log(this.producto)
       }, err=>console.log(err))
