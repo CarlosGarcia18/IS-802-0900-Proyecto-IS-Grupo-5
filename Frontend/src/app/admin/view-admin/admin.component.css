@@ -21,7 +21,7 @@
 .menu-admin{
     width: 400px;
     background-color: #252F37;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .container{

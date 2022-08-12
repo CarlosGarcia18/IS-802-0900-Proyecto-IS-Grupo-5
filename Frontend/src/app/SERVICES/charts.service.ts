@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { dataChart } from '../../assets/interfaces'
+import { dataChart,dataRegister } from '../../assets/interfaces'
 import { BehaviorSubject, Observable } from 'rxjs';
 
 const chartData:dataChart={
@@ -25,6 +25,14 @@ export class ChartsService {
 
   getProductCategories(){
     return this.http.get(this.url+"/productCategory")
+  }
+
+  getRegisterUser(data:dataRegister){
+    return this.http.post(this.url+"/registerChart",data)
+  }
+
+  getCategoriesChart(){
+    return this.http.get(this.url+"/categoryChart")
   }
 
   private class$ = new BehaviorSubject<dataChart>(chartData)

@@ -182,6 +182,13 @@ routers.post('/admin/updateEstado/:id',customerA.cambiarEstado)
 //ListadoUsuario 
 routers.get('/admin/listUser',customerA.listadoUsuario)
 
+//obtener datos de grafica de registrados
+routers.post('/registerChart',customerA.amountUserRegister)
+
+//obtener datos de grafica de categorias
+routers.get('/categoryChart',customerA.amountCategory)
+
+
 //exportacion de rutas
 module.exports = routers
 
