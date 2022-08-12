@@ -24,7 +24,7 @@
     </thead>
     <tbody *ngFor="let item of categories; let indice=index">
     <tr>
-    <th scope="row">{{item.id_product_category}}</th>
+    <th scope="row">{{indice+1}}</th>
     <td>{{item.var_name}}</td>
     <td><button type="submit" class="btn btn-secondary" style="border-radius: 100%;" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="getCategory(item.id_product_category)"> <i class="fa-solid fa-pen"></i></button></td>
     <td>

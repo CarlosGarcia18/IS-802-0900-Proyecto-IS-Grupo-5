@@ -126,11 +126,11 @@
                 <option *ngFor="let category of categories" [value]="category.id_product_category">
                   {{category.var_name}}
                 </option>
-
+               
               </select>
               <label class="nom" for="categoria">Categoria de Producto</label>
             </div>
-
+            <div><h6 style="color:red">{{alertMsg}}</h6></div>
             <div class="errors-container"
               *ngIf="categoriaControl.invalid && (categoriaControl.touched || categoriaControl.dirty)">
               <p class="errors-msg" class="fs-6" *ngIf="categoriaControl.hasError('required')">El campo es obligatorio
