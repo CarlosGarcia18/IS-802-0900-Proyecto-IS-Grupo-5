@@ -1,6 +1,7 @@
 .container-page{
     display: flex;
     width: 100%;
+    margin-top: 60px;
 }
 
 .header{
@@ -18,7 +19,7 @@
 /*NAV-BAR*/
 
 .menu-admin{
-    width: 390px;
+    width: 400px;
     background-color: #252F37;
     height: 100vh;
 }
