@@ -72,7 +72,6 @@ export class RegisterComponent implements OnInit {
   var_lastname:"",
   tex_password:"",
   /*tex_password:" ",*/
-  bit_rol:1,
   bit_status:1,
   var_phone:""
   }

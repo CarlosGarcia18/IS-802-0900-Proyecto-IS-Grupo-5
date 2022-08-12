@@ -49,7 +49,27 @@ export class LoginComponent implements OnInit {
         if (status.status == '200') {
           //this.EquipoService.setToken(status.id)
           localStorage.setItem('token',status.id)
-          this.router.navigate([`navigationProducts`])
+
+          //Comprueba si es administrador
+          this.EquipoService.getUserRol(status.id).subscribe(
+            res=>{
+              const respuesta:adminInfo = <any>res
+              if(respuesta.rol){
+                localStorage.setItem('isAdmin','true')
+                console.log(respuesta.msg)
+                this.router.navigate([`admin`])
+                
+              }else{
+                localStorage.setItem('isAdmin','false')
+                this.router.navigate([`navigationProducts`])
+                
+              }
+              
+            },
+            err => console.log(err)
+            );
+
+
         }else if(status.status == '1'){
           this.deleteUser = true
         }else if(status.status == '0'){
@@ -60,6 +80,8 @@ export class LoginComponent implements OnInit {
       },
       err => this.error = true
     );
+
+    
   }
 
 }
@@ -67,5 +89,10 @@ export class LoginComponent implements OnInit {
 interface BookInfo {
   status : string ;
   id: string;
+}
+
+interface adminInfo {
+  rol : boolean ;
+  msg: string;
 }
 

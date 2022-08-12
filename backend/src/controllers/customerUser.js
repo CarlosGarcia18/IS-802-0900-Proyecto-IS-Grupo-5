@@ -78,14 +78,29 @@ controller.getUser = (req, res) => {
     })
 }
 
+controller.getRol = (req, res) => {
+    const { id } = req.params
+    let sql = `select bit_rol from USER where id_user=${id}`
+    conection.query(sql, (err, rows, fields) => {
+        if (err) res.json({rol:false, msg:err.sqlMessage});
+        else {
+            if(rows[0].bit_rol[0] == 0){
+                res.json({rol:true, msg:"Tiene privilegios administrador"})
+            }else{
+                res.json({rol:false, msg:"No tiene privilegios de administrador"})
+            }
+        }
+    })
+
+}
+
 //funcion para insertar un usuario
 controller.postUser = (req, res) => {
-    const { fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone } = req.body
+    const { fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone } = req.body
     let sql1 = `SELECT id_user from USER where var_email='${var_email}'`
     //verificar que el correo no ha sido registrado
     let sql = `insert into USER(registration_date,fk_id_department,var_email,var_name,var_lastname,tex_password,bit_rol,bit_status,var_phone) values(CURRENT_TIMESTAMP(),${fk_id_department},'${var_email}','${var_name}',
     '${var_lastname}','${tex_password}',${bit_rol},${bit_status},'${var_phone}')`
-    //try {
     conection.query(sql1, (err, rows, fields) => {
         if (err) res.send({ status: '0', id: "" }); //error en consulta
         else if (rows.length == 0) {
@@ -754,7 +769,6 @@ controller.vista = (req, res) => {
 
     })
 }
-
 //Crear Mensaje
 controller.addMessage = (req, res) => {
     const{fk_id_chat,fk_id_user,text_contents}=req.body
@@ -810,6 +824,7 @@ controller.listarMenssage =(req, res)=>{
     })
 
 }
+*/
 
 //Listar Denuncias
 controller.listarDenuncia =(req, res)=>{
@@ -841,7 +856,6 @@ controller.listarDenuncia =(req, res)=>{
     })
 
 }
-
 
 //exportacion de controler
 module.exports = controller
