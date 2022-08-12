@@ -824,7 +824,7 @@ controller.listarMenssage =(req, res)=>{
     })
 
 }
-*/
+
 
 //Listar Denuncias
 controller.listarDenuncia =(req, res)=>{
