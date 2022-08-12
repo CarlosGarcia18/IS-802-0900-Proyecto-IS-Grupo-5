@@ -12,4 +12,11 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  eliminaToken(){
+    if (localStorage.getItem('token')!=null && localStorage.getItem('token') != ""){
+      localStorage.removeItem('token')
+      localStorage.removeItem('isAdmin')
+    }
+  }
+
 }
