@@ -4,23 +4,25 @@
       <div class="card">
         <div class="card-body text-center">
           <span>Listado de Usuarios</span>
-          <table *ngIf="user1.length>0" class="table table-striped ">
+          <table  class="table table-striped ">
             <thead>
               <tr>
-                <th scope="col">name</th>
-                <th scope="col">lastname</th>
+                <th>No.</th>
+                <th scope="col">Primer Nombre</th>
+                <th scope="col">Primer Apellido</th>
 
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item2 of user1">
+              <tr *ngFor="let item2 of user; let indice=index">
+                <th scope="row">{{indice+1}}</th>
                 <td>{{item2.var_name}}</td>
                 <td>{{item2.var_lastname}}</td>
 
               </tr>
             </tbody>
           </table>
-          <h5 *ngIf="denuncias.length>0">No hay Denuncias</h5>
+
 
         </div>
       </div>

@@ -12,9 +12,9 @@ export class ComplaintsComponent implements OnInit {
   //Denuncia es de tipo inferzar complaint
   denuncias: complaint[]=[]
   //Se implementa la interfaz registro
-  user1:Registro[]=[]
+  user:Registro[]=[]
   //Se implementa la interfaz user
-  user: user[]=[]
+
   //Listar los usuarios que tengan denuncias
   //
 
@@ -39,12 +39,14 @@ export class ComplaintsComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarDenuncia
-    this.listarUsuariosDenuncia
+    this.listarUsuariosDenuncia()
+
   }
 
-listarUsuariosDenuncia(id_User:string){
-  this.equipoService.getUserDenuncia(id_User).subscribe(res=>{
-    this.user1=<any> res
+listarUsuariosDenuncia(){
+  this.equipoService.getUserDenuncia().subscribe(res=>{
+    this.user=<any> res
+    console.log(this.user)
     this.use.var_name
     this.use.var_lastname
 

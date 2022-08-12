@@ -180,8 +180,9 @@ routers.delete('/deleUser/:id',customerU.deleteUserTotal)
 routers.post('/admin/updateEstado/:id',customerA.cambiarEstado)
 
 //ListadoUsuario 
-routers.get('/admin/listUser/:id',customerA.listadoUsuario)
+routers.get('/admin/listUser',customerA.listadoUsuario)
 
 //exportacion de rutas
 module.exports = routers
 
+ 

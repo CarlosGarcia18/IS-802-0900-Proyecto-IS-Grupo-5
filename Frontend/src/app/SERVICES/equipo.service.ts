@@ -106,8 +106,8 @@ export class EquipoService {
     return this.http.delete(this.url+"/productDelete/"+id)
   }
   //Trae los usuario con denuncias
-  getUserDenuncia(id: String|null){
-    return this.http.get(this.url+"/admin/listUser/"+id)
+  getUserDenuncia(){
+    return this.http.get(this.url+"/admin/listUser/")
   }
 
   getOneProduct(id: string|null){

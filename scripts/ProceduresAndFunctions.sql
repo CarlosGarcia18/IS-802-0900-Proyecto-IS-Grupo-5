@@ -234,3 +234,12 @@ end//
 call ListadoUsuarios();
 
 
+delimiter //
+create  procedure ListadoUsuarios31()
+BEGIN
+select * from user
+where exists (select * from complaint
+where fk_id_user=id_user);
+end//
+
+call ListadoUsuarios31();

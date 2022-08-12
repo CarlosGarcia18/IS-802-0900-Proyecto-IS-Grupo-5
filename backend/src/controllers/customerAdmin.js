@@ -153,7 +153,7 @@ controller.cambiarEstado =(req, res)=>{
     })
     
 }
-
+/*
 controller.listadoUsuario =(req, res)=>{
     const{id}=req.params
 
@@ -166,7 +166,21 @@ controller.listadoUsuario =(req, res)=>{
             res.json({status:'200', msg:rows})
         }
     })
+     
+}*/
+
+controller.listadoUsuario =(req, res)=>{
     
+    let sql15=`call ListadoUsuarios31();`
+
+    conection.query(sql15, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json(rows[0])
+        }
+    })
+     
 }
 
 
