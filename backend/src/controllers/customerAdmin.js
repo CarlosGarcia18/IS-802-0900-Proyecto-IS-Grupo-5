@@ -161,7 +161,7 @@ controller.amountUserRegister = (req,res) =>{
                         value:data.amount
                     }
                 }
-                if (data.amount<down.value) {
+                if (data.amount<=down.value) {
                     down={
                         label:data.date,
                         value:data.amount
@@ -174,5 +174,31 @@ controller.amountUserRegister = (req,res) =>{
         
     })
 }
+
+controller.amountCategory = (req,res) =>{
+
+    let sql = `SELECT count(*) as amount, c.var_name FROM plazitanet.subscription as s, plazitanet.product_category as c where`
+    +` s.fk_id_product_category=c.id_product_category group by c.var_name order by amount desc`
+
+    conection.query(sql,(err,rows,fields)=>{
+        if (err) {
+            res.json({status:'0', msg:err.sqlMessage});
+        }
+        if (rows.length<1) {
+            res.json({status:'200', 'labels':[], 'data':[]})
+        }else{
+            let chartLabel=[];
+            let chartData=[];
+            rows.map(data=>{
+                chartLabel.push(data.var_name)
+                chartData.push(data.amount)
+            })
+
+            res.json({status:'200', 'labels':chartLabel, 'data':chartData})
+        }
+        
+    })
+}
+
 
 module.exports = controller

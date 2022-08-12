@@ -31,6 +31,10 @@ export class ChartsService {
     return this.http.post(this.url+"/registerChart",data)
   }
 
+  getCategoriesChart(){
+    return this.http.get(this.url+"/categoryChart")
+  }
+
   private class$ = new BehaviorSubject<dataChart>(chartData)
 
   get selectedData$(): Observable<dataChart>{

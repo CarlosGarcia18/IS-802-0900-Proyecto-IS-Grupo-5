@@ -14,9 +14,12 @@ export class StatisticsComponent implements OnInit {
   labels: string[] = [];
   data: number[] = [];
   selectedTypeChartCategories: chartType = 'bar';
-  selectedTypeChartRegister: chartType = 'bar';
+  selectedTypeChartRegister: chartType = 'line';
+  selectedTypeChartCategoriesTop: chartType = 'bar';
   topCategories = { label: '', value: 0 };
   downCategories = { label: '', value: 0 };
+  topCategory = { label: '', value: 0 };
+  downCategory = { label: '', value: 0 };
   topRegister = { label: '', value: 0 };
   downRegister = { label: '', value: 0 };
 
@@ -46,6 +49,34 @@ export class StatisticsComponent implements OnInit {
     });
     this.getDataCategories('1');
     this.getRegisterUserData('2');
+    this.getCategoryTop('3');
+  }
+
+  getCategoryTop(id:string){
+    this.ChartsService.getCategoriesChart().subscribe(
+      (res: any) => {
+        if (res.status == '200') {
+          this.infoDataCategory(
+            res.labels[0],
+            res.labels[res.labels.length - 1],
+            res.data[0],
+            res.data[res.data.length - 1]
+          );
+          this.ChartsService.setData({
+            data: res.data,
+            labels: res.labels,
+            id: id,
+            y:
+              this.selectedTypeChartCategories == 'bar' ||
+              this.selectedTypeChartCategories == 'line'
+                ? true
+                : false,
+          });
+        } else {
+          console.log(res.msg);
+        }
+      }
+    );
   }
 
   sumarDias(fecha: Date, dias: number) {
@@ -148,6 +179,9 @@ export class StatisticsComponent implements OnInit {
     } else if (id == '2') {
       this.selectedTypeChartRegister = typeC;
       this.mostrarTrae(id) 
+    }else if (id == '3'){
+      this.selectedTypeChartCategoriesTop = typeC;
+      this.getCategoryTop(id)
     }
   }
 
@@ -161,6 +195,18 @@ export class StatisticsComponent implements OnInit {
     this.topCategories.value = valueTop;
     this.downCategories.label = labelDown;
     this.downCategories.value = valueDown;
+  }
+
+  infoDataCategory(
+    labelTop: string,
+    labelDown: string,
+    valueTop: number,
+    valueDown: number
+  ) {
+    this.topCategory.label = labelTop;
+    this.topCategory.value = valueTop;
+    this.downCategory.label = labelDown;
+    this.downCategory.value = valueDown;
   }
 
 }

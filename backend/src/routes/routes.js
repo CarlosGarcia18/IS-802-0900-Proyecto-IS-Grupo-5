@@ -175,6 +175,9 @@ routers.get('/getDenuncias/:id',customerU.listarDenuncia)
 //obtener datos de grafica de registrados
 routers.post('/registerChart',customerA.amountUserRegister)
 
+//obtener datos de grafica de categorias
+routers.get('/categoryChart',customerA.amountCategory)
+
 
 //exportacion de rutas
 module.exports = routers
