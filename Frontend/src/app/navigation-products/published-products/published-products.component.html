@@ -32,7 +32,11 @@
   </div>
 
 </div>
-
+<mat-paginator [length]="productoList.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>
 
 <!---------------------------------------- MODAL SUBIR PRODUCTO ------------------------------------------------------->
 <!-- Modal -->

@@ -351,7 +351,8 @@ export interface loadComment{
   var_name: string,
   var_lastname: string,
   text_contents: string,
-  tim_date: Date
+  dateComment: string,
+  hourComment:string
 }
 export interface promedio{
   PROMEDIO: number;

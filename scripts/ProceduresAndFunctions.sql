@@ -39,12 +39,11 @@ end//
 DELIMITER &&
 CREATE PROCEDURE obtenerComentarios(IN id int)
 BEGIN
-     SELECT user.var_name, user.var_lastname, commentary.text_contents, commentary.tim_date 
+     SELECT user.var_name, user.var_lastname, commentary.text_contents, date_format(tim_date,'%d/%m/%Y') as dateComment,time_format(tim_date,'%H:%i')  as hourComment
 		FROM commentary 
 		INNER JOIN user ON user.id_user=commentary.fk_id_user
 		WHERE commentary.fk_id_product = id ORDER BY commentary.tim_date DESC;
 END&&
-
 ##PROMEDIO DE CALIFICACION
 DELIMITER &&
 CREATE PROCEDURE prom(IN id int)
