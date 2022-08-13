@@ -262,5 +262,36 @@ controller.listadoUsuario =(req, res)=>{
      
 }
 
+controller.getExpiryTime =(req, res)=>{
+
+    sql = `SELECT fn_getExpiryTime() AS days`
+    conection.query(sql, (err,rows)=>{
+        if(err){
+            res.sendjson({status:-2,msg:"ERROR"})
+        }else{
+            res.json({status:-1, msg:rows[0].days})
+        }
+    })
+
+}
+
+controller.setExpiryTime =(req, res)=>{
+    const{days} = req.params
+    console.log(req.params)
+    if(days>0 && days<10000){
+        sql = `CALL sp_updateExpiryTime(${days})`
+        conection.query(sql, (err,rows)=>{
+            if(err){
+                res.json({status:-2,msg:err})
+            }else{
+                res.json({status:200,msg:"El plazo de expiración de los anuncios se ha actualizado"})
+            }
+        })
+    }else{
+        res.json({status:-1,msg:"Fuera del rango permitido"})
+    }
+    
+}
+
 
 module.exports = controller

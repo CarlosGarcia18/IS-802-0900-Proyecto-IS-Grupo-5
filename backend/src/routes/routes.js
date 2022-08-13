@@ -1,4 +1,4 @@
-const routers = require('express').Router()//Direccionamiento en express
+const routers = require('express').Router()//Direccionamiento en expresscustomerU
 
 const customerU = require('../controllers/customerUser')//funciones de llamada por parte del usuario
 const customerA = require('../controllers/customerAdmin')//funciones de llamada por parte del administrador
@@ -69,7 +69,7 @@ routers.post('/credential/confirm', customerU.confirmaCodigo)
 //trae los productos disponible segun los diferentes filtros
 routers.post('/productFiltering',customerO.productFiltering)
 
-routers.get('/productUser/:id',customerU.productUser)
+routers.get('/productUser/:id',customerO.productUser)
 
 //Agregar un producto
 routers.post('/newProduct',customerO.postProduct)
@@ -92,7 +92,7 @@ routers.get('/getSubscriptions/:id_user', customerU.getSubscriptions)
 //dar de baja favorito
 routers.post('/deleteFav',customerU.deleteFavorite)
 //listar favoritos
-routers.get('/getFavs/:id_user', customerU.getWishlist)
+routers.get('/getFavs/:id_user', customerO.getWishlist)
 //agregar a favoritos
 routers.post('/addFav', customerU.addFavorite)
 
@@ -188,6 +188,11 @@ routers.post('/registerChart',customerA.amountUserRegister)
 //obtener datos de grafica de categorias
 routers.get('/categoryChart',customerA.amountCategory)
 
+//Trae el tiempo de expiración de los productos
+routers.get('/product/expiryTime',customerA.getExpiryTime)
+
+//Actualiza el plazo de expiración de los productos
+routers.get('/product/expiryTime/:days',customerA.setExpiryTime)
 
 //exportacion de rutas
 module.exports = routers
