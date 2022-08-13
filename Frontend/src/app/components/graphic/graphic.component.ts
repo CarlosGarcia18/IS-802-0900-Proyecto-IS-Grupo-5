@@ -16,7 +16,7 @@ export class GraphicComponent implements OnInit {
 
   @Input() type: 'bar' | 'doughnut' | 'line' | 'pie' = 'line';
   @Input() label: string = '';
-  @Input() width: string = '400px';
+  @Input() width: string = '500px';
   @Input() showLabelsX: boolean = false;
   @Input() idCanva: string = '0';
 

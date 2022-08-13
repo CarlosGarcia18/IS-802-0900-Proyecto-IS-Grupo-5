@@ -188,6 +188,10 @@ routers.post('/registerChart',customerA.amountUserRegister)
 //obtener datos de grafica de categorias
 routers.get('/categoryChart',customerA.amountCategory)
 
+//agregar visita
+routers.get('/views',customerO.views)
+
+routers.post('/getviews',customerA.getViews)
 
 //exportacion de rutas
 module.exports = routers

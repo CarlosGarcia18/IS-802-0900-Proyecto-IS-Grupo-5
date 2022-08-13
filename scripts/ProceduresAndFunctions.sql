@@ -231,9 +231,6 @@ and id_user= id;
 end//
 
 
-call ListadoUsuarios();
-
-
 delimiter //
 create  procedure ListadoUsuarios31()
 BEGIN
@@ -242,4 +239,20 @@ where exists (select * from complaint
 where fk_id_user=id_user);
 end//
 
-call ListadoUsuarios31();
+delimiter //
+create  procedure verifiacionVisitas()
+BEGIN
+    DECLARE amount tinyint;
+    DECLARE amountViews bigint;
+	select count(*) into amount from VIEWS
+		where date_views=current_date();
+    select amount_views into amountViews from VIEWS
+		where date_views=current_date();
+    IF amount = 0 THEN
+		INSERT INTO VIEWS VALUES(1,current_date());
+	ELSE 
+		UPDATE VIEWS SET amount_views=amountViews+1 WHERE date_views=current_date() ;
+	END IF;
+end//
+
+CALL verifiacionVisitas()

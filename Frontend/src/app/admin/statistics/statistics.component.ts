@@ -15,17 +15,21 @@ export class StatisticsComponent implements OnInit {
   data: number[] = [];
   selectedTypeChartCategories: chartType = 'bar';
   selectedTypeChartRegister: chartType = 'line';
-  selectedTypeChartCategoriesTop: chartType = 'bar';
+  selectedTypeChartCategoriesTop: chartType = 'pie';
+  selectedTypeChartViews: chartType = 'line';
   topCategories = { label: '', value: 0 };
   downCategories = { label: '', value: 0 };
   topCategory = { label: '', value: 0 };
   downCategory = { label: '', value: 0 };
   topRegister = { label: '', value: 0 };
   downRegister = { label: '', value: 0 };
+  topViews = { label: '', value: 0 };
+  downViews = { label: '', value: 0 };
 
   selectChart = {
     select: 0,
     selectTypeRegister: 7,
+    selectTypeViews: 7,
   };
 
   selectRegister = {
@@ -35,7 +39,12 @@ export class StatisticsComponent implements OnInit {
     lastDate: new Date(Date.now()).toISOString().substring(0, 10),
   };
 
-  
+  selectViews = {
+    firstDate: this.sumarDias(new Date(Date.now()), -7)
+      .toISOString()
+      .substring(0, 10),
+    lastDate: new Date(Date.now()).toISOString().substring(0, 10),
+  };
 
   categories: categories[] = [];
 
@@ -50,6 +59,34 @@ export class StatisticsComponent implements OnInit {
     this.getDataCategories('1');
     this.getRegisterUserData('2');
     this.getCategoryTop('3');
+    this.getViewsData('4')
+  }
+
+  getViewsData(id:string){
+    this.ChartsService.getViews(this.selectViews).subscribe(
+      (res: any) => {
+        if (res.status == '200') {
+          this.infoDataViews(
+            res.labels[0],
+            res.labels[res.labels.length - 1],
+            res.data[0],
+            res.data[res.data.length - 1]
+          );
+          this.ChartsService.setData({
+            data: res.data,
+            labels: res.labels,
+            id: id,
+            y:
+              this.selectedTypeChartCategories == 'bar' ||
+              this.selectedTypeChartCategories == 'line'
+                ? true
+                : false,
+          });
+        } else {
+          console.log(res.msg);
+        }
+      }
+    );
   }
 
   getCategoryTop(id:string){
@@ -105,6 +142,21 @@ export class StatisticsComponent implements OnInit {
         }
       }
     );
+  }
+
+  getViewData(id: string) {
+    if (this.selectChart.selectTypeViews != 0) {
+      this.selectViews = {
+        firstDate: this.sumarDias(
+          new Date(Date.now()),
+          -this.selectChart.selectTypeViews
+        )
+          .toISOString()
+          .substring(0, 10),
+        lastDate: new Date(Date.now()).toISOString().substring(0, 10),
+      };
+      this.getViewsData(id)
+    }
   }
 
   getRegisterUserData(id: string) {
@@ -182,6 +234,9 @@ export class StatisticsComponent implements OnInit {
     }else if (id == '3'){
       this.selectedTypeChartCategoriesTop = typeC;
       this.getCategoryTop(id)
+    }else if (id == '4'){
+      this.selectedTypeChartViews = typeC;
+      this.getViewsData(id)
     }
   }
 
@@ -207,6 +262,18 @@ export class StatisticsComponent implements OnInit {
     this.topCategory.value = valueTop;
     this.downCategory.label = labelDown;
     this.downCategory.value = valueDown;
+  }
+
+  infoDataViews(
+    labelTop: string,
+    labelDown: string,
+    valueTop: number,
+    valueDown: number
+  ) {
+    this.topViews.label = labelTop;
+    this.topViews.value = valueTop;
+    this.downViews.label = labelDown;
+    this.downViews.value = valueDown;
   }
 
 }
