@@ -105,17 +105,19 @@ export class EquipoService {
   borrarProducto(id: String ){
     return this.http.delete(this.url+"/productDelete/"+id)
   }
+
+
   //Trae los usuario con denuncias
   getUserDenuncia(){
-    return this.http.get(this.url+"/admin/listUser/")
+    return this.http.get(this.url+"/admin/listUser")
   }
 
   getOneProduct(id: string|null){
     return this.http.get(this.url+"/getProducto/"+id)
   }
-
+// Lista de Denuncias por usuario
   getOneDenuncias(id:string){
-    return this.http.get(this.url+"/getDenuncias/"+id)
+    return this.http.get(this.url+"/admin/getDenuncias/"+id)
   }
 
   getUnProducto(id_producto:string|null){
@@ -175,10 +177,16 @@ export class EquipoService {
   getCategory(id_product_category: number){
     return this.http.get<Categoria[]>(this.url+"/admin/getCategory/"+ id_product_category)
   }
-
-  updateEstadoUsu(id_user:String){
+  //Modificar Estado del usuario
+  updateEstadoUsuario(id_user:any){
     return this.http.put(this.url+"/admin/updateEstado/",id_user)
   }
+
+  //Eliminar denuncias
+  deleteDenuncia(id:any){
+    return this.http.delete(this.url+"/admin/deleteDenuncia/"+id)
+  }
+
 
 }
 
@@ -353,3 +361,26 @@ export interface Categoria{
   id_product_category: number;
   var_name:string;
 }
+
+//Crear una nueva interfaz para denuncias
+
+export interface ListadoUsuario{
+  id_user: string,
+  var_name: string,
+  var_lastname: string,
+  Denuncias1: string
+
+}
+
+export interface DenunciasUsuario{
+  id_COMPLAINT: string,
+  NombreCategoria: string,
+  NombreUsuario:string,
+  SegundoNombre:string,
+  Descripcion:string,
+  tim_date: string,
+  dateComplaint: String,
+  hourComplaint: string
+
+}
+

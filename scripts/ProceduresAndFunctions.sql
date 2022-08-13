@@ -220,7 +220,7 @@ end//
 
 call listDenuncias12(2);
 
---Listado de denuncias por usuario
+--Listado de denuncias por usuario por id
 delimiter //
 create  procedure ListadoUsuarios(id int)
 BEGIN
@@ -233,13 +233,13 @@ end//
 
 call ListadoUsuarios();
 
-
+--Eliminar Denuncias de usuario
 delimiter //
-create  procedure ListadoUsuarios31()
+create  procedure eliminarDenuncia(id int)
 BEGIN
-select * from user
-where exists (select * from complaint
-where fk_id_user=id_user);
+ DELETE FROM complaint where id_COMPLAINT=id; 
 end//
 
-call ListadoUsuarios31();
+call eliminarDenuncia(2);
+
+

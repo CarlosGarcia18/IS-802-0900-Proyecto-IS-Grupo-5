@@ -10,16 +10,29 @@
                 <th>No.</th>
                 <th scope="col">Primer Nombre</th>
                 <th scope="col">Primer Apellido</th>
+                <th scope="col">Numero de Denuncias</th>
 
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let item2 of user; let indice=index">
+
                 <th scope="row">{{indice+1}}</th>
                 <td>{{item2.var_name}}</td>
                 <td>{{item2.var_lastname}}</td>
+                <td>{{item2.Denuncias1}}</td>
 
-              </tr>
+
+                  <td>
+                    <button (click)="listarDenuncia(item2.id_user)"> Ver Denuncias</button>
+                    <button (click)="EliminarUsuario(item2.id_user)"> Eliminar</button>
+                  </td>
+
+
+                </tr>
+
+
+
             </tbody>
           </table>
 
@@ -34,34 +47,50 @@
 
 
 
+<script>
+  function ver(){
+    document.getElementById('visualizar').style.display='block';
+    document.getElementById('container1').style.display='block';
 
 
+  }
+</script>
 
-<div class="container mt-5">
+
+<div class="container1 mt-5">
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
       <div class="card">
         <div class="card-body text-center">
-          <span>Listado de Denuncias</span>
+
           <table *ngIf="denuncias.length>0" class="table table-striped ">
+
             <thead>
               <tr>
-                <th scope="col">Id Denuncia</th>
-                <th scope="col">Usuario Denunciado</th>
-                <th scope="col">Usuario que hace la Denuncia </th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Nombre usuario</th>
+                <th scope="col">Segundo Nombre </th>
                 <th scope="col">Descripcion</th>
+                <th scope="col">Fecha mes</th>
+                <th scope="col">Horas</th>
+
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of denuncias">
-                <td>{{item.fk_id_product}}</td>
-                <td>{{item.fk_id_user}}</td>
-                <th >{{item.fk_id_complaint_category}}</th>
-                <td>{{item.text_description}}</td>
+              <tr *ngFor="let item of denuncias ">
+                <td>{{item.NombreCategoria}}</td>
+                <td>{{item.NombreUsuario}}</td>
+                <th >{{item.SegundoNombre}}</th>
+                <td>{{item.Descripcion}}</td>
+                <td>{{item.dateComplaint}}</td>
+                <td>{{item.hourComplaint}}</td>
+                <td>
+                  <button (click)="eliminarDenuncia(item.id_COMPLAINT)"> Eliminar Denuncia</button>
+                </td>
               </tr>
             </tbody>
           </table>
-          <h5 *ngIf="denuncias.length>0">No hay Denuncias</h5>
+          <h5 *ngIf="denuncias.length">No hay Denuncias</h5>
 
         </div>
       </div>
