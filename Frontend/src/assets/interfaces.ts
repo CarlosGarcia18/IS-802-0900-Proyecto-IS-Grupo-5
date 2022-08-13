@@ -39,3 +39,8 @@ export interface dataChart{
   id:string;
   y:boolean
 }
+
+export interface dataRegister{
+  firstDate:string;
+  lastDate:string;
+}

@@ -186,6 +186,13 @@ routers.get('/admin/numDenun/:id',customerA.listadoUsuarioDenun)
 //Eliminar Denuncia de usuario
 routers.delete('/admin/deleteDenuncia/:id',customerA.eliminarDenuncia)
 
+//obtener datos de grafica de registrados
+routers.post('/registerChart',customerA.amountUserRegister)
+
+//obtener datos de grafica de categorias
+routers.get('/categoryChart',customerA.amountCategory)
+
+
 //exportacion de rutas
 module.exports = routers
 
