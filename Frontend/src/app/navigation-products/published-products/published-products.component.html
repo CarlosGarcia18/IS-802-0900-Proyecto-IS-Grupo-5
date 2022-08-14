@@ -24,7 +24,7 @@
           class="fa-solid fa-triangle-exclamation" style="color:red"></i></div>
           <p>{{formatoFecha(item.expiration_date, item.bit_availability)}}</p>
       <!--<h3>{{item.id_product}}</h3>-->
-      <button class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop " (click)="setItem(item.id_product)"
+      <button class="buy" data-bs-toggle="modal" data-bs-target="#modalEditarProducto " (click)="setItem(item.id_product)"
         (click)="imagenes()"><i class="fa-regular fa-pen-to-square"></i> Editar</button>
       <button class="delete" (click)="borrarProd(item.id_product.toString())"><i class="fa-solid fa-trash-can"></i>
         Eliminar</button>
@@ -41,8 +41,8 @@
 
 <!---------------------------------------- MODAL SUBIR PRODUCTO ------------------------------------------------------->
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="modalEditarProducto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="modalEditarProductoLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
@@ -78,9 +78,9 @@
             </div>
             <!--Previsializacion-->
             <div class="container-images">
-              <div class="pre-imagen" *ngFor="let item of cargadas "
-                [style]="'background-image: url(http://localhost:3000/'+item.nm+');'">
-                <h5 class="deleteFile" (click)="eliminar(item.id, item.nm)">x</h5>
+              <div class="pre-imagen" *ngFor="let item3 of cargadas "
+                [style]="'background-image: url(http://localhost:3000/'+item3.nm+');'">
+                <h5 class="deleteFile" (click)="eliminar(item3.id, item3.nm)">x</h5>
               </div>
               <div class="pre-imagen" *ngFor="let item2 of srcArray" [style]="'background-image: url('+item2.img+');'">
                 <h5 class="deleteFile" (click)="deleteFile(item2.id)">x</h5>
@@ -225,7 +225,7 @@
       <div class="modal-footer">
         <!--Boton para subir el archivo y cerrar el modal-->
         <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal" (click)="ngOnInit()">Cerrar</button>
-        <button type="submit" class="btn btn-primary" (click)="subirArchivo()" (click)="ngOnInit()"
+        <button type="submit" class="btn btn-primary" (click)="subirArchivo()" 
           data-bs-dismiss="modal">Actualizar</button>
 
       </div>

@@ -13,10 +13,10 @@ import {
   styleUrls: ['./new-products.component.css'],
 })
 export class NewProductsComponent implements OnInit {
-  public previsualizacion: any;
-  public archivos: any = []; //Sera de tipo array
-  public image: any; //Enviar una imagen a la vez al servidor
-  categories:any[] = []
+  public previsualizacionNew: any;
+  public archivosNew: any = []; //Sera de tipo array
+  public imageNew: any; //Enviar una imagen a la vez al servidor
+  categoriesNew:any[] = []
 
   constructor(
     private equipoService: EquipoService,
@@ -24,20 +24,20 @@ export class NewProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.producto.fk_id_user = localStorage.getItem('token');
+    this.productoNew.fk_id_user = localStorage.getItem('token');
     // Traer todas las categorias
     this.equipoService.getProductCategories().subscribe(res=>{
-      this.categories = <any>res
+      this.categoriesNew = <any>res
     }, error =>{
       console.log(error)
     })
-    this.srcArray.length=0
-    this.archivos.length=0;
-    this.productoForm.reset()
+    this.srcArrayNew.length=0
+    this.archivosNew.length=0;
+    this.productoFormNew.reset()
   }
 
   //agregar el formGrup
-  productoForm = new FormGroup({
+  productoFormNew = new FormGroup({
     // nombre: new FormControl('',[Validators.required, Validators.minLength(2) ]),
     titulo: new FormControl('', [
       Validators.required,
@@ -59,42 +59,44 @@ get nombreControl():FormControl{
   return this.loginForm.get('nombre') as FormControl
 }*/
 
-  get tituloControl(): FormControl {
-    return this.productoForm.get('titulo') as FormControl;
+  get tituloControlNew(): FormControl {
+    return this.productoFormNew.get('titulo') as FormControl;
   }
-  get precioControl(): FormControl {
-    return this.productoForm.get('precio') as FormControl;
+  get precioControlNew(): FormControl {
+    return this.productoFormNew.get('precio') as FormControl;
   }
-  get categoriaControl(): FormControl {
-    return this.productoForm.get('categoria') as FormControl;
+  get categoriaControlNew(): FormControl {
+    return this.productoFormNew.get('categoria') as FormControl;
   }
-  get estadoControl(): FormControl {
-    return this.productoForm.get('estado') as FormControl;
+  get estadoControlNew(): FormControl {
+    return this.productoFormNew.get('estado') as FormControl;
   }
-  get descripcionControl(): FormControl {
-    return this.productoForm.get('decripcion') as FormControl;
+  get descripcionControlNew(): FormControl {
+    return this.productoFormNew.get('decripcion') as FormControl;
   }
-  get ubicacionControl(): FormControl {
-    return this.productoForm.get('ubicacion') as FormControl;
+  get ubicacionControlNew(): FormControl {
+    return this.productoFormNew.get('ubicacion') as FormControl;
   }
 
-  srcArray: any = [];
+  srcArrayNew: any = [];
 
-  capturarFile(event: any) {
+  capturarFileNew(event: any) {
+    console.log("este corresponde a nuevo");
+    
     if (event.target.files.length > 0) {
       if (event.target.files.length <= 10) {
         let files = event.target.files;
 
         let file;
         for (let i = 0; i < files.length; i++) {
-          if (this.archivos.length < 10) {
+          if (this.archivosNew.length < 10) {
             file = files[i];
-            this.archivos.push(file);
+            this.archivosNew.push(file);
             const reader = new FileReader();
             reader.onload = (file) => {
-              this.srcArray.push({
+              this.srcArrayNew.push({
                 img: reader.result,
-                id: this.srcArray.length == 0 ? 0 : this.srcArray.length,
+                id: this.srcArrayNew.length == 0 ? 0 : this.srcArrayNew.length,
               });
             };
             reader.readAsDataURL(file);
@@ -108,16 +110,16 @@ get nombreControl():FormControl{
     }
   }
 
-  deleteFile(id: number) {
-    this.srcArray.splice(id, 1);
-    this.archivos.splice(id, 1);
+  deleteFileNew(id: number) {
+    this.srcArrayNew.splice(id, 1);
+    this.archivosNew.splice(id, 1);
 
-    for (let i = 0; i < this.srcArray.length; i++) {
-      this.srcArray[i].id = i;
+    for (let i = 0; i < this.srcArrayNew.length; i++) {
+      this.srcArrayNew[i].id = i;
     }
   }
 
-  producto: newProducto = {
+  productoNew: newProducto = {
     fk_id_user: '',
     fk_id_department: '',
     fk_id_product_category: '',
@@ -136,16 +138,16 @@ get nombreControl():FormControl{
   } */
 
   /* Para subir Archivo*/
-  subirArchivo(): any {
+  subirArchivoNew(): any {
     //Sube el producto
   
       
-    if(this.srcArray.length>=1) {
-      this.equipoService.newProducto(this.producto).subscribe((res) => {
+    if(this.srcArrayNew.length>=1) {
+      this.equipoService.newProducto(this.productoNew).subscribe((res) => {
         var info: BookInfo = <any>res;
 
         //Recorre el arreglo de archivos
-        this.archivos.forEach((archivo: any) => {
+        this.archivosNew.forEach((archivo: any) => {
           const formularioDeDatos = new FormData();
           formularioDeDatos.append('image', archivo);
           console.log(archivo);
@@ -155,8 +157,8 @@ get nombreControl():FormControl{
             console.log('Respuesta ', res);
           });
       });
-        this.archivos.length=0
-        this.srcArray.length=0
+        this.archivosNew.length=0
+        this.srcArrayNew.length=0
         Swal.fire({
           position: 'center',
           icon: 'success',

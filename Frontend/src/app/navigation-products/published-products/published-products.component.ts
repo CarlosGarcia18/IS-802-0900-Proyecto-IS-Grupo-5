@@ -85,6 +85,8 @@ export class PublishedProductsComponent implements OnInit {
   srcArray: any = [];
 
   capturarFile(event: any) {
+    console.log("este corresponde a editar");
+    
     if (event.target.files.length > 0) {
       if (event.target.files.length <= 10) {
         let files = event.target.files;
