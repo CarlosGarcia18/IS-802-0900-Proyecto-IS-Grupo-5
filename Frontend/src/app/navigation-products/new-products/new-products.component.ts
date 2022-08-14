@@ -123,7 +123,7 @@ get nombreControl():FormControl{
     fk_id_product_status: '',
     var_name: '',
     text_description: '',
-    dou_price: 0,
+    dou_price: ' ',
   };
 
   /*agregarFavorito(){
@@ -137,7 +137,7 @@ get nombreControl():FormControl{
   /* Para subir Archivo*/
   subirArchivo(): any {
     //Sube el producto
-    if(this.srcArray.length<1){ 
+    if(this.srcArray.length<1){
       window.alert('Debes cargar al menos una imagen');
     }else{
       this.equipoService.newProducto(this.producto).subscribe((res) => {

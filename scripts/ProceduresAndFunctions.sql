@@ -14,6 +14,7 @@ begin
         SET @i = @i + 1;
     END WHILE;
 
+
     RETURN @returnStr;
 END$$
 
@@ -304,5 +305,52 @@ as hourComplaint, user.bit_status from COMPLAINT inner join user on
  where COMPLAINT.fk_id_user=id;
 end//
 
+
+delimiter //
+create  procedure ListadoUsuarioNumDenu1()
+BEGIN
+select fk_id_user,count(fk_id_user) As NumeroDenuncias from complaint
+group by fk_id_user;
+end//
+
+call ListadoUsuarioNumDenu1();
+
+delimiter //
+CREATE FUNCTION Estado_usuario(user_id BIGINT UNSIGNED)
+	RETURNS int
+    DETERMINISTIC
+BEGIN
+	DECLARE estado int;
+	select bit_status into estado from user 
+    where id_user=user_id;
+    return estado;
+END//
+
+delimiter //
+create  procedure listUsuarioDenuncia(id int)
+BEGIN
+select COMPLAINT.id_COMPLAINT,complaint_category.var_name as NombreCategoria , user.var_name as NombreUsuario,USER.var_lastname as SegundoNombre ,COMPLAINT.text_description as Descripcion,
+COMPLAINT.tim_date ,date_format(tim_date,'%d/%m/%Y') as dateComplaint ,time_format(tim_date,'%H:%i') 
+as hourComplaint, user.bit_status from COMPLAINT inner join user on 
+ COMPLAINT.fk_id_user_complaining=user.id_user inner join complaint_category on
+ complaint_category.id_complaint_category=COMPLAINT.fk_id_complaint_category
+ where COMPLAINT.fk_id_user=id;
+end//
+
+--Eliminar Denuncias
+delimiter //
+create  procedure eliminarDenuncia(id int)
+BEGIN
+ DELETE FROM complaint where id_COMPLAINT=id; 
+end//
+
+
+delimiter //
+create  procedure modificarEstado(id int)
+BEGIN
+update user set bit_status=0 where id_user=id; 
+end//
+
+call modificarEstado(6);
 
 

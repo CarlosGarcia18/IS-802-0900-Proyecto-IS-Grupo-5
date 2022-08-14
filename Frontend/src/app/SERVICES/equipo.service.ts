@@ -186,6 +186,7 @@ export class EquipoService {
     return this.http.get(this.url+"/product/expiryTime")
   }
 
+
   setExpiryTime(days:String){
     return this.http.get(this.url+"/product/expiryTime/"+days)
   }
@@ -272,7 +273,7 @@ export interface newProducto {
     fk_id_product_status: string
     var_name: string
     text_description: string
-    dou_price: number
+    dou_price: string |any
     categoria?:string
 }
 
