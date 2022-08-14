@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { EquipoService, complaint, user, Registro, ListadoUsuario, DenunciasUsuario } from '../../SERVICES/equipo.service';
-
+import { PageEvent } from '@angular/material/paginator';
 import { qualification,reqQualify} from '../../SERVICES/equipo.service';
+import { style } from '@angular/animations';
+import { __values } from 'tslib';
+import { Token } from '@angular/compiler';
 
 @Component({
   selector: 'app-complaints',
@@ -9,6 +12,7 @@ import { qualification,reqQualify} from '../../SERVICES/equipo.service';
   styleUrls: ['./complaints.component.css']
 })
 export class ComplaintsComponent implements OnInit {
+  mostrar: Boolean = false;
   //Denuncia es de tipo inferzar complaint
   denuncias: DenunciasUsuario[]=[]
   //Se implementa la interfaz registro
@@ -42,7 +46,7 @@ export class ComplaintsComponent implements OnInit {
 
 
 
-  constructor(private equipoService:EquipoService) { }
+  constructor(private equipoService:EquipoService,private render2:Renderer2) { }
 
   ngOnInit(): void {
     this.listarUsuariosDenuncia()
@@ -54,10 +58,10 @@ export class ComplaintsComponent implements OnInit {
   }
 
 listarUsuariosDenuncia(){
+
   this.equipoService.getUserDenuncia().subscribe(res=>{
     this.user=<any> res
     console.log(this.user)
-
 
   }, error =>{
     console.log(error)
@@ -65,25 +69,33 @@ listarUsuariosDenuncia(){
 }
 
 
-
+UsuarioSeleccionado:string='0';
 listarDenuncia(id_User:string){
-
-  localStorage.setItem('productToken',id_User)
+  this.UsuarioSeleccionado=id_User
+    localStorage.setItem('productToken',id_User)
   this.equipoService.getOneDenuncias(id_User).subscribe(res=>{
     this.denuncias=<any>res
+    if(this.denuncias.length==0){
+      this.mostrar=false
+    }else{
+      this.mostrar=true
+    }
     console.log(this.denuncias)
   }, error =>{
     console.log(error)
   })
 
+
+
 }
 
 
 //EliminarUsuario
+
 EliminarUsuario(id_user:string){
-  localStorage.setItem('productToken',id_user)
   this.equipoService.updateEstadoUsuario(id_user).subscribe(res=>{
     this.user=<any> res
+    this.listarUsuariosDenuncia()
     console.log(this.user)
     console.log('Eliminado')
   }, error =>{
@@ -98,14 +110,25 @@ eliminarDenuncia(id:string){
   this.equipoService.deleteDenuncia(id).subscribe(data =>{
     console.log('Eliminado')
     this.listarUsuariosDenuncia(),
-    this.listarDenuncia,
-    this.ngOnInit
+    this.listarDenuncia(this.UsuarioSeleccionado)
 
 
   })
 }
 
+////////////////////PAGINACION////////////////
+pageSize=8;
+desde:number= 0;
+hasta:number=8;
+
+cambiarPagina(e:PageEvent){
+  console.log(e)
+  this.desde=e.pageIndex*e.pageSize;
+  this.hasta=this.desde+e.pageSize;
+}
 
 
 
 }
+
+

@@ -176,7 +176,7 @@ routers.get('/admin/getDenuncias/:id',customerA.listarDenuncia)
 routers.delete('/deleUser/:id',customerU.deleteUserTotal)
 
 //Modificar Estado del usuario
-routers.post('/admin/updateEstado/:id',customerA.cambiarEstado)
+routers.delete('/admin/updateEstado/:id',customerA.cambiarEstado)
 
 //ListadoUsuario 
 routers.get('/admin/listUser',customerA.listadoUsuario)

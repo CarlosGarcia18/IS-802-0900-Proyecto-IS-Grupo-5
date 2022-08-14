@@ -178,8 +178,8 @@ export class EquipoService {
     return this.http.get<Categoria[]>(this.url+"/admin/getCategory/"+ id_product_category)
   }
   //Modificar Estado del usuario
-  updateEstadoUsuario(id_user:any){
-    return this.http.put(this.url+"/admin/updateEstado/",id_user)
+  updateEstadoUsuario(id_user:string){
+    return this.http.delete(this.url+"/admin/updateEstado/"+id_user)
   }
 
   //Eliminar denuncias
