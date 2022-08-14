@@ -194,5 +194,9 @@ ALTER TABLE SUBSCRIPTION
 
 CREATE TABLE INFORMATION(
 	expiration_period SMALLINT NOT NULL
-)
+);
 
+CREATE TABLE VIEWS(
+	amount_views BIGINT NOT NULL COMMENT "Esto almacena la cantidada de vistas por día",
+    date_views date PRIMARY KEY COMMENT "Clave primaria, haciendo la fecha unica"
+)
