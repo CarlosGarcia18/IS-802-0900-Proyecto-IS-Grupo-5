@@ -1,1 +1,16 @@
-<p>expiry-time works!</p>
+<div class="container-page">
+
+    <div class="expiryTimeBox">
+        <h1>Plazo de expiración de anuncios actual: <b>{{dias}}</b> días</h1>
+        <div class="updateBox">
+            <h4>Ingrese el nuevo número de días</h4>
+            <input maxlength="4" [(ngModel)]="expiryValue" onkeypress='return event.charCode>= 48 && event.charCode <= 57'>
+            <br>
+        </div>
+        <div class="divButton">
+            <button class="btn btn-dark" (click)="actualizar()" >Actualizar</button>
+        </div>
+
+    </div>
+
+</div>

@@ -12,7 +12,6 @@ controller.test = (req,res) => {
     res.send('get routes')
 }
 
-
 controller.getDepartament = (req,res) =>{
     let sql =`select * from DEPARTMENT`
     conection.query(sql,(err,rows,fields) =>{
@@ -47,13 +46,12 @@ controller.getComplaintCategories = (req,res) =>{
 controller.postProduct = (req,res) =>{
     const {fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name, text_description, dou_price} = req.body
     let sql=`insert into PRODUCT(fk_id_user, fk_id_department, fk_id_product_category, fk_id_product_status, var_name,
-        int_views, text_description, dou_price, bit_availability, publication_date, expiration_date) 
+        int_views, text_description, dou_price, publication_date, expiration_date) 
         values(${fk_id_user},${fk_id_department}, ${fk_id_product_category}, ${fk_id_product_status}, '${var_name}',
-        0,'${text_description}',${dou_price},1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day))`
+        0,'${text_description}',${dou_price},CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval (SELECT fn_getExpiryTime()) day))`
 
     let sql1=`select last_insert_id() AS id`
     
-        console.log(sql)
     conection.query(sql,(err,rows,fields)=>{
         if(err){ res.send({status: '0', id:""})
             console.log(err)
@@ -65,6 +63,52 @@ controller.postProduct = (req,res) =>{
             })
         }
     })    
+}
+
+//Funcion para dar formato a los precios
+function formatoPrecio(precio){
+
+    var centavos = ""
+    var entero = ""
+
+    arregloPrecio = ("" + precio).split(".")
+  
+    if(arregloPrecio.length>1){
+       
+        if(arregloPrecio[1].length>2){
+            centavos = arregloPrecio[1].substring(0,2);
+        }else if(arregloPrecio[1].length==2){
+            centavos = arregloPrecio[1]
+        }else if(arregloPrecio[1].length==1){
+            centavos = arregloPrecio[1] + "0"
+        }else{
+            centavos = "00"
+        }
+        
+    }else{
+        centavos = "00"
+    }
+
+    if(arregloPrecio[0].length%3!=0 && arregloPrecio[0].length>3){
+        entero = arregloPrecio[0].substring(0, arregloPrecio[0].length%3) + ","
+    }else if(arregloPrecio[0].length%3!=0){
+        entero = arregloPrecio[0].substring(0, arregloPrecio[0].length%3)
+    }
+
+    let cont=0
+    for(var i = (arregloPrecio[0].length%3); i < arregloPrecio[0].length ; i++){
+
+
+        if(cont%3==0 && cont!=0){
+            entero += ","
+        }
+        entero += arregloPrecio[0].substring(i,i+1)
+        cont++
+
+    }
+
+    return entero +"."+ centavos;
+
 }
 
 controller.productFiltering = (req,res) =>{
@@ -86,13 +130,10 @@ controller.productFiltering = (req,res) =>{
             
             //Funcion para dar formato a los precios
 
-            const currency = function(number){
-                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
-            };
             const rows2 = rows
                 .map(row => ({
                     ...row,
-                    dou_price: currency(row.dou_price)
+                    dou_price: formatoPrecio(row.dou_price)
 
                 }))
 
@@ -188,11 +229,7 @@ controller.getProducto=(req,res)=>{
         else{
             
             //Funcion para dar formato a los precios
-            const currency = function(number){
-                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
-            };
-            console.log(currency(rows[0].dou_price))
-            rows[0].dou_price = currency(rows[0].dou_price)
+            rows[0].dou_price = formatoPrecio(rows[0].dou_price)
 
             res.json(rows)
         }
@@ -211,6 +248,66 @@ controller.getProductImages=(req,res)=>{
         }
     })
 }
+
+controller.productUser = (req, res) => {
+    const { id } = req.params
+    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date, product_category.var_name AS categoria`
+        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product INNER JOIN product_category ON product_category.id_product_category= product.fk_id_product_category  where `
+    sql1 += `product.fk_id_user=${id} group by product.id_product ORDER BY publication_date DESC`
+
+    conection.query(sql1, (err, rows, fields) => {
+        if (err) res.json(err);//posible error en consulta
+        else {
+        
+            const rows2 = rows
+                .map(row => ({
+                    ...row,
+                    dou_price: formatoPrecio(row.dou_price)
+
+                }))
+
+            res.json(rows2)//todo salio bien
+        }
+    })
+}
+
+//////////////////////LISTAR PRODUCTOS FAVORITOS/////////////////////////////////
+controller.getWishlist = (req, res) => {
+    const { id_user } = req.params
+
+    sql1 = `SELECT * FROM user WHERE id_user=${id_user}`
+
+
+    sql3 = `SELECT pr.id_product,pr.var_name, pr.text_description, pr.dou_price, ph.id_photographs,ph.var_name as var_name_photo FROM product pr
+        INNER JOIN wish_list ON pr.id_product= wish_list.fk_id_product 
+        INNER JOIN photographs ph ON  pr.id_product=ph.fk_id_product
+        WHERE wish_list.fk_id_user=${id_user} AND bit_availability = 1 group by pr.id_product ORDER BY pr.publication_date DESC`
+
+    conection.query(sql1, (err, rows, fields) => {
+        if (err) res.json({ status: '0', error: err.sqlMessage })
+        else {
+            if (rows.length != 0) { //encontro al usuario
+                conection.query(sql3, (err, rows, fields) => {
+                    if (err) res.json({ status: '0', error: err.sqlMessage })//posible error en consulta a BDD
+                    else {
+                        if (rows.length != 0) {
+                                const rows2 = rows
+                                .map(row => ({
+                                    ...row,
+                                    dou_price: formatoPrecio(row.dou_price)
+                
+                                }))
+
+                            res.json({ status: '200', msg: rows2 })
+                        }
+                        else { res.json({ status: '202', msg: "No hay productos en la lista de deseos" }) }
+                    }
+                })
+            } else { res.json({ status: '201', msg: "Usuario no existe o es incorrecto" }) }
+        }
+    })
+}
+
 
 controller.editProduct=(req,res)=>{
     const{id_product}=req.params
@@ -271,13 +368,6 @@ controller.getProductoModal=(req,res)=>{
     conection.query(sql1,(err,rows,fields)=>{
         if(err) return res.json({status:'0', msg:err.sqlMessage});
         else{
-            //Funcion para dar formato a los precios
-            const currency = function(number){
-                return new Intl.NumberFormat('en-IN', {minimumFractionDigits: 2}).format(number);
-            };
-            console.log(currency(rows[0].dou_price))
-            rows[0].dou_price = currency(rows[0].dou_price)
-
             res.json(rows)
         }
     })

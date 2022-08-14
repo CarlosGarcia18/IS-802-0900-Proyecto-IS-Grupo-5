@@ -180,6 +180,26 @@ BEGIN
     GROUP BY product.id_product order by CHAT.modification_date DESC;
 end$$
 
+-- Obtener tiempo de expiración de anuncios
+DROP FUNCTION IF EXISTS fn_getExpiryTime;
+delimiter $$
+CREATE FUNCTION fn_getExpiryTime()
+		RETURNS SMALLINT
+	BEGIN
+		RETURN (SELECT expiration_period FROM INFORMATION LIMIT 1);
+END$$
+
+-- Actualizar el tiempo de expiración de anuncios
+DROP PROCEDURE IF EXISTS sp_updateExpiryTime;
+delimiter $$
+CREATE PROCEDURE sp_updateExpiryTime(days SMALLINT)
+BEGIN
+	UPDATE PRODUCT SET expiration_date = DATE_ADD(publication_date, interval days day);
+	UPDATE INFORMATION SET expiration_period=days;
+END$$
+
+SET SQL_SAFE_UPDATES = 1;
+
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
 
 DELIMITER //

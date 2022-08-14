@@ -182,6 +182,13 @@ export class EquipoService {
     return this.http.put(this.url+"/admin/updateEstado/",id_user)
   }
 
+  getExpiryTime(){
+    return this.http.get(this.url+"/product/expiryTime")
+  }
+
+  setExpiryTime(days:String){
+    return this.http.get(this.url+"/product/expiryTime/"+days)
+  }
   //Eliminar denuncias
   deleteDenuncia(id:any){
     return this.http.delete(this.url+"/admin/deleteDenuncia/"+id)
