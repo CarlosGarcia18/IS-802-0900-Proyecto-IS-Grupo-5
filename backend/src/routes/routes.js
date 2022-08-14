@@ -1,4 +1,4 @@
-const routers = require('express').Router()//Direccionamiento en expresscustomerU
+const routers = require('express').Router()//Direccionamiento en express
 
 const customerU = require('../controllers/customerUser')//funciones de llamada por parte del usuario
 const customerA = require('../controllers/customerAdmin')//funciones de llamada por parte del administrador
@@ -197,6 +197,10 @@ routers.get('/product/expiryTime',customerA.getExpiryTime)
 
 //Actualiza el plazo de expiración de los productos
 routers.get('/product/expiryTime/:days',customerA.setExpiryTime)
+//agregar visita
+routers.get('/views',customerO.views)
+
+routers.post('/getviews',customerA.getViews)
 
 //exportacion de rutas
 module.exports = routers

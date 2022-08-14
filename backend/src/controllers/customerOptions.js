@@ -393,4 +393,14 @@ controller.imagenes=(req,res)=>{
   //  const data= fs2.readFileSync(path.join(__dirname, '..\\dbimagesProducts\\'+))
 }
 
+controller.views=(req,res)=>{
+    let sql=`CALL verifiacionVisitas()`
+    conection.query(sql,(err,rows,fields)=>{
+        if(err) res.json({status:'0', msg:err.sqlMessage});
+        else{
+            res.json({status:'200', msg:'Vista agregada'})
+        }
+    })
+}
+
 module.exports = controller

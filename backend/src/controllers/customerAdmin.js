@@ -332,5 +332,58 @@ controller.setExpiryTime =(req, res)=>{
     
 }
 
+controller.getViews =(req, res)=>{
+    
+    const {firstDate,lastDate} = req.body
+
+    let sql = `SELECT amount_views,date_format(date_views,'%d/%m/%Y') as date_views FROM plazitanet.views WHERE date_views BETWEEN '${firstDate}'`
+    +` AND '${lastDate}'`
+
+    if (lastDate=='current') {
+        sql = `SELECT amount_views,date_format(date_views,'%d/%m/%Y') as date_views FROM plazitanet.views WHERE date_views BETWEEN '${firstDate}'`
+        +` AND current_timestamp()`
+    }
+
+    conection.query(sql,(err,rows,fields)=>{
+        if (err) {
+            res.json({status:'0', msg:err.sqlMessage});
+        }
+        if (rows.length<1) {
+            res.json({status:'200', 'labels':[], 'data':[], 'up':{label:"",value:0}, 'down':{label:"",value:0}})
+        }else{
+            let chartLabel=[];
+            let chartData=[];
+            let up ={
+                label:"",
+                value:-1
+            }
+            let down ={
+                label:rows[0].date_views,
+                value:rows[0].amount_views
+            }
+            rows.map(data=>{
+                chartLabel.push(data.date_views)
+                chartData.push(data.amount_views)
+                if (data.amount_views>up.value) {
+                    up={
+                        label:data.date_views,
+                        value:data.amount_views
+                    }
+                }
+                if (data.amount_views<=down.value) {
+                    down={
+                        label:data.date_views,
+                        value:data.amount_views
+                    }
+                }
+            })
+
+            res.json({status:'200', 'labels':chartLabel, 'data':chartData, 'up':up, 'down':down})
+        }
+        
+    })
+     
+}
+
 
 module.exports = controller
