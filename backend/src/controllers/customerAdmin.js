@@ -232,7 +232,8 @@ controller.cambiarEstado =(req, res)=>{
     })
     
 }
-
+//
+/*
 controller.listadoUsuario =(req, res)=>{
     const{id}=req.params
 
@@ -246,7 +247,7 @@ controller.listadoUsuario =(req, res)=>{
         }
     })
      
-}
+}*/
 
 //Lista de  usuarios con denuncia
 controller.listadoUsuario =(req, res)=>{

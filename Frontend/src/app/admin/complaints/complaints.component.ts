@@ -5,6 +5,7 @@ import { qualification,reqQualify} from '../../SERVICES/equipo.service';
 import { style } from '@angular/animations';
 import { __values } from 'tslib';
 import { Token } from '@angular/compiler';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-complaints',
