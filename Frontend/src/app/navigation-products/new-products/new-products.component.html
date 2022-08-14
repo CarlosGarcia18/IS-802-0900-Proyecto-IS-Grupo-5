@@ -169,8 +169,10 @@
         </form>
 
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" >
         <!--Boton para subir el archivo y cerrar el modal-->
+         
+        
         <button type="button" onclick="document.getElementById('titulo').value = ''; document.getElementById('precio').value = '';
           document.getElementById('categoria').value='';document.getElementById('categoria').value='';document.getElementById('estado').value='';
           document.getElementById('descripcion').value='';document.getElementById('ubicacion').value=''"
@@ -178,7 +180,7 @@
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit" (click)="subirArchivo()"
           onclick="document.getElementById('titulo').value = ''; document.getElementById('precio').value = '';
           document.getElementById('categoria').value='';document.getElementById('categoria').value='';document.getElementById('estado').value='';
-          document.getElementById('descripcion').value='';document.getElementById('ubicacion').value=''">Guardar</button>
+          document.getElementById('descripcion').value='';document.getElementById('ubicacion').value=''"  [disabled]="productoForm.invalid" >Guardar</button>
       </div>
     </div>
   </div>

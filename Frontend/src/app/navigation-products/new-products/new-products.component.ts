@@ -33,6 +33,7 @@ export class NewProductsComponent implements OnInit {
     })
     this.srcArray.length=0
     this.archivos.length=0;
+    this.productoForm.reset()
   }
 
   //agregar el formGrup
@@ -137,9 +138,9 @@ get nombreControl():FormControl{
   /* Para subir Archivo*/
   subirArchivo(): any {
     //Sube el producto
-    if(this.srcArray.length<1){
-      window.alert('Debes cargar al menos una imagen');
-    }else{
+  
+      
+    if(this.srcArray.length>=1) {
       this.equipoService.newProducto(this.producto).subscribe((res) => {
         var info: BookInfo = <any>res;
 
@@ -165,6 +166,9 @@ get nombreControl():FormControl{
         })
         this.raute.navigate([`navigationProducts/published1`])
     });
+  }else{
+    alert("Debes cargar al menos una imagen")
+    
   }
 }
 }

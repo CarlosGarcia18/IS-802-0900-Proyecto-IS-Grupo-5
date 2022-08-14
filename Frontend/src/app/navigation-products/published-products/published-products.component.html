@@ -18,11 +18,11 @@
       <div style="width: 80%; display:inline-flex">
         <h3>L. {{item.dou_price}}</h3>
       </div>
-      <h3>{{formatoFecha(item.expiration_date, item.bit_availability)}}</h3>
+     
 
       <div *ngIf="item.categoria=='Indefinida'" style="width:20%; display:inline-flex"><i
           class="fa-solid fa-triangle-exclamation" style="color:red"></i></div>
-
+          <p>{{formatoFecha(item.expiration_date, item.bit_availability)}}</p>
       <!--<h3>{{item.id_product}}</h3>-->
       <button class="buy" data-bs-toggle="modal" data-bs-target="#staticBackdrop " (click)="setItem(item.id_product)"
         (click)="imagenes()"><i class="fa-regular fa-pen-to-square"></i> Editar</button>

@@ -20,7 +20,7 @@
         
 
         <h1>Ingresa el codigo de confirmación</h1>
-        <h3>Hemos enviado un codigo a tu correo, revisa tu bandeja de entrada e introducelo a continuacion:.</h3>
+        <h3 style="font-size: 14px; text-align: justify; margin-top: 20px; margin-bottom: 20px;">Hemos enviado un código a tu correo, revisa tu bandeja de entrada e introdúcelo a continuación:</h3>
         <input [(ngModel)]="modulo2.var_code" class="codigoVer" type="text" placeholder="2345awe" name="codigoVeri" formControlName="codigo"  id="codigo" name="codigo"  required>
         <div *ngIf="codigoVerificacion.invalid && (codigoVerificacion.touched || codigoVerificacion.dirty)">
             <p *ngIf="codigoVerificacion.hasError('required')">El campo es obligatorio</p>
@@ -32,7 +32,7 @@
     </div>
     <!--[disabled]="productoForm.invalid" -->
 
-    <button type="submit" class="btn btn-success btn-lg float-end" [disabled]="codigoVerificacion.invalid" (click)="obtenerCodigo()">Continuar</button>
+    <button type="submit" style="font-size: 16x;padding: 1px ;"class="btn btn-success btn-lg float-end" [disabled]="codigoVerificacion.invalid" (click)="obtenerCodigo()">Continuar</button>
 </form>
 </div>
 
