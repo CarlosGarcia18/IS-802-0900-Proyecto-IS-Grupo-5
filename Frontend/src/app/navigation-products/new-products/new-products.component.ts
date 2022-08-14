@@ -33,6 +33,7 @@ export class NewProductsComponent implements OnInit {
     })
     this.srcArray.length=0
     this.archivos.length=0;
+    this.productoForm.reset()
   }
 
   //agregar el formGrup
