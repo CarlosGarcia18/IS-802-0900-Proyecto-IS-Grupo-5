@@ -251,19 +251,31 @@ controller.getProductImages=(req,res)=>{
 
 controller.productUser = (req, res) => {
     const { id } = req.params
-    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date, product_category.var_name AS categoria`
+    let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,`
+        + ` product.var_name,text_description,dou_price,publication_date, expiration_date, bit_availability, product_category.var_name AS categoria`
         + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product INNER JOIN product_category ON product_category.id_product_category= product.fk_id_product_category  where `
     sql1 += `product.fk_id_user=${id} group by product.id_product ORDER BY publication_date DESC`
 
     conection.query(sql1, (err, rows, fields) => {
         if (err) res.json(err);//posible error en consulta
         else {
-        
+
+            console.log(rows[0].bit_availability[0])
+
+            const isAvailable = (dato)=>{
+                if(dato == 0){
+                    return false
+                }else{
+                    return true
+                }
+            }
+
             const rows2 = rows
                 .map(row => ({
                     ...row,
-                    dou_price: formatoPrecio(row.dou_price)
-
+                    dou_price: formatoPrecio(row.dou_price),
+                    expiration_date: new Date(row.expiration_date).toLocaleString(),
+                    bit_availability: isAvailable(row.bit_availability[0])
                 }))
 
             res.json(rows2)//todo salio bien

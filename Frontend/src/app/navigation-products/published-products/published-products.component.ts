@@ -16,6 +16,7 @@ export class PublishedProductsComponent implements OnInit {
   
   productoList:traerProducto[]=[];
   categories:any[] = []
+  expiratioDate:Date|null = null 
 
   public previsualizacion: any;
   public archivos: any = []; //Sera de tipo array
@@ -214,6 +215,15 @@ public fotos=[]
     this.equipoService.deleteFiles(this.eliminadas).subscribe(res=>{
 
     })
+   }
+
+   formatoFecha(fecha:string, bit_availability:boolean){
+      if(bit_availability){
+        return "Expira el " + fecha
+      }else{
+        return "El anuncio ya expiro"
+      }
+
    }
 
 

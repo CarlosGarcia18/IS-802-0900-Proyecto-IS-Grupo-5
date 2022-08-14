@@ -217,7 +217,9 @@ export interface traerProducto{
   text_description: string,
   dou_price: string,
   publication_date: string,
+  expiration_date: string,
   whishlist:string
+  bit_availability:boolean
 }
 
 export interface wishListProducts{
