@@ -230,6 +230,7 @@ BEGIN
 	WHERE fk_id_product_category= id;
 END//
 
+/*
 --Listado de denuncias por usuario por id
 delimiter //
 create  procedure ListadoUsuarios(id int)
@@ -239,13 +240,15 @@ where exists (select * from complaint
 where fk_id_user=id_user)
 and id_user= id;
 end//
-
-
+*/
+/*
+DROP PROCEDURE IF EXISTS eliminarDenuncia;
 delimiter //
 create  procedure eliminarDenuncia(id int)
 BEGIN
  DELETE FROM complaint where id_COMPLAINT=id; 
 end//
+*/
 
 delimiter //
 create  procedure verifiacionVisitas()
@@ -291,9 +294,7 @@ BEGIN
 END &&
 
 
-
-
-
+/*
 delimiter &&
 CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
 	RETURNS int
@@ -304,10 +305,7 @@ BEGIN
      where id_user=fk_id_user
      group by id_user);
 	return NumeroDenuncias;
-END &&
-
-
-call ListadoUsuarios();
+END &&*/
 
 
 delimiter //
@@ -334,8 +332,8 @@ end//
 call ListadoUsuarioNumDenu1();
 
 
-
---Eliminar Denuncias
+-- Eliminar Denuncias
+DROP PROCEDURE IF EXISTS eliminarDenuncia;
 delimiter //
 create  procedure eliminarDenuncia(id int)
 BEGIN
@@ -351,7 +349,7 @@ end//
 
 call modificarEstado(6);
 
-
+DROP PROCEDURE IF EXISTS fn_denuncia;
 delimiter &&
 CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
 	RETURNS int
@@ -363,7 +361,6 @@ BEGIN
      group by id_user);
 	return NumeroDenuncias;
 END &&
-
 
 delimiter //
 create  procedure ListadoUsuarios()
