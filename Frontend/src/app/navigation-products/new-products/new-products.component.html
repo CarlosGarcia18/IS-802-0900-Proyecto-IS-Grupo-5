@@ -1,5 +1,7 @@
 <!-- Modal -->
-<div class="modal" id="myModal">
+<div class="modal fade" id="myModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
   <div class="modal-dialog">
     <div class="modal-content">
       <!-- Modal Header -->
@@ -35,6 +37,7 @@
                 <h5 class="deleteFile" (click)="deleteFile(item.id)">x</h5>
               </div>
             </div>
+           
           </div>
           <br>
           <!--Boton para subir el archivo-->
@@ -171,7 +174,7 @@
         <button type="button" onclick="document.getElementById('titulo').value = ''; document.getElementById('precio').value = '';
           document.getElementById('categoria').value='';document.getElementById('categoria').value='';document.getElementById('estado').value='';
           document.getElementById('descripcion').value='';document.getElementById('ubicacion').value=''"
-          class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          class="btn btn-secondary" data-bs-dismiss="modal" (click)="ngOnInit()">Cerrar</button>
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal" type="submit" (click)="subirArchivo()"
           onclick="document.getElementById('titulo').value = ''; document.getElementById('precio').value = '';
           document.getElementById('categoria').value='';document.getElementById('categoria').value='';document.getElementById('estado').value='';

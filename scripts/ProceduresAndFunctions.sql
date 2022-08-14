@@ -39,12 +39,11 @@ end//
 DELIMITER &&
 CREATE PROCEDURE obtenerComentarios(IN id int)
 BEGIN
-     SELECT user.var_name, user.var_lastname, commentary.text_contents, commentary.tim_date 
+     SELECT user.var_name, user.var_lastname, commentary.text_contents, date_format(tim_date,'%d/%m/%Y') as dateComment,time_format(tim_date,'%H:%i')  as hourComment
 		FROM commentary 
 		INNER JOIN user ON user.id_user=commentary.fk_id_user
 		WHERE commentary.fk_id_product = id ORDER BY commentary.tim_date DESC;
 END&&
-
 ##PROMEDIO DE CALIFICACION
 DELIMITER &&
 CREATE PROCEDURE prom(IN id int)
@@ -181,6 +180,26 @@ BEGIN
     GROUP BY product.id_product order by CHAT.modification_date DESC;
 end$$
 
+-- Obtener tiempo de expiración de anuncios
+DROP FUNCTION IF EXISTS fn_getExpiryTime;
+delimiter $$
+CREATE FUNCTION fn_getExpiryTime()
+		RETURNS SMALLINT
+	BEGIN
+		RETURN (SELECT expiration_period FROM INFORMATION LIMIT 1);
+END$$
+
+-- Actualizar el tiempo de expiración de anuncios
+DROP PROCEDURE IF EXISTS sp_updateExpiryTime;
+delimiter $$
+CREATE PROCEDURE sp_updateExpiryTime(days SMALLINT)
+BEGIN
+	UPDATE PRODUCT SET expiration_date = DATE_ADD(publication_date, interval days day);
+	UPDATE INFORMATION SET expiration_period=days;
+END$$
+
+SET SQL_SAFE_UPDATES = 1;
+
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
 
 DELIMITER //
@@ -231,16 +250,27 @@ and id_user= id;
 end//
 
 
-call ListadoUsuarios();
-
---Eliminar Denuncias de usuario
 delimiter //
 create  procedure eliminarDenuncia(id int)
 BEGIN
  DELETE FROM complaint where id_COMPLAINT=id; 
 end//
 
-call eliminarDenuncia(2);
+delimiter //
+create  procedure verifiacionVisitas()
+BEGIN
+    DECLARE amount tinyint;
+    DECLARE amountViews bigint;
+	select count(*) into amount from VIEWS
+		where date_views=current_date();
+    select amount_views into amountViews from VIEWS
+		where date_views=current_date();
+    IF amount = 0 THEN
+		INSERT INTO VIEWS VALUES(1,current_date());
+	ELSE 
+		UPDATE VIEWS SET amount_views=amountViews+1 WHERE date_views=current_date() ;
+	END IF;
+end//
 
 
 delimiter //
@@ -273,5 +303,6 @@ as hourComplaint, user.bit_status from COMPLAINT inner join user on
  complaint_category.id_complaint_category=COMPLAINT.fk_id_complaint_category
  where COMPLAINT.fk_id_user=id;
 end//
+
 
 

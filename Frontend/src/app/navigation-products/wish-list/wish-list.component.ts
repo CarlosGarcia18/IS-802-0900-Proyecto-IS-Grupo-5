@@ -37,7 +37,7 @@ export class WishListComponent implements OnInit {
  public token: number=0
  public promedio: number=0;
  public totalComments:  number=0;
- public date:string=new Date().toLocaleString()
+ //public date:string=new Date().toLocaleString()
  public cond1:boolean=false;
  public cond2:boolean=false;
  public cond3:boolean=false;

@@ -182,6 +182,13 @@ export class EquipoService {
     return this.http.delete(this.url+"/admin/updateEstado/"+id_user)
   }
 
+  getExpiryTime(){
+    return this.http.get(this.url+"/product/expiryTime")
+  }
+
+  setExpiryTime(days:String){
+    return this.http.get(this.url+"/product/expiryTime/"+days)
+  }
   //Eliminar denuncias
   deleteDenuncia(id:any){
     return this.http.delete(this.url+"/admin/deleteDenuncia/"+id)
@@ -210,7 +217,9 @@ export interface traerProducto{
   text_description: string,
   dou_price: string,
   publication_date: string,
+  expiration_date: string,
   whishlist:string
+  bit_availability:boolean
 }
 
 export interface wishListProducts{
@@ -351,7 +360,8 @@ export interface loadComment{
   var_name: string,
   var_lastname: string,
   text_contents: string,
-  tim_date: Date
+  dateComment: string,
+  hourComment:string
 }
 export interface promedio{
   PROMEDIO: number;

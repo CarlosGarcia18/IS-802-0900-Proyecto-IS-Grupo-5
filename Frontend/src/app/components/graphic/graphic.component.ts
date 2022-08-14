@@ -16,7 +16,7 @@ export class GraphicComponent implements OnInit {
 
   @Input() type: 'bar' | 'doughnut' | 'line' | 'pie' = 'line';
   @Input() label: string = '';
-  @Input() width: string = '400px';
+  @Input() width: string = '500px';
   @Input() showLabelsX: boolean = false;
   @Input() idCanva: string = '0';
 
@@ -24,18 +24,18 @@ export class GraphicComponent implements OnInit {
   borderColorLine: string = 'rgb(183,184,230)';
   pointBackgroundColor: string = 'rgb(190,190,255)';
   colorDoughnut: string[] = [
-    'rgb(56,55,244)',
-    'rgb(87,149,203)',
-    'rgb(93,179,39)',
-    'rgb(200,243,21)',
-    'rgb(255,237,0)',
-    'rgb(255,165,6)',
-    'rgb(254,102,1)',
-    'rgb(253,52,1)',
-    'rgb(210,0,2)',
-    'rgb(135,0,32)',
-    'rgb(102,1,104)',
-    'rgb(51,1,155)',
+    'rgb(241,156,162)',
+    'rgb(150,136,191)',
+    'rgb(141,212,246)',
+    'rgb(213,227,158)',
+    'rgb(250,205,146)',
+    'rgb(240,153,124)',
+    'rgb(243,236,220)',
+    'rgb(201,153,193)',
+    'rgb(149,178,220)',
+    'rgb(149,178,220)',
+    'rgb(149,178,220)',
+    'rgb(149,178,220)',
   ];
 
   options: ChartOptions = {};

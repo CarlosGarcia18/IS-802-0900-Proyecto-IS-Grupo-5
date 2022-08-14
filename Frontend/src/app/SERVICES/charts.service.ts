@@ -34,6 +34,15 @@ export class ChartsService {
   getCategoriesChart(){
     return this.http.get(this.url+"/categoryChart")
   }
+  
+  setViews(){
+    return this.http.get(this.url+"/views")
+  }
+
+  getViews(data:dataRegister){
+    return this.http.post(this.url+"/getviews",data)
+
+  }
 
   private class$ = new BehaviorSubject<dataChart>(chartData)
 
@@ -44,5 +53,6 @@ export class ChartsService {
   setData(d:dataChart):void{
     this.class$.next(d)
   }
+
 
 }

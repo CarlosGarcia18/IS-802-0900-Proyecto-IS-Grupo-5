@@ -301,5 +301,89 @@ controller.eliminarDenuncia =(req, res)=>{
 
 
 
+controller.getExpiryTime =(req, res)=>{
+
+    sql = `SELECT fn_getExpiryTime() AS days`
+    conection.query(sql, (err,rows)=>{
+        if(err){
+            res.sendjson({status:-2,msg:"ERROR"})
+        }else{
+            res.json({status:-1, msg:rows[0].days})
+        }
+    })
+
+}
+
+controller.setExpiryTime =(req, res)=>{
+    const{days} = req.params
+    console.log(req.params)
+    if(days>0 && days<10000){
+        sql = `CALL sp_updateExpiryTime(${days})`
+        conection.query(sql, (err,rows)=>{
+            if(err){
+                res.json({status:-2,msg:err})
+            }else{
+                res.json({status:200,msg:"El plazo de expiración de los anuncios se ha actualizado"})
+            }
+        })
+    }else{
+        res.json({status:-1,msg:"Fuera del rango permitido"})
+    }
+    
+}
+
+controller.getViews =(req, res)=>{
+    
+    const {firstDate,lastDate} = req.body
+
+    let sql = `SELECT amount_views,date_format(date_views,'%d/%m/%Y') as date_views FROM plazitanet.views WHERE date_views BETWEEN '${firstDate}'`
+    +` AND '${lastDate}'`
+
+    if (lastDate=='current') {
+        sql = `SELECT amount_views,date_format(date_views,'%d/%m/%Y') as date_views FROM plazitanet.views WHERE date_views BETWEEN '${firstDate}'`
+        +` AND current_timestamp()`
+    }
+
+    conection.query(sql,(err,rows,fields)=>{
+        if (err) {
+            res.json({status:'0', msg:err.sqlMessage});
+        }
+        if (rows.length<1) {
+            res.json({status:'200', 'labels':[], 'data':[], 'up':{label:"",value:0}, 'down':{label:"",value:0}})
+        }else{
+            let chartLabel=[];
+            let chartData=[];
+            let up ={
+                label:"",
+                value:-1
+            }
+            let down ={
+                label:rows[0].date_views,
+                value:rows[0].amount_views
+            }
+            rows.map(data=>{
+                chartLabel.push(data.date_views)
+                chartData.push(data.amount_views)
+                if (data.amount_views>up.value) {
+                    up={
+                        label:data.date_views,
+                        value:data.amount_views
+                    }
+                }
+                if (data.amount_views<=down.value) {
+                    down={
+                        label:data.date_views,
+                        value:data.amount_views
+                    }
+                }
+            })
+
+            res.json({status:'200', 'labels':chartLabel, 'data':chartData, 'up':up, 'down':down})
+        }
+        
+    })
+     
+}
+
 
 module.exports = controller
