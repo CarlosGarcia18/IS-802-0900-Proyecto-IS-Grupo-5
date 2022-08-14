@@ -63,9 +63,9 @@ CREATE TABLE PRODUCT(
     int_views BIGINT UNSIGNED NOT NULL COMMENT "Cantidad de vistas del producto",
     text_description TEXT NOT NULL COMMENT "Descripción",
     dou_price DOUBLE NOT NULL COMMENT "Precio del articulo",
-    bit_availability BIT(1) NOT NULL COMMENT "Identifica el estado del articulo: 0 No disponible | 1 Disponible",
-    publication_date timestamp NOT NULL COMMENT "Fecha de publicacion del articulo",
-    expiration_date timestamp NOT NULL COMMENT "Fecha de expiración del articulo"
+    bit_availability BIT(1) DEFAULT 1 NOT NULL COMMENT "Identifica el estado del articulo: 0 No disponible | 1 Disponible",
+    publication_date datetime NOT NULL COMMENT "Fecha de publicacion del articulo",
+    expiration_date datetime NOT NULL COMMENT "Fecha de expiración del articulo"
     
 
 ) COMMENT "Anuncios";
@@ -191,6 +191,10 @@ CREATE TABLE SUBSCRIPTION(
 -- Crear una llave primaria compuesta con dos llaves foraneas de la tabla SUBSCRIPTION
 ALTER TABLE SUBSCRIPTION
 	ADD CONSTRAINT pk_subscription PRIMARY KEY CLUSTERED (fk_id_user, fk_id_product_category);
+
+CREATE TABLE INFORMATION(
+	expiration_period SMALLINT NOT NULL
+);
 
 CREATE TABLE VIEWS(
 	amount_views BIGINT NOT NULL COMMENT "Esto almacena la cantidada de vistas por día",
