@@ -44,3 +44,7 @@ export interface dataRegister{
   firstDate:string;
   lastDate:string;
 }
+
+export interface formating{
+  format:string|null
+}

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { MatPaginatorModule} from '@angular/material/paginator';
 import { NavigationProductsRoutingModule } from './navigation-products-routing.module';
 import { NavigationProductsComponent } from './view-navigation/navigation-products.component';
@@ -36,6 +36,9 @@ import { ChatsComponent } from './chats/chats.component';
   ],
   exports:[
     NavigationProductsComponent
+  ],
+  providers:[
+    CurrencyPipe
   ]
 })
 export class NavigationProductsModule { }

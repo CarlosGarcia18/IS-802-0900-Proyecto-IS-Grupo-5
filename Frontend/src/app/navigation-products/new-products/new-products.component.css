@@ -103,6 +103,7 @@ align-content: stretch;
 
 .pre-imagen:hover .deleteFile{
   opacity: 100;
+  transition: all .3s;
 }
 
 .pre-imagen:hover .deleteFile:hover{
