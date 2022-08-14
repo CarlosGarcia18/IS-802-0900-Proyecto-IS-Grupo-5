@@ -220,7 +220,6 @@ end//
 
 call listDenuncias12(2);
 
-
 #Actualizar Cat. de los productos a indefinida 
 DELIMITER //
 CREATE PROCEDURE UpdateCategory(IN id bigint)
@@ -230,15 +229,6 @@ BEGIN
 					(SELECT  id_product_category FROM product_category WHERE var_name="Indefinida")x) 
 	WHERE fk_id_product_category= id;
 END//
-
-
-delimiter //
-create  procedure listDenuncias12(id int)
-BEGIN
- SELECT*FROM COMPLAINT where fk_id_user_complaining=id order by tim_date asc;
-end//
-
-call listDenuncias12(2);
 
 --Listado de denuncias por usuario por id
 delimiter //
