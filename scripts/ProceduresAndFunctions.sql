@@ -39,12 +39,11 @@ end//
 DELIMITER &&
 CREATE PROCEDURE obtenerComentarios(IN id int)
 BEGIN
-     SELECT user.var_name, user.var_lastname, commentary.text_contents, commentary.tim_date 
+     SELECT user.var_name, user.var_lastname, commentary.text_contents, date_format(tim_date,'%d/%m/%Y') as dateComment,time_format(tim_date,'%H:%i')  as hourComment
 		FROM commentary 
 		INNER JOIN user ON user.id_user=commentary.fk_id_user
 		WHERE commentary.fk_id_product = id ORDER BY commentary.tim_date DESC;
 END&&
-
 ##PROMEDIO DE CALIFICACION
 DELIMITER &&
 CREATE PROCEDURE prom(IN id int)
@@ -181,6 +180,26 @@ BEGIN
     GROUP BY product.id_product order by CHAT.modification_date DESC;
 end$$
 
+-- Obtener tiempo de expiración de anuncios
+DROP FUNCTION IF EXISTS fn_getExpiryTime;
+delimiter $$
+CREATE FUNCTION fn_getExpiryTime()
+		RETURNS SMALLINT
+	BEGIN
+		RETURN (SELECT expiration_period FROM INFORMATION LIMIT 1);
+END$$
+
+-- Actualizar el tiempo de expiración de anuncios
+DROP PROCEDURE IF EXISTS sp_updateExpiryTime;
+delimiter $$
+CREATE PROCEDURE sp_updateExpiryTime(days SMALLINT)
+BEGIN
+	UPDATE PRODUCT SET expiration_date = DATE_ADD(publication_date, interval days day);
+	UPDATE INFORMATION SET expiration_period=days;
+END$$
+
+SET SQL_SAFE_UPDATES = 1;
+
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
 
 DELIMITER //
@@ -220,7 +239,7 @@ end//
 
 call listDenuncias12(2);
 
---Listado de denuncias por usuario
+--Listado de denuncias por usuario por id
 delimiter //
 create  procedure ListadoUsuarios(id int)
 BEGIN
@@ -232,11 +251,9 @@ end//
 
 
 delimiter //
-create  procedure ListadoUsuarios31()
+create  procedure eliminarDenuncia(id int)
 BEGIN
-select * from user
-where exists (select * from complaint
-where fk_id_user=id_user);
+ DELETE FROM complaint where id_COMPLAINT=id; 
 end//
 
 delimiter //

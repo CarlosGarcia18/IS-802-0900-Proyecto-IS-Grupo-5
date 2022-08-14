@@ -69,7 +69,7 @@ routers.post('/credential/confirm', customerU.confirmaCodigo)
 //trae los productos disponible segun los diferentes filtros
 routers.post('/productFiltering',customerO.productFiltering)
 
-routers.get('/productUser/:id',customerU.productUser)
+routers.get('/productUser/:id',customerO.productUser)
 
 //Agregar un producto
 routers.post('/newProduct',customerO.postProduct)
@@ -92,7 +92,7 @@ routers.get('/getSubscriptions/:id_user', customerU.getSubscriptions)
 //dar de baja favorito
 routers.post('/deleteFav',customerU.deleteFavorite)
 //listar favoritos
-routers.get('/getFavs/:id_user', customerU.getWishlist)
+routers.get('/getFavs/:id_user', customerO.getWishlist)
 //agregar a favoritos
 routers.post('/addFav', customerU.addFavorite)
 
@@ -151,8 +151,7 @@ routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 routers.get('/imagenes/:fk_id_product', customerO.imagenes)
 
 routers.post('/deleteFiles',customerO.updatePhotos)
-//Listar denuncias por el id
-routers.get('/getDenuncias/:id',customerU.listarDenuncia)
+
 
 
 //obtener datos de grafica de categorias
@@ -171,7 +170,7 @@ routers.get('/admin/getCategory/:id_product_category', customerA.getOneCategory)
 routers.put('/admin/deleteCategory', customerA.deleteCategory)
 
 //listar denuncias
-routers.get('/getDenuncias/:id',customerA.listarDenuncia)
+routers.get('/admin/getDenuncias/:id',customerA.listarDenuncia)
 
 //Eliminar usuario y productos por el id de usuario
 routers.delete('/deleUser/:id',customerU.deleteUserTotal)
@@ -181,6 +180,11 @@ routers.post('/admin/updateEstado/:id',customerA.cambiarEstado)
 
 //ListadoUsuario 
 routers.get('/admin/listUser',customerA.listadoUsuario)
+//listadoNumeroDenunciasPor usuario
+routers.get('/admin/numDenun/:id',customerA.listadoUsuarioDenun)
+
+//Eliminar Denuncia de usuario
+routers.delete('/admin/deleteDenuncia/:id',customerA.eliminarDenuncia)
 
 //obtener datos de grafica de registrados
 routers.post('/registerChart',customerA.amountUserRegister)
@@ -188,6 +192,11 @@ routers.post('/registerChart',customerA.amountUserRegister)
 //obtener datos de grafica de categorias
 routers.get('/categoryChart',customerA.amountCategory)
 
+//Trae el tiempo de expiración de los productos
+routers.get('/product/expiryTime',customerA.getExpiryTime)
+
+//Actualiza el plazo de expiración de los productos
+routers.get('/product/expiryTime/:days',customerA.setExpiryTime)
 //agregar visita
 routers.get('/views',customerO.views)
 
