@@ -8,6 +8,7 @@
             <thead>
               <tr>
                 <th>No.</th>
+                <th scope="col">Id</th>
                 <th scope="col">Primer Nombre</th>
                 <th scope="col">Primer Apellido</th>
                 <th scope="col">Numero de Denuncias</th>
@@ -18,13 +19,15 @@
               <tr *ngFor="let item2 of user; let indice=index">
 
                 <th scope="row">{{indice+1}}</th>
+                <td>{{item2.id_user}}</td>
                 <td>{{item2.var_name}}</td>
                 <td>{{item2.var_lastname}}</td>
                 <td>{{item2.Denuncias1}}</td>
 
 
+
                   <td>
-                    <button title="s" (click)="listarDenuncia(item2.id_user)"><i class="bi bi-chat-left-dots"></i></button>
+                    <button title="s" (click)="listarDenuncia(item2.id_user)">favorite</button>
                     <button title="g" class="btn btn-dark" style="border-radius: 100%;" (click)="EliminarUsuario(item2.id_user)"><i class="fa-solid fa-trash" > </i></button>
                   </td>
                   <script type="">

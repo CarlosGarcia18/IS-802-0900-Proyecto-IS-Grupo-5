@@ -285,14 +285,40 @@ BEGIN
     return estado;
 END//
 
-delimiter //
-create  procedure ListadoUsuarios()
+
+
+delimiter &&
+CREATE FUNCTION fn_Denuncia1(id_user BIGINT UNSIGNED)
+	RETURNS int
+    DETERMINISTIC
 BEGIN
-select id_user,var_name,var_lastname, fn_Denuncia(id_user) AS Denuncias1 from user as U
-where  fn_Denuncia(id_user)>0 and Estado_usuario( U.id_user)=1 and U.bit_rol=1;
-end//
-select*from user;
+	DECLARE NumeroDenuncias int;
+	select count(fk_id_user_complaining) into NumeroDenuncias  from complaint
+     where exists (select * from user
+     where id_user=fk_id_user_complaining
+     group by id_user);
+	return NumeroDenuncias;
+END &&
+
+
+
+
+
+delimiter &&
+CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
+	RETURNS int
+BEGIN
+	DECLARE NumeroDenuncias int;
+	select count(fk_id_user) into NumeroDenuncias  from complaint
+     where exists (select * from user
+     where id_user=fk_id_user
+     group by id_user);
+	return NumeroDenuncias;
+END &&
+
+
 call ListadoUsuarios();
+
 
 delimiter //
 create  procedure listUsuarioDenuncia(id int)
@@ -300,10 +326,12 @@ BEGIN
 select COMPLAINT.id_COMPLAINT,complaint_category.var_name as NombreCategoria , user.var_name as NombreUsuario,USER.var_lastname as SegundoNombre ,COMPLAINT.text_description as Descripcion,
 COMPLAINT.tim_date ,date_format(tim_date,'%d/%m/%Y') as dateComplaint ,time_format(tim_date,'%H:%i') 
 as hourComplaint, user.bit_status from COMPLAINT inner join user on 
- COMPLAINT.fk_id_user_complaining=user.id_user inner join complaint_category on
+ COMPLAINT.fk_id_user=user.id_user inner join complaint_category on
  complaint_category.id_complaint_category=COMPLAINT.fk_id_complaint_category
- where COMPLAINT.fk_id_user=id;
+ where COMPLAINT.fk_id_user_complaining=id;
 end//
+select * from user;
+select * from COMPLAINT
 
 
 delimiter //
@@ -315,27 +343,7 @@ end//
 
 call ListadoUsuarioNumDenu1();
 
-delimiter //
-CREATE FUNCTION Estado_usuario(user_id BIGINT UNSIGNED)
-	RETURNS int
-    DETERMINISTIC
-BEGIN
-	DECLARE estado int;
-	select bit_status into estado from user 
-    where id_user=user_id;
-    return estado;
-END//
 
-delimiter //
-create  procedure listUsuarioDenuncia(id int)
-BEGIN
-select COMPLAINT.id_COMPLAINT,complaint_category.var_name as NombreCategoria , user.var_name as NombreUsuario,USER.var_lastname as SegundoNombre ,COMPLAINT.text_description as Descripcion,
-COMPLAINT.tim_date ,date_format(tim_date,'%d/%m/%Y') as dateComplaint ,time_format(tim_date,'%H:%i') 
-as hourComplaint, user.bit_status from COMPLAINT inner join user on 
- COMPLAINT.fk_id_user_complaining=user.id_user inner join complaint_category on
- complaint_category.id_complaint_category=COMPLAINT.fk_id_complaint_category
- where COMPLAINT.fk_id_user=id;
-end//
 
 --Eliminar Denuncias
 delimiter //
@@ -354,3 +362,22 @@ end//
 call modificarEstado(6);
 
 
+delimiter &&
+CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
+	RETURNS int
+BEGIN
+	DECLARE NumeroDenuncias int;
+	select count(fk_id_user) into NumeroDenuncias  from complaint
+     where exists (select * from user
+     where id_user=fk_id_user
+     group by id_user);
+	return NumeroDenuncias;
+END &&
+
+
+delimiter //
+create  procedure ListadoUsuarios()
+BEGIN
+select id_user,var_name,var_lastname, fn_Denuncia(id_user) AS Denuncias1 from user as U
+where  fn_Denuncia(id_user)>0 and Estado_usuario( U.id_user)=1 and U.bit_rol=1;
+end//
