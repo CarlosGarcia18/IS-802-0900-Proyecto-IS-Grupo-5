@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import {
   newProducto,
   EquipoService,
@@ -30,6 +31,8 @@ export class NewProductsComponent implements OnInit {
     }, error =>{
       console.log(error)
     })
+    this.srcArray.length=0
+    this.archivos.length=0;
   }
 
   //agregar el formGrup
@@ -134,27 +137,36 @@ get nombreControl():FormControl{
   /* Para subir Archivo*/
   subirArchivo(): any {
     //Sube el producto
-    this.equipoService.newProducto(this.producto).subscribe((res) => {
-      var info: BookInfo = <any>res;
+    if(this.srcArray.length<1){ 
+      window.alert('Debes cargar al menos una imagen');
+    }else{
+      this.equipoService.newProducto(this.producto).subscribe((res) => {
+        var info: BookInfo = <any>res;
 
-      //Recorre el arreglo de archivos
-      this.archivos.forEach((archivo: any) => {
-        const formularioDeDatos = new FormData();
-        formularioDeDatos.append('image', archivo);
-        console.log(archivo);
+        //Recorre el arreglo de archivos
+        this.archivos.forEach((archivo: any) => {
+          const formularioDeDatos = new FormData();
+          formularioDeDatos.append('image', archivo);
+          console.log(archivo);
 
         //Sube archivo uno por uno
-        this.equipoService
-          .productoFoto(formularioDeDatos, info.id)
-          .subscribe((res) => {
+          this.equipoService.productoFoto(formularioDeDatos, info.id).subscribe((res) => {
             console.log('Respuesta ', res);
           });
       });
-      this.archivos.length=0
-      this.srcArray.length=0
-      this.raute.navigate([`navigationProducts/published1`])
+        this.archivos.length=0
+        this.srcArray.length=0
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Producto cargado exitosamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.raute.navigate([`navigationProducts/published1`])
     });
   }
+}
 }
 
 interface BookInfo {
