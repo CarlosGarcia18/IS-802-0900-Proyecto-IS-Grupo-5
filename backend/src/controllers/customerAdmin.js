@@ -204,14 +204,14 @@ controller.amountCategory = (req,res) =>{
 //Listar Denuncias
 controller.listarDenuncia =(req, res)=>{
     const{id}=req.params
-
-    let sql28=`call listDenuncias12(${id})`
+    
+    let sql28=`call listUsuarioDenuncia(${id})`
 
     conection.query(sql28, (err,rows,fields)=>{
         if(err){
             res.json({ status:'0', error: err.sqlMessage})
         }else{
-            res.json({status:'200', msg:rows})
+            res.json(rows[0])
         }
     })
     
@@ -232,7 +232,7 @@ controller.cambiarEstado =(req, res)=>{
     })
     
 }
-/*
+
 controller.listadoUsuario =(req, res)=>{
     const{id}=req.params
 
@@ -246,11 +246,12 @@ controller.listadoUsuario =(req, res)=>{
         }
     })
      
-}*/
+}
 
+//Lista de  usuarios con denuncia
 controller.listadoUsuario =(req, res)=>{
     
-    let sql15=`call ListadoUsuarios31();`
+    let sql15=`call ListadoUsuarios();`
 
     conection.query(sql15, (err,rows,fields)=>{
         if(err){
@@ -261,6 +262,44 @@ controller.listadoUsuario =(req, res)=>{
     })
      
 }
+//Listado de usuarios por numero de denuncia
+controller.listadoUsuarioDenun =(req, res)=>{
+    const{id}=req.params
+    
+    let sql16=`call ListadoUsuarioNumDenu(${id});`
+
+    conection.query(sql16, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json(rows[0])
+        }
+    })
+     
+}
+
+//Eliminar Denuncia de Usuario
+//Listar Denuncias
+controller.eliminarDenuncia =(req, res)=>{
+    const{id}=req.params
+    
+    let sql17=`call eliminarDenuncia(${id})`
+
+    conection.query(sql17, (err,rows,fields)=>{
+        if(err){
+            res.json({ status:'0', error: err.sqlMessage})
+        }else{
+            res.json({status:'200', msg:rows})
+        }
+    })
+    
+}
+
+
+
+
+
+
 
 controller.getExpiryTime =(req, res)=>{
 

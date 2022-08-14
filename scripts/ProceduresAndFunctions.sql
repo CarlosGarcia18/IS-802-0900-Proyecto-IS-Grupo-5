@@ -39,12 +39,11 @@ end//
 DELIMITER &&
 CREATE PROCEDURE obtenerComentarios(IN id int)
 BEGIN
-     SELECT user.var_name, user.var_lastname, commentary.text_contents, commentary.tim_date 
+     SELECT user.var_name, user.var_lastname, commentary.text_contents, date_format(tim_date,'%d/%m/%Y') as dateComment,time_format(tim_date,'%H:%i')  as hourComment
 		FROM commentary 
 		INNER JOIN user ON user.id_user=commentary.fk_id_user
 		WHERE commentary.fk_id_product = id ORDER BY commentary.tim_date DESC;
 END&&
-
 ##PROMEDIO DE CALIFICACION
 DELIMITER &&
 CREATE PROCEDURE prom(IN id int)
@@ -240,7 +239,7 @@ end//
 
 call listDenuncias12(2);
 
---Listado de denuncias por usuario
+--Listado de denuncias por usuario por id
 delimiter //
 create  procedure ListadoUsuarios(id int)
 BEGIN
@@ -253,13 +252,13 @@ end//
 
 call ListadoUsuarios();
 
-
+--Eliminar Denuncias de usuario
 delimiter //
-create  procedure ListadoUsuarios31()
+create  procedure eliminarDenuncia(id int)
 BEGIN
-select * from user
-where exists (select * from complaint
-where fk_id_user=id_user);
+ DELETE FROM complaint where id_COMPLAINT=id; 
 end//
 
-call ListadoUsuarios31();
+call eliminarDenuncia(2);
+
+

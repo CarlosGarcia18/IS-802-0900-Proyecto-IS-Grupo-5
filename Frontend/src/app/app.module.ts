@@ -10,7 +10,8 @@ import { AppComponent } from './app.component';
 import { CredentialRecoveryModule } from './credential-recovery/credential-recovery.module';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { NavigationLayoutComponent } from './layouts/navigation-layout/navigation-layout.component';
-import { NgChartsModule } from 'ng2-charts'
+import { NgChartsModule } from 'ng2-charts';
+
 
 
 @NgModule({

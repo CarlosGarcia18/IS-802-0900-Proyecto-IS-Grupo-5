@@ -38,7 +38,7 @@ export class ProductsComponent implements OnInit {
   public token: number=0
   public promedio: number=0;
  public totalComments:  number=0;
- public date:string=new Date().toLocaleString()
+ //public date:string=new Date().toLocaleString()
  public block:boolean=true;
  public cond1:boolean=false;
   public cond2:boolean=false;
@@ -401,7 +401,7 @@ loadComments(id: string|null){
     this.comments=<any>res;
     this.totalComments=this.comments.length
     
-    console.log(this.date)
+    //console.log(this.date)
 
     console.log(this.comments)
   })
