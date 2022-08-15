@@ -198,10 +198,13 @@ routers.get('/product/expiryTime',customerA.getExpiryTime)
 //Actualiza el plazo de expiración de los productos
 routers.get('/product/expiryTime/:days',customerA.setExpiryTime)
 
-//agregar visita
+//agregar vista
 routers.get('/views',customerO.views)
 
 routers.post('/getviews',customerA.getViews)
+
+//trae si un chat tiene suficientes comentarios para activar la calificación
+routers.get('/chat/isQualifying/:id_chat',customerU.isQualifying)
 
 
 

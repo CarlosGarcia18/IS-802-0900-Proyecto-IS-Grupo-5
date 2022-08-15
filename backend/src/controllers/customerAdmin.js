@@ -34,11 +34,11 @@ controller.productsCategory = (req,res) =>{
 //agregar categoria
 controller.addCategory=(req,res)=>{
     const {var_name} =req.body;
-    console.log( typeof var_name)
+    //console.log( typeof var_name)
     let sql=`INSERT INTO product_category (var_name) VALUES ("${var_name}")`
     let sql1=`SELECT * FROM product_category WHERE var_name="${var_name}"`
     
-    console.log(var_name)
+    //console.log(var_name)
 
     conection.query(sql1,(err,rows)=>{
         if(err) res.json({status:"0", msg: err.sqlMessage})
@@ -60,7 +60,7 @@ controller.addCategory=(req,res)=>{
 controller.updateCategory=(req,res)=>{
     
     const {var_name, id_product_category} =req.body;
-    console.log(id_product_category +" "+ var_name)
+    //console.log(id_product_category +" "+ var_name)
     let sql=`UPDATE product_category SET var_name= "${var_name}" WHERE id_product_category=${id_product_category}`
     let sql1=`SELECT * FROM product_category WHERE var_name="${var_name}"`
     
@@ -103,8 +103,8 @@ controller.getOneCategory=(req,res)=>{
 controller.deleteCategory=(req,res)=>{
     const {id_product_category, var_name}=req.body
 
-    console.log(id_product_category)
-    console.log(var_name)
+    //console.log(id_product_category)
+    //console.log(var_name)
     sql1=`call updateCategory(${id_product_category})`
     sql2=`DELETE from product_category WHERE id_product_category=${id_product_category}`
 
@@ -317,7 +317,7 @@ controller.getExpiryTime =(req, res)=>{
 
 controller.setExpiryTime =(req, res)=>{
     const{days} = req.params
-    console.log(req.params)
+    //console.log(req.params)
     if(days>0 && days<10000){
         sql = `CALL sp_updateExpiryTime(${days})`
         conection.query(sql, (err,rows)=>{

@@ -198,6 +198,10 @@ export class EquipoService {
     return this.http.post(this.url+"/individualScore",getScore)
   }
 
+  isQualifying(id_chat:number){
+    return this.http.get(this.url+"/chat/isQualifying/"+id_chat)
+  }
+
 
 }
 

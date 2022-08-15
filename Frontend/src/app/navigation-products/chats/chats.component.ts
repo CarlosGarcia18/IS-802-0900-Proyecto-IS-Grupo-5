@@ -56,6 +56,11 @@ export class ChatsComponent implements OnInit {
               this.chatSelected = d
               this.dataM.fk_id_chat = d
               this.WebSocketsService.emit("listmessagesv3",{"id":d,"idUser":this.chats[i].Rol=='Cliente'?this.chats[i].id_vendedor:this.chats[i].id_comprador})
+              this.Rol = this.chats[i].Rol
+              this.qlfy.fk_id_user_review = ""+this.chats[i].id_vendedor
+              this.qlfy.fk_id_user_qualified = this.chats[i].id_comprador
+              this.loadStars()
+              
               break
             }
           }
@@ -110,6 +115,7 @@ export class ChatsComponent implements OnInit {
   protected cond3:boolean=false;
   protected cond4:boolean=false;
   protected cond5:boolean=false;
+  protected isQualifying:boolean=false;
 
   Rol:String=""
 
@@ -117,6 +123,46 @@ export class ChatsComponent implements OnInit {
     fk_id_user_review: '', 
     fk_id_user_qualified: 0,
     tin_score: 0
+  }
+
+  // Función para actualizar las estrellas
+  loadStars(){
+    this.cond1=false
+    this.cond2=false
+    this.cond3=false
+    this.cond4=false
+    this.cond5=false
+
+    if(this.Rol=="Vendedor"){
+      let getScore:getQualification = {
+        fk_id_user_review: "" + this.qlfy.fk_id_user_review,
+        fk_id_user_qualified: "" + this.qlfy.fk_id_user_qualified
+      }
+      this.equipoService.getOneScore(getScore).subscribe(res=>{
+        const info:BookInfo = <any>res
+
+        if(info.status==200){
+          if(+info.msg>=1){
+            this.cond1=true
+            if(+info.msg>=2){
+              this.cond2=true
+              if(+info.msg>=3){
+                this.cond3=true
+                if(+info.msg>=4){
+                  this.cond4=true
+                  if(+info.msg>=5){
+                    this.cond5=true
+      
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      err=>console.log(err))
+    }
+
   }
 
   calificar(score:number){
@@ -167,48 +213,22 @@ export class ChatsComponent implements OnInit {
     this.Rol = Rol
     this.qlfy.fk_id_user_review = ""+id_vendedor
     this.qlfy.fk_id_user_qualified = id_comprador
-
-    this.cond1=false
-    this.cond2=false
-    this.cond3=false
-    this.cond4=false
-    this.cond5=false
-
-    if(Rol=="Vendedor"){
-      let getScore:getQualification = {
-        fk_id_user_review: this.qlfy.fk_id_user_review,
-        fk_id_user_qualified: "" + this.qlfy.fk_id_user_qualified
-      }
-      this.equipoService.getOneScore(getScore).subscribe(res=>{
-        const info:BookInfo = <any>res
-        if(info.status==200){
-          if(+info.msg>=1){
-            this.cond1=true
-            if(+info.msg>=2){
-              this.cond2=true
-              if(+info.msg>=3){
-                this.cond3=true
-                if(+info.msg>=4){
-                  this.cond4=true
-                  if(+info.msg>=5){
-                    this.cond5=true
-      
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      err=>console.log(err))
-    }
-    
+    this.loadStars()
     
   }
 
   sendMessenge(){
     if (this.dataM.text_contents!="") {
       this.WebSocketsService.emit("addMessage",this.dataM)
+
+      //Validar si activar las calificaciones
+      this.equipoService.isQualifying(this.chatSelected).subscribe(res=>{
+        const info:BookInfo = <any>res
+        if(+info.msg == 1){
+          this.isQualifying = true
+        }
+      },
+      err=>console.log(err))
     }
   }
 

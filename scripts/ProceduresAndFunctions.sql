@@ -62,7 +62,7 @@ BEGIN
  SELECT date_format(tim_date,'%d/%m/%Y') as dateMessenge,time_format(tim_date,'%H:%i') as hourMessenge, if(bit_status=0,0,1) as bit_status, text_contents, fk_id_user FROM MESSAGE where fk_id_chat=id order by tim_date asc; 
 end//
 
-call listMessage(4,1);
+-- call listMessage(4,1);
 
 -- Otra forma de listar mensajes
 /*
@@ -99,7 +99,7 @@ BEGIN
 	
 end$$
 
-CALL sp_newChat(101, 1, 3);
+-- CALL sp_newChat(101, 1, 3);
 
 -- Mensaje nuevo
 drop procedure if exists sp_sendMessage;
@@ -221,6 +221,28 @@ BEGIN
     END IF;
 END$$
 
+-- Procedimiento para obtener si un chat cumple los requisitos de mostrar las calificaciones
+DROP FUNCTION IF EXISTS fn_isQualifying;
+DELIMITER $$
+CREATE FUNCTION fn_isQualifying(chat BIGINT UNSIGNED)
+	RETURNS TINYINT
+BEGIN
+	DECLARE customer INT UNSIGNED;
+    DECLARE seller INT UNSIGNED;
+    DECLARE countCustomer INT UNSIGNED;
+    DECLARE countSeller INT UNSIGNED;
+
+	SELECT fk_id_user_buyer, fk_id_user_seller INTO customer,seller FROM CHAT WHERE id_chat = chat;
+    
+	SELECT COUNT(*) INTO countCustomer FROM MESSAGE WHERE fk_id_user = customer AND fk_id_chat = chat;
+    SELECT COUNT(*) INTO countSeller FROM MESSAGE WHERE fk_id_user = seller AND fk_id_chat = chat;
+    IF countCustomer > 2 AND countSeller > 2 THEN
+		RETURN 1;
+	ELSE
+		RETURN 0;
+	END IF;
+END $$
+
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
 
 DELIMITER //
@@ -237,8 +259,6 @@ create  procedure listDenuncias12(id int)
 BEGIN
  SELECT*FROM COMPLAINT where fk_id_user_complaining=id order by tim_date asc;
 end//
-
-call listDenuncias12(2);
 
 #Actualizar Cat. de los productos a indefinida 
 DELIMITER //
@@ -327,12 +347,12 @@ as hourComplaint, user.bit_status from COMPLAINT inner join user on
  where COMPLAINT.fk_id_user_complaining=id;
 end//
 
-call listUsuarioDenuncia(5)
+-- call listUsuarioDenuncia(5)
 select * from user;
 select user.bit_status from user inner join COMPLAINT;
 select * from COMPLAINT
 
-call listUsuarioDenuncia()
+-- call listUsuarioDenuncia()
 
 
 delimiter //
@@ -342,7 +362,7 @@ select fk_id_user,count(fk_id_user) As NumeroDenuncias from complaint
 group by fk_id_user;
 end//
 
-call ListadoUsuarioNumDenu1();
+-- call ListadoUsuarioNumDenu1();
 
 
 -- Eliminar Denuncias
@@ -360,9 +380,9 @@ BEGIN
 update user set bit_status=0 where id_user=id; 
 end//
 
-call modificarEstado(6);
-select*from user;
-select *from 
+-- call modificarEstado(6);
+-- select*from user;
+-- select *from 
 
 
 create  procedure ListadoUsuarios()

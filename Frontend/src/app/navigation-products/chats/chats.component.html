@@ -34,7 +34,7 @@
         <div *ngIf="messenge != null" class="messenge-send">
 
             <div class="messenge-send-text">
-                    <div class="div-stars" *ngIf="Rol=='Vendedor'">
+                    <div class="div-stars" *ngIf="Rol=='Vendedor'&&isQualifying">
                         <h6>Califica al vendedor</h6>
                         <input type="radio" name="rate" id="rate-1" (click)="calificar(1)">
                         <label for="rate-1" class="fas fa-star" [ngStyle]="{'color': cond1 ? '#fd4': 'gray'}"></label>

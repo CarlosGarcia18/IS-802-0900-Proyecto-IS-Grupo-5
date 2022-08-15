@@ -580,6 +580,18 @@ controller.getOneQualification = (req, res) => {
 
 }
 
+controller.isQualifying = (req, res) => {
+    const{id_chat} = req.params
+    let sql = `SELECT fn_isQualifying(${id_chat}) AS isQualifying`
+    conection.query(sql, (err, rows, fields) => {
+        if (err) {
+            res.json({ status: -1, error: err.sqlMessage })
+        }else{
+            res.json({status: 200, msg:""+rows[0].isQualifying})
+        }
+    })
+}
+
 //=================Crear Denuncias==========================================
 controller.denuncia = (req, res) => {
 

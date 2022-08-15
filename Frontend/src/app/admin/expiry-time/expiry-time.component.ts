@@ -12,6 +12,13 @@ export class ExpiryTimeComponent implements OnInit {
   constructor(private equipoService:EquipoService) { }
 
   ngOnInit(): void {
+    this.loadDays()
+  }
+
+  dias:string = ""
+  expiryValue:string = ""
+
+  loadDays(){
     this.equipoService.getExpiryTime().subscribe(res=>{
       const info:BookInfo = <any>res
       this.dias = info.msg
@@ -20,19 +27,21 @@ export class ExpiryTimeComponent implements OnInit {
     })
   }
 
-  dias:string = ""
-  expiryValue:string = ""
-
   actualizar(): void {
     
     if(this.expiryValue != ""){
       this.equipoService.setExpiryTime(this.expiryValue).subscribe(res=>{
         const info:BookInfo = <any>res
-        console.log(info.status)
         if(info.status == 200){
-         
-          this.dias = this.expiryValue
-          location.reload()
+          /*
+          Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: info.msg,
+              showConfirmButton: false,
+              timer: 1000
+          })*/
+          this.loadDays()
         }else{
           Swal.fire({
             position: 'center',
