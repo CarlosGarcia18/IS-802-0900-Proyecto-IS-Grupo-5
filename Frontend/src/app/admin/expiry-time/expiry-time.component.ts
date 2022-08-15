@@ -30,14 +30,9 @@ export class ExpiryTimeComponent implements OnInit {
         const info:BookInfo = <any>res
         console.log(info.status)
         if(info.status == 200){
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: info.msg,
-            showConfirmButton: false,
-            timer: 1000
-          })
+         
           this.dias = this.expiryValue
+          location.reload()
         }else{
           Swal.fire({
             position: 'center',
@@ -46,6 +41,7 @@ export class ExpiryTimeComponent implements OnInit {
             showConfirmButton: false,
             timer: 1000
           })
+         
         }
 
       })
