@@ -60,7 +60,7 @@ export class ChatsComponent implements OnInit {
               this.qlfy.fk_id_user_review = ""+this.chats[i].id_vendedor
               this.qlfy.fk_id_user_qualified = this.chats[i].id_comprador
               this.loadStars()
-              
+              this.activarCalificar()
               break
             }
           }
@@ -74,7 +74,9 @@ export class ChatsComponent implements OnInit {
     this.WebSocketsService.listen("listmessagesResponse").subscribe((data:any)=>{      
       if (data.status=="200") {
         this.messenge = data.msg
+        console.log(this.messenge)
         this.WebSocketsService.emit("getchats",{"id_user":this.token})
+        this.activarCalificar()
       }else if(data.status=="201"){
         this.messenge = data.msg
       }else{
@@ -217,18 +219,22 @@ export class ChatsComponent implements OnInit {
     
   }
 
+  activarCalificar(){
+    this.equipoService.isQualifying(this.chatSelected).subscribe(res=>{
+      const info:BookInfo = <any>res
+      if(+info.msg == 1){
+        this.isQualifying = true
+      }
+    },
+    err=>console.log(err))
+  }
+
   sendMessenge(){
     if (this.dataM.text_contents!="") {
       this.WebSocketsService.emit("addMessage",this.dataM)
 
       //Validar si activar las calificaciones
-      this.equipoService.isQualifying(this.chatSelected).subscribe(res=>{
-        const info:BookInfo = <any>res
-        if(+info.msg == 1){
-          this.isQualifying = true
-        }
-      },
-      err=>console.log(err))
+      this.activarCalificar()
     }
   }
 
