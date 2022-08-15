@@ -1,733 +1,4 @@
 USE PLAZITANET;
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(101,6,15,7,2,"Seagate ST2000DM006","Series:Barracuda,Type:7200RPM,Capacity:2TB,Cache:64MB",1470.93,847,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("1.jpg","jpg",101);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(102,3,12,7,2,"Gigabyte X299 AORUS Gaming 3","CPU:LGA2066,Form Factor:ATX,RAM Slots:8,Max RAM:128GB",2270.48,7363,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("2.jpg","jpg",102);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(103,5,5,7,2,"Intel Xeon E5-2698 V3 (OEM/Tray)","Speed:2.3GHz,Cores:16,TDP:135W",2035.18,726,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("3.jpg","jpg",103);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(104,5,18,7,2,"Kingston SV300S37A/120G","Series:SSDNow V300 Series,Type:SSD,Capacity:120GB,Cache:N/A",450.93,938,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("4.jpg","jpg",104);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(105,3,4,7,2,"Audífonos Xiaomi","Los audífonos True Wireless Redmi Buds 3 Lite de Xiaomi tienen reconocimiento automático de dispositivos y conexiones inalámbricas simples.",700,982,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("5.jpg","jpg",105);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(106,2,5,1,1,"Organizador","Quattro Organizador para tocador QTTORG004 3 niveles",1350.0,982,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("6.jpg","jpg",106);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(107,2,11,1,1,"Juegos de ollas","Hamilton Beach Batería de cocina HCW601A 8 Piezas",3397.0,167,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("7.jpg","jpg",107);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(108,6,17,1,2,"Sarten","Hamilton Beach Sartén de Aluminio PD-HBW106 Antiadherente",597.0,827,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("8.jpg","jpg",108);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(109,5,18,1,2,"Quattro Cojín","QTTCS037 / Rayado",400.0,672,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("9.jpg","jpg",109);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(110,5,17,1,2,"Tetera","Mr. Coffee Tetera Claredale / 10807401 / 2.08 L",467.0,827,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("10.jpg","jpg",110);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(111,5,7,2,2,"Pañales Huggies","Pañales hechos con fibras naturales, suaves como algodón y sin quimicos",577.9,100,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("11.jpg","jpg",111);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(112,5,13,2,1,"Leche En Polvo","Leche En Polvo Arla Milex Kinder Descremada 800 Gr",218.9,7282,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("12.jpg","jpg",112);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(113,2,9,2,2,"Ropa recien nacido","Estuche regalo recién nacido con 3 prendas - verde claro liso con motivos",1000,72,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13.jpg","jpg",113);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13_1.jpg","jpg",113);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13_2.jpg","jpg",113);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13_3.jpg","jpg",113);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(114,5,9,2,1,"Biberón","Philips AVENT Biberón anticólico con ventilación sin aire, 4 onzas, 1 paquete, transparente",250,91,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("14.jpg","jpg",114);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(115,2,5,2,1,"Carriola","Graco Coche LiteRider Daphne con portabebé / 2075293 / Respaldo ajustable",6847.0,254,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("15.jpg","jpg",115);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(116,2,15,3,2,"Collar para perro","Multiple Colors, Soft Padded Breathable Nylon Pet Collar, Adjustable Martingale Collar Increased Control",250.0,7262,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("16.jpg","jpg",116);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(117,6,9,3,1,"Casa para perros","Ram Quality Products Innovadora casa para mascotas al aire libre grande impermeable",2700.0,1092,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("17.jpg","jpg",117);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(118,6,14,3,1,"Jaula para aves","Yaheetech Jaula de pájaros de techo abierto con ruedas de 57 pulgadas para loros de tamaño medio",2500,625,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("18.jpg","jpg",118);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(119,5,16,3,1,"Caja de arena","Cajas de arena para gatos autolimpiables automáticas originales",1500,928,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("19.jpg","jpg",119);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(120,4,3,3,2,"Acuario para peces","Marineland ML90609 Retrato Acuario Kit, 5 galones",1600,1725,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("20.jpg","jpg",120);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(121,3,10,4,1,"Decibal Mueble de cocina","Con 4 diferentes estantes para organizar tus utensilios de cocina.",3497.0,927,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("21.jpg","jpg",121);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(122,6,1,4,1,"Dida Mueble de Cocina","fabricado en un clásico color café con estilo contemporáneo; Este chinero de 3 cuerpos, 3 patas inferiores y 3 patas superiores con vidrio",8497,172,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("22.jpg","jpg",122);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(123,6,4,4,1,"Quattro Mueble multifunción","Posee elegante diseño en colores blanco y nogal, este versátil mueble cuenta con 3 estantes y un perchero te permitirá bien ser utilizado para tus prendas de ropa o para colocar tus pertenecías o adornos.",1697,827,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("23.jpg","jpg",123);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(124,2,8,4,2,"Commodity Sillón Reclinable","Diseño Reclinable, con tejido antiderrames, cuero sintetico. Comprá desde la comodidad de tu casa a un clic.",7000,8217,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("24.jpg","jpg",124);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(125,5,5,4,1,"Silla de oficina","Ergonómica de malla con ruedas, silla de estudio de altura ajustable para estudiantes, adolescentes, hombres y mujeres, para dormitorio, hogar, oficina, color negro.",540,4837,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("25.jpg","jpg",125);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(126,5,10,5,2,"Camioneta kia sorento 2014","Tres filas de asiento de tela, Motor 2.4, 4 cilindros",300000,14,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("26.jpg","jpg",126);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(127,2,10,5,1,"Honda Recon 250","Honda recon motor 250 Año 2006, Papeles en regla, Llantas nuevas, Parrillas en ambos lados, Modificada, a Semi automática, Matrícula al día",100000,93,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("27.jpg","jpg",127);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(128,4,14,5,1,"Mitsubishi eclipse","Automático caja al 100 , Año 99, Motor al 100 ",123456,2838,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("28.jpg","jpg",128);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(129,2,10,5,1,"Moto Génesis 250","todo en regla Con rines de magnesio con llantas de goma impunchable",24000,6,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("29.jpg","jpg",129);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(130,6,17,5,1,"Casco redondo DOT Brisera","polarisada Mate y brillo V. Colores",1300,3635,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("30.jpg","jpg",130);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(131,6,1,6,2,"Cardigan Dama","Color: LT.GREEN",325,342,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("31.jpg","jpg",131);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(132,3,11,6,1,"Polo Caballero","Colores: ROYAL BLUE,  GREEN",285,654,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("32.jpg","jpg",132);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("32_1.jpg","jpg",132);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(133,5,1,6,1,"Taco de futbol Nike","Mercurial Superfly 8",1700,234,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("33.jpg","jpg",133);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(134,2,4,6,1,"Pañoleta","Tela de Cachemira Suave",125,9283,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("34.jpg","jpg",134);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(135,6,11,6,2,"Camiseta Messi","Camiseta Stadium de la 1ª equipación del PSG",2500,1990,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("35.jpg","jpg",135);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(136,6,10,8,2,"ELECTRICISTA LAS 24 HORAS","Miraflores, San Isidro,Surco,San Borja, Barranco,La Molina Surquillo,Lince,Pueblo Libre,San Miguel,Magdalena.",1500,827,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("36.jpg","jpg",136);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(137,3,6,8,2,"Carpintería & Melamines","Precios de fabrica, misma calidad y a tu medida. Escritorios modernos, minimalistas y funcionales",3000,6287,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("37.jpg","jpg",137);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(138,3,8,8,2,"Pintamos casas","Gastar en pintar ya sea tu interior o exterior siempre sera una buena inversion",2000,726,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("38.jpg","jpg",138);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(139,6,2,8,2,"Clases de guitarra","Principiantes, intermedios, avanzados, Interpretación, Teoría Musical, Estilos Variados, Lectura Musical",1200,9272,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("39.jpg","jpg",139);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(140,3,6,8,1,"Car Wash To Go","Lavado de autos, te lavamos el motor a presión",500,7272,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("40.jpg","jpg",140);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(141,2,2,9,2,"Don Quijote de la Mancha","Nominada por los estadounidenses como una de las 100 mejores novelas en la serie de PBS The Great American Read",350,8672,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("41.jpg","jpg",141);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(142,3,11,9,2,"Consola RetroNes","HDMI de 821 juegos, Envíos a todo el País",1300,4928,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("42.jpg","jpg",142);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(143,3,8,9,1,"Control de xbox","Xbox Series X-S Inalámbrico",1200,5001,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("43.jpg","jpg",143);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(144,5,5,9,2,"Kindle Paperwhite","(8 GB): ahora con una pantalla de 6.8” y luz cálida ajustable, con anuncios",4200,827,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("44.jpg","jpg",144);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(145,2,10,9,2,"LEGO Star Wars","Y-Wing Microfighter 75162 - Kit de construcción",600,6728,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("45.jpg","jpg",145);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(146,2,4,10,1,"Mochila True Rider","Diseñada para ajustarse al cuerpo del conductor para mayor estabilidad.",736,782,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("46.jpg","jpg",146);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(147,2,4,10,2,"Libretas personalizadas","Puede personalizar su libreta como más le guste",250,6999,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("47.jpg","jpg",147);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(148,4,13,10,2,"Regla T","Ludwig Precision Regla T de 12 a 48 pulgadas resistente de aluminio, 24 - pulgadas",600,8262,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("48.jpg","jpg",148);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(149,3,15,10,2,"Colores Faber-Castell","Faber-Castell World Colors Ecopencils, 27 unidades, lápices de colores diversos para niños",200,123,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("49.jpg","jpg",149);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(150,4,3,10,1,"Lápiz Tinta","Lápiz Tinta con Stylus, Colores Disponibles: Negro, Plateado, Azul, Verde Claro, Verde Oscuro y Rojo",10,927,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("50.jpg","jpg",150);
-
-
-#======================================= llenado 2 =================================================================
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(151,2,1,7,2,"Hp Deskjet 2375","Multifuncional Hp Deskjet 2375, Inkjet Cartucho, USB, Tintas 653-667",1232.03,9101,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("c.jpg","jpg",151);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(152,2,1,7,2,"Epson Powerlite e10","Tecnología 3LCD Resolución XGA 3600 Lumenes",21170.48,8726,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("d1.jpg","jpg",152);
-    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("d2.jpg","jpg",152);
-    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("d3.jpg","jpg",152);
-    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("d4.jpg","jpg",152);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(153,2,1,7,2,"TV Samsung Led 43″ 4K UHD","Resolución 3,840 x 2,160, Motor de imágenes Procesador Crystal 4K, PQI 2100, HDR, RHDR 10+Soporte, Gran contraste, Q-Symphony ,Salida de sonido (RMS) 20W",12990,111,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("f1.jpg","jpg",153);
-    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("f2.jpg","jpg",153);
-    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("f3.jpg","jpg",153);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(154,2,1,7,2,"Audifonos xtech inalambricos","Audifono Xtech 3.5 C/Microfono InalambricoRosa/MoradoCtrol VolumenLed Xth-650",616.93,222,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("e.jpg","jpg",154);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(155,2,1,7,2,"HP 15pulg I3-8Gb-256Gb Ssd","8GB de Ram, 256 GB SSD, 14 Pulgadas, Windows 10 H",16500,3333,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("g1.png","png",155);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(156,2,5,1,1,"Organizador","Quattro Organizador para tocador QTTORG004 3 niveles",1350.0,837,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("6.jpg","jpg",156);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(157,2,11,1,1,"Juegos de ollas","Hamilton Beach Batería de cocina HCW601A 8 Piezas",3397.0,9282,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("7.jpg","jpg",157);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(158,6,17,1,2,"Sarten","Hamilton Beach Sartén de Aluminio PD-HBW106 Antiadherente",597.0,6325,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("8.jpg","jpg",158);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(159,5,18,1,2,"Quattro Cojín","QTTCS037 / Rayado",400.0,535,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("9.jpg","jpg",159);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(160,5,17,1,2,"Tetera","Mr. Coffee Tetera Claredale / 10807401 / 2.08 L",467.0,382,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("10.jpg","jpg",160);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(161,5,7,2,2,"Pañales Huggies","Pañales hechos con fibras naturales, suaves como algodón y sin quimicos",577.9,100,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("11.jpg","jpg",161);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(162,5,13,2,1,"Leche En Polvo","Leche En Polvo Arla Milex Kinder Descremada 800 Gr",218.9,832,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("12.jpg","jpg",162);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(163,2,9,2,2,"Ropa recien nacido","Estuche regalo recién nacido con 3 prendas - verde claro liso con motivos",1000,7864,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13.jpg","jpg",163);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13_1.jpg","jpg",163);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13_2.jpg","jpg",163);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("13_3.jpg","jpg",163);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(164,5,9,2,1,"Biberón","Philips AVENT Biberón anticólico con ventilación sin aire, 4 onzas, 1 paquete, transparente",250,8373,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("14.jpg","jpg",164);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(165,2,5,2,1,"Carriola","Graco Coche LiteRider Daphne con portabebé / 2075293 / Respaldo ajustable",6847.0,9863,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("15.jpg","jpg",165);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(166,2,15,3,2,"Collar para perro","Multiple Colors, Soft Padded Breathable Nylon Pet Collar, Adjustable Martingale Collar Increased Control",250.0,555,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("16.jpg","jpg",166);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(167,6,9,3,1,"Casa para perros","Ram Quality Products Innovadora casa para mascotas al aire libre grande impermeable",2700.0,666,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("17.jpg","jpg",167);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(168,6,14,3,1,"Jaula para aves","Yaheetech Jaula de pájaros de techo abierto con ruedas de 57 pulgadas para loros de tamaño medio",2500,777,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("18.jpg","jpg",168);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(169,5,16,3,1,"Caja de arena","Cajas de arena para gatos autolimpiables automáticas originales",1500,678,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("19.jpg","jpg",169);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(170,4,3,3,2,"Acuario para peces","Marineland ML90609 Retrato Acuario Kit, 5 galones",1600,3465,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("20.jpg","jpg",170);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(171,3,10,4,1,"Decibal Mueble de cocina","Con 4 diferentes estantes para organizar tus utensilios de cocina.",3497.0,567,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("21.jpg","jpg",171);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(172,6,1,4,1,"Dida Mueble de Cocina","fabricado en un clásico color café con estilo contemporáneo; Este chinero de 3 cuerpos, 3 patas inferiores y 3 patas superiores con vidrio",8497,359,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("22.jpg","jpg",172);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(173,6,4,4,1,"Quattro Mueble multifunción","Posee elegante diseño en colores blanco y nogal, este versátil mueble cuenta con 3 estantes y un perchero te permitirá bien ser utilizado para tus prendas de ropa o para colocar tus pertenecías o adornos.",1697,234,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("23.jpg","jpg",173);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(174,2,8,4,2,"Commodity Sillón Reclinable","Diseño Reclinable, con tejido antiderrames, cuero sintetico. Comprá desde la comodidad de tu casa a un clic.",7000,6252,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("24.jpg","jpg",174);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(175,5,5,4,1,"Silla de oficina","Ergonómica de malla con ruedas, silla de estudio de altura ajustable para estudiantes, adolescentes, hombres y mujeres, para dormitorio, hogar, oficina, color negro.",540,8272,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("25.jpg","jpg",175);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(176,5,10,5,2,"Camioneta kia sorento 2014","Tres filas de asiento de tela, Motor 2.4, 4 cilindros",300000,166,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("26.jpg","jpg",176);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(177,2,10,5,1,"Honda Recon 250","Honda recon motor 250 Año 2006, Papeles en regla, Llantas nuevas, Parrillas en ambos lados, Modificada, a Semi automática, Matrícula al día",100000,6252,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("27.jpg","jpg",177);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(178,4,14,5,1,"Mitsubishi eclipse","Automático caja al 100 , Año 99, Motor al 100 ",123456,726,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("28.jpg","jpg",178);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(179,2,10,5,1,"Moto Génesis 250","todo en regla Con rines de magnesio con llantas de goma impunchable",24000,3,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("29.jpg","jpg",179);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(180,6,17,5,1,"Casco redondo DOT Brisera","polarisada Mate y brillo V. Colores",1300,432,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("30.jpg","jpg",180);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(181,6,1,6,2,"Cardigan Dama","Color: LT.GREEN",325,928,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("31.jpg","jpg",181);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(182,3,11,6,1,"Polo Caballero","Colores: ROYAL BLUE,  GREEN",285,8267,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("32.jpg","jpg",182);
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("32_1.jpg","jpg",182);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(183,5,1,6,1,"Taco de futbol Nike","Mercurial Superfly 8",1700,982,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("33.jpg","jpg",183);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(184,2,4,6,1,"Pañoleta","Tela de Cachemira Suave",125,9001,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("34.jpg","jpg",184);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(185,6,11,6,2,"Camiseta Messi","Camiseta Stadium de la 1ª equipación del PSG",2500,827,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("35.jpg","jpg",185);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(186,6,10,8,2,"ELECTRICISTA LAS 24 HORAS","Miraflores, San Isidro,Surco,San Borja, Barranco,La Molina Surquillo,Lince,Pueblo Libre,San Miguel,Magdalena.",1500,62,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("36.jpg","jpg",186);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(187,3,6,8,2,"Carpintería & Melamines","Precios de fabrica, misma calidad y a tu medida. Escritorios modernos, minimalistas y funcionales",3000,9,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("37.jpg","jpg",187);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(188,3,8,8,2,"Pintamos casas","Gastar en pintar ya sea tu interior o exterior siempre sera una buena inversion",2000,928,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("38.jpg","jpg",188);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(189,6,2,8,2,"Clases de guitarra","Principiantes, intermedios, avanzados, Interpretación, Teoría Musical, Estilos Variados, Lectura Musical",1200,8927,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("39.jpg","jpg",189);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(190,3,6,8,1,"Car Wash To Go","Lavado de autos, te lavamos el motor a presión",500,725,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("40.jpg","jpg",190);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(191,2,2,9,2,"Don Quijote de la Mancha","Nominada por los estadounidenses como una de las 100 mejores novelas en la serie de PBS The Great American Read",350,83,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("41.jpg","jpg",191);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(192,3,11,9,2,"Consola RetroNes","HDMI de 821 juegos, Envíos a todo el País",1300,43,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("42.jpg","jpg",192);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(193,3,8,9,1,"Control de xbox","Xbox Series X-S Inalámbrico",1200,105,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("43.jpg","jpg",193);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(194,5,5,9,2,"Kindle Paperwhite","(8 GB): ahora con una pantalla de 6.8” y luz cálida ajustable, con anuncios",4200,654,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("44.jpg","jpg",194);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(195,2,10,9,2,"LEGO Star Wars","Y-Wing Microfighter 75162 - Kit de construcción",600,928,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("45.jpg","jpg",195);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(196,2,4,10,1,"Mochila True Rider","Diseñada para ajustarse al cuerpo del conductor para mayor estabilidad.",736,1514,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("46.jpg","jpg",196);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(197,2,4,10,2,"Libretas personalizadas","Puede personalizar su libreta como más le guste",250,7265,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("47.jpg","jpg",197);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(198,4,13,10,2,"Regla T","Ludwig Precision Regla T de 12 a 48 pulgadas resistente de aluminio, 24 - pulgadas",600,782,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("48.jpg","jpg",198);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(199,3,15,10,2,"Colores Faber-Castell","Faber-Castell World Colors Ecopencils, 27 unidades, lápices de colores diversos para niños",200,726,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("49.jpg","jpg",199);
-
-INSERT INTO PRODUCT
-	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
-VALUES
-	(200,4,3,10,1,"Lápiz Tinta","Lápiz Tinta con Stylus, Colores Disponibles: Negro, Plateado, Azul, Verde Claro, Verde Oscuro y Rojo",10,987,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
-INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
-	VALUES("50.jpg","jpg",200);
  
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-07-08 01:29:54', 4, 'mskunes0@flickr.com', 'Marlowe', 'Skunes', 'TB5dN1F', 1, '9997916982');
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2021-10-27 10:32:22', 1, 'ececcoli1@storify.com', 'Eberhard', 'Ceccoli', 'jab64PeS0st', 1, '7016928243');
@@ -935,6 +206,315 @@ INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_la
 	VALUES('2022-08-04',1, 'larissa_vasquez_a@hotmail.com', 'Larissa', 'Vasquez', 'Hola1234//', 1, 1, '19850000');
 INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES('2022-08-03',6, 'larissac2022@outlook.com', 'Emily', 'Bronte', 'Hola1234//', 1, 1, '19860000');
+    
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(101,79,11,7,2,"Seagate ST2000DM006","Series:Barracuda,Type:7200RPM,Capacity:2TB,Cache:64MB",1470.93,383,1,"2022-08-03", DATE_ADD("2022-08-03", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("1.jpg","jpg",101);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(102,15,4,7,1,"Gigabyte X299 AORUS Gaming 3","CPU:LGA2066,Form Factor:ATX,RAM Slots:8,Max RAM:128GB",2270.48,445,1,"2022-07-17", DATE_ADD("2022-07-17", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("2.jpg","jpg",102);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(103,31,2,7,2,"Intel Xeon E5-2698 V3 (OEM/Tray)","Speed:2.3GHz,Cores:16,TDP:135W",2035.18,53,1,"2022-07-27", DATE_ADD("2022-07-27", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("3.jpg","jpg",103);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(104,54,16,7,2,"Kingston SV300S37A/120G","Series:SSDNow V300 Series,Type:SSD,Capacity:120GB,Cache:N/A",450.93,299,1,"2022-07-15", DATE_ADD("2022-07-15", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("4.jpg","jpg",104);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(105,45,10,7,2,"Audífonos Xiaomi","Los audífonos True Wireless Redmi Buds 3 Lite de Xiaomi tienen reconocimiento automático de dispositivos y conexiones inalámbricas simples.",700,479,1,"2022-08-06", DATE_ADD("2022-08-06", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("5.jpg","jpg",105);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(106,93,11,1,1,"Organizador","Quattro Organizador para tocador QTTORG004 3 niveles",1350.0,246,1,"2022-07-26", DATE_ADD("2022-07-26", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("6.jpg","jpg",106);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(107,30,5,1,1,"Juegos de ollas","Hamilton Beach Batería de cocina HCW601A 8 Piezas",3397.0,224,1,"2022-08-06", DATE_ADD("2022-08-06", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("7.jpg","jpg",107);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(108,32,6,1,1,"Sarten","Hamilton Beach Sartén de Aluminio PD-HBW106 Antiadherente",597.0,309,1,"2022-08-06", DATE_ADD("2022-08-06", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("8.jpg","jpg",108);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(109,37,17,1,1,"Quattro Cojín","QTTCS037 / Rayado",400.0,419,1,"2022-07-15", DATE_ADD("2022-07-15", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("9.jpg","jpg",109);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(110,94,5,1,1,"Tetera","Mr. Coffee Tetera Claredale / 10807401 / 2.08 L",467.0,277,1,"2022-07-20", DATE_ADD("2022-07-20", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("10.jpg","jpg",110);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(111,29,1,2,1,"Pañales Huggies","Pañales hechos con fibras naturales, suaves como algodón y sin quimicos",577.9,85,1,"2022-07-16", DATE_ADD("2022-07-16", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("11.jpg","jpg",111);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(112,20,7,2,2,"Leche En Polvo","Leche En Polvo Arla Milex Kinder Descremada 800 Gr",218.9,390,1,"2022-07-29", DATE_ADD("2022-07-29", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("12.jpg","jpg",112);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(113,94,2,2,2,"Ropa recien nacido","Estuche regalo recién nacido con 3 prendas - verde claro liso con motivos",1000,303,1,"2022-08-09", DATE_ADD("2022-08-09", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13.jpg","jpg",113);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13_1.jpg","jpg",113);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13_2.jpg","jpg",113);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13_3.jpg","jpg",113);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(114,18,5,2,1,"Biberón","Philips AVENT Biberón anticólico con ventilación sin aire, 4 onzas, 1 paquete, transparente",250,106,1,"2022-07-25", DATE_ADD("2022-07-25", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("14.jpg","jpg",114);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(115,76,5,2,1,"Carriola","Graco Coche LiteRider Daphne con portabebé / 2075293 / Respaldo ajustable",6847.0,6,1,"2022-08-04", DATE_ADD("2022-08-04", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("15.jpg","jpg",115);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(116,78,11,3,1,"Collar para perro","Multiple Colors, Soft Padded Breathable Nylon Pet Collar, Adjustable Martingale Collar Increased Control",250.0,267,1,"2022-07-19", DATE_ADD("2022-07-19", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("16.jpg","jpg",116);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(117,7,6,3,2,"Casa para perros","Ram Quality Products Innovadora casa para mascotas al aire libre grande impermeable",2700.0,75,1,"2022-08-05", DATE_ADD("2022-08-05", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("17.jpg","jpg",117);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(118,55,5,3,2,"Jaula para aves","Yaheetech Jaula de pájaros de techo abierto con ruedas de 57 pulgadas para loros de tamaño medio",2500,359,1,"2022-07-24", DATE_ADD("2022-07-24", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("18.jpg","jpg",118);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(119,57,17,3,1,"Caja de arena","Cajas de arena para gatos autolimpiables automáticas originales",1500,269,1,"2022-08-05", DATE_ADD("2022-08-05", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("19.jpg","jpg",119);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(120,94,9,3,1,"Acuario para peces","Marineland ML90609 Retrato Acuario Kit, 5 galones",1600,173,1,"2022-08-04", DATE_ADD("2022-08-04", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("20.jpg","jpg",120);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(121,57,12,4,2,"Decibal Mueble de cocina","Con 4 diferentes estantes para organizar tus utensilios de cocina.",3497.0,50,1,"2022-08-08", DATE_ADD("2022-08-08", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("21.jpg","jpg",121);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(122,65,8,4,2,"Dida Mueble de Cocina","fabricado en un clásico color café con estilo contemporáneo; Este chinero de 3 cuerpos, 3 patas inferiores y 3 patas superiores con vidrio",8497,490,1,"2022-08-01", DATE_ADD("2022-08-01", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("22.jpg","jpg",122);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(123,26,3,4,1,"Quattro Mueble multifunción","Posee elegante diseño en colores blanco y nogal, este versátil mueble cuenta con 3 estantes y un perchero te permitirá bien ser utilizado para tus prendas de ropa o para colocar tus pertenecías o adornos.",1697,446,1,"2022-08-08", DATE_ADD("2022-08-08", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("23.jpg","jpg",123);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(124,20,4,4,2,"Commodity Sillón Reclinable","Diseño Reclinable, con tejido antiderrames, cuero sintetico. Comprá desde la comodidad de tu casa a un clic.",7000,284,1,"2022-07-24", DATE_ADD("2022-07-24", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("24.jpg","jpg",124);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(125,79,15,4,2,"Silla de oficina","Ergonómica de malla con ruedas, silla de estudio de altura ajustable para estudiantes, adolescentes, hombres y mujeres, para dormitorio, hogar, oficina, color negro.",540,454,1,"2022-07-21", DATE_ADD("2022-07-21", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("25.jpg","jpg",125);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(126,69,10,5,2,"Camioneta kia sorento 2014","Tres filas de asiento de tela, Motor 2.4, 4 cilindros",300000,188,1,"2022-07-28", DATE_ADD("2022-07-28", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("26.jpg","jpg",126);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(127,92,10,5,2,"Honda Recon 250","Honda recon motor 250 Año 2006, Papeles en regla, Llantas nuevas, Parrillas en ambos lados, Modificada, a Semi automática, Matrícula al día",100000,92,1,"2022-07-31", DATE_ADD("2022-07-31", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("27.jpg","jpg",127);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(128,97,6,5,1,"Mitsubishi eclipse","Automático caja al 100 , Año 99, Motor al 100 ",123456,169,1,"2022-07-22", DATE_ADD("2022-07-22", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("28.jpg","jpg",128);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(129,14,18,5,2,"Moto Génesis 250","todo en regla Con rines de magnesio con llantas de goma impunchable",24000,392,1,"2022-07-19", DATE_ADD("2022-07-19", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("29.jpg","jpg",129);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(130,99,1,5,2,"Casco redondo DOT Brisera","polarisada Mate y brillo V. Colores",1300,168,1,"2022-08-13", DATE_ADD("2022-08-13", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("30.jpg","jpg",130);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(131,18,16,6,1,"Cardigan Dama","Color: LT.GREEN",325,492,1,"2022-07-20", DATE_ADD("2022-07-20", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("31.jpg","jpg",131);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(132,16,18,6,1,"Polo Caballero","Colores: ROYAL BLUE,  GREEN",285,419,1,"2022-07-29", DATE_ADD("2022-07-29", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("32.jpg","jpg",132);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("32_1.jpg","jpg",132);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(133,72,13,6,2,"Taco de futbol Nike","Mercurial Superfly 8",1700,78,1,"2022-07-26", DATE_ADD("2022-07-26", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("33.jpg","jpg",133);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(134,42,16,6,1,"Pañoleta","Tela de Cachemira Suave",125,37,1,"2022-07-29", DATE_ADD("2022-07-29", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("34.jpg","jpg",134);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(135,64,6,6,1,"Camiseta Messi","Camiseta Stadium de la 1ª equipación del PSG",2500,385,1,"2022-08-08", DATE_ADD("2022-08-08", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("35.jpg","jpg",135);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(136,26,13,8,2,"ELECTRICISTA LAS 24 HORAS","Miraflores, San Isidro,Surco,San Borja, Barranco,La Molina Surquillo,Lince,Pueblo Libre,San Miguel,Magdalena.",1500,22,1,"2022-08-06", DATE_ADD("2022-08-06", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("36.jpg","jpg",136);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(137,17,4,8,2,"Carpintería & Melamines","Precios de fabrica, misma calidad y a tu medida. Escritorios modernos, minimalistas y funcionales",3000,384,1,"2022-08-01", DATE_ADD("2022-08-01", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("37.jpg","jpg",137);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(138,30,8,8,1,"Pintamos casas","Gastar en pintar ya sea tu interior o exterior siempre sera una buena inversion",2000,444,1,"2022-07-31", DATE_ADD("2022-07-31", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("38.jpg","jpg",138);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(139,52,12,8,2,"Clases de guitarra","Principiantes, intermedios, avanzados, Interpretación, Teoría Musical, Estilos Variados, Lectura Musical",1200,175,1,"2022-08-14", DATE_ADD("2022-08-14", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("39.jpg","jpg",139);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(140,49,12,8,2,"Car Wash To Go","Lavado de autos, te lavamos el motor a presión",500,11,1,"2022-07-17", DATE_ADD("2022-07-17", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("40.jpg","jpg",140);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(141,59,17,9,2,"Don Quijote de la Mancha","Nominada por los estadounidenses como una de las 100 mejores novelas en la serie de PBS The Great American Read",350,483,1,"2022-07-27", DATE_ADD("2022-07-27", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("41.jpg","jpg",141);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(142,51,9,9,2,"Consola RetroNes","HDMI de 821 juegos, Envíos a todo el País",1300,89,1,"2022-07-27", DATE_ADD("2022-07-27", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("42.jpg","jpg",142);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(143,32,15,9,1,"Control de xbox","Xbox Series X-S Inalámbrico",1200,398,1,"2022-07-17", DATE_ADD("2022-07-17", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("43.jpg","jpg",143);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(144,65,12,9,2,"Kindle Paperwhite","(8 GB): ahora con una pantalla de 6.8” y luz cálida ajustable, con anuncios",4200,202,1,"2022-07-16", DATE_ADD("2022-07-16", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("44.jpg","jpg",144);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(145,9,9,9,2,"LEGO Star Wars","Y-Wing Microfighter 75162 - Kit de construcción",600,335,1,"2022-07-22", DATE_ADD("2022-07-22", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("45.jpg","jpg",145);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(146,61,8,10,2,"Mochila True Rider","Diseñada para ajustarse al cuerpo del conductor para mayor estabilidad.",736,153,1,"2022-08-05", DATE_ADD("2022-08-05", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("46.jpg","jpg",146);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(147,31,11,10,2,"Libretas personalizadas","Puede personalizar su libreta como más le guste",250,423,1,"2022-07-20", DATE_ADD("2022-07-20", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("47.jpg","jpg",147);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(148,67,5,10,2,"Regla T","Ludwig Precision Regla T de 12 a 48 pulgadas resistente de aluminio, 24 - pulgadas",600,368,1,"2022-07-29", DATE_ADD("2022-07-29", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("48.jpg","jpg",148);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(149,50,1,10,1,"Colores Faber-Castell","Faber-Castell World Colors Ecopencils, 27 unidades, lápices de colores diversos para niños",200,423,1,"2022-08-10", DATE_ADD("2022-08-10", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("49.jpg","jpg",149);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(150,71,14,10,1,"Lápiz Tinta","Lápiz Tinta con Stylus, Colores Disponibles: Negro, Plateado, Azul, Verde Claro, Verde Oscuro y Rojo",10,314,1,"2022-08-03", DATE_ADD("2022-08-03", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("50.jpg","jpg",150);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(151,38,11,7,2,"Seagate ST2000DM006","Series:Barracuda,Type:7200RPM,Capacity:2TB,Cache:64MB",1470.93,243,1,"2022-07-16", DATE_ADD("2022-07-16", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("1.jpg","jpg",151);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(152,64,1,7,2,"Gigabyte X299 AORUS Gaming 3","CPU:LGA2066,Form Factor:ATX,RAM Slots:8,Max RAM:128GB",2270.48,359,1,"2022-07-25", DATE_ADD("2022-07-25", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("2.jpg","jpg",152);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(153,50,6,7,2,"Intel Xeon E5-2698 V3 (OEM/Tray)","Speed:2.3GHz,Cores:16,TDP:135W",2035.18,4,1,"2022-07-31", DATE_ADD("2022-07-31", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("3.jpg","jpg",153);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(154,72,17,7,1,"Kingston SV300S37A/120G","Series:SSDNow V300 Series,Type:SSD,Capacity:120GB,Cache:N/A",450.93,115,1,"2022-08-09", DATE_ADD("2022-08-09", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("4.jpg","jpg",154);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(155,38,8,7,2,"Audífonos Xiaomi","Los audífonos True Wireless Redmi Buds 3 Lite de Xiaomi tienen reconocimiento automático de dispositivos y conexiones inalámbricas simples.",700,93,1,"2022-08-05", DATE_ADD("2022-08-05", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("5.jpg","jpg",155);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(156,8,14,1,1,"Organizador","Quattro Organizador para tocador QTTORG004 3 niveles",1350.0,99,1,"2022-08-11", DATE_ADD("2022-08-11", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("6.jpg","jpg",156);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(157,57,15,1,2,"Juegos de ollas","Hamilton Beach Batería de cocina HCW601A 8 Piezas",3397.0,78,1,"2022-08-02", DATE_ADD("2022-08-02", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("7.jpg","jpg",157);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(158,99,17,1,2,"Sarten","Hamilton Beach Sartén de Aluminio PD-HBW106 Antiadherente",597.0,15,1,"2022-07-29", DATE_ADD("2022-07-29", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("8.jpg","jpg",158);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(159,21,14,1,2,"Quattro Cojín","QTTCS037 / Rayado",400.0,134,1,"2022-07-30", DATE_ADD("2022-07-30", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("9.jpg","jpg",159);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(160,96,4,1,1,"Tetera","Mr. Coffee Tetera Claredale / 10807401 / 2.08 L",467.0,127,1,"2022-07-26", DATE_ADD("2022-07-26", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("10.jpg","jpg",160);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(161,38,17,2,1,"Pañales Huggies","Pañales hechos con fibras naturales, suaves como algodón y sin quimicos",577.9,22,1,"2022-07-28", DATE_ADD("2022-07-28", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("11.jpg","jpg",161);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(162,21,17,2,1,"Leche En Polvo","Leche En Polvo Arla Milex Kinder Descremada 800 Gr",218.9,363,1,"2022-07-19", DATE_ADD("2022-07-19", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("12.jpg","jpg",162);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(163,34,2,2,2,"Ropa recien nacido","Estuche regalo recién nacido con 3 prendas - verde claro liso con motivos",1000,477,1,"2022-07-28", DATE_ADD("2022-07-28", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13.jpg","jpg",163);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13_1.jpg","jpg",163);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13_2.jpg","jpg",163);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("13_3.jpg","jpg",163);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(164,32,16,2,2,"Biberón","Philips AVENT Biberón anticólico con ventilación sin aire, 4 onzas, 1 paquete, transparente",250,286,1,"2022-07-21", DATE_ADD("2022-07-21", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("14.jpg","jpg",164);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(165,61,6,2,1,"Carriola","Graco Coche LiteRider Daphne con portabebé / 2075293 / Respaldo ajustable",6847.0,375,1,"2022-07-26", DATE_ADD("2022-07-26", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("15.jpg","jpg",165);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(166,42,16,3,1,"Collar para perro","Multiple Colors, Soft Padded Breathable Nylon Pet Collar, Adjustable Martingale Collar Increased Control",250.0,137,1,"2022-07-16", DATE_ADD("2022-07-16", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("16.jpg","jpg",166);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(167,76,7,3,2,"Casa para perros","Ram Quality Products Innovadora casa para mascotas al aire libre grande impermeable",2700.0,123,1,"2022-07-22", DATE_ADD("2022-07-22", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("17.jpg","jpg",167);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(168,40,16,3,1,"Jaula para aves","Yaheetech Jaula de pájaros de techo abierto con ruedas de 57 pulgadas para loros de tamaño medio",2500,152,1,"2022-08-08", DATE_ADD("2022-08-08", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("18.jpg","jpg",168);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(169,73,11,3,1,"Caja de arena","Cajas de arena para gatos autolimpiables automáticas originales",1500,431,1,"2022-08-09", DATE_ADD("2022-08-09", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("19.jpg","jpg",169);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(170,73,14,3,1,"Acuario para peces","Marineland ML90609 Retrato Acuario Kit, 5 galones",1600,276,1,"2022-08-04", DATE_ADD("2022-08-04", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("20.jpg","jpg",170);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(171,63,18,4,2,"Decibal Mueble de cocina","Con 4 diferentes estantes para organizar tus utensilios de cocina.",3497.0,219,1,"2022-08-12", DATE_ADD("2022-08-12", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("21.jpg","jpg",171);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(172,14,9,4,1,"Dida Mueble de Cocina","fabricado en un clásico color café con estilo contemporáneo; Este chinero de 3 cuerpos, 3 patas inferiores y 3 patas superiores con vidrio",8497,149,1,"2022-07-28", DATE_ADD("2022-07-28", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("22.jpg","jpg",172);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(173,30,16,4,2,"Quattro Mueble multifunción","Posee elegante diseño en colores blanco y nogal, este versátil mueble cuenta con 3 estantes y un perchero te permitirá bien ser utilizado para tus prendas de ropa o para colocar tus pertenecías o adornos.",1697,223,1,"2022-08-08", DATE_ADD("2022-08-08", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("23.jpg","jpg",173);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(174,95,16,4,2,"Commodity Sillón Reclinable","Diseño Reclinable, con tejido antiderrames, cuero sintetico. Comprá desde la comodidad de tu casa a un clic.",7000,288,1,"2022-08-03", DATE_ADD("2022-08-03", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("24.jpg","jpg",174);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(175,38,14,4,1,"Silla de oficina","Ergonómica de malla con ruedas, silla de estudio de altura ajustable para estudiantes, adolescentes, hombres y mujeres, para dormitorio, hogar, oficina, color negro.",540,433,1,"2022-07-20", DATE_ADD("2022-07-20", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("25.jpg","jpg",175);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(176,82,5,5,1,"Camioneta kia sorento 2014","Tres filas de asiento de tela, Motor 2.4, 4 cilindros",300000,466,1,"2022-07-31", DATE_ADD("2022-07-31", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("26.jpg","jpg",176);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(177,15,10,5,2,"Honda Recon 250","Honda recon motor 250 Año 2006, Papeles en regla, Llantas nuevas, Parrillas en ambos lados, Modificada, a Semi automática, Matrícula al día",100000,263,1,"2022-08-13", DATE_ADD("2022-08-13", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("27.jpg","jpg",177);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(178,20,9,5,1,"Mitsubishi eclipse","Automático caja al 100 , Año 99, Motor al 100 ",123456,184,1,"2022-08-09", DATE_ADD("2022-08-09", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("28.jpg","jpg",178);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(179,93,8,5,1,"Moto Génesis 250","todo en regla Con rines de magnesio con llantas de goma impunchable",24000,448,1,"2022-07-26", DATE_ADD("2022-07-26", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("29.jpg","jpg",179);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(180,29,10,5,1,"Casco redondo DOT Brisera","polarisada Mate y brillo V. Colores",1300,234,1,"2022-08-02", DATE_ADD("2022-08-02", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("30.jpg","jpg",180);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(181,20,16,6,1,"Cardigan Dama","Color: LT.GREEN",325,197,1,"2022-07-21", DATE_ADD("2022-07-21", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("31.jpg","jpg",181);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(182,50,7,6,2,"Polo Caballero","Colores: ROYAL BLUE,  GREEN",285,138,1,"2022-07-22", DATE_ADD("2022-07-22", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("32.jpg","jpg",182);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("32_1.jpg","jpg",182);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(183,38,13,6,2,"Taco de futbol Nike","Mercurial Superfly 8",1700,137,1,"2022-07-26", DATE_ADD("2022-07-26", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("33.jpg","jpg",183);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(184,50,11,6,2,"Pañoleta","Tela de Cachemira Suave",125,204,1,"2022-08-10", DATE_ADD("2022-08-10", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("34.jpg","jpg",184);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(185,91,9,6,1,"Camiseta Messi","Camiseta Stadium de la 1ª equipación del PSG",2500,469,1,"2022-07-28", DATE_ADD("2022-07-28", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("35.jpg","jpg",185);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(186,22,3,8,1,"ELECTRICISTA LAS 24 HORAS","Miraflores, San Isidro,Surco,San Borja, Barranco,La Molina Surquillo,Lince,Pueblo Libre,San Miguel,Magdalena.",1500,127,1,"2022-07-22", DATE_ADD("2022-07-22", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("36.jpg","jpg",186);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(187,76,11,8,1,"Carpintería & Melamines","Precios de fabrica, misma calidad y a tu medida. Escritorios modernos, minimalistas y funcionales",3000,472,1,"2022-07-25", DATE_ADD("2022-07-25", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("37.jpg","jpg",187);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(188,58,7,8,1,"Pintamos casas","Gastar en pintar ya sea tu interior o exterior siempre sera una buena inversion",2000,412,1,"2022-07-20", DATE_ADD("2022-07-20", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("38.jpg","jpg",188);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(189,95,9,8,1,"Clases de guitarra","Principiantes, intermedios, avanzados, Interpretación, Teoría Musical, Estilos Variados, Lectura Musical",1200,364,1,"2022-08-09", DATE_ADD("2022-08-09", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("39.jpg","jpg",189);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(190,76,18,8,1,"Car Wash To Go","Lavado de autos, te lavamos el motor a presión",500,498,1,"2022-07-28", DATE_ADD("2022-07-28", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("40.jpg","jpg",190);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(191,16,11,9,2,"Don Quijote de la Mancha","Nominada por los estadounidenses como una de las 100 mejores novelas en la serie de PBS The Great American Read",350,284,1,"2022-08-14", DATE_ADD("2022-08-14", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("41.jpg","jpg",191);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(192,25,18,9,2,"Consola RetroNes","HDMI de 821 juegos, Envíos a todo el País",1300,18,1,"2022-07-19", DATE_ADD("2022-07-19", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("42.jpg","jpg",192);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(193,60,11,9,1,"Control de xbox","Xbox Series X-S Inalámbrico",1200,176,1,"2022-08-07", DATE_ADD("2022-08-07", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("43.jpg","jpg",193);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(194,78,15,9,2,"Kindle Paperwhite","(8 GB): ahora con una pantalla de 6.8” y luz cálida ajustable, con anuncios",4200,42,1,"2022-08-09", DATE_ADD("2022-08-09", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("44.jpg","jpg",194);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(195,88,3,9,1,"LEGO Star Wars","Y-Wing Microfighter 75162 - Kit de construcción",600,85,1,"2022-08-06", DATE_ADD("2022-08-06", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("45.jpg","jpg",195);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(196,76,16,10,1,"Mochila True Rider","Diseñada para ajustarse al cuerpo del conductor para mayor estabilidad.",736,390,1,"2022-07-23", DATE_ADD("2022-07-23", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("46.jpg","jpg",196);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(197,63,10,10,2,"Libretas personalizadas","Puede personalizar su libreta como más le guste",250,83,1,"2022-07-31", DATE_ADD("2022-07-31", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("47.jpg","jpg",197);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(198,78,18,10,2,"Regla T","Ludwig Precision Regla T de 12 a 48 pulgadas resistente de aluminio, 24 - pulgadas",600,75,1,"2022-07-21", DATE_ADD("2022-07-21", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("48.jpg","jpg",198);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(199,63,13,10,2,"Colores Faber-Castell","Faber-Castell World Colors Ecopencils, 27 unidades, lápices de colores diversos para niños",200,477,1,"2022-08-13", DATE_ADD("2022-08-13", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("49.jpg","jpg",199);
+INSERT INTO PRODUCT (id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status, var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date) VALUES
+	(200,43,7,10,2,"Lápiz Tinta","Lápiz Tinta con Stylus, Colores Disponibles: Negro, Plateado, Azul, Verde Claro, Verde Oscuro y Rojo",10,373,1,"2022-07-31", DATE_ADD("2022-07-31", interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)VALUES("50.jpg","jpg",200);
 
 INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
@@ -2768,6 +2348,307 @@ INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
 	VALUES("h8.jpg","jpg",202); 
 INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
 	VALUES("h9.jpg","jpg",202);
+    
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (155, 84, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (85, 12, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (90, 64, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (98, 76, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (133, 35, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (140, 73, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (21, 63, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (26, 29, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (192, 64, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (15, 39, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (165, 49, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (151, 62, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (164, 67, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (54, 31, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (72, 49, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (156, 64, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (186, 8, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (130, 52, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (139, 62, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (42, 58, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (36, 45, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (68, 12, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (6, 97, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (193, 3, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (69, 14, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (41, 53, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (17, 62, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (8, 31, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (68, 57, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (197, 91, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (42, 80, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (99, 99, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (96, 51, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (174, 60, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (81, 6, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (26, 49, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (158, 54, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (137, 83, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (188, 56, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (119, 94, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (166, 78, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (87, 78, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (170, 40, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (178, 62, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (4, 14, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (170, 25, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (186, 98, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (170, 81, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (179, 26, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (102, 71, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (61, 17, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (180, 83, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (45, 80, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (136, 31, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (161, 91, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (133, 90, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (121, 78, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (60, 18, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (193, 84, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (140, 77, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (38, 6, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (137, 86, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (96, 100, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (59, 57, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (134, 11, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (62, 9, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (78, 19, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (173, 63, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (84, 76, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (63, 7, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (166, 72, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (59, 55, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (126, 86, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (113, 5, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (174, 68, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (31, 42, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (19, 59, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (96, 55, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (33, 2, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (157, 91, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (149, 5, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (73, 87, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (42, 76, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (6, 51, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (54, 44, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (182, 2, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (32, 37, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (129, 38, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (84, 22, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (185, 42, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (120, 82, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (144, 72, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (160, 4, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (102, 50, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (17, 25, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (78, 31, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (33, 51, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (85, 31, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (112, 39, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (111, 91, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (121, 80, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (65, 33, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (38, 91, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (75, 48, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (181, 5, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (60, 47, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (199, 50, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (158, 52, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (114, 73, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (148, 84, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (125, 5, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (181, 44, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (115, 22, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (200, 59, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (51, 95, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (156, 34, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (132, 9, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (77, 6, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (128, 74, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (5, 29, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (119, 22, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (168, 25, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (152, 37, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (133, 5, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (110, 3, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (72, 8, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (88, 97, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (148, 97, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (78, 85, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (46, 88, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (197, 60, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (134, 92, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (182, 14, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (140, 59, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (68, 16, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (20, 56, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (98, 25, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (143, 88, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (74, 93, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (98, 69, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (49, 36, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (200, 41, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (79, 83, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (111, 70, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (196, 54, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (128, 72, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (125, 99, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (147, 24, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (132, 31, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (113, 95, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (108, 60, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (186, 42, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (42, 7, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (102, 87, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (117, 59, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (150, 81, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (4, 35, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (76, 34, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (68, 26, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (80, 17, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (179, 55, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (36, 100, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (180, 69, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (100, 16, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (178, 4, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (174, 4, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (103, 87, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (106, 55, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (172, 78, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (1, 15, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (163, 39, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (196, 26, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (102, 56, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (1, 70, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (160, 30, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (160, 58, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (53, 17, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (183, 80, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (86, 69, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (113, 76, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (19, 76, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (40, 77, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (65, 63, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (163, 22, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (190, 26, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (46, 9, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (157, 50, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (170, 9, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (146, 11, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (56, 57, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (54, 81, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (78, 88, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (19, 40, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (195, 42, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (130, 6, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (191, 2, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (111, 27, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (152, 84, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (126, 76, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (101, 19, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (50, 5, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (120, 39, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (182, 88, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (189, 66, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (150, 89, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (25, 51, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (51, 60, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (89, 81, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (97, 55, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (109, 67, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (67, 60, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (164, 72, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (173, 49, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (101, 82, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (146, 62, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (144, 97, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (88, 64, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (172, 93, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (161, 43, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (104, 72, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (81, 80, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (36, 93, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (5, 48, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (195, 72, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (72, 28, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (179, 12, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (145, 3, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (174, 89, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (32, 58, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (170, 78, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (170, 84, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (11, 56, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (176, 8, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (88, 67, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (91, 27, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (86, 74, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (153, 49, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (149, 31, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (93, 87, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (13, 92, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (114, 39, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (160, 96, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (65, 72, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (185, 28, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (113, 34, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (24, 40, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (136, 54, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (10, 93, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (37, 83, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (6, 100, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (134, 14, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (62, 25, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (189, 87, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (165, 38, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (185, 12, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (175, 61, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (141, 90, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (48, 59, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (159, 79, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (129, 52, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (56, 39, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (166, 80, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (194, 34, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (21, 97, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (60, 42, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (62, 63, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (26, 65, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (54, 51, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (66, 16, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (88, 34, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (34, 73, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (49, 8, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (69, 97, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (161, 7, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (139, 84, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (133, 75, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (115, 83, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (107, 85, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (48, 67, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (32, 77, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (32, 91, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (70, 27, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (37, 15, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (111, 49, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (131, 43, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (37, 96, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (77, 52, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (73, 74, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (131, 66, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (125, 1, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (106, 23, 4);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (85, 25, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (142, 15, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (158, 80, 5);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (110, 67, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (195, 83, 3);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (124, 82, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (101, 90, 1);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (69, 9, 2);
+insert into QUALIFICATION (fk_id_user_review, fk_id_user_qualified, tin_score) values (13, 83, 2);
 
 
    

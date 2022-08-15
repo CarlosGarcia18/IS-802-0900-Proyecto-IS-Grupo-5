@@ -74,7 +74,6 @@ export class ChatsComponent implements OnInit {
     this.WebSocketsService.listen("listmessagesResponse").subscribe((data:any)=>{      
       if (data.status=="200") {
         this.messenge = data.msg
-        console.log(this.messenge)
         this.WebSocketsService.emit("getchats",{"id_user":this.token})
         this.activarCalificar()
       }else if(data.status=="201"){
