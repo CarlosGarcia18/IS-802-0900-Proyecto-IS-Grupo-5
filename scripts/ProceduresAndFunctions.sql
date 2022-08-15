@@ -190,6 +190,7 @@ CREATE FUNCTION fn_getExpiryTime()
 		RETURN (SELECT expiration_period FROM INFORMATION LIMIT 1);
 END$$
 
+
 -- Actualizar el tiempo de expiración de anuncios
 DROP PROCEDURE IF EXISTS sp_updateExpiryTime;
 delimiter $$
@@ -200,6 +201,25 @@ BEGIN
 END$$
 
 SET SQL_SAFE_UPDATES = 1;
+
+--
+
+-- SELECT COUNT(*) FROM QUALIFICATION WHERE (fk_id_user_review = 4 AND fk_id_user_qualified = 5);
+DROP PROCEDURE IF EXISTS sp_rateUser;
+delimiter $$
+CREATE PROCEDURE sp_rateUser(customer BIGINT UNSIGNED, seller BIGINT UNSIGNED, score TINYINT)
+BEGIN
+	DECLARE existQualification TINYINT;
+    SELECT COUNT(*) INTO existQualification FROM QUALIFICATION WHERE fk_id_user_review = customer AND fk_id_user_qualified = seller;
+    
+	IF existQualification = 0 THEN
+		INSERT INTO QUALIFICATION(fk_id_user_review,fk_id_user_qualified,tin_score) VALUES(customer, seller, score);
+        SELECT "Nueva calificación agregada" AS msg;
+    ELSE
+        UPDATE QUALIFICATION SET tin_score = score WHERE fk_id_user_review = customer AND fk_id_user_qualified = seller;
+        SELECT "Calificación actualizada" AS msg;
+    END IF;
+END$$
 
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
 

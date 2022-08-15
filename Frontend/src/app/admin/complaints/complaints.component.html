@@ -14,14 +14,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item2 of user; let indice=index">
+              <tr *ngFor="let item2 of user; let indice=index;">
 
                 <th scope="row">{{indice+1}}</th>
                 <td>{{item2.var_name}}</td>
                 <td>{{item2.var_lastname}}</td>
                 <td>{{item2.Denuncias1}}</td>
                   <td>
-                    <button title="s" (click)="listarDenuncia(item2.id_user)">Ver Denuncias</button>
+                    <button title="s" class="btn btn-dark" style="border-radius: 100%;"  (click)="listarDenuncia(item2.id_user)"><i class="fa fa-list" aria-hidden="true"></i></button>
                     <button title="g" class="btn btn-dark" style="border-radius: 100%;" (click)="EliminarUsuario(item2.id_user)"><i class="fa-solid fa-trash" > </i></button>
                   </td>
                   <script type="">
@@ -46,9 +46,14 @@
   </div>
 </div>
 
+<!--
+<mat-paginator [length]="user.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+</mat-paginator>
 
-
-
+-->
 
 <div *ngIf="mostrar" class="container mt-5" id="Denun">
   <div class="row">

@@ -50,8 +50,9 @@ export class ExpiryTimeComponent implements OnInit {
 
       })
     }
-    
 
+    this.expiryValue=""
+    
   }
 
 }

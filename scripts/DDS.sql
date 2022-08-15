@@ -97,7 +97,7 @@ CREATE TABLE COMMENTARY(
 ) COMMENT "Comentarios que deja el usuario a algun producto";
 
 CREATE TABLE QUALIFICATION(
-	id_QUALIFICATION SERIAL PRIMARY KEY,
+	id_qualification SERIAL PRIMARY KEY,
     fk_id_user_review BIGINT UNSIGNED NOT NULL COMMENT "Usuario que califica",
     FOREIGN KEY (fk_id_user_review) REFERENCES USER(id_user),
     

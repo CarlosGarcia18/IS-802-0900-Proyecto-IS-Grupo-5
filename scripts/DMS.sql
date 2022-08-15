@@ -64,12 +64,6 @@ INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_la
 	VALUES('2022-09-07',7, 'delmerespinal2@gmail.com', 'Delmer', 'Espinal', 'Hola123.', 1, 1, '98776654');
 INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
 	VALUES('2022-08-09',13, 'guillermodiaz@gmail.com', 'Guillermo', 'Diaz', 'Hello/777', 1, 1, '33445577');
-INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES('2022-08-05',8, 'cantareronicole@gmail.com', 'Nicole', 'Cantarero', 'Hola1234//', 1, 1, '19840000');
-INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES('2022-08-04',1, 'larissa_vasquez_a@hotmail.com', 'Larissa', 'Vasquez', 'Hola1234//', 1, 1, '19850000');
-INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
-	VALUES('2022-08-03',6, 'larissac2022@outlook.com', 'Emily', 'Bronte', 'Hola1234//', 1, 1, '19860000');
 
 
 INSERT INTO PRODUCT(fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,int_views,text_description,dou_price,bit_availability,publication_date,expiration_date) 

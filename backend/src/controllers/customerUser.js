@@ -521,16 +521,12 @@ controller.avgQualif = (req, res) => {
 
 controller.qualifications = (req, res) => {
     //constate
-    const { fk_id_user_qualified,
-        fk_id_user_review, tin_score } = req.body;
+    const { fk_id_user_review, fk_id_user_qualified, tin_score } = req.body;
     //variables de consulta
-
-    let sql1=`SELECT * FROM qualification WHERE fk_id_user_review=${fk_id_user_review} `
 
     let sql15 = `SELECT * FROM user WHERE id_user = ${fk_id_user_review}`
     let sql16 = `SELECT * FROM user WHERE id_user=${fk_id_user_qualified} `
-    let sql17 = `INSERT INTO QUALIFICATION(fk_id_user_qualified,fk_id_user_review,tin_score) 
-    VALUES(${fk_id_user_qualified},${fk_id_user_review},${tin_score})`
+    let sql17 = `CALL sp_rateUser(${fk_id_user_review},${fk_id_user_qualified},${tin_score})`
 
     //conexion de usuario 1 o consulta 1
     conection.query(sql15, (err, rows, fields) => {
@@ -545,28 +541,20 @@ controller.qualifications = (req, res) => {
                         res.json({ status: '3', error: err.sqlMessage })
                     } else
                         if (rows.length != 0) {
-                            conection.query(sql1, (err, rows, fields) => {//revisa si ya fue calificado el usuario
+                            conection.query(sql17, (err, rows, fields) => {
                                 if (err) {
-                                    res.json({ status: '0', error: err.sqlMessage })
-                                } else
-                                    if (rows.length == 0) {
-                                        conection.query(sql17, (err, rows, fields) => {
-                                            if (err) {
-                                                res.json({ status: '4', error: err.sqlMessage })
-                                            } else {
-                                                res.json({ status: '200', msg: 'Se agrego calificacion' })
-                                            }
-                                        })
-                                    } else res.json({ status: '203', msg: 'Este usuario ya fue calificado' })
+                                    res.json({ status: '4', error: err.sqlMessage })
+                                } else {
+                                    res.json({ status: '200', msg: rows[0][0].msg })
+                                }
                             })
-                            //Conexion calificacion calificacion 
 
                         } else {
-                            res.json({ status: '2', msg: 'el usuario calificador no se encuetra' })
+                            res.json({ status: '2', msg: 'El vendedos no se encuetra' })
                         }
                 })
             } else {
-                res.json({ status: '1', msg: 'no se encuentra el usuario calificado' })
+                res.json({ status: '1', msg: 'El cliente no se encuetra' })
             }
         }
     })

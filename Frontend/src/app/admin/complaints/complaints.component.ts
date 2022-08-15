@@ -132,4 +132,12 @@ cambiarPagina(e:PageEvent){
 
 }
 
+interface BookInfo {
+  status : string ;
+  msg: string;
+}
 
+interface BookInfo2 {
+  status: string;
+  id: string;
+}
