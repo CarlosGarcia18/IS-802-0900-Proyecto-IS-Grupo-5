@@ -147,12 +147,9 @@ routers.get('/getProdMod/:id_producto',customerO.getProductoModal)
 routers.get('/prom/:fk_id_user_qualified', customerU.avgQualif)
 //promedio estrellas
 
-
 routers.get('/imagenes/:fk_id_product', customerO.imagenes)
 
 routers.post('/deleteFiles',customerO.updatePhotos)
-
-
 
 //obtener datos de grafica de categorias
 routers.get('/categoryChart/:fk_id_product_category',customerA.productsCategory)
@@ -197,10 +194,13 @@ routers.get('/product/expiryTime',customerA.getExpiryTime)
 
 //Actualiza el plazo de expiración de los productos
 routers.get('/product/expiryTime/:days',customerA.setExpiryTime)
+
 //agregar visita
 routers.get('/views',customerO.views)
 
 routers.post('/getviews',customerA.getViews)
+
+
 
 //exportacion de rutas
 module.exports = routers

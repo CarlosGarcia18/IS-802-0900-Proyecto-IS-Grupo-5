@@ -2566,9 +2566,6 @@ VALUES
    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
 	VALUES("d18.jpg","jpg",251);   
  
-
- 
-        
        INSERT INTO PRODUCT
 	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
 VALUES
@@ -2625,11 +2622,7 @@ VALUES
 	VALUES("vv10.jpg","jpg",258);
 INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
 	VALUES("vv11.jpg","jpg",258);
-  
-  
 
-
-    
   
       INSERT INTO PRODUCT
 	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
