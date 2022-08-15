@@ -61,8 +61,8 @@
 
           <div class="form">
             <div class="form-floating mb-3 mt-3">
-              <input type="text" id="precio" class="form-control form-control-lg" [(ngModel)]="productoNew.dou_price"
-                placeholder="precio" #precio required formControlName="precio">
+              <input type="text" id="precio" class="form-control form-control-lg" [(ngModel)]="formatingNew.format" (blur)="transformAmountNew($event)"
+                placeholder="precio" #precio required formControlName="precio" (click)="formateoNew($event)">
               <label for="precio">Precio</label>
             </div>
             <div class="errors-container"

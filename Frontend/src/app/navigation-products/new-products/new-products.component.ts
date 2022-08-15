@@ -1,11 +1,10 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
-import {
-  newProducto,
-  EquipoService,
-} from '../../SERVICES/equipo.service';
+import { newProducto, EquipoService } from '../../SERVICES/equipo.service';
+import {formating} from '../../../assets'
 
 @Component({
   selector: 'new-products',
@@ -16,24 +15,24 @@ export class NewProductsComponent implements OnInit {
   public previsualizacionNew: any;
   public archivosNew: any = []; //Sera de tipo array
   public imageNew: any; //Enviar una imagen a la vez al servidor
-  categoriesNew:any[] = []
+  categoriesNew: any[] = [];
 
-  constructor(
-    private equipoService: EquipoService,
-    private raute:Router
-  ) {}
+  constructor(private equipoService: EquipoService, private raute: Router, private currencyPipe: CurrencyPipe) {}
 
   ngOnInit(): void {
     this.productoNew.fk_id_user = localStorage.getItem('token');
     // Traer todas las categorias
-    this.equipoService.getProductCategories().subscribe(res=>{
-      this.categoriesNew = <any>res
-    }, error =>{
-      console.log(error)
-    })
-    this.srcArrayNew.length=0
-    this.archivosNew.length=0;
-    this.productoFormNew.reset()
+    this.equipoService.getProductCategories().subscribe(
+      (res) => {
+        this.categoriesNew = <any>res;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+    this.srcArrayNew.length = 0;
+    this.archivosNew.length = 0;
+    this.productoFormNew.reset();
   }
 
   //agregar el formGrup
@@ -44,7 +43,7 @@ export class NewProductsComponent implements OnInit {
       Validators.minLength(3),
       Validators.maxLength(20),
     ]),
-    precio: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    precio: new FormControl('', [Validators.required]),
     categoria: new FormControl('', [Validators.required]),
     estado: new FormControl('', [Validators.required]),
     decripcion: new FormControl('', [
@@ -81,8 +80,8 @@ get nombreControl():FormControl{
   srcArrayNew: any = [];
 
   capturarFileNew(event: any) {
-    console.log("este corresponde a nuevo");
-    
+    console.log('este corresponde a nuevo');
+
     if (event.target.files.length > 0) {
       if (event.target.files.length <= 10) {
         let files = event.target.files;
@@ -104,7 +103,7 @@ get nombreControl():FormControl{
             window.alert('No mas de 10 imagenes');
           }
         }
-      }else{
+      } else {
         window.alert('No mas de 10 imagenes');
       }
     }
@@ -126,23 +125,14 @@ get nombreControl():FormControl{
     fk_id_product_status: '',
     var_name: '',
     text_description: '',
-    dou_price: ' ',
+    dou_price: '0',
   };
-
-  /*agregarFavorito(){
-    //console.log(this.dataEntrante);
-    /*la vraible de servicio con atributo de servicio emite un atributo =emit */
-  /*this.servicefavorito.disparadordeFavoritos.emit({
-      data:this.dataEntrante
-    })
-  } */
 
   /* Para subir Archivo*/
   subirArchivoNew(): any {
     //Sube el producto
-  
-      
-    if(this.srcArrayNew.length>=1) {
+
+    if (this.srcArrayNew.length >= 1) {
       this.equipoService.newProducto(this.productoNew).subscribe((res) => {
         var info: BookInfo = <any>res;
 
@@ -152,27 +142,59 @@ get nombreControl():FormControl{
           formularioDeDatos.append('image', archivo);
           console.log(archivo);
 
-        //Sube archivo uno por uno
-          this.equipoService.productoFoto(formularioDeDatos, info.id).subscribe((res) => {
-            console.log('Respuesta ', res);
-          });
-      });
-        this.archivosNew.length=0
-        this.srcArrayNew.length=0
+          //Sube archivo uno por uno
+          this.equipoService
+            .productoFoto(formularioDeDatos, info.id)
+            .subscribe((res) => {
+              console.log('Respuesta ', res);
+            });
+        });
+        this.archivosNew.length = 0;
+        this.srcArrayNew.length = 0;
         Swal.fire({
           position: 'center',
           icon: 'success',
           title: 'Producto cargado exitosamente',
           showConfirmButton: false,
-          timer: 1500
-        })
-        this.raute.navigate([`navigationProducts/published1`])
-    });
-  }else{
-    alert("Debes cargar al menos una imagen")
-    
+          timer: 1500,
+        });
+        this.productoFormNew.reset();
+        this.raute.navigate([`navigationProducts/published1`]);
+      });
+    } else {
+      alert('Debes cargar al menos una imagen');
+    }
   }
-}
+
+  formatingNew:formating={
+    format:"L. 0.00"
+  }
+
+  formateoNew(event: Event) {
+    const target = event.target as HTMLInputElement;
+    target.value = this.productoNew.dou_price;
+    this.formatingNew.format = this.productoNew.dou_price.replace(',', '');
+    this.formatingNew.format = this.productoNew.dou_price.replace('.00', '');
+  }
+
+  transformAmountNew(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.formatingNew.format = this.currencyPipe.transform(
+      this.formatingNew.format,
+      'L. '
+    );
+
+    if (this.formatingNew.format == null) {
+      target.value = 'L. 0.00';
+      this.productoNew.dou_price = '0';
+    } else {
+      target.value = this.formatingNew.format;
+      this.productoNew.dou_price = this.formatingNew.format
+        .substring(3)
+        .replace(/,/gi, '');
+    }
+    console.log(this.productoNew.dou_price);
+  }
 }
 
 interface BookInfo {
