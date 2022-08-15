@@ -559,6 +559,26 @@ controller.qualifications = (req, res) => {
         }
     })
 }
+//============== Traer calificación individual ==========
+controller.getOneQualification = (req, res) => {
+    const{fk_id_user_review, fk_id_user_qualified} = req.body
+    let sql = `SELECT tin_score FROM QUALIFICATION WHERE fk_id_user_review =${fk_id_user_review}
+            AND fk_id_user_qualified =${fk_id_user_qualified} LIMIT 1`
+    
+    conection.query(sql, (err, rows, fields) => {
+        if (err) {
+            res.json({ status: -1, error: err.sqlMessage })
+        }else{
+            if (rows.length != 0) {
+                res.json({status: 200, msg:""+ rows[0].tin_score})
+            }else{
+                res.json({status: -2, msg:"Este cliente aun no ha calificado a este vendedor"})
+            }
+            
+        }
+    })
+
+}
 
 //=================Crear Denuncias==========================================
 controller.denuncia = (req, res) => {

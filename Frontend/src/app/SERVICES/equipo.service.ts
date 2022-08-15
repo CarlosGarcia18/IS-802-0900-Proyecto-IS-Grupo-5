@@ -186,13 +186,16 @@ export class EquipoService {
     return this.http.get(this.url+"/product/expiryTime")
   }
 
-
   setExpiryTime(days:String){
     return this.http.get(this.url+"/product/expiryTime/"+days)
   }
   //Eliminar denuncias
   deleteDenuncia(id:any){
     return this.http.delete(this.url+"/admin/deleteDenuncia/"+id)
+  }
+
+  getOneScore(getScore:getQualification){
+    return this.http.post(this.url+"/individualScore",getScore)
   }
 
 
@@ -336,6 +339,11 @@ export interface qualification{
   tin_score: number
 }
 
+export interface getQualification{
+  fk_id_user_review: string,
+  fk_id_user_qualified: string
+
+}
 
 export interface complaint{
   fk_id_user: string,

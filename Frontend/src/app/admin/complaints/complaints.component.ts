@@ -1,11 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
-import { EquipoService, complaint, user, Registro, ListadoUsuario, DenunciasUsuario } from '../../SERVICES/equipo.service';
-import { PageEvent } from '@angular/material/paginator';
-import { qualification,reqQualify} from '../../SERVICES/equipo.service';
-import { style } from '@angular/animations';
-import { __values } from 'tslib';
-import { Token } from '@angular/compiler';
-import { MatButtonModule } from '@angular/material/button';
+import { Component, OnInit, Renderer2 } from '@angular/core';
+import { EquipoService, ListadoUsuario, DenunciasUsuario } from '../../SERVICES/equipo.service';
+import { MatPaginatorIntl, PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-complaints',
@@ -47,15 +43,21 @@ export class ComplaintsComponent implements OnInit {
 
 
 
-  constructor(private equipoService:EquipoService,private render2:Renderer2) { }
+  constructor(
+    private equipoService:EquipoService,
+    private render2:Renderer2,
+    private paginator: MatPaginatorIntl,
+  ) { 
+    paginator.itemsPerPageLabel = "Productos por pagina:"
+    paginator.firstPageLabel = "Primer página"
+    paginator.lastPageLabel = "Ultima página"
+    paginator.nextPageLabel = "Siguiente página"
+    paginator.previousPageLabel = "Página anterior"
+  }
 
   ngOnInit(): void {
     this.listarUsuariosDenuncia()
     this.eliminarDenuncia
-
-
-
-
   }
 
 listarUsuariosDenuncia(){
@@ -117,19 +119,27 @@ eliminarDenuncia(id:string){
   })
 }
 
-////////////////////PAGINACION////////////////
-pageSize=8;
-desde:number= 0;
-hasta:number=8;
+  ////////////////////PAGINACION////////////////
+  pageSize=6;
+  desde:number= 0;
+  hasta:number=6;
 
-cambiarPagina(e:PageEvent){
-  console.log(e)
-  this.desde=e.pageIndex*e.pageSize;
-  this.hasta=this.desde+e.pageSize;
-}
+  cambiarPagina(e:PageEvent){
+    console.log(e)
+    this.desde=e.pageIndex*e.pageSize;
+    this.hasta=this.desde+e.pageSize;
+  }
 
+  ////////////////////PAGINACION////////////////
+  pageSize2=6;
+  desde2:number= 0;
+  hasta2:number=6;
 
-
+  cambiarPagina2(e:PageEvent){
+    console.log(e)
+    this.desde2=e.pageIndex*e.pageSize;
+    this.hasta2=this.desde2+e.pageSize;
+  }
 }
 
 interface BookInfo {
