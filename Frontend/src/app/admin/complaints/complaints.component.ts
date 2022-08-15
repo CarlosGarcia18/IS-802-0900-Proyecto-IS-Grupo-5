@@ -48,11 +48,11 @@ export class ComplaintsComponent implements OnInit {
     private render2:Renderer2,
     private paginator: MatPaginatorIntl,
   ) { 
-    paginator.itemsPerPageLabel = "Productos por pagina:"
-    paginator.firstPageLabel = "Primer página"
-    paginator.lastPageLabel = "Ultima página"
-    paginator.nextPageLabel = "Siguiente página"
-    paginator.previousPageLabel = "Página anterior"
+    paginator.itemsPerPageLabel = "Elementos por sección:"
+    paginator.firstPageLabel = "Primer sección"
+    paginator.lastPageLabel = "Ultima sección"
+    paginator.nextPageLabel = "Siguiente sección"
+    paginator.previousPageLabel = "Sección anterior"
   }
 
   ngOnInit(): void {
