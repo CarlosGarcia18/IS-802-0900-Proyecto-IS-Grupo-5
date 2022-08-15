@@ -190,6 +190,7 @@ CREATE FUNCTION fn_getExpiryTime()
 		RETURN (SELECT expiration_period FROM INFORMATION LIMIT 1);
 END$$
 
+
 -- Actualizar el tiempo de expiración de anuncios
 DROP PROCEDURE IF EXISTS sp_updateExpiryTime;
 delimiter $$
@@ -200,6 +201,25 @@ BEGIN
 END$$
 
 SET SQL_SAFE_UPDATES = 1;
+
+--
+
+-- SELECT COUNT(*) FROM QUALIFICATION WHERE (fk_id_user_review = 4 AND fk_id_user_qualified = 5);
+DROP PROCEDURE IF EXISTS sp_rateUser;
+delimiter $$
+CREATE PROCEDURE sp_rateUser(customer BIGINT UNSIGNED, seller BIGINT UNSIGNED, score TINYINT)
+BEGIN
+	DECLARE existQualification TINYINT;
+    SELECT COUNT(*) INTO existQualification FROM QUALIFICATION WHERE fk_id_user_review = customer AND fk_id_user_qualified = seller;
+    
+	IF existQualification = 0 THEN
+		INSERT INTO QUALIFICATION(fk_id_user_review,fk_id_user_qualified,tin_score) VALUES(customer, seller, score);
+        SELECT "Nueva calificación agregada" AS msg;
+    ELSE
+        UPDATE QUALIFICATION SET tin_score = score WHERE fk_id_user_review = customer AND fk_id_user_qualified = seller;
+        SELECT "Calificación actualizada" AS msg;
+    END IF;
+END$$
 
 ##BORRAR IMAGENES EN EDICION DE PRODUCTO
 
@@ -220,7 +240,6 @@ end//
 
 call listDenuncias12(2);
 
-
 #Actualizar Cat. de los productos a indefinida 
 DELIMITER //
 CREATE PROCEDURE UpdateCategory(IN id bigint)
@@ -231,15 +250,7 @@ BEGIN
 	WHERE fk_id_product_category= id;
 END//
 
-
-delimiter //
-create  procedure listDenuncias12(id int)
-BEGIN
- SELECT*FROM COMPLAINT where fk_id_user_complaining=id order by tim_date asc;
-end//
-
-call listDenuncias12(2);
-
+/*
 --Listado de denuncias por usuario por id
 delimiter //
 create  procedure ListadoUsuarios(id int)
@@ -249,13 +260,15 @@ where exists (select * from complaint
 where fk_id_user=id_user)
 and id_user= id;
 end//
-
-
+*/
+/*
+DROP PROCEDURE IF EXISTS eliminarDenuncia;
 delimiter //
 create  procedure eliminarDenuncia(id int)
 BEGIN
  DELETE FROM complaint where id_COMPLAINT=id; 
 end//
+*/
 
 delimiter //
 create  procedure verifiacionVisitas()
@@ -301,9 +314,7 @@ BEGIN
 END &&
 
 
-
-
-
+/*
 delimiter &&
 CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
 	RETURNS int
@@ -314,10 +325,7 @@ BEGIN
      where id_user=fk_id_user
      group by id_user);
 	return NumeroDenuncias;
-END &&
-
-
-call ListadoUsuarios();
+END &&*/
 
 
 delimiter //
@@ -344,8 +352,8 @@ end//
 call ListadoUsuarioNumDenu1();
 
 
-
---Eliminar Denuncias
+-- Eliminar Denuncias
+DROP PROCEDURE IF EXISTS eliminarDenuncia;
 delimiter //
 create  procedure eliminarDenuncia(id int)
 BEGIN
@@ -361,7 +369,7 @@ end//
 
 call modificarEstado(6);
 
-
+DROP PROCEDURE IF EXISTS fn_denuncia;
 delimiter &&
 CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
 	RETURNS int
@@ -373,7 +381,6 @@ BEGIN
      group by id_user);
 	return NumeroDenuncias;
 END &&
-
 
 delimiter //
 create  procedure ListadoUsuarios()

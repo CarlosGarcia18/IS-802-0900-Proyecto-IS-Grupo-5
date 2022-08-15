@@ -6,6 +6,8 @@ import { PageEvent } from '@angular/material/paginator';
 
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 import Swal from 'sweetalert2';
+import { formating } from 'src/assets';
+import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-published-products',
   templateUrl: './published-products.component.html',
@@ -22,7 +24,7 @@ export class PublishedProductsComponent implements OnInit {
   public archivos: any = []; //Sera de tipo array
   public image: any; //Enviar una imagen a la vez al servidor
   public alertMsg=''
-  constructor(private equipoService:EquipoService) { }
+  constructor(private equipoService:EquipoService,private currencyPipe: CurrencyPipe) { }
 
   ngOnInit(): void {
     //this.usuario.fk_id_user=localStorage.getItem('token')
@@ -85,6 +87,8 @@ export class PublishedProductsComponent implements OnInit {
   srcArray: any = [];
 
   capturarFile(event: any) {
+    console.log("este corresponde a editar");
+    
     if (event.target.files.length > 0) {
       if (event.target.files.length <= 10) {
         let files = event.target.files;
@@ -171,12 +175,10 @@ public fotos=[]
       localStorage.setItem("idProductoModal",id_product) //lo usamos despues para cargar el producto y actualizarlo
       this.equipoService.getUnProducto(localStorage.getItem("idProductoModal")).subscribe(res=>{
           this.producto = res[0]
+          this.formating.format = this.producto.dou_price
           if(this.producto.categoria=='Indefinida'){
             this.alertMsg="La categoria de este producto ha sido eliminada del sistema, edita tu producto seleccionando otra categoria"
           }
-          
-          console.log(typeof this.producto)
-          console.log(this.producto)
       }, err=>console.log(err))
     }
 
@@ -285,6 +287,34 @@ cambiarPagina(e:PageEvent){
   console.log(e)
   this.desde=e.pageIndex*e.pageSize;
   this.hasta=this.desde+e.pageSize;
+}
+
+formating:formating={
+  format:"L. 0.00"
+}
+
+formateo(event:Event) {
+  const target = event.target as HTMLInputElement;
+  target.value = this.producto.dou_price;
+  this.formating.format = this.producto.dou_price;
+  this.formating.format = this.producto.dou_price;
+}
+
+transformAmount(event:Event) {
+  const target = event.target as HTMLInputElement;
+  this.formating.format = this.currencyPipe.transform(
+    this.formating.format,
+    'L. '
+  );
+
+  if (this.formating.format==null) {
+    target.value = 'L. 0.00';
+    this.producto.dou_price = '0';
+  }else{
+    target.value = this.formating.format;
+    this.producto.dou_price = this.formating.format.substring(3).replace(/,/gi, '');
+  }
+  console.log(this.producto.dou_price);
 }
 
 

@@ -929,6 +929,12 @@ insert into USER (registration_date, fk_id_department, var_email, var_name, var_
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-01-02 00:45:56', 4, 'rfyers1b@opensource.org', 'Ritchie', 'Fyers', 'gKQCqVpf5', 1, '7892766425');
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-06-02 11:47:36', 1, 'pthunnercliff1c@japanpost.jp', 'Peder', 'Thunnercliff', 'DNKhcdr6u', 1, '8663001520');
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-01-09 11:02:43', 8, 'lohagan1d@woothemes.com', 'Lawry', 'O''Hagan', 'oe7DhQJkiuv', 1, '4914169665');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-05',8, 'cantareronicole@gmail.com', 'Nicole', 'Cantarero', 'Hola1234//', 1, 1, '19840000');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-04',1, 'larissa_vasquez_a@hotmail.com', 'Larissa', 'Vasquez', 'Hola1234//', 1, 1, '19850000');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-03',6, 'larissac2022@outlook.com', 'Emily', 'Bronte', 'Hola1234//', 1, 1, '19860000');
 
 INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
@@ -1331,6 +1337,15 @@ INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
 VALUES
 	((SELECT fk_id_user FROM PRODUCT WHERE id_product =106), 33, 106, 2, 0, 'Mi primera inquietud queja es esto', current_timestamp());
+
+
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (207, 5);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (207, 6);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (208, 2);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (208, 1);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (208, 3);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (209,7 );
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (209, 10);
 
 insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (31, 4);
 insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (55, 6);
@@ -1634,6 +1649,7 @@ insert into WISH_LIST (fk_id_user, fk_id_product) values (31, 129);
 insert into WISH_LIST (fk_id_user, fk_id_product) values (28, 190);
 insert into WISH_LIST (fk_id_user, fk_id_product) values (13, 123);
 
+
 INSERT INTO VIEWS VALUES (29,'2021-10-24');
 INSERT INTO VIEWS VALUES (106,'2021-10-25');
 INSERT INTO VIEWS VALUES (169,'2021-10-26');
@@ -1935,7 +1951,823 @@ INSERT INTO VIEWS VALUES (12178,'2022-08-17');
 INSERT INTO VIEWS VALUES (19241,'2022-08-18');
 INSERT INTO VIEWS VALUES (10671,'2022-08-19');
 
+#---------------------------------LLENADO DE TABLA PRODUCTOS--------------------------------------------------#
+                INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(247,4,8,6,1,"Bolso p/mujer pequeño","Disponibles los colores mostrados en la imagen, Metodo de entrega: Pick-up, a domicilio",250,1405,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d11.jpg","jpg",247);
+               
+           
+             INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(248,4,8,6,1,"Reloj Geneva","Material de acero inoxidable, diseño unisex.",350,1005,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d12.jpg","jpg",248);
+            
+               INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(252,4,8,6,1,"Camiseta diseño vintage","100% algodón, tallas: XS, S, M, L, XL, XXL, XXXL",410,1105,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d19.jpg","jpg",252);
+
+    INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(230,4,1,3,1,"Kit para grooming y limpieza","Incluye lo que se ve en la imagen. Ideal para hacer peluquería desde casa a tu mascota.",435,3295,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m17.jpg","jpg",230); 
+    
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(231,4,1,3,1,"Nido-alfombra para gato","Puedes adaptarlo para cambiar su forma, material suave y resistente",250,1000,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m18.jpg","jpg",231); 
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(282,5,6,10,1,"Calculadora Casio MR-150RC"," ",2083,777,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u1.jpg","jpg",282);  
+
+    INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(262,3,8,5,1,"Yamaha Raptor cuatrimoto","Recién ingresada, año 2005.",00000,776,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v17.jpg","jpg",262);
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(283,5,6,10,1,"Calculadora CANON AS-120","12 Dígitos, tipo escolar",243,927,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u2.jpg","jpg",283);  
+
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(215,3,1,1,1,"Freidora de Aire","Capacidad 2 Lts. Precio negociable",2020,4079,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h38.jpg","jpg",215); 
+  
+
+
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(284,5,6,10,1,"Archivador tamaño oficio","Variedad de colores",75,836,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u3.jpg","jpg",284);  
+    
+    INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(275,5,6,7,1,"Amazfit 6ts 2 mini","70 modalidades deportivas",2334,2300,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e12.png","png",275);  
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(285,5,6,10,1,"Post-it 3M","Colores neón y pastel",18,2344,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u4.png","png",285);  
+  
+    
+    INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(213,5,1,1,1,"Plancha a Vapor","Variedad de colores",498,1079,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h35.jpg","jpg",213); 
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(286,5,6,10,1,"Corrector barrilito roller","Longitud 6 metros",41,1024,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u5.jpg","jpg",286); 
+ 
+    INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(222,4,1,3,1,"Plato para perro/gato","Acero inoxidable, variedad de colores",85,635,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m3.jpg","jpg",222); 
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(287,5,6,10,1,"Cuaderno espiral 2 materias","Disponible: rayado, blanco y cuadricula",57,567,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u6.png","png",287);  
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(288,5,6,10,1,"Mochila c/rodos totto","Envío gratuito",3940,456,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u7.jpg","jpg",288);  
+    
+               INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(216,3,1,1,1,"Tostador Panini y sandwich","Antiadherente, capacidad para 2 unidades de pan",1079,879,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("39.png","png",216); 
+    
+               INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(217,3,1,1,1,"Percoladora personal","Incluye una taza de acero inoxidable con capacidad de 11 onzas",825,1342,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h40.jpg","jpg",217); 
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(289,5,6,10,1,"Mochila plegable xtech","Material de nylon",220,657,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u8.jpg","jpg",289);  
+     
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(290,5,6,10,1,"Crayon jumbo crayola","12 colores",90,856,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u9.jpg","jpg",290);  
+    
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(277,5,6,7,1,"Repetidor Tp-Link 8 mbps","2.4 GHz, D/Pared access point RE650",3065,1206,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e15.jpg","jpg",277);  
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(232,6,1,2,1,"Mordedor de silicona","Accesorio para bebé, seguro, no toxico, de material suave",80,1100,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b2.jpg","jpg",232); 
+ 
+     
+ 
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(271,5,6,7,1,"Disipador de calor gaming","No aceptamos cambios ni devoluciones",529,656,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e6.png","png",271); 
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(278,5,6,7,1,"Cámara Logan Tipo Domo","Disponibilidad de unidades",1069.99,996,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e16.png","png",278);  
+   
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(224,4,1,3,1,"Alimentador Automatico","Capacidad de 2 Litros de agua, dispensador de comida lento",300,1095,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m6.jpg","jpg",224); 
+       
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(227,4,1,3,1,"Collar para gato","Variedad de colores, precio por unidad y mayoreo.",100,867,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m11.jpg","jpg",227);  
+    
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(279,5,6,7,1,"Sistema de alarma Logan para puerta","Precio negociable",1884,1000,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e17.jpg","jpg",279);  
+    
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(238,6,1,2,1,"Conjunto para bebé 4 pcs.","Incluye 4 piezas, tallas desde 0 hasta 2 años",550,790,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b12.jpg","jpg",238);
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(239,6,1,2,1,"Sonajero para cuna","Incluye música y luces, giro mecánico",590,857,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b13.jpg","jpg",239);
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(240,6,1,2,1,"Rodilleras para bebé","Protege las rodillas de tu bebé, diseño grueso, tela suave, cómoda. Variedad de colores y tallas",135,770,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b14.jpg","jpg",240);
+    
+            INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(241,6,1,2,1,"Mordedores por unidad","Entretenedor para bebé, material no tóxico, suave.",98,777,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b15.jpg","jpg",241);
+    
+ INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(273,5,6,7,1,"Silla Gaming","Silla con capacidad hasta 300 libras, marca Nenotech, material: PU Cuero, garantia de 6 meses",5490,1096,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e9.png","png",273); 
+    
+           INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(291,5,6,10,1,"Cartulina tamaño carta, lino, marfil, metal dune Acosmart","Paquete de 12 cartulinas",409,898,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u10.jpg","jpg",291);  
+
+   INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(261,3,8,5,1,"Mercedes Benz","Vehículo tipo turismo, Año 2007, motor 2,5, 4 cil.",180000,1376,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v16.jpg","jpg",261);
+ 
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(237,6,1,2,1,"Conjunto para bebé unisex","Incluye 3 piezas",350,290,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b11.jpg","jpg",237);
+
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(292,5,6,10,1,"Calculadora casio cient. FX-82ES","Envío gratis",412,457,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u11.jpg","jpg",292);  
+
+
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(293,5,6,10,1,"Tempera sólida merletto 10 grs.","Contenido: 6 piezas",106,497,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("u12.png","png",293);  
+
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(210,5,1,1,1,"Tostador y freidora de aire","Para asar, hornear, freir, deshidratar con aire, hasta 450 grados F.",4435,1230,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h31.png","png",210);
+ 
+     
+           INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(266,3,8,5,1,"Hyundai elantra","Vehículo tipo turismo, Año 2006, motor 2.0",95000,876,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v24.jpg","jpg",266);
+    
+            INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(267,3,8,5,1,"Toyota corolla","Vehículo tipo turismo, Año 2014, motor 1.8",240000,906,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v25.jpg","jpg",267);
+    
+                     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(218,3,1,1,1,"Procesador de alimentos","Capacidad para 3 tazas",1097,1942,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h41.jpg","jpg",218); 
+    
+    INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(229,4,1,3,1,"Tienda de campaña","Variedad de tamaños: Mediano, pequeño y grande. Precio varia según tamaño.",254,2195,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m16.jpg","jpg",229);   
+      
+           INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(259,3,8,5,1,"Mini Cooper","Año 2012, motor 1600, 4 cil.",250000,1092,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v13.jpg","jpg",259);
+
+    
+                 INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(219,3,1,1,1,"Oasis para agua","110 V, envio gratis",4765,1944,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h42.jpg","jpg",219); 
+    
+          INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(220,3,1,1,1,"Mueble para microondas","No acepto cambios ni devoluciones. Envio gratis, precio negociable.",1995,2944,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h43.png","png",220); 
+    
+            INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(268,3,8,5,1,"Honda Pilot","Vehículo tipo camioneta, Año 2012, motor 3.5",260000,996,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v26.jpg","jpg",268);
+ 
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(211,5,1,1,1,"Horno Tostador","Capacidad 9L",1095,1130,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h32.png","png",211); 
+    
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(201,5,1,1,1,"Olla teflón set 7 pcs.","Resistencia y durabilidad",1749,2000,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h1.jpg","jpg",201);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h2.jpg","jpg",201); 
+    
 
 
 
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(204,5,1,1,1,"Batidora con pedestal 5 velocidades","Tamaño grande, acero inoxidable",1565,1200,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h13.jpg","jpg",204);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h14.jpg","jpg",204); 
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h15.jpg","jpg",204);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h16.jpg","jpg",204); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h17.jpg","jpg",204);
 
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(263,3,8,5,1,"Mercedes Benz SLK300","Vehículo tipo turismo, Año 2010, motor 3.0, 4 cil.",380000,1476,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v19.jpg","jpg",263);
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v20.jpg","jpg",263);
+    
+
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(205,5,1,1,1,"Batidora de mano","Resistente, colores disponibles: rojo, negro, blanco. Precio negociable",549,1250,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h18.jpg","jpg",205);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h19.jpg","jpg",205); 
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h20.jpg","jpg",205);
+    
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(206,5,1,1,1,"Batidora para malteada","Mezcla malteadas, batidos, bebidas proteícas, y mas. 2 velocidades. Vaso de 15 ons. de acero inoxidable",975,1550,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h21.png","png",206);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h22.png","png",206); 
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h23.png","png",206);
+
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(207,5,1,1,1,"Batidora de mano 5 velocidades","Ideal para uso personal, precio no negociable",509,2150,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h24.jpg","jpg",207);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h25.jpg","jpg",207); 
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h26.jpg","jpg",207);
+    
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(235,6,1,2,1,"Calcetines para bebé","Variedad de colores y tallas. Envio a domicilio disponible con cargo extra.",60,200,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b7.jpg","jpg",235); 
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b8.jpg","jpg",235);  
+    
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(208,5,1,1,1,"Extractor de jugos","2 velocidades",1655,3100,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h27.jpg","jpg",208);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h28.jpg","jpg",208); 
+    
+ INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(221,4,1,3,1,"Localizador inalambrico para perro","Variedad de colores",150,244,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m1.jpg","jpg",221); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m2.jpg","jpg",221); 
+   
+       
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(209,5,1,1,1,"Exprimidor de jugos","Ideal para tus jugos de citricos, material plastico-metal",479,1230,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h29.jpg","jpg",209);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h30.jpg","jpg",209); 
+   
+          
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(234,6,1,2,1,"Sonajeros","Variedad de colores. Envio a domicilio disponible.",150,300,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b5.jpg","jpg",234); 
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b6.jpg","jpg",234);  
+   
+           
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(212,5,1,1,1,"Plancha electrica Vapor","Cable giratorio, disponibilidad de colores",674,879,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h33.png","png",212); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h34.png","png",212); 
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(245,4,8,6,1,"Camisa formal p/hombre","Tela de calidad, tallas: S, M, L. Envios gratis.",600,1345,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d7.jpg","jpg",245);
+	INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d8.jpg","jpg",245);      
+    
+      INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(214,3,1,1,1,"Sandwichera Brentwood","Capacidad para 2 sandwiches, inoxidable anti-adherente",635,3079,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h36.jpg","jpg",214); 
+ INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h37.jpg","jpg",214);    
+    
+   
+    
+
+     
+   INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(223,4,1,3,1,"Cama de mascota","Ultra suave, lavable",260,995,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m4.jpg","jpg",223); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m5.jpg","jpg",223); 
+    
+  INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(203,5,1,1,1,"Sartén eléctrico 2 secciones Brentwoood","Precio no negociable",2100,3210,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h10.jpg","jpg",203);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h11.jpg","jpg",203); 
+       INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h12.jpg","jpg",203); 
+    
+   
+    
+      INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(228,4,1,3,1,"Ropa para gato/perro","Variedad de tallas: XS, S, M, L",178,4895,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m12.jpg","jpg",228); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m13.jpg","jpg",228); 
+    
+    
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(233,6,1,2,1,"Ropa para bebé de 0-2 años","Tallas disponibles: 0 hasta 2 años",250,1500,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b3.jpg","jpg",233); 
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b4.jpg","jpg",233);  
+
+  
+   
+   INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(236,6,1,2,1,"Juego de cuchara y tenedor ","Disponible por encargo, con forma de animales, variedad de colores",85,240,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b9.jpg","jpg",236); 
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("b10.jpg","jpg",236);  
+  
+ 
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(242,4,8,6,1,"Bolso para dama","Colores diponibles: Negro, rojo, blanco, café",250,727,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("dd1.jpg","jpg",242);
+	INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("dd2.jpg","jpg",242);
+            
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(243,4,8,6,1,"Camisa tipo polo para caballero","Colores diponibles y variedad de tallas",490,1727,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("dd3.jpg","jpg",243);
+	INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("dd4.jpg","jpg",243);  
+         
+   
+         
+           INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(264,3,8,5,1,"Toyota Prado","Camioneta, Año 2004, 4x4, diesel",400000,1533,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v22.jpg","jpg",264);
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v23.jpg","jpg",264);
+      
+    
+         
+             INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(246,4,8,6,1,"Cardigan tipo polo","Disponible por unidad y mayoreo. No se aceptan cambios ni devoluciones",680,1445,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d9.jpg","jpg",246);
+	INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d10.jpg","jpg",246);        
+           
+   INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(225,4,1,3,1,"Correa para mascotas","Variedad de tallas y colores",115,2095,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m7.jpg","jpg",225); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m8.jpg","jpg",225); 
+    
+ 
+
+            INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(250,4,8,6,1,"Camiseta Unisex de algodon","100% algodón, tallas: XS, S, M, L, XL, XXL, XXXL",350,1365,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d15.jpg","jpg",250);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d16.jpg","jpg",250);   
+    
+               INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(251,4,8,6,1,"Camiseta diseño matemáticas","100% algodón, tallas: XS, S, M, L, XL, XXL, XXXL",380,1005,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d17.jpg","jpg",251);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d18.jpg","jpg",251);   
+ 
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(255,3,8,5,1,"Nisan Qashqai","Vehiculo tipo camioneta, año 2014, motor 2000, 4 cil., usado de agencia",325000,2105,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv1.jpg","jpg",255);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv2.jpg","jpg",255);
+    
+    
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(256,3,8,5,1,"Ford Ranger","Vehiculo tipo pick up, año 2019, motor 2.3, 4 cil.",610000,2115,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv3.jpg","jpg",256);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv4.jpg","jpg",256);
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(226,4,1,3,1,"Mochila para perro","Variedad de tallas: XS, S, M, L",200,5095,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m9.jpg","jpg",226); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("m10.jpg","jpg",226); 
+
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(257,3,8,5,1,"Honda Civic","Tipo turismo, año 2020, motor 2.0, 4 cil.",340000,2315,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv5.jpg","jpg",257);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv6.jpg","jpg",257);
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv7.jpg","jpg",257);  
+
+               INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(253,4,8,6,1,"Camiseta geek","100% algodón, tallas: XS, S, M, L, XL, XXL, XXXL",320,1105,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d20.jpg","jpg",253);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d21.jpg","jpg",253);
+    
+         INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(258,3,8,5,1,"Chevrolet Spark Hatchback","Año 2020, motor 1400, 4 cil.",248000,992,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv10.jpg","jpg",258);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv11.jpg","jpg",258);
+
+  
+      INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(265,3,8,5,1,"Ford Escape Titanium","Camioneta, Año 2014, motor 2.4",26000,983,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v27.jpg","jpg",265);
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v28.jpg","jpg",265);
+      
+  
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(269,5,6,7,1,"Audífonos Marvo Gaming USB","RGB, Garantía de 1 mes, disponible en blanco y negro",890,676,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e1.jpg","jpg",269);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e2.jpg","jpg",269);    
+ 
+            INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(249,4,8,6,1,"Bolso vintage tejido p/dama","Color crema, tejido a mano. Diseño único y exclusivo.",500,1305,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d13.jpg","jpg",249);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d14.jpg","jpg",249);
+    
+ INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(270,5,6,7,1,"Mouse Redragon USB Gaming","Precio no negociable, producto de alta calidad",740,696,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e3.png","png",270);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e4.png","png",270);    
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e5.png","png",270);   
+  
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(272,5,6,7,1,"Control logitech gaming","Inalambrico, color gris F710",1350,1006,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e7.jpg","jpg",272);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e8.jpg","jpg",272);  
+ 
+    
+      INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(274,5,6,7,1,"Motorola e7i Power","Octa-Core, 2GB de RAM, 32 GB de almacenamiento interno",3617,2000,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e10.png","png",274);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e11.png","png",274);  
+ 
+   
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(276,5,6,7,1,"Router Mercusys","1200 MBPS, 2.4 GHz",950,1106,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e13.jpg","jpg",276);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e14.jpg","jpg",276);      
+    
+    
+           INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(260,3,8,5,1,"Chevrolet Camaro Sport","Vehículo tipo deportivo, Año 2019, motor 3.6, 4 cil.",690000,1392,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v14.jpg","jpg",260);
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("v15.jpg","jpg",260);
+    
+    
+       INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(280,5,6,7,1,"Teclado Mini Smart TV","Bateria recargable",218.90,1086,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e18.jpg","jpg",280);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e19.jpg","jpg",280);  
+  
+        INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(244,4,8,6,1,"Camisa polo caballero","Colores diponibles y variedad de tallas",550,1427,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d5.jpg","jpg",244);
+	INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("d6.jpg","jpg",244);     
+    
+     INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(281,5,6,7,1,"Cámara Web Logitech c505 720P","Enfoque fijo, 1.2mp",1035.90,877,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e20.jpg","jpg",281);  
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("e21.jpg","jpg",281); 
+    
+    
+             INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(254,3,8,5,1,"Nisan Qashqai","Vehiculo tipo camioneta, año 2014, motor 2000, 4 cil., usado de agencia",325000,2105,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+  INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv1.jpg","jpg",254);
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("vv2.jpg","jpg",254);
+
+   
+INSERT INTO PRODUCT
+	(id_product,fk_id_user,fk_id_department,fk_id_product_category,fk_id_product_status,var_name,text_description,dou_price,int_views,bit_availability,publication_date,expiration_date)
+VALUES
+	(202,5,1,1,1,"Sarten 24cm Cobre","Precio por unidad y por docena, consultar",439,2500,1,CURRENT_TIMESTAMP, DATE_ADD(CURRENT_TIMESTAMP, interval 60 day));
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h3.jpg","jpg",202);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h4.jpg","jpg",202); 
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h5.jpg","jpg",202);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h6.jpg","jpg",202); 
+    INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h7.jpg","jpg",202);
+   INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h8.jpg","jpg",202); 
+INSERT INTO PHOTOGRAPHS(var_name,var_extension,fk_id_product)
+	VALUES("h9.jpg","jpg",202);
+
+
+   

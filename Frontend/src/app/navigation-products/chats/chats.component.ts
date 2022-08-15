@@ -4,6 +4,7 @@ import { WebSocketsService } from "../../SERVICES/web-sockets.service";
 import {chats,sendMessenge,listMessenge} from '../../../assets'
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Params } from '@angular/router';
+import { EquipoService, qualification } from '../../SERVICES/equipo.service';
 
 @Component({
   selector: 'app-chats',
@@ -29,7 +30,7 @@ export class ChatsComponent implements OnInit {
   @ViewChild("messengeContainer") mCont:ElementRef = new ElementRef("")
   @ViewChild("myInput") input: ElementRef = new ElementRef("");
 
-  constructor(private WebSocketsService:WebSocketsService,private rutaActiva: ActivatedRoute) {
+  constructor(private WebSocketsService:WebSocketsService, private rutaActiva: ActivatedRoute, private equipoService: EquipoService) {
     
   }
 
@@ -104,6 +105,58 @@ export class ChatsComponent implements OnInit {
     })
   }
 
+  /// CALIFICACIÓN
+  protected cond1:boolean=false;
+  protected cond2:boolean=false;
+  protected cond3:boolean=false;
+  protected cond4:boolean=false;
+  protected cond5:boolean=false;
+
+  Rol:String=""
+
+  qlfy: qualification ={
+    fk_id_user_review: '', 
+    fk_id_user_qualified: 0,
+    tin_score: 0
+  }
+
+  calificar(score:number){
+  
+    this.qlfy.tin_score = score
+    
+    this.equipoService.qualify(this.qlfy).subscribe(res=>{
+      const info:BookInfo = <any>res
+      console.log(info.msg)
+    },
+
+    err=>console.log(err))
+
+    this.cond2=false
+    this.cond3=false
+    this.cond4=false
+    this.cond5=false
+    if(score>=1){
+      this.cond1=true
+      if(score>=2){
+        this.cond2=true
+        if(score>=3){
+          this.cond3=true
+          if(score>=4){
+            this.cond4=true
+            if(score>=5){
+              this.cond5=true
+
+            }
+          }
+        }
+      }
+    }
+    
+
+  }
+
+  ///
+
   getMessages(idChat:number,Rol:string,id_comprador:number,id_vendedor:number){
     let p : number = Rol == 'Cliente' ? id_vendedor : id_comprador
     this.chatSelected = idChat
@@ -111,6 +164,12 @@ export class ChatsComponent implements OnInit {
     this.dataChat[1] = idChat 
     this.dataM.fk_id_chat = idChat
     this.WebSocketsService.emit("listmessages",{"id":idChat,"idUser":p})
+
+    //Para la calificación
+    this.Rol = Rol
+    this.qlfy.fk_id_user_review = ""+id_vendedor
+    this.qlfy.fk_id_user_qualified = id_comprador
+    
   }
 
   sendMessenge(){
@@ -139,4 +198,9 @@ export class ChatsComponent implements OnInit {
     
   }
 
+}
+
+interface BookInfo {
+  status : string ;
+  msg: string;
 }

@@ -198,8 +198,6 @@ export class EquipoService {
 
 }
 
-
-
 export interface filter{
   fk_id_department: string,
   dou_price:string,
@@ -333,8 +331,8 @@ export interface Images{
 }
 
 export interface qualification{
-  fk_id_user_qualified: number,
   fk_id_user_review: string| null,
+  fk_id_user_qualified: number,
   tin_score: number
 }
 

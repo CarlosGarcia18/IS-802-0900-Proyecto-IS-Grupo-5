@@ -16,6 +16,7 @@ h5 {
   color: #252f37;
   margin-bottom: 0px;
   margin-top: 23px;
+  width:100%
 }
 
 /*BTN SUSCRIBIRSE*/
@@ -83,7 +84,7 @@ h5 {
   margin-bottom: 25px;
   border-radius: 8px;
   outline: 10em;
-  width: 130px;
+  width: 160px;
   font-size: 14px;
   box-shadow: rgb(110 110 110 / 75%) 0px 1px 3.5px 0px;
 }
@@ -98,7 +99,7 @@ form {
 
 .select-container {
   display: flex;
-  padding-left: 200px;
+  padding-left: 130px;
 }
 
 .carousel-container {

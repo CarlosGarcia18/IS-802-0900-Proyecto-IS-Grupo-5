@@ -86,7 +86,7 @@
                     <input class="input" type="password" placeholder="Escribe tu contraseña de nuevo" name="confirmPassword" formControlName="confirmPassword" required>
                     <div class="errors-container" *ngIf="passValidateControl.invalid && (passValidateControl.touched || passValidateControl.dirty)">
                         <p class="errors-msg" *ngIf="passValidateControl.hasError('required')">El campo es obligatorio</p>
-                        <p class="errors-msg" *ngIf="passValidateControl.hasError('pattern')" align="left"> confirme contraseña</p>
+                        <p class="errors-msg" *ngIf="passValidateControl.hasError('pattern')" align="left">confirme contraseña</p>
                     </div>
                     <div class="errors-container" *ngIf="match('password','confirmPassword')">
                         <p> Las contraseñas no coinciden </p>
@@ -117,9 +117,9 @@
                     <table class="table">
                         <thead class="tbl-head">
                             <tr>
-                                <td class="tbl-col-nombre">Selecciona tu ubicación</td>
+                                <td class="tbl-col-nombre" title="Selecciona tu ubicación">Ubicación</td>
                                 <td class="tbl-col-depto">
-                                    <select [(ngModel)]="registro.fk_id_department" class="selector" name="Departamento" formControlName="ubicacion">
+                                    <select [(ngModel)]="registro.fk_id_department" class="selector" title="Selecciona tu ubicación" name="Departamento" formControlName="ubicacion">
 
                                         <!-- Traer departamentos de la base de datos-->
                                         <option *ngFor="let department of departments" [value]="department.id_department">
@@ -146,7 +146,7 @@
                 <div class="container-part-form">
                     <span class="span" style="text-align: left;">Para crear tu cuenta acepta los <a routerLink="termsAndConditions" class="link"  target="_blank">Terminos y Condiciones</a></span>
                     <div class="errors-container" *ngIf="chkControl.invalid && (chkControl.touched || chkControl.dirty)">
-                        <p class="errors-msg" *ngIf="chkControl.hasError('required')">Rellena este item</p>
+                        <p class="errors-msg" *ngIf="chkControl.hasError('required')">Debe de aceptar los términos y condiciones</p>
                     </div>
                 </div>
             </div>

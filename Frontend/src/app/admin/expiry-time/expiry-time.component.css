@@ -1,3 +1,4 @@
+
 .container-page{
     display: flex;
     width: 100%;
@@ -12,7 +13,7 @@
     height: 60vh;
     border-style: groove;
     border-width: 2px;
-    border-color: #252F37;
+    border-color: lightgrey;
     border-radius: 10px;
   
 }
@@ -42,15 +43,16 @@ button{
 }
 
 .divButton{
-    margin-top: 3vh;
+    margin-top: 5vh;
     display: flex;
     justify-content: center
 }
 
 h1{
-    margin: 10vh;
+    margin-top: 5vh;
+    margin-bottom: 10vh;
     color: #252F37;
-    font-size: 2.5vh;
+    font-size: 3.5vh;
     display: flex;
     justify-content: center
 }
@@ -63,3 +65,4 @@ b{
 h4{
     font-size: 2.2vh;
 }
+

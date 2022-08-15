@@ -37,10 +37,10 @@ export class ProductsComponent implements OnInit {
   public commentBool: boolean=true;
   public token: number=0
   public promedio: number=0;
- public totalComments:  number=0;
+  public totalComments:  number=0;
  //public date:string=new Date().toLocaleString()
- public block:boolean=true;
- public cond1:boolean=false;
+  public block:boolean=true;
+  public cond1:boolean=false;
   public cond2:boolean=false;
   public cond3:boolean=false;
   public cond4:boolean=false;

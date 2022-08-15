@@ -83,7 +83,7 @@ align-content: stretch;
   background-color: rgb(252, 252, 252);
 }
 
-.container-images{
+.container-images-new{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -92,7 +92,7 @@ align-content: stretch;
   align-content: flex-start;
 }
 
-.pre-imagen{
+.pre-imagen-new{
   width: 62px;
   height: 62px;
   background-size: cover;
@@ -101,15 +101,16 @@ align-content: stretch;
   border-color: unset;
 }
 
-.pre-imagen:hover .deleteFile{
+.pre-imagen-new:hover .deleteFile-new{
   opacity: 100;
+  transition: all .3s;
 }
 
-.pre-imagen:hover .deleteFile:hover{
+.pre-imagen-new:hover .deleteFile-new:hover{
   color: red;
 }
 
-.deleteFile{
+.deleteFile-new{
   width: 25px;
   height: 29px;
   text-align: center;
