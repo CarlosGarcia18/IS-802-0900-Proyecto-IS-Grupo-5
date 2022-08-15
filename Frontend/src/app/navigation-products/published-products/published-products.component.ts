@@ -19,7 +19,6 @@ export class PublishedProductsComponent implements OnInit {
   productoList:traerProducto[]=[];
   categories:any[] = []
   expiratioDate:Date|null = null 
-
   public previsualizacion: any;
   public archivos: any = []; //Sera de tipo array
   public image: any; //Enviar una imagen a la vez al servidor
@@ -37,6 +36,7 @@ export class PublishedProductsComponent implements OnInit {
     this.cargadas.length=0
     this.eliminadas.length=0
     this.alertMsg=''
+  
   }
 
   getProducList(){
@@ -232,6 +232,7 @@ public fotos=[]
 /* Para subir Archivo*/
 subirArchivo(): any {
   //Sube el producto
+if(this.srcArray.length>=1){
   this.equipoService.updateProduct(localStorage.getItem("idProductoModal"), this.producto).subscribe(res=>{
     console.log(res)
    // var info: BookInfo2 = <any>res;
@@ -258,10 +259,13 @@ subirArchivo(): any {
     this.archivos.length=0
     this.srcArray.length=0
     this.ngOnInit()
-
+  
   
     
   });
+}else{
+  alert("Debes cargar al menos una imagen")
+}
 }
   
   usuario: user = {
