@@ -4,7 +4,7 @@ import { WebSocketsService } from "../../SERVICES/web-sockets.service";
 import {chats,sendMessenge,listMessenge} from '../../../assets'
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Params } from '@angular/router';
-import { EquipoService, qualification } from '../../SERVICES/equipo.service';
+import { EquipoService, qualification, getQualification } from '../../SERVICES/equipo.service';
 
 @Component({
   selector: 'app-chats',
@@ -30,8 +30,7 @@ export class ChatsComponent implements OnInit {
   @ViewChild("messengeContainer") mCont:ElementRef = new ElementRef("")
   @ViewChild("myInput") input: ElementRef = new ElementRef("");
 
-  constructor(private WebSocketsService:WebSocketsService, private rutaActiva: ActivatedRoute, private equipoService: EquipoService) {
-    
+  constructor(private WebSocketsService:WebSocketsService, private rutaActiva: ActivatedRoute, private equipoService: EquipoService) { 
   }
 
   chats:chats[] = []
@@ -128,7 +127,6 @@ export class ChatsComponent implements OnInit {
       const info:BookInfo = <any>res
       console.log(info.msg)
     },
-
     err=>console.log(err))
 
     this.cond2=false
@@ -169,6 +167,42 @@ export class ChatsComponent implements OnInit {
     this.Rol = Rol
     this.qlfy.fk_id_user_review = ""+id_vendedor
     this.qlfy.fk_id_user_qualified = id_comprador
+
+    this.cond1=false
+    this.cond2=false
+    this.cond3=false
+    this.cond4=false
+    this.cond5=false
+
+    if(Rol=="Vendedor"){
+      let getScore:getQualification = {
+        fk_id_user_review: this.qlfy.fk_id_user_review,
+        fk_id_user_qualified: "" + this.qlfy.fk_id_user_qualified
+      }
+      this.equipoService.getOneScore(getScore).subscribe(res=>{
+        const info:BookInfo = <any>res
+        if(info.status==200){
+          if(+info.msg>=1){
+            this.cond1=true
+            if(+info.msg>=2){
+              this.cond2=true
+              if(+info.msg>=3){
+                this.cond3=true
+                if(+info.msg>=4){
+                  this.cond4=true
+                  if(+info.msg>=5){
+                    this.cond5=true
+      
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      err=>console.log(err))
+    }
+    
     
   }
 
@@ -201,6 +235,6 @@ export class ChatsComponent implements OnInit {
 }
 
 interface BookInfo {
-  status : string ;
+  status : number ;
   msg: string;
 }
