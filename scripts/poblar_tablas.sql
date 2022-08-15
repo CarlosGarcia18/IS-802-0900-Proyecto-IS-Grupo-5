@@ -929,6 +929,12 @@ insert into USER (registration_date, fk_id_department, var_email, var_name, var_
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-01-02 00:45:56', 4, 'rfyers1b@opensource.org', 'Ritchie', 'Fyers', 'gKQCqVpf5', 1, '7892766425');
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-06-02 11:47:36', 1, 'pthunnercliff1c@japanpost.jp', 'Peder', 'Thunnercliff', 'DNKhcdr6u', 1, '8663001520');
 insert into USER (registration_date, fk_id_department, var_email, var_name, var_lastname, tex_password, bit_status, var_phone) values ('2022-01-09 11:02:43', 8, 'lohagan1d@woothemes.com', 'Lawry', 'O''Hagan', 'oe7DhQJkiuv', 1, '4914169665');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-05',8, 'cantareronicole@gmail.com', 'Nicole', 'Cantarero', 'Hola1234//', 1, 1, '19840000');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-04',1, 'larissa_vasquez_a@hotmail.com', 'Larissa', 'Vasquez', 'Hola1234//', 1, 1, '19850000');
+INSERT INTO USER(registration_date,fk_id_department, var_email, var_name, var_lastname, tex_password, bit_rol, bit_status, var_phone) 
+	VALUES('2022-08-03',6, 'larissac2022@outlook.com', 'Emily', 'Bronte', 'Hola1234//', 1, 1, '19860000');
 
 INSERT INTO COMPLAINT
 	(fk_id_user, fk_id_user_complaining, fk_id_product, fk_id_complaint_category, bit_status, text_description, tim_date)
