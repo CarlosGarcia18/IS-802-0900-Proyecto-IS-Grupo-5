@@ -232,7 +232,7 @@ public fotos=[]
 /* Para subir Archivo*/
 subirArchivo(): any {
   //Sube el producto
-if(this.srcArray.length>=1){
+if(this.cargadas.length>=1){
   this.equipoService.updateProduct(localStorage.getItem("idProductoModal"), this.producto).subscribe(res=>{
     console.log(res)
    // var info: BookInfo2 = <any>res;

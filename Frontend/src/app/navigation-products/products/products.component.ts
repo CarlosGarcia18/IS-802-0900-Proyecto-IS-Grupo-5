@@ -87,6 +87,11 @@ export class ProductsComponent implements OnInit {
         this.modalComplaint = valor
       })
       this.modalComplaint = false
+      this.cond1=false;
+      this.cond2=false;
+      this.cond3=false;
+      this.cond4=false;
+      this.cond5=false;
   }
   filterForm=new FormGroup({
     ubicacion: new FormControl(''),
