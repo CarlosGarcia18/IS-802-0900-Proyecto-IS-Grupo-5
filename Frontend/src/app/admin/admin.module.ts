@@ -8,6 +8,7 @@ import { ExpiryTimeComponent } from './expiry-time/expiry-time.component';
 import { ComplaintsComponent } from './complaints/complaints.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ComponentsModule,
     FormsModule,
     ReactiveFormsModule,
+    MatPaginatorModule
   ],
   exports:[
     AdminComponent

@@ -8,15 +8,13 @@
             <thead>
               <tr>
                 <th>No.</th>
-                <th scope="col">Primer Nombre</th>
-                <th scope="col">Primer Apellido</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
                 <th scope="col">Numero de Denuncias</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item2 of user; let indice=index;">
-
-                <th scope="row">{{indice+1}}</th>
+              <tr *ngFor="let item2 of user | slice:desde:hasta">
                 <td>{{item2.var_name}}</td>
                 <td>{{item2.var_lastname}}</td>
                 <td>{{item2.Denuncias1}}</td>
@@ -38,7 +36,11 @@
 
             </tbody>
           </table>
-
+          <mat-paginator [length]="user.length"
+              [pageSize]="pageSize"
+              (page)="cambiarPagina($event)"
+              >
+          </mat-paginator>
 
         </div>
       </div>
@@ -46,14 +48,9 @@
   </div>
 </div>
 
-<!--
-<mat-paginator [length]="user.length"
-              [pageSize]="pageSize"
-              (page)="cambiarPagina($event)"
-              >
-</mat-paginator>
 
--->
+
+
 
 <div *ngIf="mostrar" class="container mt-5" id="Denun">
   <div class="row">
@@ -75,7 +72,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of denuncias ">
+              <tr *ngFor="let item of denuncias | slice:desde2:hasta2">
                 <td>{{item.NombreCategoria}}</td>
                 <td>{{item.NombreUsuario}}</td>
                 <th >{{item.SegundoNombre}}</th>
@@ -89,7 +86,11 @@
             </tbody>
           </table>
           <h5 *ngIf="denuncias.length<=0">No hay Denuncias</h5>
-
+          <mat-paginator *ngIf="denuncias.length>0" [length]="denuncias.length"
+              [pageSize]="pageSize2"
+              (page)="cambiarPagina2($event)"
+              >
+          </mat-paginator>
         </div>
       </div>
     </div>
