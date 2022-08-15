@@ -1332,6 +1332,15 @@ INSERT INTO COMPLAINT
 VALUES
 	((SELECT fk_id_user FROM PRODUCT WHERE id_product =106), 33, 106, 2, 0, 'Mi primera inquietud queja es esto', current_timestamp());
 
+
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (207, 5);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (207, 6);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (208, 2);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (208, 1);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (208, 3);
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (209,7 );
+insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (209, 10);
+
 insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (31, 4);
 insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (55, 6);
 insert into SUBSCRIPTION (fk_id_user, fk_id_product_category) values (13, 9);
