@@ -27,6 +27,7 @@ export class PublishedProductsComponent implements OnInit {
 
   ngOnInit(): void {
     //this.usuario.fk_id_user=localStorage.getItem('token')
+    this.srcArray.length = 0
     this.getProducList()
     this.equipoService.getProductCategories().subscribe(res=>{
       this.categories = <any>res
