@@ -99,6 +99,9 @@ routers.post('/addFav', customerU.addFavorite)
 //Agrega calificacion
 routers.post('/addcalifications',customerU.qualifications)
 
+//Traer calificación individual
+routers.post('/individualScore',customerU.getOneQualification)
+
 //Agregar comentario
 routers.post('/adddenuncia',customerU.denuncia)
 
