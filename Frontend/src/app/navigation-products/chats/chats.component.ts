@@ -87,6 +87,7 @@ export class ChatsComponent implements OnInit {
     this.WebSocketsService.listen("listmessagesResponseUsers").subscribe((data:any)=>{
       if (this.dataChat[1]==data.msg) {
         this.WebSocketsService.emit("listmessagesv2",{"id":this.dataChat[1],"idUser":this.dataChat[0]})
+        this.activarCalificar()
       }
     })
 
@@ -99,6 +100,7 @@ export class ChatsComponent implements OnInit {
             this.WebSocketsService.emit("listmessages",{"id":this.dataChat[1],"idUser":this.dataChat[0]})
           } 
           this.WebSocketsService.emit("getchats",{"id_user":this.token})
+          this.activarCalificar()
         }else{
           this.messenge = data.msg
           this.chats = data.msgChat

@@ -118,9 +118,9 @@ controller.productFiltering = (req,res) =>{
         + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product `
         +`LEFT OUTER JOIN  wish_list wl ON wl.fk_id_product=product.id_product AND wl.fk_id_user=${id_user}`+
         ` INNER JOIN user ON user.id_user = product.fk_id_user where `
-    if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
-    if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
-    if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `
+    if(fk_id_department!="") sql1 += `product.fk_id_department = ${fk_id_department} AND `
+    if(fk_id_product_category!="")  sql1 += `product.fk_id_product_category=${fk_id_product_category} AND `
+    if(dou_price!="") sql1 +=  `product.dou_price <= ${dou_price} AND `
     sql1 += `bit_availability = 1 and user.bit_status=1 group by product.id_product ORDER BY publication_date DESC`
     
     
