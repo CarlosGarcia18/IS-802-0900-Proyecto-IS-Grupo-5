@@ -33,9 +33,9 @@ export class GraphicComponent implements OnInit {
     'rgb(243,236,220)',
     'rgb(201,153,193)',
     'rgb(149,178,220)',
-    'rgb(149,178,220)',
-    'rgb(149,178,220)',
-    'rgb(149,178,220)',
+    'rgb(152,205,158)',
+    'rgb(253,246,158)',
+    'rgb(245,182,139)',
   ];
 
   options: ChartOptions = {};
