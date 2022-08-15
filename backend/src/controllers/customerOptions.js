@@ -260,7 +260,7 @@ controller.productUser = (req, res) => {
         if (err) res.json(err);//posible error en consulta
         else {
 
-            console.log(rows[0].bit_availability[0])
+            //console.log(rows[0].bit_availability[0])
 
             const isAvailable = (dato)=>{
                 if(dato == 0){
