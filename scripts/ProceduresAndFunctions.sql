@@ -349,22 +349,21 @@ end//
 
 call modificarEstado(6);
 
-DROP PROCEDURE IF EXISTS fn_denuncia;
+DROP FUNCTION IF EXISTS fn_denuncia;
 delimiter &&
-CREATE FUNCTION fn_Denuncia(id_user BIGINT UNSIGNED)
+CREATE FUNCTION fn_Denuncia(userId BIGINT UNSIGNED)
 	RETURNS int
 BEGIN
 	DECLARE NumeroDenuncias int;
-	select count(fk_id_user) into NumeroDenuncias  from complaint
-     where exists (select * from user
-     where id_user=fk_id_user
-     group by id_user);
+	select count(*) into NumeroDenuncias  from complaint
+     where fk_id_user_complaining=userId;
 	return NumeroDenuncias;
 END &&
 
+DROP procedure IF EXISTS ListadoUsuarios;
 delimiter //
 create  procedure ListadoUsuarios()
 BEGIN
 select id_user,var_name,var_lastname, fn_Denuncia(id_user) AS Denuncias1 from user as U
-where  fn_Denuncia(id_user)>0 and Estado_usuario( U.id_user)=1 and U.bit_rol=1;
+where  fn_Denuncia(id_user)>0 and Estado_usuario( U.id_user)=1 and U.bit_rol=1 order by Denuncias1 desc;
 end//
