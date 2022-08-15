@@ -114,14 +114,15 @@ function formatoPrecio(precio){
 controller.productFiltering = (req,res) =>{
     const{fk_id_department,fk_id_product_category,dou_price,id_user}=req.body
     let sql1 = `SELECT product.id_product,if(wl.fk_id_user is NULL,"false","true") as whishlist,photographs.id_photographs,`
-        +`photographs.var_name AS var_name_photo,product.fk_id_user,fk_id_department,product.var_name,text_description,dou_price,publication_date`
+        +`photographs.var_name AS var_name_photo,product.fk_id_user,product.fk_id_department,product.var_name,text_description,dou_price,publication_date`
         + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product `
-        +`LEFT OUTER JOIN  wish_list wl ON wl.fk_id_product=product.id_product AND wl.fk_id_user=${id_user}  where `
+        +`LEFT OUTER JOIN  wish_list wl ON wl.fk_id_product=product.id_product AND wl.fk_id_user=${id_user}`+
+        ` INNER JOIN user ON user.id_user = product.fk_id_user where `
     if(fk_id_department!="") sql1 += `fk_id_department = ${fk_id_department} AND `
     if(fk_id_product_category!="")  sql1 += `fk_id_product_category=${fk_id_product_category} AND `
     if(dou_price!="") sql1 +=  `dou_price <= ${dou_price} AND `
-    sql1 += `bit_availability = 1 group by product.id_product ORDER BY publication_date DESC`
-
+    sql1 += `bit_availability = 1 and user.bit_status=1 group by product.id_product ORDER BY publication_date DESC`
+    
     
     conection.query(sql1,(err,rows,fields)=>{
         if(err) res.json(err);//posible error en consulta
@@ -253,7 +254,7 @@ controller.productUser = (req, res) => {
     const { id } = req.params
     let sql1 = `SELECT product.id_product,photographs.id_photographs,photographs.var_name AS var_name_photo,fk_id_user,fk_id_department,`
         + ` product.var_name,text_description,dou_price,publication_date, expiration_date, bit_availability, product_category.var_name AS categoria`
-        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product INNER JOIN product_category ON product_category.id_product_category= product.fk_id_product_category  where `
+        + ` from product LEFT OUTER JOIN  photographs ON photographs.fk_id_product=product.id_product INNER JOIN product_category ON product_category.id_product_category= product.fk_id_product_category where `
     sql1 += `product.fk_id_user=${id} group by product.id_product ORDER BY publication_date DESC`
 
     conection.query(sql1, (err, rows, fields) => {
@@ -293,7 +294,8 @@ controller.getWishlist = (req, res) => {
     sql3 = `SELECT pr.id_product,pr.var_name, pr.text_description, pr.dou_price, ph.id_photographs,ph.var_name as var_name_photo FROM product pr
         INNER JOIN wish_list ON pr.id_product= wish_list.fk_id_product 
         INNER JOIN photographs ph ON  pr.id_product=ph.fk_id_product
-        WHERE wish_list.fk_id_user=${id_user} AND bit_availability = 1 group by pr.id_product ORDER BY pr.publication_date DESC`
+        INNER JOIN user ON user.id_user = pr.fk_id_user
+        WHERE wish_list.fk_id_user=${id_user} AND bit_availability = 1 and user.bit_status=1 group by pr.id_product ORDER BY pr.publication_date DESC`
 
     conection.query(sql1, (err, rows, fields) => {
         if (err) res.json({ status: '0', error: err.sqlMessage })
