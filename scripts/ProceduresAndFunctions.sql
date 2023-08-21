@@ -1,4 +1,4 @@
-use plazitanet;
+use PLAZITANET;
 SET GLOBAL log_bin_trust_function_creators = 1; #Para la creacion de finciones deterministas
 
 #funcion que crea un codigo aleatorio dato un tamaño 
